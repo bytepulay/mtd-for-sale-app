@@ -16,4 +16,7 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="title_activity_sales">SalesActivity</string>
     <string name="title_activity_customer">CustomerActivity</string>
+    <string name="title_activity_scan_for_voucher">ScanForVoucherActivity</string>
+
+
 </resources>

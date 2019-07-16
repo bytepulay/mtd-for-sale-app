@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    android:orientation="vertical"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <include layout="@layout/toolbar_layout"/>
+
+
+    <android.support.v4.widget.NestedScrollView
+        android:scrollbars="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <android.support.v7.widget.CardView
+            android:layout_marginTop="5dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:cardBackgroundColor="@android:color/white"
+            android:foreground="?android:attr/selectableItemBackground"
+            app:cardCornerRadius="4dp"
+            app:cardElevation="4dp">
+
+
+
+
+            <LinearLayout
+                android:layout_marginTop="10dp"
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:textAlignment="center"
+                    android:layout_marginTop="10dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textAllCaps="false"
+                    android:textSize="20sp"
+                    android:text=" Create New Customer "/>
+
+                <EditText
+                    android:id="@+id/userName"
+                    android:hint="User Name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_marginTop="10dp"
+                    android:padding="10dp"
+                    android:textAllCaps="false"
+                    android:background="@drawable/custom_edittext_form_background"/>
+
+
+                <EditText
+                    android:id="@+id/shopName"
+                    android:hint="Shop Name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_marginTop="10dp"
+                    android:padding="10dp"
+                    android:textAllCaps="false"
+                    android:background="@drawable/custom_edittext_form_background"/>
+
+
+
+
+
+
+
+                <EditText
+                    android:id="@+id/phoneNumber"
+                    android:hint="phone Number"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_marginTop="10dp"
+                    android:padding="10dp"
+                    android:inputType="phone"
+                    android:textAllCaps="false"
+                    android:background="@drawable/custom_edittext_form_background"/>
+
+
+
+
+
+                <EditText
+                    android:id="@+id/address"
+                    android:hint="address"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_marginTop="10dp"
+                    android:padding="10dp"
+                    android:textAllCaps="false"
+                    android:background="@drawable/custom_edittext_form_background"/>
+
+
+
+
+                <EditText
+                    android:id="@+id/dateOfBirth"
+                    android:hint="Date Of Birth"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_marginTop="10dp"
+                    android:padding="10dp"
+                    android:textAllCaps="false"
+                    android:background="@drawable/custom_edittext_form_background"/>
+
+
+                <EditText
+                    android:id="@+id/nrc"
+                    android:hint="Nrc"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_marginTop="10dp"
+                    android:padding="10dp"
+                    android:textAllCaps="false"
+                    android:background="@drawable/custom_edittext_form_background"/>
+
+
+
+
+
+                <EditText
+                    android:id="@+id/township"
+                    android:hint="Township"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_marginTop="10dp"
+                    android:padding="10dp"
+                    android:textAllCaps="false"
+                    android:background="@drawable/custom_edittext_form_background"/>
+
+
+
+
+
+
+
+                    <Button
+                        android:id="@+id/customerSave"
+                        android:layout_marginLeft="30dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginRight="30dp"
+                        android:padding="15dp"
+                        android:textAllCaps="false"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Save"
+                        android:textSize="18sp"
+                        android:textColor="#FFF"
+                        android:background="@drawable/button_login_back"/>
+
+
+
+
+
+            </LinearLayout>
+        </android.support.v7.widget.CardView>
+
+    </android.support.v4.widget.NestedScrollView>
+
+</LinearLayout>

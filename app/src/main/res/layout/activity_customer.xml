@@ -5,12 +5,17 @@
     android:id="@+id/container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Activities.CustomerActivity">
+    tools:context=".activities.Activities.CustomerActivity">
+
+
+
 
     <FrameLayout
         android:id="@+id/frame_layout_customer"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        tools:layout_editor_absoluteX="-119dp"
+        tools:layout_editor_absoluteY="-97dp">
 
     </FrameLayout>
 
