@@ -1,27 +1,18 @@
-package asia.nainglintun.myintthitar.activities.Activities;
+package asia.nainglintun.myintthitar.Activities;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Intent;
-import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
-
-import com.google.zxing.Result;
-import com.google.zxing.integration.android.IntentIntegrator;
-import com.google.zxing.integration.android.IntentResult;
-
-import java.io.Serializable;
 
 import asia.nainglintun.myintthitar.R;
 import asia.nainglintun.myintthitar.activities.models.ApiClient;
 import asia.nainglintun.myintthitar.activities.models.ApiInterface;
-import me.dm7.barcodescanner.zxing.ZXingScannerView;
 
 public class MainActivity extends AppCompatActivity {
 

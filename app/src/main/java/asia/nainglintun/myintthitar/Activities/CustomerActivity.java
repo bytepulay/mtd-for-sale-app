@@ -1,4 +1,4 @@
-package asia.nainglintun.myintthitar.activities.Activities;
+package asia.nainglintun.myintthitar.Activities;
 
 import android.os.Bundle;
 import android.support.design.widget.BottomNavigationView;

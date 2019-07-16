@@ -1,46 +1,38 @@
-package asia.nainglintun.myintthitar.activities.Activities;
+package asia.nainglintun.myintthitar.Activities;
 
 import android.Manifest;
-import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Build;
-import android.support.annotation.NonNull;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.TextView;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
+import android.support.v7.app.AppCompatActivity;
 import android.widget.Toast;
 
 import com.google.zxing.Result;
 
-import asia.nainglintun.myintthitar.R;
-import asia.nainglintun.myintthitar.activities.Fragments.SaleInvoiceCreate;
+import java.io.Serializable;
+
 import me.dm7.barcodescanner.zxing.ZXingScannerView;
 
-public class ScanForVoucherActivity extends AppCompatActivity implements ZXingScannerView.ResultHandler {
-
-
-    TextView textViewName;
-    //private static final int REQUEST_CAMERA = 1;
+public class ScanActivity extends AppCompatActivity implements ZXingScannerView.ResultHandler {
 
     ZXingScannerView zXingScannerView;
+
+    Serializable afterScan;
+
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         zXingScannerView = new ZXingScannerView(this);
         setContentView(zXingScannerView);
 
-        checkPermission();
-    }
 
-    @Override
-    public void handleResult(Result rawResult) {
-        //MainActivity.qrUsername.setText(rawResult.getText());
-        SaleInvoiceCreate.edCustomerUserName.setText(rawResult.getText());
-        onBackPressed();
-//        if (rawResult.getText().equals("salesale123")){
-//            //startActivity(new Intent(ScanForVoucherActivity.this, SaleInvoiceCreate.class));
-//        }
+        checkPermission();
+
+
+        zXingScannerView.setResultHandler(this);
+
     }
 
     @Override
@@ -52,8 +44,22 @@ public class ScanForVoucherActivity extends AppCompatActivity implements ZXingSc
     @Override
     protected void onResume() {
         super.onResume();
-//        zXingScannerView.setResultHandler(this);
-//        zXingScannerView.startCamera();
+    }
+
+    @Override
+    public void handleResult(Result rawResult) {
+
+//        afterScan = getIntent().getSerializableExtra("afterscan");
+//
+//        if(afterScan instanceof AfterScan){
+//
+//            ((AfterScan)afterScan).afterScanJob(this, rawResult.getText());
+//        }
+    }
+
+    @Override
+    public void onPointerCaptureChanged(boolean hasCapture) {
+
     }
 
 
@@ -86,4 +92,5 @@ public class ScanForVoucherActivity extends AppCompatActivity implements ZXingSc
         }
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
     }
+
 }

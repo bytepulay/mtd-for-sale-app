@@ -1,41 +1,43 @@
-package asia.nainglintun.myintthitar.activities.Activities;
+package asia.nainglintun.myintthitar.Activities;
 
 import android.Manifest;
-import android.app.Activity;
-import android.content.Context;
 import android.content.pm.PackageManager;
 import android.os.Build;
-import android.os.Bundle;
 import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.zxing.Result;
 
-import java.io.Serializable;
-
-import asia.nainglintun.myintthitar.R;
+import asia.nainglintun.myintthitar.Fragments.SaleInvoiceCreate;
 import me.dm7.barcodescanner.zxing.ZXingScannerView;
 
-public class ScanActivity extends AppCompatActivity implements ZXingScannerView.ResultHandler {
+public class ScanForVoucherActivity extends AppCompatActivity implements ZXingScannerView.ResultHandler {
+
+
+    TextView textViewName;
+    //private static final int REQUEST_CAMERA = 1;
 
     ZXingScannerView zXingScannerView;
-
-    Serializable afterScan;
-
     @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         zXingScannerView = new ZXingScannerView(this);
         setContentView(zXingScannerView);
 
-
         checkPermission();
+    }
 
-
-        zXingScannerView.setResultHandler(this);
-
+    @Override
+    public void handleResult(Result rawResult) {
+        //MainActivity.qrUsername.setText(rawResult.getText());
+        SaleInvoiceCreate.edCustomerUserName.setText(rawResult.getText());
+        onBackPressed();
+//        if (rawResult.getText().equals("salesale123")){
+//            //startActivity(new Intent(ScanForVoucherActivity.this, SaleInvoiceCreate.class));
+//        }
     }
 
     @Override
@@ -47,22 +49,8 @@ public class ScanActivity extends AppCompatActivity implements ZXingScannerView.
     @Override
     protected void onResume() {
         super.onResume();
-    }
-
-    @Override
-    public void handleResult(Result rawResult) {
-
-//        afterScan = getIntent().getSerializableExtra("afterscan");
-//
-//        if(afterScan instanceof AfterScan){
-//
-//            ((AfterScan)afterScan).afterScanJob(this, rawResult.getText());
-//        }
-    }
-
-    @Override
-    public void onPointerCaptureChanged(boolean hasCapture) {
-
+//        zXingScannerView.setResultHandler(this);
+//        zXingScannerView.startCamera();
     }
 
 
@@ -95,5 +83,4 @@ public class ScanActivity extends AppCompatActivity implements ZXingScannerView.
         }
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
     }
-
 }

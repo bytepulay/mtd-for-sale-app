@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".activities.Activities.VoucherDetailActivity">
+    tools:context=".Activities.VoucherDetailActivity">
 
     <include layout="@layout/toolbar_layout"/>
 

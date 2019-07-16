@@ -1,4 +1,4 @@
-package asia.nainglintun.myintthitar.activities.Fragments;
+package asia.nainglintun.myintthitar.Fragments;
 
 
 import android.os.Bundle;
@@ -13,7 +13,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import asia.nainglintun.myintthitar.R;
-import asia.nainglintun.myintthitar.activities.Activities.VoucherDetailActivity;
+
 
 /**
  * A simple {@link Fragment} subclass.

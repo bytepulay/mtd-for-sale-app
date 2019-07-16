@@ -1,4 +1,4 @@
-package asia.nainglintun.myintthitar.activities.Fragments;
+package asia.nainglintun.myintthitar.Fragments;
 
 
 import android.app.DatePickerDialog;
@@ -20,11 +20,13 @@ import java.util.Date;
 import java.util.Locale;
 
 import asia.nainglintun.myintthitar.R;
-import asia.nainglintun.myintthitar.activities.Activities.MainActivity;
+import asia.nainglintun.myintthitar.Activities.MainActivity;
 import asia.nainglintun.myintthitar.activities.models.Customer;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
+
+import static asia.nainglintun.myintthitar.Activities.MainActivity.apiInterface;
 
 /**
  * A simple {@link Fragment} subclass.

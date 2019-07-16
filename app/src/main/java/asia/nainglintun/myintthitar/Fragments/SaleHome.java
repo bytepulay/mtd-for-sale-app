@@ -1,4 +1,4 @@
-package asia.nainglintun.myintthitar.activities.Fragments;
+package asia.nainglintun.myintthitar.Fragments;
 
 
 import android.os.Bundle;
@@ -11,7 +11,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 
 
-import asia.nainglintun.myintthitar.activities.Activities.SalesActivity;
+import asia.nainglintun.myintthitar.Activities.SalesActivity;
 import asia.nainglintun.myintthitar.R;
 
 /**
@@ -60,12 +60,12 @@ private Button btnCreateInvoice,btnCreateOrder,btnAddCustomer,btnSaleIncoice;
     {
         switch (v.getId()){
            case R.id.btnCreateInvoice:
-               SalesActivity.fragmentManager.beginTransaction().replace(R.id.frame_layout_sales,new SaleInvoiceCreate()).commit();
+               SalesActivity.fragmentManager.beginTransaction().replace(R.id.frame_layout_sales,new asia.nainglintun.myintthitar.Fragments.SaleInvoiceCreate()).commit();
                toolbar.setTitle("Create Invoice");
                 break;
 
             case R.id.btnCreateOrder:
-                SalesActivity.fragmentManager.beginTransaction().replace(R.id.frame_layout_sales,new Order()).commit();
+                SalesActivity.fragmentManager.beginTransaction().replace(R.id.frame_layout_sales,new asia.nainglintun.myintthitar.activities.Fragments.Order()).commit();
                toolbar.setTitle("Create Order");
                 break;
 
@@ -75,7 +75,7 @@ private Button btnCreateInvoice,btnCreateOrder,btnAddCustomer,btnSaleIncoice;
                 break;
 
             case R.id.btnSaleInvoice:
-                SalesActivity.fragmentManager.beginTransaction().replace(R.id.frame_layout_sales,new SaleHistory()).commit();
+                SalesActivity.fragmentManager.beginTransaction().replace(R.id.frame_layout_sales,new asia.nainglintun.myintthitar.Fragments.SaleHistory()).commit();
                 toolbar.setTitle("Sale History");
                 break;
 

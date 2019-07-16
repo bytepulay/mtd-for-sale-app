@@ -1,4 +1,4 @@
-package asia.nainglintun.myintthitar.activities.Fragments;
+package asia.nainglintun.myintthitar.Fragments;
 
 
 import android.app.DatePickerDialog;
@@ -22,11 +22,11 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Locale;
 
-import asia.nainglintun.myintthitar.activities.Activities.AfterScan;
-import asia.nainglintun.myintthitar.activities.Activities.InputFilterMinMax;
+import asia.nainglintun.myintthitar.Activities.AfterScan;
+import asia.nainglintun.myintthitar.Activities.InputFilterMinMax;
 import asia.nainglintun.myintthitar.R;
-import asia.nainglintun.myintthitar.activities.Activities.LoginTestActivity;
-import asia.nainglintun.myintthitar.activities.Activities.ScanForVoucherActivity;
+import asia.nainglintun.myintthitar.Activities.LoginTestActivity;
+import asia.nainglintun.myintthitar.Activities.ScanForVoucherActivity;
 import me.myatminsoe.mdetect.MMEditText;
 
 /**

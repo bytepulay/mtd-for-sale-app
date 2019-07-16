@@ -1,8 +1,7 @@
-package asia.nainglintun.myintthitar.activities.Activities;
+package asia.nainglintun.myintthitar.Activities;
 
 import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
-import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
@@ -11,7 +10,6 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import asia.nainglintun.myintthitar.R;
-import asia.nainglintun.myintthitar.activities.Fragments.VoucherEdit;
 import asia.nainglintun.myintthitar.activities.Fragments.VoucherOrderEdit;
 
 public class VoucherOrderDetailActivity extends AppCompatActivity {

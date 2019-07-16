@@ -1,4 +1,4 @@
-package asia.nainglintun.myintthitar.activities.Fragments;
+package asia.nainglintun.myintthitar.Fragments;
 
 
 import android.content.Intent;
@@ -14,13 +14,10 @@ import android.widget.Toast;
 
 import java.util.ArrayList;
 
+import asia.nainglintun.myintthitar.Activities.RecyclerTouchListener;
+import asia.nainglintun.myintthitar.Activities.VoucherOrderDetailActivity;
 import asia.nainglintun.myintthitar.R;
-import asia.nainglintun.myintthitar.activities.Activities.RecyclerTouchListener;
-import asia.nainglintun.myintthitar.activities.Activities.VoucherDetailActivity;
-import asia.nainglintun.myintthitar.activities.Activities.VoucherOrderDetailActivity;
-import asia.nainglintun.myintthitar.activities.Adapters.SaleHistoryAdapter;
 import asia.nainglintun.myintthitar.activities.Adapters.SaleOrderHistoryAdapter;
-import asia.nainglintun.myintthitar.activities.ToDo.SaleHistoryToDo;
 import asia.nainglintun.myintthitar.activities.ToDo.SaleOrderHistoryToDo;
 
 /**
