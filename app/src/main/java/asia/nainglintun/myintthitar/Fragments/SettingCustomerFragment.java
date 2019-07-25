@@ -1,4 +1,4 @@
-package asia.nainglintun.myintthitar.activities.Fragments;
+package asia.nainglintun.myintthitar.Fragments;
 
 
 import android.content.Intent;

@@ -1,8 +1,13 @@
 package asia.nainglintun.myintthitar.Activities;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.app.ProgressDialog;
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -11,18 +16,22 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import asia.nainglintun.myintthitar.R;
-import asia.nainglintun.myintthitar.activities.models.ApiClient;
-import asia.nainglintun.myintthitar.activities.models.ApiInterface;
+import asia.nainglintun.myintthitar.models.ApiClient;
+import asia.nainglintun.myintthitar.models.ApiInterface;
+import asia.nainglintun.myintthitar.models.Customer;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class MainActivity extends AppCompatActivity {
 
     public static ApiInterface apiInterface;
+    public static PrefConfig prefConfig;
     private EditText editTextUserName, editTextPassword;
     private Button btnLogin, btnScan;
     private ProgressDialog progressDialog;
-    private String Owner_User = "owner", Owner_Password = "owner123";
-    private String Sale_User = "sale", Sale_Password = "sale123";
-    private String Customer_User = "customer", Customer_Password = "customer123";
+
+
 
     //public static TextView qrUsername ;
 
@@ -30,13 +39,22 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        // setContentView(R.layout.activity_main);
 
+        if (!isConnected(getApplicationContext())) {
+            buildDialog(MainActivity.this).show();
+        } else {
+            setContentView(R.layout.activity_main);
+
+            progressDialog = new ProgressDialog(this);
+            progressDialog.setMessage("Please wait....");
+
+            prefConfig = new PrefConfig(this);
         apiInterface = ApiClient.getApiClient().create(ApiInterface.class);
 
 
         editTextUserName = findViewById(R.id.etUserName);
-        editTextPassword = findViewById(R.id.etPassword);
+       // editTextPassword = findViewById(R.id.etPassword);
         btnLogin = findViewById(R.id.btnLogin);
         btnScan = findViewById(R.id.btnScan);
         //qrUsername = findViewById(R.id.qrUsername);
@@ -44,8 +62,24 @@ public class MainActivity extends AppCompatActivity {
         final Activity activity = this;
 
 
-         btnScan.setOnClickListener(v -> startActivity(new Intent(getApplicationContext(), LoginTestActivity.class)));
+            if (!prefConfig.readName().isEmpty() &&  prefConfig.readRowUser().equals("customer") ){
+                startActivity(new Intent(MainActivity.this,CustomerActivity.class));
+                finish();
+            }else   if (!prefConfig.readName().isEmpty() &&  prefConfig.readRowUser().equals("sale") ){
 
+                startActivity(new Intent(MainActivity.this,SalesActivity.class));
+                 finish();
+            }
+
+
+        // btnScan.setOnClickListener(v -> startActivity(new Intent(MainActivity.this, LoginTestActivity.class)));
+        btnScan.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+               // progressDialog.show();
+                startActivity(new Intent(getApplicationContext(), LoginTestActivity.class));
+            }
+        });
 //                IntentIntegrator integrator = new IntentIntegrator(activity);
 //                integrator.setDesiredBarcodeFormats(IntentIntegrator.QR_CODE_TYPES);
 //                integrator.setPrompt("Scan");
@@ -60,21 +94,88 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 String username = editTextUserName.getText().toString().trim();
-                String password = editTextPassword.getText().toString().trim();
+                //String password = editTextPassword.getText().toString().trim();
 
-                if (username.equals("customer") && password.equals("customer123")) {
-                    Intent in = new Intent(MainActivity.this, CustomerActivity.class);
-                    startActivity(in);
-                    Toast.makeText(getApplicationContext(), "Sign in Successful", Toast.LENGTH_SHORT).show();
-                } else if (username.equals("sale") && password.equals("sale123")) {
-                    Intent ii = new Intent(MainActivity.this, SalesActivity.class);
-                    startActivity(ii);
-                    Toast.makeText(getApplicationContext(), "Sign in Successful", Toast.LENGTH_SHORT).show();
-                }
+//                if (username.equals("customer") && password.equals("customer123")) {
+//                    Intent in = new Intent(MainActivity.this, CustomerActivity.class);
+//                    startActivity(in);
+//                    Toast.makeText(getApplicationContext(), "Sign in Successful", Toast.LENGTH_SHORT).show();
+//                } else if (username.equals("sale") && password.equals("sale123")) {
+//                    Intent ii = new Intent(MainActivity.this, SalesActivity.class);
+//                    startActivity(ii);
+//                    Toast.makeText(getApplicationContext(), "Sign in Successful", Toast.LENGTH_SHORT).show();
+//                }
+                  progressDialog.show();
+
+                Call<Customer> call = MainActivity.apiInterface.performUserLogin(username);
+                call.enqueue(new Callback<Customer>() {
+                    @Override
+                    public void onResponse(Call<Customer> call, Response<Customer> response) {
+                        progressDialog.dismiss();
+                        if (response.body().getResponse().equals("customer")){
+                            String name =response.body().getUserName();
+                            String rowUser = response.body().getResponse();
+                            prefConfig.writeRowUser(rowUser);
+                            prefConfig.writeName(name);
+                            startActivity(new Intent(MainActivity.this,CustomerActivity.class));
+                        }else if (response.body().getResponse().equals("sale")) {
+                            String name =response.body().getUserName();
+                            String rowUser = response.body().getResponse();
+                            prefConfig.writeRowUser(rowUser);
+                            prefConfig.writeName(name);
+                            startActivity(new Intent(MainActivity.this, SalesActivity.class));
+                        }else if (response.body().getResponse().equals("new")){
+                            Toast.makeText(MainActivity.this, "please register", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<Customer> call, Throwable t) {
+
+                    }
+                });
+            }
+        });
+
+    }
+
+    }
+
+    public boolean isConnected(Context context){
+
+        ConnectivityManager cm = (ConnectivityManager)context.getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo netinfo = cm.getActiveNetworkInfo();
+
+        if (netinfo !=null && netinfo.isConnectedOrConnecting()){
+            android.net.NetworkInfo wifi = cm.getNetworkInfo(ConnectivityManager.TYPE_WIFI);
+            android.net.NetworkInfo mobile = cm.getNetworkInfo(ConnectivityManager.TYPE_MOBILE);
+
+
+            if((mobile !=null && mobile.isConnectedOrConnecting()) || (wifi !=null && wifi.isConnectedOrConnecting()))
+                return true;
+            else
+                return false;
+        }else
+            return false;
+    }
+
+    public AlertDialog.Builder buildDialog(Context c){
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(c);
+        builder.setTitle("No Internet Connection");
+        builder.setMessage("You need to have Mobile Data or Wifi to access this.Press ok to Exit");
+
+        builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                finish();
             }
         });
 
 
+
+
+        return builder;
     }
 
 

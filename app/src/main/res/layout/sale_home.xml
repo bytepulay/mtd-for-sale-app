@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
-    tools:context=".activities.Fragments.SaleHome">
+    tools:context="Fragments.SaleHome">
 
     <!-- TODO: Update blank fragment layout -->
     <!--<include layout="@layout/customers"/>-->

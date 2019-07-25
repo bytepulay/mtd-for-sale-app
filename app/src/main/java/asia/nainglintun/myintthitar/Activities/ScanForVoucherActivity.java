@@ -12,7 +12,12 @@ import android.widget.Toast;
 import com.google.zxing.Result;
 
 import asia.nainglintun.myintthitar.Fragments.SaleInvoiceCreate;
+import asia.nainglintun.myintthitar.models.Customer;
+import asia.nainglintun.myintthitar.models.Customer;
 import me.dm7.barcodescanner.zxing.ZXingScannerView;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class ScanForVoucherActivity extends AppCompatActivity implements ZXingScannerView.ResultHandler {
 
@@ -33,7 +38,43 @@ public class ScanForVoucherActivity extends AppCompatActivity implements ZXingSc
     @Override
     public void handleResult(Result rawResult) {
         //MainActivity.qrUsername.setText(rawResult.getText());
+
+        Call<Customer> call = MainActivity.apiInterface.getCustomerInfo(rawResult.getText());
+        call.enqueue(new Callback<Customer>() {
+            @Override
+            public void onResponse(Call<Customer> call, Response<Customer> response) {
+                if (response.body().getResponse().equals("ok")) {
+                   String customerId =String.valueOf(response.body().getId());
+                   String shopName = response.body().getShopName();
+                   String phoneNumber = response.body().getPhoneNumber();
+                   String address = response.body().getAddress();
+                   String nrc = response.body().getNrc();
+                   String town = response.body().getTown();
+                   String dob = response.body().getDob();
+                   String customerName = response.body().getName();
+                   SaleInvoiceCreate.edShopName.setText(shopName);
+                   SaleInvoiceCreate.edCustomerPhone.setText(phoneNumber);
+                  SaleInvoiceCreate.edCustomerID.setText(customerId);
+                  SaleInvoiceCreate.edCustomerName.setText(customerName);
+                   SaleInvoiceCreate.edCustomerAddress.setText(address);
+                   SaleInvoiceCreate.edCustomerTown.setText(town);
+                   SaleInvoiceCreate.edCustomerNrc.setText(nrc);
+                   SaleInvoiceCreate.edDOB.setText(dob);
+
+                   //SaleInvoiceCreate.edCustomerNrc.setText(nrc);
+                   Toast.makeText(ScanForVoucherActivity.this, customerId + shopName + phoneNumber + address + nrc + town + dob , Toast.LENGTH_LONG).show();
+                   // Toast.makeText(getApplicationContext(),"response successful",Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Customer> call, Throwable t) {
+
+            }
+        });
+
         SaleInvoiceCreate.edCustomerUserName.setText(rawResult.getText());
+
         onBackPressed();
 //        if (rawResult.getText().equals("salesale123")){
 //            //startActivity(new Intent(ScanForVoucherActivity.this, SaleInvoiceCreate.class));

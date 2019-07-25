@@ -9,8 +9,8 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import asia.nainglintun.myintthitar.Fragments.VoucherOrderEdit;
 import asia.nainglintun.myintthitar.R;
-import asia.nainglintun.myintthitar.activities.Fragments.VoucherOrderEdit;
 
 public class VoucherOrderDetailActivity extends AppCompatActivity {
 

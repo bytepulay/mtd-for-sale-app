@@ -1,4 +1,4 @@
-package asia.nainglintun.myintthitar.activities.ToDo;
+package asia.nainglintun.myintthitar.ToDo;
 
 import java.io.Serializable;
 import java.util.Collection;

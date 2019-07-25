@@ -10,41 +10,54 @@ import android.text.InputFilter;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.GridLayout;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.RadioGroup;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Locale;
 
-import asia.nainglintun.myintthitar.Activities.AfterScan;
 import asia.nainglintun.myintthitar.Activities.InputFilterMinMax;
+import asia.nainglintun.myintthitar.Activities.MainActivity;
 import asia.nainglintun.myintthitar.R;
-import asia.nainglintun.myintthitar.Activities.LoginTestActivity;
 import asia.nainglintun.myintthitar.Activities.ScanForVoucherActivity;
+import asia.nainglintun.myintthitar.models.SaleInoviceData;
 import me.myatminsoe.mdetect.MMEditText;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 /**
  * A simple {@link Fragment} subclass.
  */
-public class SaleInvoiceCreate extends Fragment implements  View.OnClickListener {
+public class SaleInvoiceCreate extends Fragment implements  View.OnClickListener, AdapterView.OnItemSelectedListener {
 
 //private RadioGroup radioGroup;
 private LinearLayout linearLayoutCustomerNew;
-private EditText editTextSearchPhone,editTextKyat,editTextPel,editTextYae;
-private EditText edShopName,edCustomerName,edCustomerPhone,edDOB,edCustomerPassword,edSarchPhone;
+
+public static EditText edShopName,edCustomerName,edCustomerPhone,edDOB,edCustomerAddress,edCustomerID,edCustomerTown,edCustomerNrc;
 //private ImageButton searchButton;
     public static EditText edCustomerUserName;
 private  EditText saleDate;
-private MMEditText voucher;
 private Toolbar toolbar;
 final Calendar myCalendar = Calendar.getInstance();
 private Button btnCreateInvoiceSave,scanForVoucher;
+private LinearLayout linearLayoutRing,linearLayoutBangles,linearLayoutNecklace,linearLayoutEarring;
+private Button hideRing,hideBangles,hideNecklace,hideEarring;
+private Spinner spinner;
+private static final String[] paths = {"Choose Items Type","Ring", "Bangles", "Necklace","Earring"};
+
+private EditText ringTitle,ringNumber,ringPointEight,ringKyat,ringPal,ringYae,banglesTitle,banglesNumber,banglesPointEight,banglesKyat,banglesPal,banglesYae,necklaceTitle,necklaceNumber,necklacePointEight,necklaceKyat,necklacePal,necklaceYae,
+        earringTitle,earringNumber,earringPointEight,earringKyat,earringPal,earringYae,voucherNumber,Gram,CuponCode,totalKyat,totalPel,totalYae,totalQualtity,totalPointEight;
 
     public SaleInvoiceCreate() {
         // Required empty public constructor
@@ -54,13 +67,73 @@ private Button btnCreateInvoiceSave,scanForVoucher;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
+
         View view = inflater.inflate(R.layout.sale_create_invoice, container, false);
 
         toolbar = view.findViewById(R.id.toolBar);
         toolbar.setTitle("Create Invoice");
 
+         voucherNumber = view.findViewById(R.id.voucherNumber);
          saleDate= view.findViewById(R.id.saleDate);
+         Gram = view.findViewById(R.id.gram);
+         CuponCode = view.findViewById(R.id.cupon);
+         totalQualtity =view.findViewById(R.id.custBuyNumber);
+         totalPointEight = view.findViewById(R.id.custDiscountPoint);
+
+         linearLayoutRing = view.findViewById(R.id.ring);
+         linearLayoutBangles = view.findViewById(R.id.bangles);
+         linearLayoutNecklace = view.findViewById(R.id.necklace);
+         linearLayoutEarring  =view.findViewById(R.id.earring);
+         hideRing = view.findViewById(R.id.hideRing);
+         hideBangles =view.findViewById(R.id.hideBangles);
+         hideNecklace = view.findViewById(R.id.hideNecklace);
+         hideEarring = view.findViewById(R.id.hideEarring);
+
+
+        ringTitle = view.findViewById(R.id.ringText);
+        ringNumber= view.findViewById(R.id.ringNumber);
+        ringPointEight = view.findViewById(R.id.ringPointEight);
+        ringKyat = view.findViewById(R.id.ringKyat);
+        ringPal = view.findViewById(R.id.ringPal);
+        ringYae = view.findViewById(R.id.ringYae);
+
+
+        banglesTitle = view.findViewById(R.id.banglesText);
+        banglesNumber= view.findViewById(R.id.banglesNumber);
+        banglesPointEight = view.findViewById(R.id.banglesPointEight);
+        banglesKyat = view.findViewById(R.id.banglesKyat);
+        banglesPal = view.findViewById(R.id.banglesPal);
+        banglesYae = view.findViewById(R.id.banglesYae);
+
+        necklaceTitle = view.findViewById(R.id.necklaceText);
+        necklaceNumber= view.findViewById(R.id.necklaceNumber);
+        necklacePointEight = view.findViewById(R.id.necklacePointEight);
+        necklaceKyat = view.findViewById(R.id.necklaceKyat);
+        necklacePal = view.findViewById(R.id.necklacePal);
+        necklaceYae = view.findViewById(R.id.necklaceYae);
+
+        earringTitle = view.findViewById(R.id.earringText);
+        earringNumber= view.findViewById(R.id.earringNumber);
+        earringPointEight = view.findViewById(R.id.earringPointEight);
+        earringKyat = view.findViewById(R.id.earringKyat);
+        earringPal = view.findViewById(R.id.earringPal);
+        earringYae = view.findViewById(R.id.earringYae);
+
+
+
+          hideRing.setOnClickListener(this);
+          hideBangles.setOnClickListener(this);
+          hideNecklace.setOnClickListener(this);
+          hideEarring.setOnClickListener(this);
+
+
+        spinner = view.findViewById(R.id.spinner);
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(getContext(),
+                android.R.layout.simple_spinner_item,paths);
+
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinner.setAdapter(adapter);
+        spinner.setOnItemSelectedListener(this);
 
         final DatePickerDialog.OnDateSetListener date = new DatePickerDialog.OnDateSetListener() {
             @Override
@@ -85,29 +158,39 @@ private Button btnCreateInvoiceSave,scanForVoucher;
 
 
 
-        //radioGroup = view.findViewById(R.id.radioGroup);
-       // radioGroup.setOnCheckedChangeListener(this);
-        //linearLayoutCustomerNew = view.findViewById(R.id.newCustomerLayout);
-        //searchWithPhoneLayout = view.findViewById(R.id.searchWithPhoneLayout);
-       // editTextSearchPhone= view.findViewById(R.id.searchPhone);
-        editTextYae = view.findViewById(R.id.yawe);
-        editTextYae.setFilters(new InputFilter[]{new InputFilterMinMax(1,7)});
+       totalYae = view.findViewById(R.id.yawe);
+        totalYae.setFilters(new InputFilter[]{new InputFilterMinMax(1,7)});
 
-        editTextPel = view.findViewById(R.id.pel);
-        editTextPel.setFilters(new InputFilter[]{new InputFilterMinMax(1,15)});
+        totalPel = view.findViewById(R.id.pel);
+        totalPel.setFilters(new InputFilter[]{new InputFilterMinMax(1,15)});
+
+
+        ringYae.setFilters(new InputFilter[]{new InputFilterMinMax(1,7)});
+        banglesYae.setFilters(new InputFilter[]{new InputFilterMinMax(1,7)});
+        necklaceYae.setFilters(new InputFilter[]{new InputFilterMinMax(1,7)});
+        earringYae.setFilters(new InputFilter[]{new InputFilterMinMax(1,7)});
+
+
+        ringPal.setFilters(new InputFilter[]{new InputFilterMinMax(1,15)});
+        banglesPal.setFilters(new InputFilter[]{new InputFilterMinMax(1,15)});
+        necklacePal.setFilters(new InputFilter[]{new InputFilterMinMax(1,15)});
+        earringPal.setFilters(new InputFilter[]{new InputFilterMinMax(1,15)});
 
         edShopName = view.findViewById(R.id.shopName);
         edCustomerName = view.findViewById(R.id.custName);
         edCustomerPhone = view.findViewById(R.id.custPhone);
         edDOB = view.findViewById(R.id.custDOB);
         edCustomerUserName = view.findViewById(R.id.custUserName);
-        edCustomerPassword = view.findViewById(R.id.custPassword);
+       edCustomerAddress = view.findViewById(R.id.custAddress);
+       edCustomerTown = view.findViewById(R.id.custTown);
+       edCustomerNrc  = view.findViewById(R.id.custNrc);
+       edCustomerID = view.findViewById(R.id.custId);
        // edSarchPhone = view.findViewById(R.id.searchPhone);
 //        phoneNumber = edSarchPhone.getText().toString().trim();
 //
 //        Toast.makeText(getContext(),phoneNumber,Toast.LENGTH_LONG).show();
 
-        editTextKyat = view.findViewById(R.id.kyat);
+        totalKyat = view.findViewById(R.id.kyat);
        // searchButton = view.findViewById(R.id.searchButton);
         btnCreateInvoiceSave = view.findViewById(R.id.btnInVoiceSave);
         //searchButton.setOnClickListener(this);
@@ -118,6 +201,7 @@ private Button btnCreateInvoiceSave,scanForVoucher;
         scanForVoucher.setOnClickListener(this);
 
         btnCreateInvoiceSave.setOnClickListener(this);
+
 
 
 
@@ -175,10 +259,26 @@ private Button btnCreateInvoiceSave,scanForVoucher;
                 break;
 
             case R.id.btnInVoiceSave:
-
-                Toast.makeText(getContext(),"To do Invoice Save Operation in SaleInvoiceCreate.java",Toast.LENGTH_LONG).show();
+                saveSaleInvoice();
+                //Toast.makeText(getContext(),"To do Invoice Save Operation in SaleInvoiceCreate.java",Toast.LENGTH_LONG).show();
 
                 break;
+
+            case R.id.hideRing:
+                linearLayoutRing.setVisibility(View.GONE);
+                break;
+
+            case R.id.hideBangles:
+                linearLayoutBangles.setVisibility(View.GONE);
+                break;
+
+            case R.id.hideNecklace:
+                linearLayoutNecklace.setVisibility(View.GONE);
+
+            case R.id.hideEarring:
+                linearLayoutEarring.setVisibility(View.GONE);
+                break;
+
 
 
 
@@ -193,4 +293,100 @@ private Button btnCreateInvoiceSave,scanForVoucher;
     }
 
 
+    @Override
+    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+        switch (position){
+
+            case 1:
+                linearLayoutRing.setVisibility(View.VISIBLE);
+                break;
+
+            case 2:
+                linearLayoutBangles.setVisibility(View.VISIBLE);
+                break;
+
+            case 3:
+               linearLayoutNecklace.setVisibility(View.VISIBLE);
+                break;
+
+            case 4:
+                linearLayoutEarring.setVisibility(View.VISIBLE);
+                break;
+        }
+
+    }
+
+    @Override
+    public void onNothingSelected(AdapterView<?> parent) {
+
+    }
+
+
+    public void saveSaleInvoice(){
+       String voucher_Number,sale_Date,qualtity,pointEight,kyat,pal,yae,gram,cuponCode,CustomerID,ring_Title,ring_Number,ring_Point_Eight,ring_Kyat,ring_Pal,ring_Yae,bangles_Title,bangles_Number,bangles_Point_Eight,bangles_Kyat,bangles_Pal,bangles_Yae,necklace_Title,necklace_Number,necklace_Point_Eight,necklace_Kyat,necklace_Pal,necklace_Yae,
+        earring_Title,earring_Number,earring_Point_Eight,earring_Kyat,earring_Pal,earring_Yae;
+       voucher_Number = voucherNumber.getText().toString();
+        CustomerID = edCustomerID.getText().toString();
+       sale_Date = saleDate.getText().toString();
+       qualtity = totalQualtity.getText().toString();
+       pointEight = totalPointEight.getText().toString();
+       kyat = totalKyat.getText().toString();
+       pal = totalPel.getText().toString();
+       yae = totalYae.getText().toString();
+       gram  = Gram.getText().toString();
+       cuponCode = CuponCode.getText().toString();
+       ring_Title = ringTitle.getText().toString();
+       ring_Number = ringNumber.getText().toString();
+       ring_Point_Eight = ringPointEight.getText().toString();
+       ring_Kyat = ringKyat.getText().toString();
+       ring_Pal = ringPal.getText().toString();
+       ring_Yae = ringYae.getText().toString();
+
+
+        bangles_Title = banglesTitle.getText().toString();
+        bangles_Number = banglesNumber.getText().toString();
+        bangles_Point_Eight = banglesPointEight.getText().toString();
+        bangles_Kyat = banglesKyat.getText().toString();
+        bangles_Pal = banglesPal.getText().toString();
+        bangles_Yae = banglesYae.getText().toString();
+
+
+
+        necklace_Title =necklaceTitle.getText().toString();
+        necklace_Number =necklaceNumber.getText().toString();
+        necklace_Point_Eight =necklacePointEight.getText().toString();
+        necklace_Kyat =necklaceKyat.getText().toString();
+        necklace_Pal =necklacePal.getText().toString();
+        necklace_Yae =necklaceYae.getText().toString();
+
+
+
+        earring_Title =earringTitle.getText().toString();
+        earring_Number =earringNumber.getText().toString();
+        earring_Point_Eight =earringPointEight.getText().toString();
+        earring_Kyat =earringKyat.getText().toString();
+        earring_Pal =earringPal.getText().toString();
+        earring_Yae =earringYae.getText().toString();
+
+
+
+        Call<SaleInoviceData> call = MainActivity.apiInterface.insertSaleInvoice(voucher_Number,sale_Date,qualtity,pointEight,kyat,pal,yae,gram,cuponCode,CustomerID,ring_Title,ring_Number,ring_Point_Eight,ring_Kyat,ring_Pal,ring_Yae,bangles_Title,bangles_Number,bangles_Point_Eight,bangles_Kyat,bangles_Pal,bangles_Yae,
+                necklace_Title,necklace_Number,necklace_Point_Eight,necklace_Kyat,necklace_Pal,necklace_Yae,earring_Title,earring_Number,earring_Point_Eight,earring_Kyat,earring_Pal,earring_Yae);
+
+        call.enqueue(new Callback<SaleInoviceData>() {
+            @Override
+            public void onResponse(Call<SaleInoviceData> call, Response<SaleInoviceData> response) {
+                if (response.body().getResponse().equals("ok")){
+                    Toast.makeText(getContext(),"sale Invoice Successfully" + ring_Title + bangles_Title + earring_Title + necklace_Title,Toast.LENGTH_LONG).show();
+                } else if (response.body().getResponse().equals("error")){
+                    Toast.makeText(getContext(),"sale Invoice fail",Toast.LENGTH_LONG).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<SaleInoviceData> call, Throwable t) {
+
+            }
+        });
+    }
 }

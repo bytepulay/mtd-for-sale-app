@@ -1,4 +1,4 @@
-package asia.nainglintun.myintthitar.activities.models;
+package asia.nainglintun.myintthitar.models;
 
 import com.google.gson.annotations.SerializedName;
 
@@ -7,6 +7,13 @@ public class Customer {
     @SerializedName("response")
     private String Response;
 
+
+
+    @SerializedName("id")
+    private int id;
+
+    @SerializedName("name")
+    private String name;
 
     @SerializedName("user_name")
     private String userName;
@@ -66,5 +73,11 @@ public class Customer {
         return town;
     }
 
+    public int getId() {
+        return id;
+    }
 
+    public String getName() {
+        return name;
+    }
 }

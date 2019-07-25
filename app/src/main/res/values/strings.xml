@@ -19,4 +19,13 @@
     <string name="title_activity_scan_for_voucher">ScanForVoucherActivity</string>
 
 
+    <string name="pref_file">asia.nainglintun.myintthitar.preference_file</string>
+    <string name="pref_login_status">asia.nainglintun.myintthitar.preference_login_status</string>
+
+    <string name="pref_user_name">asia.nainglintun.myintthitar.preference_user_name</string>
+
+
+    <string name="pref_row_user">asia.nainglintun.myintthitar.preference_row_user</string>
+
+
 </resources>

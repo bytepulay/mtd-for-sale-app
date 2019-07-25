@@ -1,4 +1,4 @@
-package asia.nainglintun.myintthitar.activities.Adapters;
+package asia.nainglintun.myintthitar.Adapters;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
@@ -9,9 +9,10 @@ import android.view.ViewGroup;
 
 import java.util.ArrayList;
 
-import asia.nainglintun.myintthitar.activities.ToDo.SaleHistoryToDo;
-import asia.nainglintun.myintthitar.activities.ViewHolders.SaleHistoryViewHolder;
+
+import asia.nainglintun.myintthitar.ToDo.SaleHistoryToDo;
 import asia.nainglintun.myintthitar.R;
+import asia.nainglintun.myintthitar.ViewHolders.SaleHistoryViewHolder;
 
 public class SaleHistoryAdapter extends RecyclerView.Adapter <SaleHistoryViewHolder>{
 
@@ -36,7 +37,7 @@ public class SaleHistoryAdapter extends RecyclerView.Adapter <SaleHistoryViewHol
         return holder;
     }
 
-    @Override
+    @Override   
     public void onBindViewHolder(@NonNull SaleHistoryViewHolder saleHistoryViewHolder, int i) {
         saleHistoryViewHolder.txtDate.setText(saleHistoryList.get(i).getTxtDate());
         saleHistoryViewHolder.txtType.setText(saleHistoryList.get(i).getTxtType());

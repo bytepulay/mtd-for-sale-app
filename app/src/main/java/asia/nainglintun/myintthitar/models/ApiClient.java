@@ -1,4 +1,4 @@
-package asia.nainglintun.myintthitar.activities.models;
+package asia.nainglintun.myintthitar.models;
 
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;

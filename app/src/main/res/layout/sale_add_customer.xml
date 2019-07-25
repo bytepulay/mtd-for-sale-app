@@ -44,6 +44,20 @@
                     android:textSize="20sp"
                     android:text=" Create New Customer "/>
 
+
+                <EditText
+                    android:id="@+id/custName"
+                    android:hint="Customer Name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_marginTop="10dp"
+                    android:padding="10dp"
+                    android:textAllCaps="false"
+                    android:background="@drawable/custom_edittext_form_background"/>
+
+
                 <EditText
                     android:id="@+id/userName"
                     android:hint="User Name"

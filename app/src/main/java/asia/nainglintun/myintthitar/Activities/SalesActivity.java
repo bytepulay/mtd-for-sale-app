@@ -1,20 +1,22 @@
 package asia.nainglintun.myintthitar.Activities;
 
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
-import android.support.annotation.NonNull;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
-;
+import android.widget.Toast;
 
-import asia.nainglintun.myintthitar.Fragments.SaleHistory;
+import asia.nainglintun.myintthitar.Fragments.OrderListFragment;
+import asia.nainglintun.myintthitar.Fragments.SaleListFragment;
 import asia.nainglintun.myintthitar.Fragments.SaleHome;
-import asia.nainglintun.myintthitar.Fragments.SaleOrderHistory;
-import asia.nainglintun.myintthitar.activities.Fragments.SaleSettingFragment;
+import asia.nainglintun.myintthitar.Fragments.SaleSettingFragment;
 import asia.nainglintun.myintthitar.R;
+
+;
 
 public class SalesActivity extends AppCompatActivity {
     public static FragmentManager fragmentManager;
@@ -32,12 +34,12 @@ public class SalesActivity extends AppCompatActivity {
                    toolbar.setTitle("Home");
                     return true;
                 case R.id.navigation_dashboard:
-                    fragmentManager.beginTransaction().replace(R.id.frame_layout_sales,new SaleHistory()).addToBackStack(null).commit();
-                    toolbar.setTitle("History");
+                    fragmentManager.beginTransaction().replace(R.id.frame_layout_sales,new SaleListFragment()).addToBackStack(null).commit();
+                    toolbar.setTitle("Sale History");
                     return true;
                 case R.id.navigation_notifications:
-                  fragmentManager.beginTransaction().replace(R.id.frame_layout_sales,new SaleOrderHistory()).addToBackStack(null).commit();
-                  toolbar.setTitle("Sale Order history");
+                  fragmentManager.beginTransaction().replace(R.id.frame_layout_sales,new OrderListFragment()).addToBackStack(null).commit();
+                  toolbar.setTitle(" Order history ");
                     return true;
 
                 case R.id.navigation_setting:
@@ -61,6 +63,7 @@ public class SalesActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         toolbar.setTitle("Home");
 
+        Toast.makeText(this, MainActivity.prefConfig.readName(), Toast.LENGTH_SHORT).show();
 //        actionBar.setDisplayHomeAsUpEnabled(true);
 
         BottomNavigationView navView = findViewById(R.id.nav_view);
@@ -91,6 +94,7 @@ public class SalesActivity extends AppCompatActivity {
         else
         {
             mBottomNavigationView.setSelectedItemId(R.id.navigation_home);
+
         }
     }
 

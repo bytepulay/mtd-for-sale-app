@@ -1,4 +1,4 @@
-package asia.nainglintun.myintthitar.activities.Adapters;
+package asia.nainglintun.myintthitar.Adapters;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
@@ -10,10 +10,9 @@ import android.view.ViewGroup;
 import java.util.ArrayList;
 
 import asia.nainglintun.myintthitar.R;
-import asia.nainglintun.myintthitar.activities.ToDo.SaleHistoryToDo;
-import asia.nainglintun.myintthitar.activities.ToDo.SaleOrderHistoryToDo;
-import asia.nainglintun.myintthitar.activities.ViewHolders.SaleHistoryViewHolder;
-import asia.nainglintun.myintthitar.activities.ViewHolders.SaleOrderHistoryViewHolder;
+import asia.nainglintun.myintthitar.ToDo.SaleOrderHistoryToDo;
+import asia.nainglintun.myintthitar.ViewHolders.SaleOrderHistoryViewHolder;
+
 
 public class SaleOrderHistoryAdapter extends RecyclerView.Adapter <SaleOrderHistoryViewHolder>{
 

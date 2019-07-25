@@ -18,11 +18,11 @@ import android.widget.Toast;
 
 import java.util.ArrayList;
 
+import asia.nainglintun.myintthitar.Adapters.SaleHistoryAdapter;
 import asia.nainglintun.myintthitar.R;
 import asia.nainglintun.myintthitar.Activities.RecyclerTouchListener;
 import asia.nainglintun.myintthitar.Activities.VoucherDetailActivity;
-import asia.nainglintun.myintthitar.activities.Adapters.SaleHistoryAdapter;
-import asia.nainglintun.myintthitar.activities.ToDo.SaleHistoryToDo;
+import asia.nainglintun.myintthitar.ToDo.SaleHistoryToDo;
 
 import static android.widget.Toast.LENGTH_SHORT;
 

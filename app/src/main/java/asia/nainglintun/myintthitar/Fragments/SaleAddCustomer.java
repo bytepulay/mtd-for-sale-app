@@ -21,12 +21,11 @@ import java.util.Locale;
 
 import asia.nainglintun.myintthitar.R;
 import asia.nainglintun.myintthitar.Activities.MainActivity;
-import asia.nainglintun.myintthitar.activities.models.Customer;
+import asia.nainglintun.myintthitar.models.Customer;
+import asia.nainglintun.myintthitar.models.Customer;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-
-import static asia.nainglintun.myintthitar.Activities.MainActivity.apiInterface;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -35,7 +34,7 @@ public class SaleAddCustomer extends Fragment {
 
     private Toolbar toolbar;
 
-    private EditText userName,shopName,phoneNumber,Address,DOB,Nrc,Township;
+    private EditText userName,shopName,phoneNumber,Address,DOB,Nrc,Township,customerName;
     private Button btnCustomerSave;
     private ProgressDialog progressDialog;
     final Calendar myCalendar = Calendar.getInstance();
@@ -55,6 +54,7 @@ public class SaleAddCustomer extends Fragment {
        toolbar.setTitle("Create New Customer");
 
        userName = view.findViewById(R.id.userName);
+       customerName = view.findViewById(R.id.custName);
        shopName = view.findViewById(R.id.shopName);
        phoneNumber = view.findViewById(R.id.phoneNumber);
        Address = view.findViewById(R.id.address);
@@ -112,6 +112,11 @@ public class SaleAddCustomer extends Fragment {
             userName.setError("Enter User Name");
         }
 
+        String customername =  customerName.getText().toString();
+        if(customername.isEmpty()){
+            customerName.setError("Enter Customer Name");
+        }
+
 
         String shopname = shopName.getText().toString();
         if(shopname.isEmpty()){
@@ -148,11 +153,11 @@ public class SaleAddCustomer extends Fragment {
         }
 
 
-        if((!username.isEmpty() && !shopname.isEmpty() && !phonenumber.isEmpty() && !address.isEmpty() && !dob.isEmpty() && !nrc.isEmpty() && !township.isEmpty())) {
+        if((!username.isEmpty() && !shopname.isEmpty() && !phonenumber.isEmpty() && !address.isEmpty() && !dob.isEmpty() && !nrc.isEmpty() && !township.isEmpty() && !customername.isEmpty())) {
             progressDialog.show();
 
 
-            Call<Customer> call = MainActivity.apiInterface.performRegistration(uniqueUserName, shopname, phonenumber, address, dob, nrc, township);
+            Call<Customer> call = MainActivity.apiInterface.performRegistration(customername,uniqueUserName, shopname, phonenumber, address, dob, nrc, township);
             call.enqueue(new Callback<Customer>() {
                 @Override
                 public void onResponse(Call<Customer> call, Response<Customer> response) {
@@ -176,6 +181,7 @@ public class SaleAddCustomer extends Fragment {
 
 
             userName.setText("");
+            customerName.setText("");
             shopName.setText("");
             phoneNumber.setText("");
             Address.setText("");

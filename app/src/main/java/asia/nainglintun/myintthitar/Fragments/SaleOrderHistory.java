@@ -16,9 +16,9 @@ import java.util.ArrayList;
 
 import asia.nainglintun.myintthitar.Activities.RecyclerTouchListener;
 import asia.nainglintun.myintthitar.Activities.VoucherOrderDetailActivity;
+import asia.nainglintun.myintthitar.Adapters.SaleOrderHistoryAdapter;
 import asia.nainglintun.myintthitar.R;
-import asia.nainglintun.myintthitar.activities.Adapters.SaleOrderHistoryAdapter;
-import asia.nainglintun.myintthitar.activities.ToDo.SaleOrderHistoryToDo;
+import asia.nainglintun.myintthitar.ToDo.SaleOrderHistoryToDo;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -28,7 +28,7 @@ public class SaleOrderHistory extends Fragment {
     private View view;
     private ArrayList<SaleOrderHistoryToDo> saleHistoryList;
     private RecyclerView recyclerView;
-    private SaleOrderHistoryAdapter adapter;
+    private asia.nainglintun.myintthitar.Adapters.SaleOrderHistoryAdapter adapter;
 
     private Toolbar toolbar;
     public SaleOrderHistory() {

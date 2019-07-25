@@ -6,19 +6,23 @@ import android.support.v4.app.FragmentManager;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.annotation.NonNull;
+import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.widget.TextView;
+import android.widget.Toast;
 
-import asia.nainglintun.myintthitar.activities.Fragments.CustomerRankFragment;
-import asia.nainglintun.myintthitar.activities.Fragments.HistoryCustomerFragment;
-import asia.nainglintun.myintthitar.activities.Fragments.NotificationCustomerFragment;
-import asia.nainglintun.myintthitar.activities.Fragments.SettingCustomerFragment;
+
+import asia.nainglintun.myintthitar.Fragments.CustomerRankFragment;
+import asia.nainglintun.myintthitar.Fragments.HistoryCustomerFragment;
+import asia.nainglintun.myintthitar.Fragments.NotificationCustomerFragment;
+import asia.nainglintun.myintthitar.Fragments.SettingCustomerFragment;
 import asia.nainglintun.myintthitar.R;
 
 public class CustomerActivity extends AppCompatActivity {
     private TextView mTextMessage;
     public static FragmentManager fragmentManager;
-    private ActionBar actionBar;
+    //private ActionBar actionBar;
+    private Toolbar toolbar;
     BottomNavigationView navView;
 
 
@@ -31,22 +35,22 @@ public class CustomerActivity extends AppCompatActivity {
             switch (item.getItemId()) {
                 case R.id.navigation_home:
                     fragmentManager.beginTransaction().replace(R.id.frame_layout_customer,new CustomerRankFragment()).commit();
-                    actionBar.setTitle("Rank");
+                    toolbar.setTitle("Rank");
                     return true;
                 case R.id.navigation_dashboard:
                     fragmentManager.beginTransaction().replace(R.id.frame_layout_customer,new HistoryCustomerFragment()).commit();
-                    actionBar.setTitle("History");
+                    toolbar.setTitle("History");
 
                     return true;
                 case R.id.navigation_notifications:
                     fragmentManager.beginTransaction().replace(R.id.frame_layout_customer,new NotificationCustomerFragment()).commit();
-                    actionBar.setTitle("Notification");
+                    toolbar.setTitle("Notification");
 
                     return true;
                 case R.id.navigation_setting:
                     fragmentManager.beginTransaction().replace(R.id.frame_layout_customer,new SettingCustomerFragment()).commit();
 
-                    actionBar.setTitle("Setting");
+                    toolbar.setTitle("Setting");
                     return true;
             }
             return false;
@@ -57,8 +61,11 @@ public class CustomerActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_customer);
-        actionBar = getSupportActionBar();
-        actionBar.setTitle( "Rank" );
+        toolbar = findViewById(R.id.toolBar);
+        setSupportActionBar(toolbar);
+        toolbar.setTitle("Rank");
+
+        Toast.makeText(this, MainActivity.prefConfig.readName(), Toast.LENGTH_SHORT).show();
         fragmentManager = getSupportFragmentManager();
 
         if(findViewById(R.id.frame_layout_customer)!=null)

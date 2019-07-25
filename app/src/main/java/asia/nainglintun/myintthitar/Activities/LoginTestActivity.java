@@ -1,18 +1,24 @@
 package asia.nainglintun.myintthitar.Activities;
 
 import android.Manifest;
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Build;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.zxing.Result;
 
+import asia.nainglintun.myintthitar.models.Customer;
 import me.dm7.barcodescanner.zxing.ZXingScannerView;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class LoginTestActivity extends AppCompatActivity implements ZXingScannerView.ResultHandler {
 
@@ -20,6 +26,7 @@ public class LoginTestActivity extends AppCompatActivity implements ZXingScanner
     private static final int REQUEST_CAMERA = 1;
 
     ZXingScannerView zXingScannerView;
+   // ProgressDialog progressDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,7 +34,8 @@ public class LoginTestActivity extends AppCompatActivity implements ZXingScanner
         zXingScannerView = new ZXingScannerView(this);
         setContentView(zXingScannerView);
 
-
+        // progressDialog = new ProgressDialog(this);
+        // progressDialog.setMessage("Please wait....");
 //        textViewName = findViewById(R.id.loginName);
 //
 //        Bundle bd = getIntent().getExtras();
@@ -47,11 +55,34 @@ public class LoginTestActivity extends AppCompatActivity implements ZXingScanner
     public void handleResult(Result rawResult) {
         //MainActivity.qrUsername.setText(rawResult.getText());
         //onBackPressed();
-        if (rawResult.getText().equals("salesale123")) {
-            startActivity(new Intent(LoginTestActivity.this, SalesActivity.class));
-        }
+//        if (rawResult.getText().equals("salesale123")) {
+//            startActivity(new Intent(LoginTestActivity.this, SalesActivity.class));
+//        }
 
-        finish();
+
+
+        Call<Customer> call = MainActivity.apiInterface.performUserLogin(rawResult.getText());
+        call.enqueue(new Callback<Customer>() {
+            @Override
+            public void onResponse(Call<Customer> call, Response<Customer> response) {
+              //  progressDialog.dismiss();
+                if (response.body().getResponse().equals("customer")){
+
+                    startActivity(new Intent(LoginTestActivity.this,CustomerActivity.class));
+                }else if (response.body().getResponse().equals("sale")) {
+                    startActivity(new Intent(LoginTestActivity.this, SalesActivity.class));
+                }else if (response.body().getResponse().equals("new")){
+                    Toast.makeText(LoginTestActivity.this, "please register", Toast.LENGTH_SHORT).show();
+                }
+
+                finish();
+            }
+
+            @Override
+            public void onFailure(Call<Customer> call, Throwable t) {
+
+            }
+        });
     }
 
     @Override
