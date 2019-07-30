@@ -10,9 +10,9 @@ import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.widget.Toast;
 
+import asia.nainglintun.myintthitar.Fragments.FragmentCard;
 import asia.nainglintun.myintthitar.Fragments.OrderListFragment;
 import asia.nainglintun.myintthitar.Fragments.SaleListFragment;
-import asia.nainglintun.myintthitar.Fragments.SaleHome;
 import asia.nainglintun.myintthitar.Fragments.SaleSettingFragment;
 import asia.nainglintun.myintthitar.R;
 
@@ -30,7 +30,7 @@ public class SalesActivity extends AppCompatActivity {
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
             switch (item.getItemId()) {
                 case R.id.navigation_home:
-                    fragmentManager.beginTransaction().replace(R.id.frame_layout_sales,new SaleHome()).addToBackStack(null).commit();
+                    fragmentManager.beginTransaction().replace(R.id.frame_layout_sales,new FragmentCard()).addToBackStack(null).commit();
                    toolbar.setTitle("Home");
                     return true;
                 case R.id.navigation_dashboard:
@@ -79,7 +79,7 @@ public class SalesActivity extends AppCompatActivity {
             {
                 return;
             }
-            fragmentManager.beginTransaction().add(R.id.frame_layout_sales,new SaleHome()).commit();
+            fragmentManager.beginTransaction().add(R.id.frame_layout_sales,new FragmentCard()).commit();
         }
     }
 

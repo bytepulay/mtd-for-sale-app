@@ -2,6 +2,7 @@ package asia.nainglintun.myintthitar.Fragments;
 
 
 import android.app.DatePickerDialog;
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -55,6 +56,7 @@ private LinearLayout linearLayoutRing,linearLayoutBangles,linearLayoutNecklace,l
 private Button hideRing,hideBangles,hideNecklace,hideEarring;
 private Spinner spinner;
 private static final String[] paths = {"Choose Items Type","Ring", "Bangles", "Necklace","Earring"};
+private ProgressDialog progressDialog;
 
 private EditText ringTitle,ringNumber,ringPointEight,ringKyat,ringPal,ringYae,banglesTitle,banglesNumber,banglesPointEight,banglesKyat,banglesPal,banglesYae,necklaceTitle,necklaceNumber,necklacePointEight,necklaceKyat,necklacePal,necklaceYae,
         earringTitle,earringNumber,earringPointEight,earringKyat,earringPal,earringYae,voucherNumber,Gram,CuponCode,totalKyat,totalPel,totalYae,totalQualtity,totalPointEight;
@@ -72,6 +74,13 @@ private EditText ringTitle,ringNumber,ringPointEight,ringKyat,ringPal,ringYae,ba
 
         toolbar = view.findViewById(R.id.toolBar);
         toolbar.setTitle("Create Invoice");
+
+        progressDialog = new ProgressDialog(getContext());
+
+       progressDialog.setTitle("Inserting Data");
+        progressDialog.setMessage("Please wait..");
+
+
 
          voucherNumber = view.findViewById(R.id.voucherNumber);
          saleDate= view.findViewById(R.id.saleDate);
@@ -368,16 +377,19 @@ private EditText ringTitle,ringNumber,ringPointEight,ringKyat,ringPal,ringYae,ba
         earring_Pal =earringPal.getText().toString();
         earring_Yae =earringYae.getText().toString();
 
+        progressDialog.show();
 
-
-        Call<SaleInoviceData> call = MainActivity.apiInterface.insertSaleInvoice(voucher_Number,sale_Date,qualtity,pointEight,kyat,pal,yae,gram,cuponCode,CustomerID,ring_Title,ring_Number,ring_Point_Eight,ring_Kyat,ring_Pal,ring_Yae,bangles_Title,bangles_Number,bangles_Point_Eight,bangles_Kyat,bangles_Pal,bangles_Yae,
+        Call<SaleInoviceData> call = MainActivity.apiInterface.insertSaleInvoice(MainActivity.prefConfig.readName(),voucher_Number,sale_Date,qualtity,pointEight,kyat,pal,yae,gram,cuponCode,CustomerID,ring_Title,ring_Number,ring_Point_Eight,ring_Kyat,ring_Pal,ring_Yae,bangles_Title,bangles_Number,bangles_Point_Eight,bangles_Kyat,bangles_Pal,bangles_Yae,
                 necklace_Title,necklace_Number,necklace_Point_Eight,necklace_Kyat,necklace_Pal,necklace_Yae,earring_Title,earring_Number,earring_Point_Eight,earring_Kyat,earring_Pal,earring_Yae);
 
         call.enqueue(new Callback<SaleInoviceData>() {
+
+
             @Override
             public void onResponse(Call<SaleInoviceData> call, Response<SaleInoviceData> response) {
+                progressDialog.dismiss();
                 if (response.body().getResponse().equals("ok")){
-                    Toast.makeText(getContext(),"sale Invoice Successfully" + ring_Title + bangles_Title + earring_Title + necklace_Title,Toast.LENGTH_LONG).show();
+                    Toast.makeText(getContext(),"Sale Invoice Successfully",Toast.LENGTH_LONG).show();
                 } else if (response.body().getResponse().equals("error")){
                     Toast.makeText(getContext(),"sale Invoice fail",Toast.LENGTH_LONG).show();
                 }
@@ -385,7 +397,7 @@ private EditText ringTitle,ringNumber,ringPointEight,ringKyat,ringPal,ringYae,ba
 
             @Override
             public void onFailure(Call<SaleInoviceData> call, Throwable t) {
-
+                Toast.makeText(getContext(), "pull fail", Toast.LENGTH_SHORT).show();
             }
         });
     }

@@ -10,6 +10,7 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -94,19 +95,8 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 String username = editTextUserName.getText().toString().trim();
-                //String password = editTextPassword.getText().toString().trim();
 
-//                if (username.equals("customer") && password.equals("customer123")) {
-//                    Intent in = new Intent(MainActivity.this, CustomerActivity.class);
-//                    startActivity(in);
-//                    Toast.makeText(getApplicationContext(), "Sign in Successful", Toast.LENGTH_SHORT).show();
-//                } else if (username.equals("sale") && password.equals("sale123")) {
-//                    Intent ii = new Intent(MainActivity.this, SalesActivity.class);
-//                    startActivity(ii);
-//                    Toast.makeText(getApplicationContext(), "Sign in Successful", Toast.LENGTH_SHORT).show();
-//                }
-                  progressDialog.show();
-
+                progressDialog.show();
                 Call<Customer> call = MainActivity.apiInterface.performUserLogin(username);
                 call.enqueue(new Callback<Customer>() {
                     @Override
@@ -117,6 +107,7 @@ public class MainActivity extends AppCompatActivity {
                             String rowUser = response.body().getResponse();
                             prefConfig.writeRowUser(rowUser);
                             prefConfig.writeName(name);
+
                             startActivity(new Intent(MainActivity.this,CustomerActivity.class));
                         }else if (response.body().getResponse().equals("sale")) {
                             String name =response.body().getUserName();

@@ -44,7 +44,7 @@
         <asia.nainglintun.myintthitar.activities.Font.UniZawgyiTextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="သို့ နိုင်လင်းထွန်း"
+            android:text="Or"
             android:textSize="25sp"
             android:textColor="#FFB22A"
             android:textAlignment="center"/>

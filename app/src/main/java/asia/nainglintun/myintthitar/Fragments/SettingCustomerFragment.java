@@ -16,6 +16,7 @@ import android.widget.Toast;
 
 import java.io.IOException;
 
+import asia.nainglintun.myintthitar.Activities.MainActivity;
 import asia.nainglintun.myintthitar.R;
 import de.hdodenhof.circleimageview.CircleImageView;
 
@@ -26,7 +27,7 @@ import static android.app.Activity.RESULT_OK;
  */
 public class SettingCustomerFragment extends Fragment implements View.OnClickListener {
 
-    private Button btnCustomerChangePassword;
+    private Button btnCustomerChangePassword,bnCustometLogout;
     private EditText editTextCustomerChangePassword,getEditTextCustomerComfirmPassword;
     private CircleImageView customerProfile;
     private final int IMG_REQUEST=1;
@@ -44,11 +45,13 @@ public class SettingCustomerFragment extends Fragment implements View.OnClickLis
         View view = inflater.inflate(R.layout.fragment_setting_customer, container, false);
 
         btnCustomerChangePassword = view.findViewById(R.id.btnCustomerPasswordSave);
+        bnCustometLogout = view.findViewById(R.id.btnCustomerLogout);
         editTextCustomerChangePassword = view.findViewById(R.id.customerChangePassword);
         getEditTextCustomerComfirmPassword = view.findViewById(R.id.customerComfirmPassword);
         customerProfile = view.findViewById(R.id.customerProfile);
         customerProfile.setOnClickListener(this);
         btnCustomerChangePassword.setOnClickListener(this);
+        bnCustometLogout.setOnClickListener(this);
         return view;
     }
 
@@ -60,7 +63,10 @@ public class SettingCustomerFragment extends Fragment implements View.OnClickLis
                 break;
           case R.id.customerProfile:
               selectCustomerImage();
-
+          case R.id.btnCustomerLogout:
+              MainActivity.prefConfig.DeleteName(MainActivity.prefConfig.readName());
+              startActivity(new Intent(getContext(), MainActivity.class));
+              getActivity().finish();
       }
     }
 

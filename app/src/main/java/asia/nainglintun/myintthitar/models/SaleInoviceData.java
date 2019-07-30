@@ -4,6 +4,9 @@ import com.google.gson.annotations.SerializedName;
 
 public class SaleInoviceData {
 
+    @SerializedName("sale_user_name")
+    private String saleUserName;
+
      @SerializedName("voucher_number")
     private String voucherNumber;
 
@@ -154,6 +157,11 @@ public class SaleInoviceData {
 
     @SerializedName("town_ship")
     private String town;
+
+
+    public String getSaleUserName() {
+        return saleUserName;
+    }
 
     public String getVoucherNumber() {
         return voucherNumber;

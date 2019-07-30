@@ -7,7 +7,8 @@ public class Customer {
     @SerializedName("response")
     private String Response;
 
-
+    @SerializedName("image")
+    private String Image;
 
     @SerializedName("id")
     private int id;
@@ -40,6 +41,9 @@ public class Customer {
     @SerializedName("town_ship")
     private String town;
 
+    public String getImage() {
+        return Image;
+    }
 
     public String getResponse() {
         return Response;

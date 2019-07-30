@@ -3,17 +3,27 @@ package asia.nainglintun.myintthitar.Fragments;
 
 import android.app.DatePickerDialog;
 import android.app.ProgressDialog;
+import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.Toolbar;
+import android.util.Base64;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.google.zxing.BarcodeFormat;
+import com.google.zxing.MultiFormatWriter;
+import com.google.zxing.WriterException;
+import com.google.zxing.common.BitMatrix;
+import com.journeyapps.barcodescanner.BarcodeEncoder;
+
+import java.io.ByteArrayOutputStream;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
@@ -38,6 +48,8 @@ public class SaleAddCustomer extends Fragment {
     private Button btnCustomerSave;
     private ProgressDialog progressDialog;
     final Calendar myCalendar = Calendar.getInstance();
+    private ImageView imageQrcode;
+    Bitmap bitmap;
 
     public SaleAddCustomer() {
         // Required empty public constructor
@@ -53,6 +65,7 @@ public class SaleAddCustomer extends Fragment {
        toolbar = view.findViewById(R.id.toolBar);
        toolbar.setTitle("Create New Customer");
 
+       imageQrcode = view.findViewById(R.id.customerQrcode);
        userName = view.findViewById(R.id.userName);
        customerName = view.findViewById(R.id.custName);
        shopName = view.findViewById(R.id.shopName);
@@ -94,7 +107,8 @@ public class SaleAddCustomer extends Fragment {
         btnCustomerSave.setOnClickListener(new View.OnClickListener() {
            @Override
            public void onClick(View v) {
-             performRegistration();
+
+               performRegistration();
            }
        });
        return view;
@@ -108,6 +122,21 @@ public class SaleAddCustomer extends Fragment {
         Toast.makeText(getContext(),currentDateandTime,Toast.LENGTH_LONG).show();
         String username = userName.getText().toString();
         String uniqueUserName=username.concat(currentDateandTime);
+        MultiFormatWriter multiFormatWriter = new MultiFormatWriter();
+
+        try {
+            BitMatrix bitMatrix = multiFormatWriter.encode(uniqueUserName, BarcodeFormat.QR_CODE,200,200);
+            BarcodeEncoder barcodeEncoder = new BarcodeEncoder();
+            bitmap = barcodeEncoder.createBitmap(bitMatrix);
+            imageQrcode.setVisibility(View.VISIBLE);
+            imageQrcode.setImageBitmap(bitmap);
+
+        }catch (WriterException e){
+            e.printStackTrace();
+        }
+
+        String Image = imageToString();
+
         if(username.isEmpty()){
             userName.setError("Enter User Name");
         }
@@ -157,7 +186,7 @@ public class SaleAddCustomer extends Fragment {
             progressDialog.show();
 
 
-            Call<Customer> call = MainActivity.apiInterface.performRegistration(customername,uniqueUserName, shopname, phonenumber, address, dob, nrc, township);
+            Call<Customer> call = MainActivity.apiInterface.performRegistration(customername,uniqueUserName, shopname, phonenumber, address, dob, nrc, township,Image);
             call.enqueue(new Callback<Customer>() {
                 @Override
                 public void onResponse(Call<Customer> call, Response<Customer> response) {
@@ -175,19 +204,21 @@ public class SaleAddCustomer extends Fragment {
 
                 @Override
                 public void onFailure(Call<Customer> call, Throwable t) {
-
+                    Toast.makeText(getContext(), "Fail", Toast.LENGTH_SHORT).show();
+                    progressDialog.dismiss();
                 }
             });
 
 
-            userName.setText("");
-            customerName.setText("");
-            shopName.setText("");
-            phoneNumber.setText("");
-            Address.setText("");
-            DOB.setText("");
-            Nrc.setText("");
-            Township.setText("");
+
+//            userName.setText("");
+//            customerName.setText("");
+//            shopName.setText("");
+//            phoneNumber.setText("");
+//            Address.setText("");
+//            DOB.setText("");
+//            Nrc.setText("");
+//            Township.setText("");
 
         }
 
@@ -198,6 +229,13 @@ public class SaleAddCustomer extends Fragment {
         SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.US);
 
         DOB.setText(sdf.format(myCalendar.getTime()));
+    }
+
+    private String imageToString(){
+        ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+        bitmap.compress(Bitmap.CompressFormat.JPEG,100,byteArrayOutputStream);
+        byte[] imgByte = byteArrayOutputStream.toByteArray();
+        return Base64.encodeToString(imgByte,Base64.DEFAULT);
     }
 
 

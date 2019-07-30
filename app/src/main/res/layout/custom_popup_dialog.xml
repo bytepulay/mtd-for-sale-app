@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     android:layout_gravity="center">
 
     <ImageView
@@ -15,6 +15,11 @@
         android:layout_marginRight="7dp"
         android:elevation="5dp"
         android:layout_alignParentRight="true"/>
+
+    <ScrollView
+        android:scrollbars="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
     <android.support.v7.widget.CardView
         android:layout_marginBottom="8dp"
@@ -28,7 +33,7 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:orientation="vertical">
 
 
@@ -40,351 +45,838 @@
                 android:layout_marginTop="15dp"
                 android:layout_marginBottom="25dp">
 
+                <LinearLayout
+                    android:layout_marginTop="15dp"
+                    android:weightSum="15"
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+
 
                 <TextView
-                    android:textAlignment="center"
+                    android:layout_marginLeft="20dp"
+                    android:layout_weight="13"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginRight="20dp"
-                    android:layout_marginLeft="20dp"
                     android:textStyle="bold"
                     android:textSize="18sp"
                     android:textColor="#6200ee"
                     android:padding="10dp"
                     android:text="Sale Voucher Detail"/>
 
+
+                    <!--<ImageButton-->
+                        <!--android:src="@drawable/ic_save_black_24dp"-->
+                        <!--android:layout_marginRight="20dp"-->
+                        <!--android:padding="10dp"-->
+                        <!--android:layout_weight="2"-->
+                        <!--android:id="@+id/btnVoucherSave"-->
+                        <!--android:layout_width="wrap_content"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:text="Edit"/>-->
+
+
+
+                    <ImageButton
+                        android:src="@drawable/ic_mode_edit_black_24dp"
+                        android:layout_marginRight="20dp"
+                        android:padding="10dp"
+                        android:layout_weight="2"
+                        android:id="@+id/btnVoucherEdit"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Edit"/>
+
+
+                </LinearLayout>
+
                <android.support.v7.widget.RecyclerView
+                   android:visibility="visible"
                    android:id="@+id/recyclerViewDialog"
                    android:layout_width="match_parent"
-                   android:layout_height="match_parent">
+                   android:layout_height="wrap_content">
 
                </android.support.v7.widget.RecyclerView>
 
-                <!--<TextView-->
+
+
+                <!--<android.support.v7.widget.RecyclerView-->
+                    <!--android:visibility="gone"-->
+                    <!--android:id="@+id/recyclerViewEdit"-->
                     <!--android:layout_width="match_parent"-->
-                    <!--android:layout_height="wrap_content"-->
-                    <!--android:layout_marginRight="20dp"-->
-                    <!--android:layout_marginLeft="20dp"-->
-                    <!--android:textAlignment="center"-->
-                    <!--android:textStyle="bold"-->
-                    <!--android:textSize="25sp"-->
-                    <!--android:text="I can do android development"/>-->
-
-
-                <!--<TextView-->
-                    <!--android:layout_width="match_parent"-->
-                    <!--android:layout_height="wrap_content"-->
-                    <!--android:layout_marginRight="20dp"-->
-                    <!--android:layout_marginLeft="20dp"-->
-                    <!--android:textAlignment="center"-->
-                    <!--android:textStyle="bold"-->
-                    <!--android:textSize="25sp"-->
-                    <!--android:text="I can do android development"/>-->
+                    <!--android:layout_height="wrap_content">-->
+
+                <!--</android.support.v7.widget.RecyclerView>-->
+
+
+
+                <!--start edit save layout-->
+
+                <LinearLayout
+                    android:visibility="gone"
+                    android:id="@+id/updateLayout"
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                <TextView
+                    android:layout_marginLeft="10dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Voucher Number"
+                    android:textSize="18sp"
+                    />
+
+                <EditText
+                    android:id="@+id/editVoucher"
+                    android:background="@drawable/custom_edittext_form_background"
+                    android:layout_margin="10dp"
+                    android:padding="10dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+                <TextView
+                    android:layout_marginLeft="10dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Sale Date"
+                    android:textSize="18sp"
+                    />
+
+                <EditText
+                    android:id="@+id/editSaleDate"
+                    android:background="@drawable/custom_edittext_form_background"
+                    android:layout_margin="10dp"
+                    android:padding="10dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+
+                    <TextView
+                        android:layout_marginLeft="10dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Cupon Code"
+                        android:textSize="18sp"
+                        />
+
+                    <EditText
+                        android:id="@+id/editCuponCode"
+                        android:background="@drawable/custom_edittext_form_background"
+                        android:layout_margin="10dp"
+                        android:padding="10dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+
+                <TextView
+                    android:layout_marginLeft="10dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Customer Name"
+                    android:textSize="18sp"
+                    />
+
+                <EditText
+                    android:id="@+id/editCustomerName"
+                    android:background="@drawable/custom_edittext_form_background"
+                    android:layout_margin="10dp"
+                    android:padding="10dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+
+                <TextView
+                    android:layout_marginLeft="10dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Shop Name"
+                    android:textSize="18sp"
+                    />
+
+                <EditText
+                    android:id="@+id/editShopName"
+                    android:background="@drawable/custom_edittext_form_background"
+                    android:layout_margin="10dp"
+                    android:padding="10dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+
+
+
+                    <TextView
+                        android:layout_marginLeft="10dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Address"
+                        android:textSize="18sp"
+                        />
+
+                    <EditText
+                        android:id="@+id/editAddress"
+                        android:background="@drawable/custom_edittext_form_background"
+                        android:layout_margin="10dp"
+                        android:padding="10dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
 
-                <!--<TextView-->
-                    <!--android:layout_width="match_parent"-->
-                    <!--android:layout_height="wrap_content"-->
-                    <!--android:layout_marginRight="20dp"-->
-                    <!--android:layout_marginLeft="20dp"-->
-                    <!--android:textAlignment="center"-->
-                    <!--android:textStyle="bold"-->
-                    <!--android:textSize="25sp"-->
-                    <!--android:text="I can do android development"/>-->
-
-
-                <!--<TextView-->
-                    <!--android:layout_width="match_parent"-->
-                    <!--android:layout_height="wrap_content"-->
-                    <!--android:layout_marginRight="20dp"-->
-                    <!--android:layout_marginLeft="20dp"-->
-                    <!--android:textAlignment="center"-->
-                    <!--android:textStyle="bold"-->
-                    <!--android:textSize="25sp"-->
-                    <!--android:text="I can do android development"/>-->
-
-
-
+                    <TextView
+                        android:layout_marginLeft="10dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Phone Number"
+                        android:textSize="18sp"
+                        />
 
-                <!--<TextView-->
-                    <!--android:layout_width="match_parent"-->
-                    <!--android:layout_height="wrap_content"-->
-                    <!--android:layout_marginRight="20dp"-->
-                    <!--android:layout_marginLeft="20dp"-->
-                    <!--android:textAlignment="center"-->
-                    <!--android:textStyle="bold"-->
-                    <!--android:textSize="25sp"-->
-                    <!--android:text="I can do android development"/>-->
-
-
-                <!--<TextView-->
-                    <!--android:layout_width="match_parent"-->
-                    <!--android:layout_height="wrap_content"-->
-                    <!--android:layout_marginRight="20dp"-->
-                    <!--android:layout_marginLeft="20dp"-->
-                    <!--android:textAlignment="center"-->
-                    <!--android:textStyle="bold"-->
-                    <!--android:textSize="25sp"-->
-                    <!--android:text="I can do android development"/>-->
-
-
-
+                    <EditText
+                        android:id="@+id/editPhoneNumber"
+                        android:background="@drawable/custom_edittext_form_background"
+                        android:layout_margin="10dp"
+                        android:padding="10dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
 
 
-                <!--<TextView-->
-                    <!--android:layout_width="match_parent"-->
-                    <!--android:layout_height="wrap_content"-->
-                    <!--android:layout_marginRight="20dp"-->
-                    <!--android:layout_marginLeft="20dp"-->
-                    <!--android:textAlignment="center"-->
-                    <!--android:textStyle="bold"-->
-                    <!--android:textSize="25sp"-->
-                    <!--android:text="I can do android development"/>-->
-
+                    <TextView
+                        android:layout_marginLeft="10dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Date Of Birth"
+                        android:textSize="18sp"
+                        />
 
-                <!--<TextView-->
-                    <!--android:layout_width="match_parent"-->
-                    <!--android:layout_height="wrap_content"-->
-                    <!--android:layout_marginRight="20dp"-->
-                    <!--android:layout_marginLeft="20dp"-->
-                    <!--android:textAlignment="center"-->
-                    <!--android:textStyle="bold"-->
-                    <!--android:textSize="25sp"-->
-                    <!--android:text="I can do android development"/>-->
-
-
+                    <EditText
+                        android:id="@+id/editDOB"
+                        android:background="@drawable/custom_edittext_form_background"
+                        android:layout_margin="10dp"
+                        android:padding="10dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
 
+
 
 
-                <!--<TextView-->
-                    <!--android:layout_width="match_parent"-->
-                    <!--android:layout_height="wrap_content"-->
-                    <!--android:layout_marginRight="20dp"-->
-                    <!--android:layout_marginLeft="20dp"-->
-                    <!--android:textAlignment="center"-->
-                    <!--android:textStyle="bold"-->
-                    <!--android:textSize="25sp"-->
-                    <!--android:text="I can do android development"/>-->
 
 
-                <!--<TextView-->
-                    <!--android:layout_width="match_parent"-->
-                    <!--android:layout_height="wrap_content"-->
-                    <!--android:layout_marginRight="20dp"-->
-                    <!--android:layout_marginLeft="20dp"-->
-                    <!--android:textAlignment="center"-->
-                    <!--android:textStyle="bold"-->
-                    <!--android:textSize="25sp"-->
-                    <!--android:text="I can do android development"/>-->
+                    <TextView
+                    android:layout_marginLeft="10dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Township"
+                    android:textSize="18sp"
+                    />
 
 
+                <EditText
+                    android:id="@+id/editTownShip"
+                    android:background="@drawable/custom_edittext_form_background"
+                    android:layout_margin="10dp"
+                    android:padding="10dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
 
 
 
-                <!--<TextView-->
-                    <!--android:layout_width="match_parent"-->
-                    <!--android:layout_height="wrap_content"-->
-                    <!--android:layout_marginRight="20dp"-->
-                    <!--android:layout_marginLeft="20dp"-->
-                    <!--android:textAlignment="center"-->
-                    <!--android:textStyle="bold"-->
-                    <!--android:textSize="25sp"-->
-                    <!--android:text="I can do android development"/>-->
 
 
-                <!--<TextView-->
-                    <!--android:layout_width="match_parent"-->
-                    <!--android:layout_height="wrap_content"-->
-                    <!--android:layout_marginRight="20dp"-->
-                    <!--android:layout_marginLeft="20dp"-->
-                    <!--android:textAlignment="center"-->
-                    <!--android:textStyle="bold"-->
-                    <!--android:textSize="25sp"-->
-                    <!--android:text="I can do android development"/>-->
 
+                <TextView
+                    android:layout_marginLeft="10dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Ring Description"
+                    android:textSize="18sp"
+                    />
 
 
+                <EditText
+                    android:id="@+id/editRingDes"
+                    android:background="@drawable/custom_edittext_form_background"
+                    android:layout_margin="10dp"
+                    android:padding="10dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
 
 
-                <!--<TextView-->
-                    <!--android:layout_width="match_parent"-->
-                    <!--android:layout_height="wrap_content"-->
-                    <!--android:layout_marginRight="20dp"-->
-                    <!--android:layout_marginLeft="20dp"-->
-                    <!--android:textAlignment="center"-->
-                    <!--android:textStyle="bold"-->
-                    <!--android:textSize="25sp"-->
-                    <!--android:text="I can do android development"/>-->
+                <TextView
+                    android:layout_marginLeft="10dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Ring Number"
+                    android:textSize="18sp"
+                    />
 
 
-                <!--<TextView-->
-                    <!--android:layout_width="match_parent"-->
-                    <!--android:layout_height="wrap_content"-->
-                    <!--android:layout_marginRight="20dp"-->
-                    <!--android:layout_marginLeft="20dp"-->
-                    <!--android:textAlignment="center"-->
-                    <!--android:textStyle="bold"-->
-                    <!--android:textSize="25sp"-->
-                    <!--android:text="I can do android development"/>-->
+                <EditText
+                    android:id="@+id/editRingNumber"
+                    android:background="@drawable/custom_edittext_form_background"
+                    android:layout_margin="10dp"
+                    android:padding="10dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
 
 
 
+                <TextView
+                    android:layout_marginLeft="10dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Ring Point Eight"
+                    android:textSize="18sp"
+                    />
 
 
-                <!--<TextView-->
-                    <!--android:layout_width="match_parent"-->
-                    <!--android:layout_height="wrap_content"-->
-                    <!--android:layout_marginRight="20dp"-->
-                    <!--android:layout_marginLeft="20dp"-->
-                    <!--android:textAlignment="center"-->
-                    <!--android:textStyle="bold"-->
-                    <!--android:textSize="25sp"-->
-                    <!--android:text="I can do android development"/>-->
+                <EditText
+                    android:id="@+id/editRingPointEight"
+                    android:background="@drawable/custom_edittext_form_background"
+                    android:layout_margin="10dp"
+                    android:padding="10dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
 
 
-                <!--<TextView-->
-                    <!--android:layout_width="match_parent"-->
-                    <!--android:layout_height="wrap_content"-->
-                    <!--android:layout_marginRight="20dp"-->
-                    <!--android:layout_marginLeft="20dp"-->
-                    <!--android:textAlignment="center"-->
-                    <!--android:textStyle="bold"-->
-                    <!--android:textSize="25sp"-->
-                    <!--android:text="I can do android development"/>-->
 
 
+                    <TextView
+                        android:layout_marginLeft="10dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Ring Kyat"
+                        android:textSize="18sp"
+                        />
 
 
+                    <EditText
+                        android:id="@+id/editRingKyat"
+                        android:background="@drawable/custom_edittext_form_background"
+                        android:layout_margin="10dp"
+                        android:padding="10dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
 
-                <!--<TextView-->
-                    <!--android:layout_width="match_parent"-->
-                    <!--android:layout_height="wrap_content"-->
-                    <!--android:layout_marginRight="20dp"-->
-                    <!--android:layout_marginLeft="20dp"-->
-                    <!--android:textAlignment="center"-->
-                    <!--android:textStyle="bold"-->
-                    <!--android:textSize="25sp"-->
-                    <!--android:text="I can do android development"/>-->
 
+                    <TextView
+                        android:layout_marginLeft="10dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Ring Pal"
+                        android:textSize="18sp"
+                        />
 
-                <!--<TextView-->
-                    <!--android:layout_width="match_parent"-->
-                    <!--android:layout_height="wrap_content"-->
-                    <!--android:layout_marginRight="20dp"-->
-                    <!--android:layout_marginLeft="20dp"-->
-                    <!--android:textAlignment="center"-->
-                    <!--android:textStyle="bold"-->
-                    <!--android:textSize="25sp"-->
-                    <!--android:text="I can do android development"/>-->
 
+                    <EditText
+                        android:id="@+id/editRingPal"
+                        android:background="@drawable/custom_edittext_form_background"
+                        android:layout_margin="10dp"
+                        android:padding="10dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
 
 
 
+                    <TextView
+                        android:layout_marginLeft="10dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Ring Yae"
+                        android:textSize="18sp"
+                        />
 
-                <!--<TextView-->
-                    <!--android:layout_width="match_parent"-->
-                    <!--android:layout_height="wrap_content"-->
-                    <!--android:layout_marginRight="20dp"-->
-                    <!--android:layout_marginLeft="20dp"-->
-                    <!--android:textAlignment="center"-->
-                    <!--android:textStyle="bold"-->
-                    <!--android:textSize="25sp"-->
-                    <!--android:text="I can do android development"/>-->
 
+                    <EditText
+                        android:id="@+id/editRingYae"
+                        android:background="@drawable/custom_edittext_form_background"
+                        android:layout_margin="10dp"
+                        android:padding="10dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
 
-                <!--<TextView-->
-                    <!--android:layout_width="match_parent"-->
-                    <!--android:layout_height="wrap_content"-->
-                    <!--android:layout_marginRight="20dp"-->
-                    <!--android:layout_marginLeft="20dp"-->
-                    <!--android:textAlignment="center"-->
-                    <!--android:textStyle="bold"-->
-                    <!--android:textSize="25sp"-->
-                    <!--android:text="I can do android development"/>-->
 
 
 
+                    <TextView
+                        android:layout_marginLeft="10dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Bangles Description"
+                        android:textSize="18sp"
+                        />
 
 
-                <!--<TextView-->
-                    <!--android:layout_width="match_parent"-->
-                    <!--android:layout_height="wrap_content"-->
-                    <!--android:layout_marginRight="20dp"-->
-                    <!--android:layout_marginLeft="20dp"-->
-                    <!--android:textAlignment="center"-->
-                    <!--android:textStyle="bold"-->
-                    <!--android:textSize="25sp"-->
-                    <!--android:text="I can do android development"/>-->
+                    <EditText
+                        android:id="@+id/editBanglesDes"
+                        android:background="@drawable/custom_edittext_form_background"
+                        android:layout_margin="10dp"
+                        android:padding="10dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
 
 
-                <!--<TextView-->
-                    <!--android:layout_width="match_parent"-->
-                    <!--android:layout_height="wrap_content"-->
-                    <!--android:layout_marginRight="20dp"-->
-                    <!--android:layout_marginLeft="20dp"-->
-                    <!--android:textAlignment="center"-->
-                    <!--android:textStyle="bold"-->
-                    <!--android:textSize="25sp"-->
-                    <!--android:text="I can do android development"/>-->
+                    <TextView
+                        android:layout_marginLeft="10dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Bangles Number"
+                        android:textSize="18sp"
+                        />
 
 
+                    <EditText
+                        android:id="@+id/editBanglesNumber"
+                        android:background="@drawable/custom_edittext_form_background"
+                        android:layout_margin="10dp"
+                        android:padding="10dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
 
 
 
-                <!--<TextView-->
-                    <!--android:layout_width="match_parent"-->
-                    <!--android:layout_height="wrap_content"-->
-                    <!--android:layout_marginRight="20dp"-->
-                    <!--android:layout_marginLeft="20dp"-->
-                    <!--android:textAlignment="center"-->
-                    <!--android:textStyle="bold"-->
-                    <!--android:textSize="25sp"-->
-                    <!--android:text="I can do android development"/>-->
+                    <TextView
+                        android:layout_marginLeft="10dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Bangles Point Eight"
+                        android:textSize="18sp"
+                        />
 
 
-                <!--<TextView-->
-                    <!--android:layout_width="match_parent"-->
-                    <!--android:layout_height="wrap_content"-->
-                    <!--android:layout_marginRight="20dp"-->
-                    <!--android:layout_marginLeft="20dp"-->
-                    <!--android:textAlignment="center"-->
-                    <!--android:textStyle="bold"-->
-                    <!--android:textSize="25sp"-->
-                    <!--android:text="I can do android development"/>-->
+                    <EditText
+                        android:id="@+id/editBanglesPointEight"
+                        android:background="@drawable/custom_edittext_form_background"
+                        android:layout_margin="10dp"
+                        android:padding="10dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
 
 
 
 
+                    <TextView
+                        android:layout_marginLeft="10dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Bangles Kyat"
+                        android:textSize="18sp"
+                        />
 
-                <!--<TextView-->
-                    <!--android:layout_width="match_parent"-->
-                    <!--android:layout_height="wrap_content"-->
-                    <!--android:layout_marginRight="20dp"-->
-                    <!--android:layout_marginLeft="20dp"-->
-                    <!--android:textAlignment="center"-->
-                    <!--android:textStyle="bold"-->
-                    <!--android:textSize="25sp"-->
-                    <!--android:text="I can do android development"/>-->
 
+                    <EditText
+                        android:id="@+id/editBanglesKyat"
+                        android:background="@drawable/custom_edittext_form_background"
+                        android:layout_margin="10dp"
+                        android:padding="10dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
 
-                <!--<TextView-->
-                    <!--android:layout_width="match_parent"-->
-                    <!--android:layout_height="wrap_content"-->
-                    <!--android:layout_marginRight="20dp"-->
-                    <!--android:layout_marginLeft="20dp"-->
-                    <!--android:textAlignment="center"-->
-                    <!--android:textStyle="bold"-->
-                    <!--android:textSize="25sp"-->
-                    <!--android:text="I can do android development"-->
-                   <!--/>-->
 
+                    <TextView
+                        android:layout_marginLeft="10dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Bangles Pal"
+                        android:textSize="18sp"
+                        />
 
 
-            <!--<Button-->
-                <!--android:id="@+id/edit"-->
-                <!--android:layout_marginBottom="60dp"-->
-                <!--android:layout_width="match_parent"-->
-                <!--android:layout_height="wrap_content"-->
-                <!--android:text="edit"/>-->
+                    <EditText
+                        android:id="@+id/editBanglesPal"
+                        android:background="@drawable/custom_edittext_form_background"
+                        android:layout_margin="10dp"
+                        android:padding="10dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+
+
+
+                    <TextView
+                        android:layout_marginLeft="10dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Bangles Yae"
+                        android:textSize="18sp"
+                        />
+
+
+                    <EditText
+                        android:id="@+id/editBanglesYae"
+                        android:background="@drawable/custom_edittext_form_background"
+                        android:layout_margin="10dp"
+                        android:padding="10dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+
+
+
+                    <TextView
+                        android:layout_marginLeft="10dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Necklace Description"
+                        android:textSize="18sp"
+                        />
+
+
+                    <EditText
+                        android:id="@+id/editNecklaceDes"
+                        android:background="@drawable/custom_edittext_form_background"
+                        android:layout_margin="10dp"
+                        android:padding="10dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+
+
+                    <TextView
+                        android:layout_marginLeft="10dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Necklace Number"
+                        android:textSize="18sp"
+                        />
+
+
+                    <EditText
+                        android:id="@+id/editNecklaceNumber"
+                        android:background="@drawable/custom_edittext_form_background"
+                        android:layout_margin="10dp"
+                        android:padding="10dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+
+
+
+                    <TextView
+                        android:layout_marginLeft="10dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Necklace Point Eight"
+                        android:textSize="18sp"
+                        />
+
+
+                    <EditText
+                        android:id="@+id/editNecklacePointEight"
+                        android:background="@drawable/custom_edittext_form_background"
+                        android:layout_margin="10dp"
+                        android:padding="10dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+
+
+
+
+                    <TextView
+                        android:layout_marginLeft="10dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Necklace Kyat"
+                        android:textSize="18sp"
+                        />
+
+
+                    <EditText
+                        android:id="@+id/editNecklaceKyat"
+                        android:background="@drawable/custom_edittext_form_background"
+                        android:layout_margin="10dp"
+                        android:padding="10dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+
+
+                    <TextView
+                        android:layout_marginLeft="10dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Necklace Pal"
+                        android:textSize="18sp"
+                        />
+
+
+                    <EditText
+                        android:id="@+id/editNecklacePal"
+                        android:background="@drawable/custom_edittext_form_background"
+                        android:layout_margin="10dp"
+                        android:padding="10dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+
+
+
+                    <TextView
+                        android:layout_marginLeft="10dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Necklace Yae"
+                        android:textSize="18sp"
+                        />
+
+
+                    <EditText
+                        android:id="@+id/editNecklaceYae"
+                        android:background="@drawable/custom_edittext_form_background"
+                        android:layout_margin="10dp"
+                        android:padding="10dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+
+
+
+                    <TextView
+                        android:layout_marginLeft="10dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Earring Description"
+                        android:textSize="18sp"
+                        />
+
+
+                    <EditText
+                        android:id="@+id/editEarringDes"
+                        android:background="@drawable/custom_edittext_form_background"
+                        android:layout_margin="10dp"
+                        android:padding="10dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+
+
+                    <TextView
+                        android:layout_marginLeft="10dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Earring Number"
+                        android:textSize="18sp"
+                        />
+
+
+                    <EditText
+                        android:id="@+id/editEarringNumber"
+                        android:background="@drawable/custom_edittext_form_background"
+                        android:layout_margin="10dp"
+                        android:padding="10dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+
+
+
+                    <TextView
+                        android:layout_marginLeft="10dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Earring Point Eight"
+                        android:textSize="18sp"
+                        />
+
+
+                    <EditText
+                        android:id="@+id/editEarringPointEight"
+                        android:background="@drawable/custom_edittext_form_background"
+                        android:layout_margin="10dp"
+                        android:padding="10dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+
+
+
+
+                    <TextView
+                        android:layout_marginLeft="10dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Earring Kyat"
+                        android:textSize="18sp"
+                        />
+
+
+                    <EditText
+                        android:id="@+id/editEarringKyat"
+                        android:background="@drawable/custom_edittext_form_background"
+                        android:layout_margin="10dp"
+                        android:padding="10dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+
+
+                    <TextView
+                        android:layout_marginLeft="10dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Earring Pal"
+                        android:textSize="18sp"
+                        />
+
+
+                    <EditText
+                        android:id="@+id/editEarringPal"
+                        android:background="@drawable/custom_edittext_form_background"
+                        android:layout_margin="10dp"
+                        android:padding="10dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+
+
+
+                    <TextView
+                        android:layout_marginLeft="10dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Earring Yae"
+                        android:textSize="18sp"
+                        />
+
+
+                    <EditText
+                        android:id="@+id/editEarringYae"
+                        android:background="@drawable/custom_edittext_form_background"
+                        android:layout_margin="10dp"
+                        android:padding="10dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+
+
+
+
+
+
+                    <TextView
+                        android:layout_marginLeft="10dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Total Number"
+                        android:textSize="18sp"
+                        />
+
+
+                    <EditText
+                        android:id="@+id/editTotalNumber"
+                        android:background="@drawable/custom_edittext_form_background"
+                        android:layout_margin="10dp"
+                        android:padding="10dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+
+
+
+                    <TextView
+                        android:layout_marginLeft="10dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Total Point Eight"
+                        android:textSize="18sp"
+                        />
+
+
+                    <EditText
+                        android:id="@+id/editTotalPointEight"
+                        android:background="@drawable/custom_edittext_form_background"
+                        android:layout_margin="10dp"
+                        android:padding="10dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+
+
+
+
+                    <TextView
+                        android:layout_marginLeft="10dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Total Kyat"
+                        android:textSize="18sp"
+                        />
+
+
+                    <EditText
+                        android:id="@+id/editTotalKyat"
+                        android:background="@drawable/custom_edittext_form_background"
+                        android:layout_margin="10dp"
+                        android:padding="10dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+
+
+                    <TextView
+                        android:layout_marginLeft="10dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Total Pal"
+                        android:textSize="18sp"
+                        />
+
+
+                    <EditText
+                        android:id="@+id/editTotalPal"
+                        android:background="@drawable/custom_edittext_form_background"
+                        android:layout_margin="10dp"
+                        android:padding="10dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+
+
+
+                    <TextView
+                        android:layout_marginLeft="10dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Total Yae"
+                        android:textSize="18sp"
+                        />
+
+
+                    <EditText
+                        android:id="@+id/editTotalYae"
+                        android:background="@drawable/custom_edittext_form_background"
+                        android:layout_margin="10dp"
+                        android:padding="10dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+
+
+
+                    <TextView
+                        android:layout_marginLeft="10dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Total Gram"
+                        android:textSize="18sp"
+                        />
+
+
+                    <EditText
+                        android:id="@+id/editTotalGram"
+                        android:background="@drawable/custom_edittext_form_background"
+                        android:layout_margin="10dp"
+                        android:padding="10dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+
+
+
+
+
+
+
+
+
+
+
+
+                    <Button
+                        android:id="@+id/btnUpdateSave"
+                        android:visibility="gone"
+                        android:background="@drawable/button_login_back"
+                        android:padding="10dp"
+                        android:layout_margin="10dp"
+                        android:textAllCaps="false"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Save"/>
+
+
+
+
+
+                </LinearLayout>
+                <!--&lt;!&ndash;end  edit save layout&ndash;&gt;-->
 
 
             </LinearLayout>
@@ -393,4 +885,6 @@
         </LinearLayout>
 
     </android.support.v7.widget.CardView>
+    </ScrollView>
+
 </RelativeLayout>

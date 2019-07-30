@@ -5,7 +5,6 @@ import com.google.gson.annotations.SerializedName;
 public class Salehistory {
 
 
-
     @SerializedName("voucher_number")
     private String voucherNumber;
 
@@ -24,7 +23,7 @@ public class Salehistory {
      @SerializedName("ring_point_eight")
     private String ringPointEight;
 
-   @SerializedName("ring_kayte")
+   @SerializedName("ring_kyat")
     private String ringKyat;
 
     @SerializedName("ring_pal")
@@ -116,7 +115,7 @@ public class Salehistory {
     @SerializedName("total_qualtity")
     private String qty;
 
-    @SerializedName("pointEight")
+    @SerializedName("point_eight")
     private String pointEight;
 
 
@@ -167,7 +166,7 @@ public class Salehistory {
     @SerializedName("customer_shop")
     private String customerShop;
 
-    @SerializedName("phone_number")
+    @SerializedName("customer_phone_number")
     private String customerPhoneNumber;
 
     @SerializedName("customer_address")
@@ -181,6 +180,7 @@ public class Salehistory {
 
     @SerializedName("customer_town")
     private String customerTwon;
+
 
 
 

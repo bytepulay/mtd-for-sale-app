@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".activities.Fragments.SaleSettingFragment">
+    tools:context=".Fragments.SaleSettingFragment">
 
     <!-- TODO: Update blank fragment layout -->
 
@@ -24,7 +24,6 @@
             android:id="@+id/saleProfile"
             android:layout_width="140dp"
             android:layout_height="140dp"
-            android:src="@drawable/profile"
             android:layout_marginTop="30dp"
             app:civ_border_width="2dp"
             android:layout_gravity="center"
@@ -79,6 +78,23 @@
         android:textSize="20sp"
         android:textColor="#fff"
        />
+
+
+        <Button
+            android:padding="15dp"
+            android:shadowColor="#000"
+            android:shadowDx="5"
+            android:shadowDy="5"
+            android:layout_margin="20dp"
+            android:id="@+id/btnLogout"
+            android:textAllCaps="false"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/button_login_back"
+            android:text="Logout"
+            android:textSize="20sp"
+            android:textColor="#fff"
+            />
     </LinearLayout>
 
 

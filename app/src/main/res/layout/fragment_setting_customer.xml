@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activities.Fragments.SettingCustomerFragment">
+    tools:context=".Fragments.SettingCustomerFragment">
 
     <!-- TODO: Update blank fragment layout -->
 
@@ -79,6 +79,24 @@
             android:textSize="20sp"
             android:textColor="#fff"
             />
-    </LinearLayout>
+
+
+        <Button
+            android:padding="15dp"
+            android:shadowColor="#000"
+            android:shadowDx="5"
+            android:shadowDy="5"
+            android:layout_margin="20dp"
+            android:id="@+id/btnCustomerLogout"
+            android:textAllCaps="false"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/button_login_back"
+            android:text="Logout"
+            android:textSize="20sp"
+            android:textColor="#fff"
+            />
+
+</LinearLayout>
 
 </ScrollView>

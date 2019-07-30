@@ -44,7 +44,7 @@ public class ScanForVoucherActivity extends AppCompatActivity implements ZXingSc
             @Override
             public void onResponse(Call<Customer> call, Response<Customer> response) {
                 if (response.body().getResponse().equals("ok")) {
-                   String customerId =String.valueOf(response.body().getId());
+                   int customerId =response.body().getId();
                    String shopName = response.body().getShopName();
                    String phoneNumber = response.body().getPhoneNumber();
                    String address = response.body().getAddress();
@@ -54,7 +54,7 @@ public class ScanForVoucherActivity extends AppCompatActivity implements ZXingSc
                    String customerName = response.body().getName();
                    SaleInvoiceCreate.edShopName.setText(shopName);
                    SaleInvoiceCreate.edCustomerPhone.setText(phoneNumber);
-                  SaleInvoiceCreate.edCustomerID.setText(customerId);
+                //  SaleInvoiceCreate.edCustomerID.setText(String.valueOf(customerId));
                   SaleInvoiceCreate.edCustomerName.setText(customerName);
                    SaleInvoiceCreate.edCustomerAddress.setText(address);
                    SaleInvoiceCreate.edCustomerTown.setText(town);

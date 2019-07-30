@@ -24,7 +24,7 @@ public class Orderhistory {
      @SerializedName("ring_point_eight")
     private String ringPointEight;
 
-   @SerializedName("ring_kayte")
+   @SerializedName("ring_kyat")
     private String ringKyat;
 
     @SerializedName("ring_pal")
@@ -116,7 +116,7 @@ public class Orderhistory {
     @SerializedName("total_qualtity")
     private String qty;
 
-    @SerializedName("pointEight")
+    @SerializedName("point_eight")
     private String pointEight;
 
 

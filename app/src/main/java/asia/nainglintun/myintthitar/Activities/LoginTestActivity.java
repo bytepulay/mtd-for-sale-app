@@ -20,6 +20,8 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
+import static asia.nainglintun.myintthitar.Activities.MainActivity.prefConfig;
+
 public class LoginTestActivity extends AppCompatActivity implements ZXingScannerView.ResultHandler {
 
     TextView textViewName;
@@ -59,23 +61,29 @@ public class LoginTestActivity extends AppCompatActivity implements ZXingScanner
 //            startActivity(new Intent(LoginTestActivity.this, SalesActivity.class));
 //        }
 
-
+        Toast.makeText(this, rawResult.getText(), Toast.LENGTH_SHORT).show();
 
         Call<Customer> call = MainActivity.apiInterface.performUserLogin(rawResult.getText());
         call.enqueue(new Callback<Customer>() {
             @Override
             public void onResponse(Call<Customer> call, Response<Customer> response) {
-              //  progressDialog.dismiss();
+//                progressDialog.dismiss();
                 if (response.body().getResponse().equals("customer")){
+                    String name =response.body().getUserName();
+                    String rowUser = response.body().getResponse();
+                    prefConfig.writeRowUser(rowUser);
+                    prefConfig.writeName(name);
 
                     startActivity(new Intent(LoginTestActivity.this,CustomerActivity.class));
                 }else if (response.body().getResponse().equals("sale")) {
+                    String name =response.body().getUserName();
+                    String rowUser = response.body().getResponse();
+                    prefConfig.writeRowUser(rowUser);
+                    prefConfig.writeName(name);
                     startActivity(new Intent(LoginTestActivity.this, SalesActivity.class));
                 }else if (response.body().getResponse().equals("new")){
                     Toast.makeText(LoginTestActivity.this, "please register", Toast.LENGTH_SHORT).show();
                 }
-
-                finish();
             }
 
             @Override
