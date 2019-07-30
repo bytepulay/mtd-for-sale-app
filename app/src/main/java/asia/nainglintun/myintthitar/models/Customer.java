@@ -10,6 +10,7 @@ public class Customer {
     @SerializedName("image")
     private String Image;
 
+    //json name ah time call ya mal
     @SerializedName("id")
     private int id;
 

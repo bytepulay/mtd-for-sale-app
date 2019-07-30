@@ -10,6 +10,10 @@
 
     <include layout="@layout/toolbar_layout"/>
 
+    <android.support.v4.widget.NestedScrollView
+        android:scrollbars="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
     <LinearLayout
         android:layout_marginLeft="16dp"
         android:layout_marginRight="16dp"
@@ -62,8 +66,127 @@
             android:layout_marginRight="20dp"
             android:layout_marginTop="10dp"/>
 
+        <EditText
+            android:id="@+id/custName"
+            android:hint="Customer Name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="10dp"
+            android:padding="10dp"
+            android:textAllCaps="false"
+            android:background="@drawable/custom_edittext_form_background"/>
 
-    <Button
+
+        <EditText
+            android:id="@+id/userName"
+            android:hint="User Name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="10dp"
+            android:padding="10dp"
+            android:textAllCaps="false"
+            android:background="@drawable/custom_edittext_form_background"/>
+
+
+        <EditText
+            android:id="@+id/shopName"
+            android:hint="Shop Name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="10dp"
+            android:padding="10dp"
+            android:textAllCaps="false"
+            android:background="@drawable/custom_edittext_form_background"/>
+
+
+
+
+
+
+
+        <EditText
+            android:id="@+id/phoneNumber"
+            android:hint="phone Number"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="10dp"
+            android:padding="10dp"
+            android:inputType="phone"
+            android:textAllCaps="false"
+            android:background="@drawable/custom_edittext_form_background"/>
+
+
+
+
+
+        <EditText
+            android:id="@+id/address"
+            android:hint="address"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="10dp"
+            android:padding="10dp"
+            android:textAllCaps="false"
+            android:background="@drawable/custom_edittext_form_background"/>
+
+
+
+
+        <EditText
+            android:id="@+id/dateOfBirth"
+            android:hint="Date Of Birth"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="10dp"
+            android:padding="10dp"
+            android:textAllCaps="false"
+            android:background="@drawable/custom_edittext_form_background"/>
+
+
+        <EditText
+            android:id="@+id/nrc"
+            android:hint="Nrc"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="10dp"
+            android:padding="10dp"
+            android:textAllCaps="false"
+            android:background="@drawable/custom_edittext_form_background"/>
+
+
+
+
+
+        <EditText
+            android:id="@+id/township"
+            android:hint="Township"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="10dp"
+            android:padding="10dp"
+            android:textAllCaps="false"
+            android:background="@drawable/custom_edittext_form_background"/>
+
+
+
+
+        <Button
         android:padding="15dp"
         android:shadowColor="#000"
         android:shadowDx="5"
@@ -97,5 +220,5 @@
             />
     </LinearLayout>
 
-
+    </android.support.v4.widget.NestedScrollView>
 </LinearLayout>

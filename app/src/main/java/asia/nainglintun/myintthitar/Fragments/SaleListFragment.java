@@ -195,6 +195,7 @@ public class SaleListFragment extends Fragment {
 
         closeImg = dialog.findViewById(R.id.closeImage);
         btnEdit = dialog.findViewById(R.id.btnVoucherEdit);
+
         //btnSave = dialog.findViewById(R.id.btnVoucherSave);
 
 

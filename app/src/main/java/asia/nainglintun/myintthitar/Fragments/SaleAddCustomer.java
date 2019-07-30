@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.Toolbar;
 import android.util.Base64;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -33,6 +34,7 @@ import asia.nainglintun.myintthitar.R;
 import asia.nainglintun.myintthitar.Activities.MainActivity;
 import asia.nainglintun.myintthitar.models.Customer;
 import asia.nainglintun.myintthitar.models.Customer;
+import asia.nainglintun.myintthitar.models.ImageClass;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -135,7 +137,7 @@ public class SaleAddCustomer extends Fragment {
             e.printStackTrace();
         }
 
-        String Image = imageToString();
+       // String path = imageToString();
 
         if(username.isEmpty()){
             userName.setError("Enter User Name");
@@ -186,26 +188,59 @@ public class SaleAddCustomer extends Fragment {
             progressDialog.show();
 
 
-            Call<Customer> call = MainActivity.apiInterface.performRegistration(customername,uniqueUserName, shopname, phonenumber, address, dob, nrc, township,Image);
-            call.enqueue(new Callback<Customer>() {
+//            Call<Customer> call = MainActivity.apiInterface.performRegistration(customername,uniqueUserName, shopname, phonenumber, address, dob, nrc, township,Image);
+//            call.enqueue(new Callback<Customer>() {
+//                @Override
+//                public void onResponse(Call<Customer> call, Response<Customer> response) {
+//                    progressDialog.dismiss();
+//                    if (response.body().getResponse().equals("ok")) {
+//                        Toast.makeText(getContext(), "Registration Success...", Toast.LENGTH_LONG).show();
+//                    } else if (response.body().getResponse().equals("exist")) {
+//                        Toast.makeText(getContext(), "User already exist..", Toast.LENGTH_LONG).show();
+//                    } else if (response.body().getResponse().equals("error")) {
+//                        Toast.makeText(getContext(), "Something went wrong..", Toast.LENGTH_LONG).show();
+//
+//
+//                    }
+//                }
+//
+//                @Override
+//                public void onFailure(Call<Customer> call, Throwable t) {
+//                    Toast.makeText(getContext(), "Fail", Toast.LENGTH_SHORT).show();
+//                    progressDialog.dismiss();
+//                }
+//            });
+
+
+
+            String path = imageToString();
+           // String title = editTextSaleChangePassword.getText().toString();
+            String user_name = userName.getText().toString();
+            String customer_name = customerName.getText().toString();
+            String shop_name = shopName.getText().toString();
+            String phone = phoneNumber.getText().toString();
+            String customer_address =Address.getText().toString();
+            String Dob = DOB.getText().toString();
+            String NRC = Nrc.getText().toString();
+            String town = Township.getText().toString();
+            Call<ImageClass> call = MainActivity.apiInterface.uploadImage(customer_name,uniqueUserName,shop_name,phone,customer_address,Dob,NRC,town,path);
+            call.enqueue(new Callback<ImageClass>() {
                 @Override
-                public void onResponse(Call<Customer> call, Response<Customer> response) {
+                public void onResponse(Call<ImageClass> call, Response<ImageClass> response) {
                     progressDialog.dismiss();
-                    if (response.body().getResponse().equals("ok")) {
-                        Toast.makeText(getContext(), "Registration Success...", Toast.LENGTH_LONG).show();
-                    } else if (response.body().getResponse().equals("exist")) {
-                        Toast.makeText(getContext(), "User already exist..", Toast.LENGTH_LONG).show();
-                    } else if (response.body().getResponse().equals("error")) {
-                        Toast.makeText(getContext(), "Something went wrong..", Toast.LENGTH_LONG).show();
+                ImageClass imageClass = response.body();
 
+              Toast.makeText(getContext(), "Server Response:" + imageClass.getResponse(), Toast.LENGTH_SHORT).show();
+//                    String result = response.body().getResponse();
+//                    Toast.makeText(getContext(), result, Toast.LENGTH_SHORT).show();
 
-                    }
                 }
 
+
                 @Override
-                public void onFailure(Call<Customer> call, Throwable t) {
-                    Toast.makeText(getContext(), "Fail", Toast.LENGTH_SHORT).show();
+                public void onFailure(Call<ImageClass> call, Throwable t) {
                     progressDialog.dismiss();
+                    Toast.makeText(getContext(), "registation fail", Toast.LENGTH_SHORT).show();
                 }
             });
 
@@ -220,9 +255,45 @@ public class SaleAddCustomer extends Fragment {
 //            Nrc.setText("");
 //            Township.setText("");
 
+
+
         }
 
     }
+
+
+    private void uploadImage(){
+        Log.e("work","upload method is work");
+        String path = imageToString();
+       // String title = editTextSaleChangePassword.getText().toString();
+        String username = userName.getText().toString();
+        String customername = customerName.getText().toString();
+        String shopname = shopName.getText().toString();
+        String phone = phoneNumber.getText().toString();
+        String customeraddress =Address.getText().toString();
+        String dob = DOB.getText().toString();
+        String nrc = Nrc.getText().toString();
+        String town = Township.getText().toString();
+        Call<ImageClass> call = MainActivity.apiInterface.uploadImage(username,customername,shopname,phone,customeraddress,dob,nrc,town,path);
+        call.enqueue(new Callback<ImageClass>() {
+            @Override
+            public void onResponse(Call<ImageClass> call, Response<ImageClass> response) {
+//                ImageClass imageClass = response.body();n
+//
+//               Toast.makeText(getContext(), "Server Response:" + imageClass.getResponse(), Toast.LENGTH_SHORT).show();
+                String result = response.body().getResponse();
+                Toast.makeText(getContext(), result, Toast.LENGTH_SHORT).show();
+
+            }
+
+
+            @Override
+            public void onFailure(Call<ImageClass> call, Throwable t) {
+
+            }
+        });
+    }
+
 
     private void updateLabel() {
         String myFormat = "MM/dd/yy"; //In which you need put here

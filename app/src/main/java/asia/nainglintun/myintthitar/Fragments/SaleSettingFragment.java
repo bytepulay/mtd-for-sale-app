@@ -41,6 +41,7 @@ public class SaleSettingFragment extends Fragment implements View.OnClickListene
 
     private Button btnSaleChangePassword,bnLogout;
     private EditText editTextSaleChangePassword,editTextSaleComfirmPassword;
+    private EditText userName,shopName,phoneNumber,Address,DOB,Nrc,Township,customerName;
     private CircleImageView saleProfile;
     private final int IMG_REQUEST=1;
    private Bitmap bitmap;
@@ -59,6 +60,16 @@ public class SaleSettingFragment extends Fragment implements View.OnClickListene
 
         toolbar = view.findViewById(R.id.toolBar);
         toolbar.setTitle("Setting");
+
+        userName = view.findViewById(R.id.userName);
+        customerName = view.findViewById(R.id.custName);
+        shopName = view.findViewById(R.id.shopName);
+        phoneNumber = view.findViewById(R.id.phoneNumber);
+        Address = view.findViewById(R.id.address);
+        DOB = view.findViewById(R.id.dateOfBirth);
+        Nrc = view.findViewById(R.id.nrc);
+        Township = view.findViewById(R.id.township);
+
 
         btnSaleChangePassword = view.findViewById(R.id.btnSaleChangePasswordSave);
         bnLogout = view.findViewById(R.id.btnLogout);
@@ -98,13 +109,21 @@ public class SaleSettingFragment extends Fragment implements View.OnClickListene
 
     private void uploadImage(){
         Log.e("work","upload method is work");
-        String Image = imageToString();
+        String path = imageToString();
         String title = editTextSaleChangePassword.getText().toString();
-        Call<ImageClass> call = MainActivity.apiInterface.uploadImage(title,Image);
+        String username = userName.getText().toString();
+        String customername = customerName.getText().toString();
+        String shopname = shopName.getText().toString();
+        String phone = phoneNumber.getText().toString();
+        String customeraddress =Address.getText().toString();
+        String dob = DOB.getText().toString();
+        String nrc = Nrc.getText().toString();
+        String town = Township.getText().toString();
+        Call<ImageClass> call = MainActivity.apiInterface.uploadImage(username,customername,shopname,phone,customeraddress,dob,nrc,town,path);
         call.enqueue(new Callback<ImageClass>() {
             @Override
             public void onResponse(Call<ImageClass> call, Response<ImageClass> response) {
-//                ImageClass imageClass = response.body();
+//                ImageClass imageClass = response.body();n
 //
 //               Toast.makeText(getContext(), "Server Response:" + imageClass.getResponse(), Toast.LENGTH_SHORT).show();
                 String result = response.body().getResponse();

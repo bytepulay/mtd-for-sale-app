@@ -13,7 +13,6 @@ import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -25,11 +24,13 @@ import java.util.List;
 
 import asia.nainglintun.myintthitar.Activities.MainActivity;
 import asia.nainglintun.myintthitar.Activities.RecyclerTouchListener;
+import asia.nainglintun.myintthitar.Adapters.CustomerOrderRecyclerAdapter;
 import asia.nainglintun.myintthitar.Adapters.CustomerPurchaseRecyclerAdapter;
 import asia.nainglintun.myintthitar.Adapters.bindvouchersaleRecyclerAdapter;
 import asia.nainglintun.myintthitar.Adapters.editbindvouchersaleRecyclerAdapter;
-import asia.nainglintun.myintthitar.Adapters.saleRecyclerAdapter;
 import asia.nainglintun.myintthitar.R;
+import asia.nainglintun.myintthitar.models.OrderInoviceData;
+import asia.nainglintun.myintthitar.models.Orderhistory;
 import asia.nainglintun.myintthitar.models.Salehistory;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -38,14 +39,14 @@ import retrofit2.Response;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class HistoryCustomerFragment extends Fragment {
+public class OrderCustomerFragment extends Fragment {
 
 private Toolbar toolbar;
 private TextView purchaseDate,cuponCode,purchaseItem,gram;
     private RecyclerView recyclerView,recyclerViewDialog,recyclerViewEdit;
     private RecyclerView.LayoutManager layoutManager;
-    private List<Salehistory> salehistories;
-    private CustomerPurchaseRecyclerAdapter adapter;
+    private List<Orderhistory> salehistories;
+    private CustomerOrderRecyclerAdapter adapter;
     private bindvouchersaleRecyclerAdapter adapterDialog;
     private editbindvouchersaleRecyclerAdapter adapterEditDialog;
     private ProgressDialog progressDialog;
@@ -60,7 +61,7 @@ private TextView purchaseDate,cuponCode,purchaseItem,gram;
 
     private LinearLayout linearLayoutUpdate;
 
-    public HistoryCustomerFragment() {
+    public OrderCustomerFragment() {
         // Required empty public constructor
     }
 
@@ -72,8 +73,7 @@ private TextView purchaseDate,cuponCode,purchaseItem,gram;
         View view = inflater.inflate(R.layout.fragment_history_customer, container, false);
         Toast.makeText(getContext(), MainActivity.prefConfig.readName(), Toast.LENGTH_SHORT).show();
         toolbar = view.findViewById(R.id.toolBar);
-        toolbar = view.findViewById(R.id.toolBar);
-        toolbar.setTitle("Purchase History List ");
+        toolbar.setTitle("Purchase Order List ");
         recyclerView = view.findViewById(R.id.recyclerView);
         layoutManager = new LinearLayoutManager(getContext());
         recyclerView.setLayoutManager(layoutManager);
@@ -104,7 +104,7 @@ private TextView purchaseDate,cuponCode,purchaseItem,gram;
 
                 ID = String.valueOf(salehistories.get(position).getId());
                 String voucher = salehistories.get(position).getVoucherNumber();
-                sDate = salehistories.get(position).getSaleDate();
+                sDate = salehistories.get(position).getOrderDate();
                 customerName = salehistories.get(position).getCustomerName();
                 shopName = salehistories.get(position).getCustomerShop();
                 String town=salehistories.get(position).getCustomerTwon();
@@ -341,21 +341,21 @@ private TextView purchaseDate,cuponCode,purchaseItem,gram;
         progressDialog.setTitle("Loading Data....");
         progressDialog.show();
 
-        Call<List<Salehistory>> call = MainActivity.apiInterface.getSaleHistoryInfo(type);
-        call.enqueue(new Callback<List<Salehistory>>() {
+        Call<List<Orderhistory>> call = MainActivity.apiInterface.getOrderHistoryInfo(type);
+        call.enqueue(new Callback<List<Orderhistory>>() {
             @Override
-            public void onResponse(Call<List<Salehistory>> call, Response<List<Salehistory>> response) {
+            public void onResponse(Call<List<Orderhistory>> call, Response<List<Orderhistory>> response) {
                 progressDialog.dismiss();
                 salehistories = response.body();
 
-                adapter = new CustomerPurchaseRecyclerAdapter(salehistories,getContext());
+                adapter = new CustomerOrderRecyclerAdapter(salehistories,getContext());
                 recyclerView.setAdapter(adapter);
 
 
             }
 
             @Override
-            public void onFailure(Call<List<Salehistory>> call, Throwable t) {
+            public void onFailure(Call<List<Orderhistory>> call, Throwable t) {
                 progressDialog.dismiss();
                 Toast.makeText(getContext(), "fail", Toast.LENGTH_SHORT).show();
             }

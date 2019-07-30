@@ -15,6 +15,7 @@ import android.widget.Toast;
 import asia.nainglintun.myintthitar.Fragments.CustomerRankFragment;
 import asia.nainglintun.myintthitar.Fragments.HistoryCustomerFragment;
 import asia.nainglintun.myintthitar.Fragments.NotificationCustomerFragment;
+import asia.nainglintun.myintthitar.Fragments.OrderCustomerFragment;
 import asia.nainglintun.myintthitar.Fragments.SettingCustomerFragment;
 import asia.nainglintun.myintthitar.R;
 
@@ -40,6 +41,12 @@ public class CustomerActivity extends AppCompatActivity {
                 case R.id.navigation_dashboard:
                     fragmentManager.beginTransaction().replace(R.id.frame_layout_customer,new HistoryCustomerFragment()).commit();
                     toolbar.setTitle("History");
+
+                    return true;
+
+                case R.id.navigation_order:
+                    fragmentManager.beginTransaction().replace(R.id.frame_layout_customer,new OrderCustomerFragment()).commit();
+                    toolbar.setTitle("order");
 
                     return true;
                 case R.id.navigation_notifications:

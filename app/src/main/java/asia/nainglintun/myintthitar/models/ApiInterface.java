@@ -42,8 +42,7 @@ public interface ApiInterface
     @GET("orderhistory.php")
     Call<List<Orderhistory>> getOrderHistoryInfo(@Query("user_name") String userName);
 
-    @GET("getCalories.php")
-    Call<List<Calories>> getCaloriesInfo(@Query("item_type") String item_type);
+
 
     @GET("updatesalehistory.php")
     Call<Salehistory> updateSaleInvoice(@Query("id") String customerId,@Query("voucher_number") String voucherNumber,@Query("sdate") String saleDate,@Query("cupon_code") String cuponCode,
@@ -63,8 +62,26 @@ public interface ApiInterface
                                         @Query("earring_title") String earringTitle,@Query("earring_number") String earringNumber,@Query("earring_point_eight") String earringPointEight,@Query("earring_kyat") String earringKyat,@Query("earring_pal") String earringPal,@Query("earring_yae") String earringYae,
                                           @Query("qty") String qty,@Query("point_eight") String pointEight,@Query("kyat") String Kyat,@Query("pal") String Pal,@Query("yae") String Yae,@Query("gram") String Gram);
 
+//    @FormUrlEncoded
+//    @POST("upload.php")
+//    Call<ImageClass> uploadImage(@Field("title") String title,@Field("image") String image);
+
+
+
     @FormUrlEncoded
     @POST("upload.php")
-    Call<ImageClass> uploadImage(@Field("title") String title,@Field("image") String image);
+    Call<ImageClass> uploadImage(@Field("name") String name,@Field("user_name") String userName,@Field("shop_name") String shopName,@Field("phone_number") String phoneNumber,@Field("address") String address,@Field("dob") String DOB,@Field("nrc") String Nrc,@Field("town_ship") String town,@Field("image") String image);
+
+
+
+   @GET("read_notification.php")
+    Call<List<Notification>> readNotification(@Query("user_name") String Id);
+
+
+    @GET("read_Id.php")
+    Call<Notification> readId(@Query("user_name") String userName);
+
+   @GET("read_Id.php")
+    Call<ImageClass> getQrImage(@Query("user_name") String userName);
 
 }

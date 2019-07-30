@@ -54,7 +54,7 @@ public class ScanForVoucherActivity extends AppCompatActivity implements ZXingSc
                    String customerName = response.body().getName();
                    SaleInvoiceCreate.edShopName.setText(shopName);
                    SaleInvoiceCreate.edCustomerPhone.setText(phoneNumber);
-                //  SaleInvoiceCreate.edCustomerID.setText(String.valueOf(customerId));
+                  SaleInvoiceCreate.edCustomerID.setText(String.valueOf(customerId));
                   SaleInvoiceCreate.edCustomerName.setText(customerName);
                    SaleInvoiceCreate.edCustomerAddress.setText(address);
                    SaleInvoiceCreate.edCustomerTown.setText(town);

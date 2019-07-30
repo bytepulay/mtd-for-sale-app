@@ -15,6 +15,10 @@ import android.widget.Toast;
 
 import asia.nainglintun.myintthitar.Activities.MainActivity;
 import asia.nainglintun.myintthitar.R;
+import asia.nainglintun.myintthitar.models.ImageClass;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -38,6 +42,20 @@ public class CustomerRankFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_customer_rank, container, false);
         toolbar = view.findViewById(R.id.toolBar);
         toolbar.setTitle("Rank");
+
+        Call<ImageClass> call =MainActivity.apiInterface.getQrImage(MainActivity.prefConfig.readName());
+        call.enqueue(new Callback<ImageClass>() {
+            @Override
+            public void onResponse(Call<ImageClass> call, Response<ImageClass> response) {
+                String path = response.body().getImage();
+                Toast.makeText(getContext(), path, Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onFailure(Call<ImageClass> call, Throwable t) {
+                Toast.makeText(getContext(), "fail", Toast.LENGTH_SHORT).show();
+            }
+        });
         customerQrCode = view.findViewById(R.id.custQrCode);
         Customername = view.findViewById(R.id.customerName);
         Customername.setText(MainActivity.prefConfig.readName());
@@ -45,6 +63,8 @@ public class CustomerRankFragment extends Fragment {
         R.drawable.qr_code);
         customerQrCode.setImageBitmap(bitmap);
         Toast.makeText(getContext(), MainActivity.prefConfig.readName(), Toast.LENGTH_SHORT).show();
+
+
 
         return view;
     }
