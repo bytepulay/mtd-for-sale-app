@@ -3,20 +3,20 @@ package asia.nainglintun.myintthitar.Activities;
 import android.os.Bundle;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.FragmentManager;
-import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.Toolbar;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
 import android.widget.Toast;
 
 
 import asia.nainglintun.myintthitar.Fragments.CustomerRankFragment;
+import asia.nainglintun.myintthitar.Fragments.CustomerSettingFragment;
 import asia.nainglintun.myintthitar.Fragments.HistoryCustomerFragment;
 import asia.nainglintun.myintthitar.Fragments.NotificationCustomerFragment;
 import asia.nainglintun.myintthitar.Fragments.OrderCustomerFragment;
-import asia.nainglintun.myintthitar.Fragments.SettingCustomerFragment;
 import asia.nainglintun.myintthitar.R;
 
 public class CustomerActivity extends AppCompatActivity {
@@ -55,7 +55,7 @@ public class CustomerActivity extends AppCompatActivity {
 
                     return true;
                 case R.id.navigation_setting:
-                    fragmentManager.beginTransaction().replace(R.id.frame_layout_customer,new SettingCustomerFragment()).commit();
+                    fragmentManager.beginTransaction().replace(R.id.frame_layout_customer,new CustomerSettingFragment()).commit();
 
                     toolbar.setTitle("Setting");
                     return true;
@@ -88,6 +88,12 @@ public class CustomerActivity extends AppCompatActivity {
         navView.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
        //onBackPressed();
     }
+
+//    @Override
+//    public boolean onCreateOptionsMenu(Menu menu) {
+//        getMenuInflater().inflate(R.menu.menu_items,menu);
+//        return true;
+//    }
 
     @Override
     public void onBackPressed() {

@@ -39,7 +39,7 @@ public class FragmentCard extends Fragment {
         // Required empty public constructor
     }
 
-    private Toolbar toolbar;
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -48,8 +48,7 @@ public class FragmentCard extends Fragment {
         // Inflate the layout for this fragment
         view = inflater.inflate(R.layout.fragment_card, container, false);
 
-        toolbar = view.findViewById(R.id.toolBar);
-        toolbar.setTitle("Home");
+        ((SalesActivity)getActivity()).setTitle("Home");
 
         todoList = new ArrayList<>();
 
@@ -104,7 +103,7 @@ public class FragmentCard extends Fragment {
 
                 else if(position==2) {
                     SalesActivity.fragmentManager.beginTransaction().replace(R.id.frame_layout_sales,new SaleAddCustomer()).addToBackStack(null).commit();
-                    toolbar.setTitle("Add New Customer");
+                  //  ((SalesActivity)getActivity()).setTitle("Add New Customer");
 
                 }
 

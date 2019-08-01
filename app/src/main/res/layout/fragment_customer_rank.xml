@@ -5,9 +5,10 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".Fragments.CustomerRankFragment">
+    tools:context=".Fragments.CustomerRankFragment"
+    android:layout_marginTop="56dp">
 
-    <include layout="@layout/toolbar_layout"/>
+    <!--<include layout="@layout/toolbar_layout"/>-->
 
     <android.support.v4.widget.NestedScrollView
        android:scrollbars="vertical"

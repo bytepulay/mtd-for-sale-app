@@ -29,6 +29,7 @@ import java.util.Locale;
 
 import asia.nainglintun.myintthitar.Activities.InputFilterMinMax;
 import asia.nainglintun.myintthitar.Activities.MainActivity;
+import asia.nainglintun.myintthitar.Activities.SalesActivity;
 import asia.nainglintun.myintthitar.R;
 import asia.nainglintun.myintthitar.Activities.ScanForVoucherActivity;
 import asia.nainglintun.myintthitar.models.SaleInoviceData;
@@ -49,7 +50,6 @@ public static EditText edShopName,edCustomerName,edCustomerPhone,edDOB,edCustome
 //private ImageButton searchButton;
     public static EditText edCustomerUserName;
 private  EditText saleDate;
-private Toolbar toolbar;
 final Calendar myCalendar = Calendar.getInstance();
 private Button btnCreateInvoiceSave,scanForVoucher;
 private LinearLayout linearLayoutRing,linearLayoutBangles,linearLayoutNecklace,linearLayoutEarring;
@@ -72,8 +72,8 @@ private EditText ringTitle,ringNumber,ringPointEight,ringKyat,ringPal,ringYae,ba
 
         View view = inflater.inflate(R.layout.sale_create_invoice, container, false);
 
-        toolbar = view.findViewById(R.id.toolBar);
-        toolbar.setTitle("Create Invoice");
+        ((SalesActivity)getActivity()).setTitle("Create Sale Invoice");
+
 
         progressDialog = new ProgressDialog(getContext());
 

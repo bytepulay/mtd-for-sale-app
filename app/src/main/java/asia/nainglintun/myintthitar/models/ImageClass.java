@@ -40,6 +40,11 @@ public class ImageClass {
 
     private String town;
 
+    private String profile;
+
+    public String getProfile() {
+        return profile;
+    }
 
     public String getName() {
         return name;

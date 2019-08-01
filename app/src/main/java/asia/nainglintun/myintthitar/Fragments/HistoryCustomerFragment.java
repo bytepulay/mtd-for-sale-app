@@ -70,7 +70,6 @@ private TextView purchaseDate,cuponCode,purchaseItem,gram;
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_history_customer, container, false);
-        Toast.makeText(getContext(), MainActivity.prefConfig.readName(), Toast.LENGTH_SHORT).show();
         toolbar = view.findViewById(R.id.toolBar);
         toolbar = view.findViewById(R.id.toolBar);
         toolbar.setTitle("Purchase History List ");
@@ -357,7 +356,7 @@ private TextView purchaseDate,cuponCode,purchaseItem,gram;
             @Override
             public void onFailure(Call<List<Salehistory>> call, Throwable t) {
                 progressDialog.dismiss();
-                Toast.makeText(getContext(), "fail", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(), "Purchase History Not Found", Toast.LENGTH_SHORT).show();
             }
         });
     }

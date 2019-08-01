@@ -53,7 +53,7 @@ public class NotificationCustomerFragment extends Fragment {
     private Dialog dialog;
     private ImageView closeImg;
     private ImageButton btnEdit;
-    private String Customer_Id;
+    private String Customer_Id,profile;
 
     private ArrayList<String> dataList;
     private ArrayList<String> nameList;
@@ -95,8 +95,10 @@ public class NotificationCustomerFragment extends Fragment {
             @Override
             public void onResponse(Call<Customer> call, Response<Customer> response) {
                 Customer_Id = String.valueOf(response.body().getId());
+                profile = response.body().getProfile();
+
                 fetchInformation(Customer_Id);
-                Toast.makeText(getContext(), Customer_Id, Toast.LENGTH_SHORT).show();
+//                Toast.makeText(getContext(), Customer_Id + profile, Toast.LENGTH_SHORT).show();
 
             }
 
@@ -198,7 +200,7 @@ public class NotificationCustomerFragment extends Fragment {
             @Override
             public void onFailure(Call<List<Notification>> call, Throwable t) {
                 progressDialog.dismiss();
-                Toast.makeText(getContext(), "fail", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(), "Notification Not Found", Toast.LENGTH_SHORT).show();
             }
         });
     }

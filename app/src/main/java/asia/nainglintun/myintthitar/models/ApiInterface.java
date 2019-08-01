@@ -73,8 +73,13 @@ public interface ApiInterface
     Call<ImageClass> uploadImage(@Field("name") String name,@Field("user_name") String userName,@Field("shop_name") String shopName,@Field("phone_number") String phoneNumber,@Field("address") String address,@Field("dob") String DOB,@Field("nrc") String Nrc,@Field("town_ship") String town,@Field("image") String image);
 
 
+    @FormUrlEncoded
+    @POST("update_customer_profile.php")
+    Call<ImageClass> UpdateCustomerProfile(@Field("user_name") String userName,@Field("image") String image);
 
-   @GET("read_notification.php")
+
+
+    @GET("read_notification.php")
     Call<List<Notification>> readNotification(@Query("user_name") String Id);
 
 

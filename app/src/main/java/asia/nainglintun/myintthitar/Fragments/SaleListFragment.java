@@ -8,13 +8,16 @@ import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
+import android.support.v4.view.MenuItemCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
@@ -33,6 +36,7 @@ import java.util.List;
 
 import asia.nainglintun.myintthitar.Activities.MainActivity;
 import asia.nainglintun.myintthitar.Activities.RecyclerTouchListener;
+import asia.nainglintun.myintthitar.Activities.SalesActivity;
 import asia.nainglintun.myintthitar.Adapters.bindvouchersaleRecyclerAdapter;
 import asia.nainglintun.myintthitar.Adapters.editbindvouchersaleRecyclerAdapter;
 import asia.nainglintun.myintthitar.Adapters.saleRecyclerAdapter;
@@ -45,7 +49,7 @@ import retrofit2.Response;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class SaleListFragment extends Fragment {
+public class SaleListFragment extends Fragment implements SearchView.OnQueryTextListener {
 
    private Toolbar toolbar;
     private RecyclerView recyclerView,recyclerViewDialog,recyclerViewEdit;
@@ -81,12 +85,13 @@ public class SaleListFragment extends Fragment {
         // Inflate the layout for this fragment
        View view = inflater.inflate(R.layout.fragment_sale_list, container, false);
 
-       toolbar = view.findViewById(R.id.toolBar);
-        toolbar.setTitle("Sale History List ");
+        ((SalesActivity)getActivity()).setTitle("Sale History Lists");
+        setHasOptionsMenu(true);
         recyclerView = view.findViewById(R.id.recyclerView);
         layoutManager = new LinearLayoutManager(getContext());
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setHasFixedSize(true);
+
 
 
         textDialog = view.findViewById(R.id.dialogText);
@@ -592,7 +597,42 @@ public class SaleListFragment extends Fragment {
         });
     }
 
-//    @Override
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        super.onCreateOptionsMenu(menu, inflater);
+        inflater.inflate(R.menu.menu_items,menu);
+        MenuItem menuItem = menu.findItem(R.id.action_search);
+        SearchView searchView = (SearchView) MenuItemCompat.getActionView(menuItem);
+        searchView.setOnQueryTextListener(this);
+    }
+
+    @Override
+    public boolean onQueryTextSubmit(String s) {
+        return false;
+    }
+
+    @Override
+    public boolean onQueryTextChange(String s) {
+
+        s = s.toLowerCase();
+        ArrayList<Salehistory> newList = new ArrayList<>();
+
+        for (Salehistory salehistory : salehistories)
+        {
+            String sDate = salehistory.getSaleDate().toLowerCase();
+            String shopName = salehistory.getCustomerShop().toLowerCase();
+            String town = salehistory.getCustomerTwon().toLowerCase();
+            if (sDate.contains(s) || shopName.contains(s) || town.contains(s)){
+                newList.add(salehistory);
+            }
+        }
+
+        adapter.setFilter(newList);
+
+        return true;
+    }
+
+    //    @Override
 //    public boolean onCreateOptionsMenu(Menu menu) {
 //        getActivity().getActionBar().setDisplayHomeAsUpEnabled(true);
 //        return super.onCreateOptionsMenu(getActivity(menu);

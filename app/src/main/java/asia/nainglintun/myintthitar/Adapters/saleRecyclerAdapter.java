@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import asia.nainglintun.myintthitar.R;
@@ -58,5 +59,12 @@ public class saleRecyclerAdapter extends RecyclerView.Adapter <saleRecyclerAdapt
             voucherNo = itemView.findViewById(R.id.voucherNo);
             town = itemView.findViewById(R.id.town);
         }
+    }
+
+    public void setFilter(ArrayList<Salehistory> newList)
+    {
+        salehistories = new ArrayList<>();
+        salehistories.addAll(newList);
+        notifyDataSetChanged();
     }
 }

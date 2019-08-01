@@ -42,6 +42,12 @@ public class Customer {
     @SerializedName("town_ship")
     private String town;
 
+    @SerializedName("path")
+    private String path;
+
+    @SerializedName("profile")
+    private String profile;
+
     public String getImage() {
         return Image;
     }
@@ -84,5 +90,13 @@ public class Customer {
 
     public String getName() {
         return name;
+    }
+
+    public String getPath() {
+        return path;
+    }
+
+    public String getProfile() {
+        return profile;
     }
 }

@@ -14,7 +14,7 @@ public class SaleOrderHistoryViewHolder extends RecyclerView.ViewHolder {
         txtDate = itemView.findViewById(R.id.saleHistoryDate);
         txtType = itemView.findViewById(R.id.saleItemsType);
         txtAmount = itemView.findViewById(R.id.salesAmount);
-        textViewCuponCode = itemView.findViewById(R.id.txtCuponCode);
+        //textViewCuponCode = itemView.findViewById(R.id.txtCuponCode);
 
     }
 }

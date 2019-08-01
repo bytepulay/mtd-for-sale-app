@@ -11,6 +11,8 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
@@ -71,7 +73,6 @@ private TextView purchaseDate,cuponCode,purchaseItem,gram;
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_history_customer, container, false);
-        Toast.makeText(getContext(), MainActivity.prefConfig.readName(), Toast.LENGTH_SHORT).show();
         toolbar = view.findViewById(R.id.toolBar);
         toolbar.setTitle("Purchase Order List ");
         recyclerView = view.findViewById(R.id.recyclerView);
@@ -357,9 +358,11 @@ private TextView purchaseDate,cuponCode,purchaseItem,gram;
             @Override
             public void onFailure(Call<List<Orderhistory>> call, Throwable t) {
                 progressDialog.dismiss();
-                Toast.makeText(getContext(), "fail", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(), "Purchase Order Not Found", Toast.LENGTH_SHORT).show();
             }
         });
     }
+
+
 
 }

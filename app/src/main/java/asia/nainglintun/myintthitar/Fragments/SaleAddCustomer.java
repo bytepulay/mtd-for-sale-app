@@ -30,6 +30,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
 
+import asia.nainglintun.myintthitar.Activities.SalesActivity;
 import asia.nainglintun.myintthitar.R;
 import asia.nainglintun.myintthitar.Activities.MainActivity;
 import asia.nainglintun.myintthitar.models.Customer;
@@ -64,8 +65,7 @@ public class SaleAddCustomer extends Fragment {
         // Inflate the layout for this fragment
        View view = inflater.inflate(R.layout.sale_add_customer, container, false);
 
-       toolbar = view.findViewById(R.id.toolBar);
-       toolbar.setTitle("Create New Customer");
+        ((SalesActivity)getActivity()).setTitle("Add New Customer");
 
        imageQrcode = view.findViewById(R.id.customerQrcode);
        userName = view.findViewById(R.id.userName);
