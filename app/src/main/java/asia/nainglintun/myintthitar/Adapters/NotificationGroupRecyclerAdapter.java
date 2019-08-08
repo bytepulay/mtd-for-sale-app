@@ -12,16 +12,15 @@ import java.util.List;
 
 import asia.nainglintun.myintthitar.R;
 import asia.nainglintun.myintthitar.models.Notification;
-import asia.nainglintun.myintthitar.models.Orderhistory;
 
-public class NotificationRecyclerAdapter extends RecyclerView.Adapter <NotificationRecyclerAdapter.MyViewHolder>{
+public class NotificationGroupRecyclerAdapter extends RecyclerView.Adapter <NotificationGroupRecyclerAdapter.MyViewHolder>{
 
     private List<Notification> orderhistories;
     private Context context;
 
 
 
-    public NotificationRecyclerAdapter(List<Notification> orderhistories, Context context) {
+    public NotificationGroupRecyclerAdapter(List<Notification> orderhistories, Context context) {
         this.orderhistories = orderhistories;
         this.context = context;
     }
@@ -30,7 +29,7 @@ public class NotificationRecyclerAdapter extends RecyclerView.Adapter <Notificat
     @Override
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int i) {
 
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.raw_notification,parent,false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.raw_notification_group,parent,false);
 
         return new MyViewHolder(view);
 
@@ -39,8 +38,8 @@ public class NotificationRecyclerAdapter extends RecyclerView.Adapter <Notificat
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int i) {
 
-        holder.oneDate.setText(orderhistories.get(i).getDate_one());
-        holder.oneTitle.setText(orderhistories.get(i).getTitle_one());
+        holder.oneDate.setText(orderhistories.get(i).getDate_group());
+        holder.oneTitle.setText(orderhistories.get(i).getTitle_group());
        // holder.shopName.setText("shop: " +orderhistories.get(i).getCustomer_id());
 //        holder.town.setText("Town : " + orderhistories.get(i).getCustomerTwon());
     }

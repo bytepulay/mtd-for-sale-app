@@ -22,6 +22,7 @@ import com.bumptech.glide.request.RequestOptions;
 import asia.nainglintun.myintthitar.Activities.CustomerActivity;
 import asia.nainglintun.myintthitar.Activities.MainActivity;
 import asia.nainglintun.myintthitar.R;
+import asia.nainglintun.myintthitar.models.Customer;
 import asia.nainglintun.myintthitar.models.ImageClass;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -36,6 +37,8 @@ public class CustomerRankFragment extends Fragment {
     private ImageView customerQrCode,Profile;
     //Toolbar toolbar;
     TextView Customername;
+    private String Customer_Id,Customer_name,paths;
+    private TextView textViewPoint;
 
     public CustomerRankFragment() {
         // Required empty public constructor
@@ -47,23 +50,64 @@ public class CustomerRankFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_customer_rank, container, false);
-//        toolbar = view.findViewById(R.id.toolBar);
-//        toolbar.setTitle("Rank");
         ((CustomerActivity)getActivity()).setTitle("Rank");
-//        setHasOptionsMenu(true);
+//      setHasOptionsMenu(true);
+        Customername = view.findViewById(R.id.customerName);
+       // Customername.setText(MainActivity.prefConfig.readName());
+        textViewPoint = view.findViewById(R.id.pointNumber);
+        Profile = view.findViewById(R.id.profile_image);
+        bitmap = BitmapFactory.decodeResource(getContext().getResources(),
+                R.drawable.default_profile);
+        Profile.setImageBitmap(bitmap);
+
+        Call<Customer> call1 = MainActivity.apiInterface.getCustomerInfo(MainActivity.prefConfig.readName());
+        call1.enqueue(new Callback<Customer>() {
+            @Override
+            public void onResponse(Call<Customer> call, Response<Customer> response) {
+                Customer_Id = String.valueOf(response.body().getId());
+                Customer_name =response.body().getName();
+                paths = response.body().getProfile();
+
+                Customername.setText(Customer_name);
+                Toast.makeText(getContext(), paths, Toast.LENGTH_SHORT).show();
+
+                if(paths==""){
+                    bitmap = BitmapFactory.decodeResource(getContext().getResources(),
+                            R.drawable.default_profile);
+                    Profile.setImageBitmap(bitmap);
+                }else if(paths!="") {
+                    Glide.with(getContext()).load("http://mtdatabase.com/mtd/"+paths).apply(RequestOptions.skipMemoryCacheOf(true).diskCacheStrategy(DiskCacheStrategy.NONE)).into(Profile);
+
+                }
+
+
+
+
+
+                Toast.makeText(getContext(), Customer_Id +Customer_name + paths, Toast.LENGTH_SHORT).show();
+                getPoint(Customer_Id);
+
+            }
+
+            @Override
+            public void onFailure(Call<Customer> call, Throwable t) {
+
+                Toast.makeText(getContext(), "fail", Toast.LENGTH_SHORT).show();
+
+            }
+        });
+
 
         Call<ImageClass> call =MainActivity.apiInterface.getQrImage(MainActivity.prefConfig.readName());
         call.enqueue(new Callback<ImageClass>() {
             @Override
             public void onResponse(Call<ImageClass> call, Response<ImageClass> response) {
                 String path = response.body().getImage();
-                String name = response.body().getName();
-                Toast.makeText(getContext(), path + name, Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(), path , Toast.LENGTH_SHORT).show();
             }
 
             @Override
             public void onFailure(Call<ImageClass> call, Throwable t) {
-//                Toast.makeText(getContext(), "fail", Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -71,12 +115,11 @@ public class CustomerRankFragment extends Fragment {
         String name = MainActivity.prefConfig.readName();
 
         customerQrCode = view.findViewById(R.id.custQrCode);
-        Profile = view.findViewById(R.id.profile_image);
-        //Glide.get(getContext()).clearDiskCache();
-        Glide.with(getContext()).load("https://datacenterasia.000webhostapp.com/mtd/uploads/profile"+name+".jpg").apply(RequestOptions.skipMemoryCacheOf(true).diskCacheStrategy(DiskCacheStrategy.NONE)).into(Profile);
 
-        Customername = view.findViewById(R.id.customerName);
-        Customername.setText(MainActivity.prefConfig.readName());
+        //Glide.get(getContext()).clearDiskCache();
+       // Glide.with(getContext()).load("http://mtdatabase.com/mtd/uploads/profile"+name+".jpg").apply(RequestOptions.skipMemoryCacheOf(true).diskCacheStrategy(DiskCacheStrategy.NONE)).into(Profile);
+
+
         bitmap = BitmapFactory.decodeResource(getContext().getResources(),
         R.drawable.my_history);
         customerQrCode.setImageBitmap(bitmap);
@@ -84,16 +127,30 @@ public class CustomerRankFragment extends Fragment {
 
 
 
-        Glide.with(getContext()).load("https://datacenterasia.000webhostapp.com/mtd/uploads/"+name+".jpg").into(customerQrCode);
+        Glide.with(getContext()).load("http://mtdatabase.com/mtd/uploads/"+name+".jpg").into(customerQrCode);
 
         //Glide.with(getContext()).load(R.drawable.qr_code).into(customerQrCode);
 
         return view;
     }
-//
-//    @Override
-//    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
-//        super.onCreateOptionsMenu(menu, inflater);
-//        inflater.inflate(R.menu.menu_items,menu);
-//    }
+
+
+    public void getPoint(String Id){
+
+        Call<Customer> customerCall = MainActivity.apiInterface.getTotalPoint(Customer_Id);
+        customerCall.enqueue(new Callback<Customer>() {
+            @Override
+            public void onResponse(Call<Customer> call, Response<Customer> response) {
+                String Points = response.body().getResponse();
+                textViewPoint.setText(Points);
+
+            }
+
+            @Override
+            public void onFailure(Call<Customer> call, Throwable t) {
+
+            }
+        });
+    }
+
 }

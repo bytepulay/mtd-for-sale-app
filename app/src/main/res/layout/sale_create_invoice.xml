@@ -1,901 +1,826 @@
 <?xml version="1.0" encoding="utf-8"?>
-
-   <LinearLayout android:orientation="vertical"
+<android.support.v4.widget.NestedScrollView
         xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
+        android:background="#fafafa"
         xmlns:app="http://schemas.android.com/apk/res-auto"
        android:layout_marginTop="56dp">
 
-        <!--<include layout="@layout/toolbar_layout"/>-->
 
-        <android.support.v4.widget.NestedScrollView
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+
+            <ImageButton
+                android:textColor="#FFFFFF"
+                android:id="@+id/scanForvoucher"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:textAllCaps="false"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginTop="10dp"
+                android:src="@drawable/ic_qr_code_scan"
+                android:background="@drawable/button_login_back"/>
+
+            <EditText
+                style="@style/Foredit"
+                android:id="@+id/voucherNumber"
+                android:hint="Voucher No"
+                android:textAllCaps="false"
+                android:background="@drawable/custom_edittext_form_background"/>
+
+
+
+
+
+            <EditText
+                style="@style/Foredit"
+                android:layout_weight="8"
+                android:id="@+id/saleDate"
+                android:focusable="false"
+                android:hint="Date"
+                android:drawableRight="@drawable/ic_keyboard_arrow_down_black_24dp"
+                android:background="@drawable/custom_edittext_form_background"/>
+
+
+            <Spinner
+                style="@style/Foredit"
+                android:id="@+id/spinner"
+               />
+
+
+        <LinearLayout
+            android:visibility="gone"
+            android:orientation="vertical"
+            android:id="@+id/ring"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:scrollbars="vertical">
+            android:layout_height="wrap_content">
+
+            <Button
+                android:id="@+id/hideRing"
+                android:textAllCaps="false"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="20dp"
+                android:background="@drawable/button_login_back"
+                android:text="Delete Ring"/>
 
 
-
-            <android.support.v7.widget.CardView
-                android:layout_marginTop="5dp"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"
-                android:layout_marginBottom="20dp"
+            <EditText
+                android:elevation="8dp"
+                android:shadowColor="#c7d0f8"
+                android:shadowDy="6"
+                android:shadowDx="0"
+                android:id="@+id/ringText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:cardBackgroundColor="@android:color/white"
-                android:foreground="?android:attr/selectableItemBackground"
-                app:cardCornerRadius="4dp"
-                app:cardElevation="4dp">
+                android:textAllCaps="false"
+                android:hint="Ring"
+                android:background="@drawable/custom_edittext_form_background"
+                android:padding="10dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginTop="10dp"/>
 
 
 
+            <LinearLayout
+                android:weightSum="10"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <EditText
+                    android:elevation="8dp"
+                    android:shadowColor="#c7d0f8"
+                    android:shadowDy="6"
+                    android:shadowDx="0"
+                    android:inputType="number"
+                    android:layout_weight="5"
+                    android:id="@+id/ringNumber"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textAllCaps="false"
+                    android:hint="Qualtity"
+                    android:background="@drawable/custom_edittext_form_background"
+                    android:padding="10dp"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_marginTop="10dp"/>
+
+                <EditText
+                    android:elevation="8dp"
+                    android:shadowColor="#c7d0f8"
+                    android:shadowDy="6"
+                    android:shadowDx="0"
+                    android:inputType="number"
+                    android:layout_weight="5"
+                    android:id="@+id/ringPointEight"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textAllCaps="false"
+                    android:hint="0.8"
+                    android:background="@drawable/custom_edittext_form_background"
+                    android:padding="10dp"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_marginTop="10dp"/>
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:weightSum="15"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <EditText
+                    android:elevation="8dp"
+                    android:shadowColor="#c7d0f8"
+                    android:shadowDy="6"
+                    android:shadowDx="0"
+                    android:id="@+id/ringKyat"
+                    android:layout_weight="5"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/custom_edittext_form_background"
+                    android:padding="10dp"
+                    android:hint="က်ပ္"
+                    android:inputType="number"
+                    android:layout_margin="20dp"/>
+
+
+                <EditText
+                    android:elevation="8dp"
+                    android:shadowColor="#c7d0f8"
+                    android:shadowDy="6"
+                    android:shadowDx="0"
+                    android:id="@+id/rPal"
+                    android:layout_weight="5"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/custom_edittext_form_background"
+                    android:padding="10dp"
+                    android:hint="ပဲ"
+                    android:inputType="number"
+                    android:layout_margin="20dp"/>
+
+
+                <EditText
+                    android:elevation="8dp"
+                    android:shadowColor="#c7d0f8"
+                    android:shadowDy="6"
+                    android:shadowDx="0"
+                    android:id="@+id/rYae"
+                    android:layout_weight="5"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/custom_edittext_form_background"
+                    android:padding="10dp"
+                    android:hint="ေရြး"
+                    android:inputType="number"
+                    android:layout_margin="20dp"/>
+
+
+            </LinearLayout>
+
+
+
+        </LinearLayout>
+
+
+            <!--*****************************************start Bangles***********************************                   -->
+            <LinearLayout
+                android:visibility="gone"
+                android:orientation="vertical"
+                android:id="@+id/bangles"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+
+                <Button
+                    android:id="@+id/hideBangles"
+                    android:textAllCaps="false"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="20dp"
+                    android:background="@drawable/button_login_back"
+                    android:text="Delete Bangles"/>
+
+
+                <EditText
+                    android:elevation="8dp"
+                    android:shadowColor="#c7d0f8"
+                    android:shadowDy="6"
+                    android:shadowDx="0"
+
+                    android:id="@+id/banglesText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textAllCaps="false"
+                    android:hint="Bangles"
+                    android:background="@drawable/custom_edittext_form_background"
+                    android:padding="10dp"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_marginTop="10dp"/>
 
                 <LinearLayout
-                    android:layout_marginTop="10dp"
-                    android:orientation="vertical"
+                    android:weightSum="10"
+                    android:orientation="horizontal"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
 
-                    <TextView
-                        android:textAlignment="center"
-                        android:layout_marginTop="10dp"
+                    <EditText
+                        android:elevation="8dp"
+                        android:shadowColor="#c7d0f8"
+                        android:shadowDy="6"
+                        android:shadowDx="0"
+                        android:inputType="number"
+                        android:layout_weight="5"
+                        android:id="@+id/banglesNumber"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:textAllCaps="false"
-                        android:textSize="20sp"
-                        android:text=" Fill Information"/>
-
-                    <Button
-                        android:id="@+id/scanForvoucher"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:textAllCaps="false"
-                        android:text="Scan"
-                        android:layout_marginLeft="20dp"
-                        android:layout_marginRight="20dp"
-                        android:layout_marginTop="10dp"
-                        android:background="@drawable/button_login_back"/>
-
-                    <EditText
-                        android:id="@+id/voucherNumber"
-                        android:hint="Voucher No"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="20dp"
-                        android:layout_marginRight="20dp"
-                        android:layout_marginTop="10dp"
-                        android:padding="10dp"
-                        android:textAllCaps="false"
-                        android:background="@drawable/custom_edittext_form_background"/>
-
-
-
-
-
-                    <EditText
-                        android:layout_weight="8"
-                        android:id="@+id/saleDate"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="20dp"
-                        android:layout_marginRight="20dp"
-                        android:layout_marginTop="10dp"
-                        android:padding="10dp"
-                        android:focusable="false"
-                        android:hint="Date"
-                        android:drawableRight="@drawable/ic_keyboard_arrow_down_black_24dp"
-                        android:background="@drawable/custom_edittext_form_background"/>
-
-
-                    <Spinner
-
-                        android:layout_marginLeft="20dp"
-                        android:layout_marginRight="20dp"
-                        android:layout_marginTop="10dp"
-                        android:id="@+id/spinner"
-                        android:background="@android:drawable/btn_dropdown"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:dropDownWidth="match_parent"
-                        android:padding="15dp"/>
-
-
-   <!--**************************Ring Layout ***********************************-->
-
-                    <LinearLayout
-                        android:visibility="gone"
-                        android:orientation="vertical"
-                        android:id="@+id/ring"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
-
-                        <Button
-                            android:id="@+id/hideRing"
-                            android:textAllCaps="false"
-                            android:layout_width="wrap_content"
-                            android:layout_height="match_parent"
-                            android:layout_marginLeft="20dp"
-                            android:background="@drawable/button_login_back"
-                            android:text="Delete Ring"/>
-
-
-                        <EditText
-                            android:id="@+id/ringText"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:textAllCaps="false"
-                            android:hint="Ring"
-                            android:background="@drawable/custom_edittext_form_background"
-                            android:padding="10dp"
-                            android:layout_marginLeft="20dp"
-                            android:layout_marginRight="20dp"
-                            android:layout_marginTop="10dp"/>
-
-                        <LinearLayout
-                            android:weightSum="10"
-                            android:orientation="horizontal"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content">
-
-                            <EditText
-                                android:inputType="number"
-                                android:layout_weight="5"
-                                android:id="@+id/ringNumber"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:textAllCaps="false"
-                                android:hint="Qualtity"
-                                android:background="@drawable/custom_edittext_form_background"
-                                android:padding="10dp"
-                                android:layout_marginLeft="20dp"
-                                android:layout_marginRight="20dp"
-                                android:layout_marginTop="10dp"/>
-
-                            <EditText
-                                android:inputType="number"
-                                android:layout_weight="5"
-                                android:id="@+id/ringPointEight"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:textAllCaps="false"
-                                android:hint="0.8"
-                                android:background="@drawable/custom_edittext_form_background"
-                                android:padding="10dp"
-                                android:layout_marginLeft="20dp"
-                                android:layout_marginRight="20dp"
-                                android:layout_marginTop="10dp"/>
-
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:weightSum="15"
-                            android:orientation="horizontal"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content">
-
-                            <EditText
-                                android:id="@+id/ringKyat"
-                                android:layout_weight="5"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:background="@drawable/custom_edittext_form_background"
-                                android:padding="10dp"
-                                android:hint="က်ပ္"
-                                android:inputType="number"
-                                android:layout_margin="20dp"/>
-
-                            <EditText
-                                android:id="@+id/ringPal"
-                                android:layout_weight="5"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:background="@drawable/custom_edittext_form_background"
-                                android:padding="10dp"
-                                android:hint="ပဲ"
-                                android:inputType="number"
-                                android:layout_margin="20dp"/>
-
-                            <EditText
-                                android:id="@+id/ringYae"
-                                android:layout_weight="5"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:background="@drawable/custom_edittext_form_background"
-                                android:padding="10dp"
-                                android:hint=" ေရြး"
-                                android:inputType="number"
-                                android:layout_margin="20dp"/>
-
-                        </LinearLayout>
-
-
-
-                    </LinearLayout>
-  <!--**************************end Ring Layout ***********************************-->
-
-
-
- <!--*****************************************start Bangles***********************************                   -->
-                    <LinearLayout
-                        android:visibility="gone"
-                        android:orientation="vertical"
-                        android:id="@+id/bangles"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
-
-
-                        <Button
-                            android:id="@+id/hideBangles"
-                            android:textAllCaps="false"
-                            android:layout_width="wrap_content"
-                            android:layout_height="match_parent"
-                            android:layout_marginLeft="20dp"
-                            android:background="@drawable/button_login_back"
-                            android:text="Delete Bangles"/>
-
-
-                        <EditText
-
-                            android:id="@+id/banglesText"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:textAllCaps="false"
-                            android:hint="Bangles"
-                            android:background="@drawable/custom_edittext_form_background"
-                            android:padding="10dp"
-                            android:layout_marginLeft="20dp"
-                            android:layout_marginRight="20dp"
-                            android:layout_marginTop="10dp"/>
-
-                        <LinearLayout
-                            android:weightSum="10"
-                            android:orientation="horizontal"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content">
-
-                            <EditText
-                                android:inputType="number"
-                                android:layout_weight="5"
-                                android:id="@+id/banglesNumber"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:textAllCaps="false"
-                                android:hint="Qualtity"
-                                android:background="@drawable/custom_edittext_form_background"
-                                android:padding="10dp"
-                                android:layout_marginLeft="20dp"
-                                android:layout_marginRight="20dp"
-                                android:layout_marginTop="10dp"/>
-
-                            <EditText
-                                android:inputType="number"
-                                android:layout_weight="5"
-                                android:id="@+id/banglesPointEight"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:textAllCaps="false"
-                                android:hint="0.8"
-                                android:background="@drawable/custom_edittext_form_background"
-                                android:padding="10dp"
-                                android:layout_marginLeft="20dp"
-                                android:layout_marginRight="20dp"
-                                android:layout_marginTop="10dp"/>
-
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:weightSum="15"
-                            android:orientation="horizontal"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content">
-
-                            <EditText
-                                android:id="@+id/banglesKyat"
-                                android:layout_weight="5"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:background="@drawable/custom_edittext_form_background"
-                                android:padding="10dp"
-                                android:hint="က်ပ္"
-                                android:inputType="number"
-                                android:layout_margin="20dp"/>
-
-                            <EditText
-                                android:id="@+id/banglesPal"
-                                android:layout_weight="5"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:background="@drawable/custom_edittext_form_background"
-                                android:padding="10dp"
-                                android:hint="ပဲ"
-                                android:inputType="number"
-                                android:layout_margin="20dp"/>
-
-                            <EditText
-                                android:id="@+id/banglesYae"
-                                android:layout_weight="5"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:background="@drawable/custom_edittext_form_background"
-                                android:padding="10dp"
-                                android:hint=" ေရြး"
-                                android:inputType="number"
-                                android:layout_margin="20dp"/>
-
-                        </LinearLayout>
-
-
-                    </LinearLayout>
-  <!--*****************************************End Bangles Layout***********************************                   -->
-
-
-
-    <!--*****************************************start necklace Layout***********************************                   -->
-
-                    <LinearLayout
-                        android:visibility="gone"
-                        android:orientation="vertical"
-                        android:id="@+id/necklace"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
-
-                        <Button
-                            android:id="@+id/hideNecklace"
-                            android:textAllCaps="false"
-                            android:layout_width="wrap_content"
-                            android:layout_height="match_parent"
-                            android:layout_marginLeft="20dp"
-                            android:background="@drawable/button_login_back"
-                            android:text="Delete Necklace"/>
-
-                        <EditText
-                            android:id="@+id/necklaceText"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:textAllCaps="false"
-                            android:hint="Necklace"
-                            android:background="@drawable/custom_edittext_form_background"
-                            android:padding="10dp"
-                            android:layout_marginLeft="20dp"
-                            android:layout_marginRight="20dp"
-                            android:layout_marginTop="10dp"/>
-
-                        <LinearLayout
-                            android:weightSum="10"
-                            android:orientation="horizontal"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content">
-
-                            <EditText
-                                android:inputType="number"
-                                android:layout_weight="5"
-                                android:id="@+id/necklaceNumber"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:textAllCaps="false"
-                                android:hint="Qualtity"
-                                android:background="@drawable/custom_edittext_form_background"
-                                android:padding="10dp"
-                                android:layout_marginLeft="20dp"
-                                android:layout_marginRight="20dp"
-                                android:layout_marginTop="10dp"/>
-
-                            <EditText
-                                android:inputType="number"
-                                android:layout_weight="5"
-                                android:id="@+id/necklacePointEight"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:textAllCaps="false"
-                                android:hint="0.8"
-                                android:background="@drawable/custom_edittext_form_background"
-                                android:padding="10dp"
-                                android:layout_marginLeft="20dp"
-                                android:layout_marginRight="20dp"
-                                android:layout_marginTop="10dp"/>
-
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:weightSum="15"
-                            android:orientation="horizontal"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content">
-
-                            <EditText
-                                android:id="@+id/necklaceKyat"
-                                android:layout_weight="5"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:background="@drawable/custom_edittext_form_background"
-                                android:padding="10dp"
-                                android:hint="က်ပ္"
-                                android:inputType="number"
-                                android:layout_margin="20dp"/>
-
-                            <EditText
-                                android:id="@+id/necklacePal"
-                                android:layout_weight="5"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:background="@drawable/custom_edittext_form_background"
-                                android:padding="10dp"
-                                android:hint="ပဲ"
-                                android:inputType="number"
-                                android:layout_margin="20dp"/>
-
-                            <EditText
-                                android:id="@+id/necklaceYae"
-                                android:layout_weight="5"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:background="@drawable/custom_edittext_form_background"
-                                android:padding="10dp"
-                                android:hint=" ေရြး"
-                                android:inputType="number"
-                                android:layout_margin="20dp"/>
-
-                        </LinearLayout>
-
-
-
-
-
-                    </LinearLayout>
-
-   <!--*****************************************end  Necklace Layout***********************************                   -->
-
-
-
-   <!--*****************************************start Earring Layout***********************************                   -->
-
-                    <LinearLayout
-                        android:visibility="gone"
-                        android:orientation="vertical"
-                        android:id="@+id/earring"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
-
-                        <Button
-                            android:id="@+id/hideEarring"
-                            android:textAllCaps="false"
-                            android:layout_width="wrap_content"
-                            android:layout_height="match_parent"
-                            android:layout_marginLeft="20dp"
-                            android:background="@drawable/button_login_back"
-                            android:text="Delete Earring"/>
-
-
-                        <EditText
-                            android:id="@+id/earringText"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:textAllCaps="false"
-                            android:hint="Earring"
-                            android:background="@drawable/custom_edittext_form_background"
-                            android:padding="10dp"
-                            android:layout_marginLeft="20dp"
-                            android:layout_marginRight="20dp"
-                            android:layout_marginTop="10dp"/>
-
-                        <LinearLayout
-                            android:weightSum="10"
-                            android:orientation="horizontal"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content">
-
-                            <EditText
-                                android:inputType="number"
-                                android:layout_weight="5"
-                                android:id="@+id/earringNumber"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:textAllCaps="false"
-                                android:hint="Qualtity"
-                                android:background="@drawable/custom_edittext_form_background"
-                                android:padding="10dp"
-                                android:layout_marginLeft="20dp"
-                                android:layout_marginRight="20dp"
-                                android:layout_marginTop="10dp"/>
-
-                            <EditText
-                                android:inputType="number"
-                                android:layout_weight="5"
-                                android:id="@+id/earringPointEight"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:textAllCaps="false"
-                                android:hint="0.8"
-                                android:background="@drawable/custom_edittext_form_background"
-                                android:padding="10dp"
-                                android:layout_marginLeft="20dp"
-                                android:layout_marginRight="20dp"
-                                android:layout_marginTop="10dp"/>
-
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:weightSum="15"
-                            android:orientation="horizontal"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content">
-
-                            <EditText
-                                android:id="@+id/earringKyat"
-                                android:layout_weight="5"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:background="@drawable/custom_edittext_form_background"
-                                android:padding="10dp"
-                                android:hint="က်ပ္"
-                                android:inputType="number"
-                                android:layout_margin="20dp"/>
-
-                            <EditText
-                                android:id="@+id/earringPal"
-                                android:layout_weight="5"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:background="@drawable/custom_edittext_form_background"
-                                android:padding="10dp"
-                                android:hint="ပဲ"
-                                android:inputType="number"
-                                android:layout_margin="20dp"/>
-
-                            <EditText
-                                android:id="@+id/earringYae"
-                                android:layout_weight="5"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:background="@drawable/custom_edittext_form_background"
-                                android:padding="10dp"
-                                android:hint=" ေရြး"
-                                android:inputType="number"
-                                android:layout_margin="20dp"/>
-
-                        </LinearLayout>
-
-
-
-
-
-                    </LinearLayout>
-
-
- <!--*****************************************end  Earring Layout***********************************                   -->
-
-
-
-                    <LinearLayout
-                        android:weightSum="10"
-                        android:orientation="horizontal"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
-
-                        <EditText
-                            android:inputType="number"
-                            android:layout_weight="5"
-                            android:id="@+id/custBuyNumber"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:textAllCaps="false"
-                            android:hint="Qualtity"
-                            android:background="@drawable/custom_edittext_form_background"
-                            android:padding="10dp"
-                            android:layout_marginLeft="20dp"
-                            android:layout_marginRight="20dp"
-                            android:layout_marginTop="10dp"/>
-
-                        <EditText
-                            android:inputType="number"
-                            android:layout_weight="5"
-                            android:id="@+id/custDiscountPoint"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:textAllCaps="false"
-                            android:hint="0.8"
-                            android:background="@drawable/custom_edittext_form_background"
-                            android:padding="10dp"
-                            android:layout_marginLeft="20dp"
-                            android:layout_marginRight="20dp"
-                            android:layout_marginTop="10dp"/>
-
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:weightSum="15"
-                        android:orientation="horizontal"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
-
-                        <EditText
-                            android:id="@+id/kyat"
-                            android:layout_weight="5"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:background="@drawable/custom_edittext_form_background"
-                            android:padding="10dp"
-                            android:hint="က်ပ္"
-                            android:inputType="number"
-                            android:layout_margin="20dp"/>
-
-                        <EditText
-                            android:id="@+id/pel"
-                            android:layout_weight="5"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:background="@drawable/custom_edittext_form_background"
-                            android:padding="10dp"
-                            android:hint="ပဲ"
-                            android:inputType="number"
-                            android:layout_margin="20dp"/>
-
-                        <EditText
-                            android:id="@+id/yawe"
-                            android:layout_weight="5"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:background="@drawable/custom_edittext_form_background"
-                            android:padding="10dp"
-                            android:hint=" ေရြး"
-                            android:inputType="number"
-                            android:layout_margin="20dp"/>
-
-                    </LinearLayout>
-
-
-                    <EditText
-                        android:id="@+id/gram"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:hint="Gram"
+                        android:hint="Qualtity"
                         android:background="@drawable/custom_edittext_form_background"
+                        android:padding="10dp"
                         android:layout_marginLeft="20dp"
                         android:layout_marginRight="20dp"
-                        android:padding="10dp"
                         android:layout_marginTop="10dp"/>
 
-
-
                     <EditText
-                        android:id="@+id/cupon"
+                        android:elevation="8dp"
+                        android:shadowColor="#c7d0f8"
+                        android:shadowDy="6"
+                        android:shadowDx="0"
+                        android:inputType="number"
+                        android:layout_weight="5"
+                        android:id="@+id/banglesPointEight"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="Cupon Code"
+                        android:textAllCaps="false"
+                        android:hint="0.8"
                         android:background="@drawable/custom_edittext_form_background"
+                        android:padding="10dp"
                         android:layout_marginLeft="20dp"
                         android:layout_marginRight="20dp"
-                        android:padding="10dp"
                         android:layout_marginTop="10dp"/>
-
-
-
-                    <!--<RadioGroup-->
-                        <!--android:id="@+id/radioGroup"-->
-                        <!--android:weightSum="10"-->
-                        <!--android:orientation="horizontal"-->
-                        <!--android:layout_width="match_parent"-->
-                        <!--android:layout_height="wrap_content">-->
-
-                        <!--<RadioButton-->
-                            <!--android:checked="true"-->
-                            <!--android:id="@+id/radioNewCustomer"-->
-                            <!--android:layout_marginTop="10dp"-->
-                            <!--android:layout_marginLeft="20dp"-->
-                            <!--android:layout_weight="5"-->
-                            <!--android:layout_width="match_parent"-->
-                            <!--android:layout_height="wrap_content"-->
-                            <!--android:text="new customer"/>-->
-
-                        <!--<RadioButton-->
-                            <!--android:id="@+id/radioExistingCustomer"-->
-                            <!--android:layout_marginTop="10dp"-->
-                            <!--android:layout_marginLeft="20dp"-->
-                            <!--android:layout_weight="5"-->
-                            <!--android:layout_width="match_parent"-->
-                            <!--android:layout_height="wrap_content"-->
-                            <!--android:text="existing customer"/>-->
-                    <!--</RadioGroup>-->
-
-                    <LinearLayout
-                        android:id="@+id/newCustomerLayout"
-                        android:orientation="vertical"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
-
-
-                        <EditText
-                            android:id="@+id/shopName"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:hint="Shop Name"
-                            android:background="@drawable/custom_edittext_form_background"
-                            android:layout_marginLeft="20dp"
-                            android:layout_marginRight="20dp"
-                            android:padding="10dp"
-                            android:layout_marginTop="10dp"/>
-
-
-
-                        <EditText
-                            android:id="@+id/custName"
-                            android:hint="Customer Name"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="20dp"
-                            android:layout_marginRight="20dp"
-                            android:layout_marginTop="10dp"
-                            android:padding="10dp"
-                            android:textAllCaps="false"
-                            android:background="@drawable/custom_edittext_form_background"/>
-
-
-
-                        <EditText
-                            android:id="@+id/custPhone"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:textAllCaps="false"
-                            android:hint="Phone Number"
-                            android:background="@drawable/custom_edittext_form_background"
-                            android:padding="10dp"
-                            android:layout_marginLeft="20dp"
-                            android:layout_marginRight="20dp"
-                            android:inputType="phone"
-                            android:layout_marginTop="10dp"/>
-
-
-
-                        <EditText
-                            android:id="@+id/custDOB"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:textAllCaps="false"
-                            android:hint="Date Of Birth"
-                            android:background="@drawable/custom_edittext_form_background"
-                            android:padding="10dp"
-                            android:layout_marginLeft="20dp"
-                            android:layout_marginRight="20dp"
-                            android:layout_marginTop="10dp"/>
-
-                        <EditText
-                            android:id="@+id/custNrc"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:textAllCaps="false"
-                            android:hint="NRC"
-                            android:background="@drawable/custom_edittext_form_background"
-                            android:padding="10dp"
-                            android:layout_marginLeft="20dp"
-                            android:layout_marginRight="20dp"
-                            android:layout_marginTop="10dp"/>
-
-                        <EditText
-                            android:id="@+id/custId"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:textAllCaps="false"
-                            android:hint="Customer ID"
-                            android:background="@drawable/custom_edittext_form_background"
-                            android:padding="10dp"
-                            android:layout_marginLeft="20dp"
-                            android:layout_marginRight="20dp"
-                            android:layout_marginTop="10dp"/>
-
-
-                        <EditText
-                            android:id="@+id/custAddress"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:textAllCaps="false"
-                            android:hint="Address"
-                            android:background="@drawable/custom_edittext_form_background"
-                            android:padding="10dp"
-                            android:layout_marginLeft="20dp"
-                            android:layout_marginRight="20dp"
-                            android:layout_marginTop="10dp"/>
-
-
-                        <EditText
-                            android:id="@+id/custTown"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:textAllCaps="false"
-                            android:hint="Town"
-                            android:background="@drawable/custom_edittext_form_background"
-                            android:padding="10dp"
-                            android:layout_marginLeft="20dp"
-                            android:layout_marginRight="20dp"
-                            android:layout_marginTop="10dp"/>
-
-
-                        <EditText
-                            android:id="@+id/custUserName"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:textAllCaps="false"
-                            android:hint="Customer UserName"
-                            android:background="@drawable/custom_edittext_form_background"
-                            android:padding="10dp"
-                            android:layout_marginLeft="20dp"
-                            android:layout_marginRight="20dp"
-                            android:layout_marginTop="10dp"/>
-
-
-                        <!--<EditText-->
-                            <!--android:id="@+id/custPassword"-->
-                            <!--android:layout_width="match_parent"-->
-                            <!--android:layout_height="wrap_content"-->
-                            <!--android:textAllCaps="false"-->
-                            <!--android:hint="Customer Password"-->
-                            <!--android:background="@drawable/custom_edittext_form_background"-->
-                            <!--android:padding="10dp"-->
-                            <!--android:layout_marginLeft="20dp"-->
-                            <!--android:layout_marginRight="20dp"-->
-                            <!--android:layout_marginTop="10dp"/>-->
-
-
-
-                    </LinearLayout>
-
-
-
-                    <!--<LinearLayout-->
-                        <!--android:id="@+id/searchWithPhoneLayout"-->
-                        <!--android:visibility="invisible"-->
-                        <!--android:layout_margin="20dp"-->
-                        <!--android:layout_width="match_parent"-->
-                        <!--android:layout_height="wrap_content"-->
-                        <!--android:orientation="horizontal"-->
-                        <!--android:padding="10dp">-->
-
-                        <!--<EditText-->
-                            <!--android:id="@+id/searchPhone"-->
-                            <!--android:layout_width="wrap_content"-->
-                            <!--android:layout_height="match_parent"-->
-                            <!--android:layout_weight="1"-->
-                            <!--android:background="@drawable/ed_stoke"-->
-                            <!--android:hint="Enter Phone Number"-->
-                            <!--android:inputType="phone"-->
-                            <!--android:padding="10dp"-->
-                            <!--android:textAllCaps="false"-->
-                            <!--/>-->
-
-                        <!--<ImageButton-->
-                            <!--android:id="@+id/searchButton"-->
-                            <!--android:layout_width="wrap_content"-->
-                            <!--android:layout_height="wrap_content"-->
-                            <!--android:layout_weight="1"-->
-                            <!--android:background="@drawable/icon_search"-->
-                            <!--android:padding="10dp"-->
-                            <!--android:src="@android:drawable/ic_menu_search" />-->
-
-
-                    <!--</LinearLayout>-->
-
-
-
-                        <Button
-                            android:id="@+id/btnInVoiceSave"
-                            android:layout_marginLeft="20dp"
-                            android:layout_marginTop="10dp"
-                            android:layout_marginRight="20dp"
-                            android:layout_marginBottom="20dp"
-                            android:padding="15dp"
-                            android:textAllCaps="false"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="Save"
-                            android:textSize="18sp"
-                            android:textColor="#FFF"
-                            android:background="@drawable/button_login_back"/>
-
-
 
                 </LinearLayout>
-            </android.support.v7.widget.CardView>
 
-        </android.support.v4.widget.NestedScrollView>
+                <LinearLayout
+                    android:weightSum="15"
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <EditText
+                        android:elevation="8dp"
+                        android:shadowColor="#c7d0f8"
+                        android:shadowDy="6"
+                        android:shadowDx="0"
+                        android:id="@+id/banglesKyat"
+                        android:layout_weight="5"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/custom_edittext_form_background"
+                        android:padding="10dp"
+                        android:hint="က်ပ္"
+                        android:inputType="number"
+                        android:layout_margin="20dp"/>
+
+                    <EditText
+                        android:elevation="8dp"
+                        android:shadowColor="#c7d0f8"
+                        android:shadowDy="6"
+                        android:shadowDx="0"
+                        android:id="@+id/banglesPal"
+                        android:layout_weight="5"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/custom_edittext_form_background"
+                        android:padding="10dp"
+                        android:hint="ပဲ"
+                        android:inputType="number"
+                        android:layout_margin="20dp"/>
+
+                    <EditText
+                        android:elevation="8dp"
+                        android:shadowColor="#c7d0f8"
+                        android:shadowDy="6"
+                        android:shadowDx="0"
+                        android:id="@+id/banglesYae"
+                        android:layout_weight="5"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/custom_edittext_form_background"
+                        android:padding="10dp"
+                        android:hint=" ေရြး"
+                        android:inputType="number"
+                        android:layout_margin="20dp"/>
+
+                </LinearLayout>
+
+
+            </LinearLayout>
+            <!--*****************************************End Bangles Layout***********************************                   -->
+
+
+
+            <!--*****************************************start necklace Layout***********************************                   -->
+
+            <LinearLayout
+                android:visibility="gone"
+                android:orientation="vertical"
+                android:id="@+id/necklace"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <Button
+                    android:id="@+id/hideNecklace"
+                    android:textAllCaps="false"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="20dp"
+                    android:background="@drawable/button_login_back"
+                    android:text="Delete Necklace"/>
+
+                <EditText
+                    android:elevation="8dp"
+                    android:shadowColor="#c7d0f8"
+                    android:shadowDy="6"
+                    android:shadowDx="0"
+                    android:id="@+id/necklaceText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textAllCaps="false"
+                    android:hint="Necklace"
+                    android:background="@drawable/custom_edittext_form_background"
+                    android:padding="10dp"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_marginTop="10dp"/>
+
+                <LinearLayout
+                    android:weightSum="10"
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <EditText
+                        android:elevation="8dp"
+                        android:shadowColor="#c7d0f8"
+                        android:shadowDy="6"
+                        android:shadowDx="0"
+                        android:inputType="number"
+                        android:layout_weight="5"
+                        android:id="@+id/necklaceNumber"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textAllCaps="false"
+                        android:hint="Qualtity"
+                        android:background="@drawable/custom_edittext_form_background"
+                        android:padding="10dp"
+                        android:layout_marginLeft="20dp"
+                        android:layout_marginRight="20dp"
+                        android:layout_marginTop="10dp"/>
+
+                    <EditText
+                        android:elevation="8dp"
+                        android:shadowColor="#c7d0f8"
+                        android:shadowDy="6"
+                        android:shadowDx="0"
+                        android:inputType="number"
+                        android:layout_weight="5"
+                        android:id="@+id/necklacePointEight"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textAllCaps="false"
+                        android:hint="0.8"
+                        android:background="@drawable/custom_edittext_form_background"
+                        android:padding="10dp"
+                        android:layout_marginLeft="20dp"
+                        android:layout_marginRight="20dp"
+                        android:layout_marginTop="10dp"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:weightSum="15"
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <EditText
+                        android:elevation="8dp"
+                        android:shadowColor="#c7d0f8"
+                        android:shadowDy="6"
+                        android:shadowDx="0"
+                        android:id="@+id/necklaceKyat"
+                        android:layout_weight="5"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/custom_edittext_form_background"
+                        android:padding="10dp"
+                        android:hint="က်ပ္"
+                        android:inputType="number"
+                        android:layout_margin="20dp"/>
+
+                    <EditText
+                        android:elevation="8dp"
+                        android:shadowColor="#c7d0f8"
+                        android:shadowDy="6"
+                        android:shadowDx="0"
+                        android:id="@+id/necklacePal"
+                        android:layout_weight="5"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/custom_edittext_form_background"
+                        android:padding="10dp"
+                        android:hint="ပဲ"
+                        android:inputType="number"
+                        android:layout_margin="20dp"/>
+
+                    <EditText
+                        android:elevation="8dp"
+                        android:shadowColor="#c7d0f8"
+                        android:shadowDy="6"
+                        android:shadowDx="0"
+                        android:id="@+id/necklaceYae"
+                        android:layout_weight="5"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/custom_edittext_form_background"
+                        android:padding="10dp"
+                        android:hint=" ေရြး"
+                        android:inputType="number"
+                        android:layout_margin="20dp"/>
+
+                </LinearLayout>
+
+
+
+
+
+            </LinearLayout>
+
+            <!--*****************************************end  Necklace Layout***********************************                   -->
+
+
+
+            <!--*****************************************start Earring Layout***********************************                   -->
+
+            <LinearLayout
+                android:visibility="gone"
+                android:orientation="vertical"
+                android:id="@+id/earring"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <Button
+                    android:id="@+id/hideEarring"
+                    android:textAllCaps="false"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="20dp"
+                    android:background="@drawable/button_login_back"
+                    android:text="Delete Earring"/>
+
+
+                <EditText
+                    android:elevation="8dp"
+                    android:shadowColor="#c7d0f8"
+                    android:shadowDy="6"
+                    android:shadowDx="0"
+                    android:id="@+id/earringText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textAllCaps="false"
+                    android:hint="Earring"
+                    android:background="@drawable/custom_edittext_form_background"
+                    android:padding="10dp"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_marginTop="10dp"/>
+
+                <LinearLayout
+                    android:background="#fafafa"
+                    android:weightSum="10"
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <EditText
+                        android:elevation="8dp"
+                        android:shadowColor="#c7d0f8"
+                        android:shadowDy="6"
+                        android:shadowDx="0"
+                        android:inputType="number"
+                        android:layout_weight="5"
+                        android:id="@+id/earringNumber"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textAllCaps="false"
+                        android:hint="Qualtity"
+                        android:background="@drawable/custom_edittext_form_background"
+                        android:padding="10dp"
+                        android:layout_marginLeft="20dp"
+                        android:layout_marginRight="20dp"
+                        android:layout_marginTop="10dp"/>
+
+                    <EditText
+                        android:elevation="8dp"
+                        android:shadowColor="#c7d0f8"
+                        android:shadowDy="6"
+                        android:shadowDx="0"
+                        android:inputType="number"
+                        android:layout_weight="5"
+                        android:id="@+id/earringPointEight"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textAllCaps="false"
+                        android:hint="0.8"
+                        android:background="@drawable/custom_edittext_form_background"
+                        android:padding="10dp"
+                        android:layout_marginLeft="20dp"
+                        android:layout_marginRight="20dp"
+                        android:layout_marginTop="10dp"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:weightSum="15"
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <EditText
+                        android:elevation="8dp"
+                        android:shadowColor="#c7d0f8"
+                        android:shadowDy="6"
+                        android:shadowDx="0"
+                        android:id="@+id/earringKyat"
+                        android:layout_weight="5"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/custom_edittext_form_background"
+                        android:padding="10dp"
+                        android:hint="က်ပ္"
+                        android:inputType="number"
+                        android:layout_margin="20dp"/>
+
+                    <EditText
+                        android:elevation="8dp"
+                        android:shadowColor="#c7d0f8"
+                        android:shadowDy="6"
+                        android:shadowDx="0"
+                        android:id="@+id/earringPal"
+                        android:layout_weight="5"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/custom_edittext_form_background"
+                        android:padding="10dp"
+                        android:hint="ပဲ"
+                        android:inputType="number"
+                        android:layout_margin="20dp"/>
+
+                    <EditText
+                        android:elevation="8dp"
+                        android:shadowColor="#c7d0f8"
+                        android:shadowDy="6"
+                        android:shadowDx="0"
+                        android:id="@+id/earringYae"
+                        android:layout_weight="5"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/custom_edittext_form_background"
+                        android:padding="10dp"
+                        android:hint=" ေရြး"
+                        android:inputType="number"
+                        android:layout_margin="20dp"/>
+
+                </LinearLayout>
+
+
+
+
+
+            </LinearLayout>
+
+
+            <!--*****************************************end  Earring Layout***********************************                   -->
+
+
+
+
+            <LinearLayout
+                android:background="#fafafa"
+                android:weightSum="10"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <EditText
+                    style="@style/Foredit"
+                    android:id="@+id/custBuyNumber"
+                    android:layout_weight="5"
+                    android:background="@drawable/custom_edittext_form_background"
+                    android:hint="Qualtity"
+                    android:inputType="number"
+                  />
+
+                <EditText
+                    style="@style/Foredit"
+                    android:id="@+id/custDiscountPoint"
+                    android:layout_weight="5"
+                    android:background="@drawable/custom_edittext_form_background"
+                    android:hint="Point Eight"
+                    android:inputType="number"
+                  />
+
+            </LinearLayout>
+
+
+
+
+            <LinearLayout
+                android:background="#fafafa"
+                android:weightSum="15"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <EditText
+                    style="@style/Foredit"
+                    android:id="@+id/kyat"
+                    android:layout_weight="5"
+                    android:background="@drawable/custom_edittext_form_background"
+                    android:hint="က်ပ္"
+                    android:inputType="number" />
+
+                <EditText
+                    style="@style/Foredit"
+                    android:id="@+id/pal"
+                    android:layout_weight="5"
+                    android:background="@drawable/custom_edittext_form_background"
+                    android:hint="ပဲ"
+                    android:inputType="number"/>
+
+                <EditText
+                    style="@style/Foredit"
+                    android:id="@+id/yae"
+                    android:layout_weight="5"
+                    android:background="@drawable/custom_edittext_form_background"
+                    android:hint=" ေရြး"
+                    android:inputType="number"
+                    />
+
+            </LinearLayout>
+
+
+
+            <LinearLayout
+                android:background="#fafafa"
+                android:weightSum="10"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <EditText
+                    style="@style/Foredit"
+                    android:id="@+id/gram"
+                    android:layout_weight="7"
+                    android:background="@drawable/custom_edittext_form_background"
+                    android:hint="Gram"
+                    android:inputType="number" />
+
+                <EditText
+                    android:id="@+id/cupon"
+                    android:layout_weight="3"
+                    android:background="@drawable/custom_edittext_form_background"
+                    android:hint="Cupon Code"
+                    android:inputType="number"
+                    style="@style/Foredit"/>
+
+            </LinearLayout>
+
+
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+
+            <EditText
+                android:id="@+id/shopName"
+               style="@style/Foredit"
+                android:hint="Shop Name"
+                android:background="@drawable/custom_edittext_form_background"
+                />
+
+
+
+            <EditText
+                style="@style/Foredit"
+                android:id="@+id/custName"
+                android:hint="Customer Name"
+                android:textAllCaps="false"
+                android:background="@drawable/custom_edittext_form_background"/>
+
+
+
+            <EditText
+                style="@style/Foredit"
+                android:id="@+id/custPhone"
+                android:textAllCaps="false"
+                android:hint="Phone Number"
+                android:background="@drawable/custom_edittext_form_background"
+                android:inputType="phone"
+              />
+
+
+
+            <EditText
+                style="@style/Foredit"
+                android:id="@+id/custDOB"
+                android:textAllCaps="false"
+                android:hint="Date Of Birth"
+                android:background="@drawable/custom_edittext_form_background" />
+
+            <EditText
+                style="@style/Foredit"
+                android:id="@+id/custNrc"
+                android:textAllCaps="false"
+                android:hint="NRC"
+                android:background="@drawable/custom_edittext_form_background"/>
+
+            <EditText
+                style="@style/Foredit"
+                android:id="@+id/custId"
+                android:textAllCaps="false"
+                android:hint="Customer ID"
+                android:enabled="false"
+                android:background="@drawable/custom_edittext_form_background" />
+
+
+            <EditText
+                style="@style/Foredit"
+                android:id="@+id/custAddress"
+                android:textAllCaps="false"
+                android:hint="Address"
+                android:background="@drawable/custom_edittext_form_background"
+               />
+
+
+            <EditText
+                style="@style/Foredit"
+                android:id="@+id/custTown"
+                android:textAllCaps="false"
+                android:hint="Town"
+                android:background="@drawable/custom_edittext_form_background"
+                android:padding="10dp"
+                />
+
+
+            <EditText
+                style="@style/Foredit"
+                android:id="@+id/custUserName"
+                android:textAllCaps="false"
+                android:hint="Customer UserName"
+                android:background="@drawable/custom_edittext_form_background" />
+
+
+
+            <Button
+                android:id="@+id/btnInVoiceSave"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="80dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginBottom="30dp"
+                android:textAllCaps="false"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:text="Save"
+                android:textSize="18sp"
+                android:textColor="#FFF"
+                android:background="@drawable/button_login_back"/>
 
     </LinearLayout>
+
+
+    </LinearLayout>
+
+
+
+
+
+
+</android.support.v4.widget.NestedScrollView>

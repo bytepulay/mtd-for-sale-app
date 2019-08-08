@@ -1,4 +1,4 @@
-package asia.nainglintun.myintthitar.activities.Font;
+package asia.nainglintun.myintthitar.Font;
 
 import android.content.Context;
 import android.support.v7.widget.AppCompatTextView;

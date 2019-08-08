@@ -7,10 +7,15 @@ import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.view.MenuItemCompat;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -23,8 +28,10 @@ import android.widget.Toast;
 import java.util.ArrayList;
 import java.util.List;
 
+import asia.nainglintun.myintthitar.Activities.CustomerActivity;
 import asia.nainglintun.myintthitar.Activities.MainActivity;
 import asia.nainglintun.myintthitar.Activities.RecyclerTouchListener;
+import asia.nainglintun.myintthitar.Activities.SalesActivity;
 import asia.nainglintun.myintthitar.Adapters.CustomerPurchaseRecyclerAdapter;
 import asia.nainglintun.myintthitar.Adapters.bindvouchersaleRecyclerAdapter;
 import asia.nainglintun.myintthitar.Adapters.editbindvouchersaleRecyclerAdapter;
@@ -38,7 +45,7 @@ import retrofit2.Response;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class HistoryCustomerFragment extends Fragment {
+public class HistoryCustomerFragment extends Fragment implements SearchView.OnQueryTextListener {
 
 private Toolbar toolbar;
 private TextView purchaseDate,cuponCode,purchaseItem,gram;
@@ -70,9 +77,8 @@ private TextView purchaseDate,cuponCode,purchaseItem,gram;
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_history_customer, container, false);
-        toolbar = view.findViewById(R.id.toolBar);
-        toolbar = view.findViewById(R.id.toolBar);
-        toolbar.setTitle("Purchase History List ");
+        ((CustomerActivity)getActivity()).setTitle("Purchase History List");
+        setHasOptionsMenu(true);
         recyclerView = view.findViewById(R.id.recyclerView);
         layoutManager = new LinearLayoutManager(getContext());
         recyclerView.setLayoutManager(layoutManager);
@@ -361,4 +367,41 @@ private TextView purchaseDate,cuponCode,purchaseItem,gram;
         });
     }
 
+
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        super.onCreateOptionsMenu(menu, inflater);
+        inflater.inflate(R.menu.menu_items,menu);
+        MenuItem menuItem = menu.findItem(R.id.action_search);
+        SearchView searchView = (SearchView) MenuItemCompat.getActionView(menuItem);
+        searchView.setOnQueryTextListener(this);    }
+
+
+    @Override
+    public boolean onQueryTextSubmit(String s) {
+        return false;
+    }
+
+    @Override
+    public boolean onQueryTextChange(String s) {
+
+        s = s.toLowerCase();
+        ArrayList<Salehistory> newList = new ArrayList<>();
+
+        for (Salehistory salehistory : salehistories)
+        {
+            String sDate = salehistory.getSaleDate().toLowerCase();
+//            String shopName = salehistory.getCustomerShop().toLowerCase();
+//            String town = salehistory.getCustomerTwon().toLowerCase();
+            if (sDate.contains(s)){
+                newList.add(salehistory);
+            }
+        }
+
+        adapter.setFilter(newList);
+
+        return true;
+
+
+    }
 }

@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#fafafa"
     tools:context=".Activities.MainActivity">
 
 
@@ -17,7 +18,7 @@
         android:layout_height="wrap_content">
 
         <ImageView
-            android:layout_marginTop="1dp"
+            android:layout_marginTop="100dp"
             android:layout_width="180dp"
             android:layout_height="180dp"
             android:src="@drawable/myinthidar"
@@ -41,7 +42,7 @@
             android:textColor="#fff"
            />
 
-        <asia.nainglintun.myintthitar.activities.Font.UniZawgyiTextView
+        <asia.nainglintun.myintthitar.Font.UniZawgyiTextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Or"
@@ -50,14 +51,15 @@
             android:textAlignment="center"/>
 
         <EditText
-            android:shadowColor="#FFF"
-            android:shadowDy="5"
-            android:shadowDx="5"
+            android:elevation="8dp"
+            android:shadowColor="#c7d0f8"
+            android:shadowDy="6"
+            android:shadowDx="0"
+            android:background="@drawable/custom_edittext_form_background"
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
             android:layout_marginTop="10dp"
             android:padding="15dp"
-            android:background="@drawable/custom_edittext_background"
             android:drawableRight="@drawable/icon_user"
             android:inputType="textCapSentences"
             android:id="@+id/etUserName"

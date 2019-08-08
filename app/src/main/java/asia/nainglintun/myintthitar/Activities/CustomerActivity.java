@@ -6,10 +6,8 @@ import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.Toolbar;
-import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
-import android.widget.Toast;
 
 
 import asia.nainglintun.myintthitar.Fragments.CustomerRankFragment;
@@ -56,6 +54,7 @@ public class CustomerActivity extends AppCompatActivity {
                     return true;
                 case R.id.navigation_setting:
                     fragmentManager.beginTransaction().replace(R.id.frame_layout_customer,new CustomerSettingFragment()).commit();
+                    //fragmentManager.beginTransaction().replace(R.id.frame_layout_customer,new NotificationGroupCustomerFragment()).commit();
 
                     toolbar.setTitle("Setting");
                     return true;
@@ -72,7 +71,7 @@ public class CustomerActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         toolbar.setTitle("Rank");
 
-        Toast.makeText(this, MainActivity.prefConfig.readName(), Toast.LENGTH_SHORT).show();
+      //  Toast.makeText(this, MainActivity.prefConfig.readName(), Toast.LENGTH_SHORT).show();
         fragmentManager = getSupportFragmentManager();
 
         if(findViewById(R.id.frame_layout_customer)!=null)

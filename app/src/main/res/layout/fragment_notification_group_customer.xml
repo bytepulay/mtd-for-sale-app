@@ -4,22 +4,12 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:layout_marginTop="56dp"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".Fragments.NotificationCustomerFragment">
 
-<!--<include layout="@layout/toolbar_layout"/>-->
+<include layout="@layout/toolbar_layout"/>
     <android.support.v7.widget.RecyclerView
         android:id="@+id/recyclerView"
-        android:layout_marginTop="10dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-    </android.support.v7.widget.RecyclerView>
-
-
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/recyclerViewGroup"
         android:layout_marginTop="10dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">

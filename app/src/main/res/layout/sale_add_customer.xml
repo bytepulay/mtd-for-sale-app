@@ -15,19 +15,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <android.support.v7.widget.CardView
-            android:layout_marginTop="5dp"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
-            android:layout_marginBottom="20dp"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            app:cardBackgroundColor="@android:color/white"
-            android:foreground="?android:attr/selectableItemBackground"
-            app:cardCornerRadius="4dp"
-            app:cardElevation="4dp">
-
-
 
 
             <LinearLayout
@@ -47,14 +34,9 @@
 
 
                 <EditText
+                    style="@style/Foredit"
                     android:id="@+id/custName"
                     android:hint="Customer Name"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginRight="20dp"
-                    android:layout_marginTop="10dp"
-                    android:padding="10dp"
                     android:textAllCaps="false"
                     android:background="@drawable/custom_edittext_form_background"/>
 
@@ -62,12 +44,7 @@
                 <EditText
                     android:id="@+id/userName"
                     android:hint="User Name"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginRight="20dp"
-                    android:layout_marginTop="10dp"
-                    android:padding="10dp"
+                    style="@style/Foredit"
                     android:textAllCaps="false"
                     android:background="@drawable/custom_edittext_form_background"/>
 
@@ -75,12 +52,7 @@
                 <EditText
                     android:id="@+id/shopName"
                     android:hint="Shop Name"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginRight="20dp"
-                    android:layout_marginTop="10dp"
-                    android:padding="10dp"
+                    style="@style/Foredit"
                     android:textAllCaps="false"
                     android:background="@drawable/custom_edittext_form_background"/>
 
@@ -93,12 +65,7 @@
                 <EditText
                     android:id="@+id/phoneNumber"
                     android:hint="phone Number"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginRight="20dp"
-                    android:layout_marginTop="10dp"
-                    android:padding="10dp"
+                    style="@style/Foredit"
                     android:inputType="phone"
                     android:textAllCaps="false"
                     android:background="@drawable/custom_edittext_form_background"/>
@@ -110,12 +77,7 @@
                 <EditText
                     android:id="@+id/address"
                     android:hint="address"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginRight="20dp"
-                    android:layout_marginTop="10dp"
-                    android:padding="10dp"
+                    style="@style/Foredit"
                     android:textAllCaps="false"
                     android:background="@drawable/custom_edittext_form_background"/>
 
@@ -125,12 +87,7 @@
                 <EditText
                     android:id="@+id/dateOfBirth"
                     android:hint="Date Of Birth"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginRight="20dp"
-                    android:layout_marginTop="10dp"
-                    android:padding="10dp"
+                    style="@style/Foredit"
                     android:textAllCaps="false"
                     android:background="@drawable/custom_edittext_form_background"/>
 
@@ -138,12 +95,7 @@
                 <EditText
                     android:id="@+id/nrc"
                     android:hint="Nrc"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginRight="20dp"
-                    android:layout_marginTop="10dp"
-                    android:padding="10dp"
+                    style="@style/Foredit"
                     android:textAllCaps="false"
                     android:background="@drawable/custom_edittext_form_background"/>
 
@@ -154,12 +106,7 @@
                 <EditText
                     android:id="@+id/township"
                     android:hint="Township"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginRight="20dp"
-                    android:layout_marginTop="10dp"
-                    android:padding="10dp"
+                    style="@style/Foredit"
                     android:textAllCaps="false"
                     android:background="@drawable/custom_edittext_form_background"/>
 
@@ -173,9 +120,19 @@
                         android:layout_height="240dp" />
 
 
+                <!--<ImageView-->
+                    <!--android:visibility="gone"-->
+                    <!--android:layout_marginTop="10dp"-->
+                    <!--android:layout_gravity="center"-->
+                    <!--android:id="@+id/customerProfile"-->
+                    <!--android:layout_width="240dp"-->
+                    <!--android:layout_height="240dp" />-->
 
 
-                    <Button
+
+
+
+                <Button
                         android:id="@+id/customerSave"
                         android:layout_marginLeft="30dp"
                         android:layout_marginTop="10dp"
@@ -195,7 +152,6 @@
 
 
             </LinearLayout>
-        </android.support.v7.widget.CardView>
 
     </android.support.v4.widget.NestedScrollView>
 

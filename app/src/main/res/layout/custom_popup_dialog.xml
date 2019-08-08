@@ -55,7 +55,7 @@
 
 
                 <TextView
-                    android:layout_marginLeft="20dp"
+                    android:layout_marginLeft="25dp"
                     android:layout_weight="13"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -121,7 +121,7 @@
                     android:layout_height="wrap_content">
 
                 <TextView
-                    android:layout_marginLeft="10dp"
+                    android:layout_marginLeft="20dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Voucher Number"
@@ -131,13 +131,10 @@
                 <EditText
                     android:id="@+id/editVoucher"
                     android:background="@drawable/custom_edittext_form_background"
-                    android:layout_margin="10dp"
-                    android:padding="10dp"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
+                  style="@style/Foredit" />
 
                 <TextView
-                    android:layout_marginLeft="10dp"
+                    android:layout_marginLeft="20dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Sale Date"
@@ -147,14 +144,11 @@
                 <EditText
                     android:id="@+id/editSaleDate"
                     android:background="@drawable/custom_edittext_form_background"
-                    android:layout_margin="10dp"
-                    android:padding="10dp"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
+                  style="@style/Foredit" />
 
 
                     <TextView
-                        android:layout_marginLeft="10dp"
+                        android:layout_marginLeft="20dp"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="Cupon Code"
@@ -164,13 +158,10 @@
                     <EditText
                         android:id="@+id/editCuponCode"
                         android:background="@drawable/custom_edittext_form_background"
-                        android:layout_margin="10dp"
-                        android:padding="10dp"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content" />
+                       style="@style/Foredit"/>
 
                 <TextView
-                    android:layout_marginLeft="10dp"
+                    android:layout_marginLeft="20dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Customer Name"
@@ -180,14 +171,11 @@
                 <EditText
                     android:id="@+id/editCustomerName"
                     android:background="@drawable/custom_edittext_form_background"
-                    android:layout_margin="10dp"
-                    android:padding="10dp"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
+                  style="@style/Foredit" />
 
 
                 <TextView
-                    android:layout_marginLeft="10dp"
+                    android:layout_marginLeft="20dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Shop Name"
@@ -197,16 +185,13 @@
                 <EditText
                     android:id="@+id/editShopName"
                     android:background="@drawable/custom_edittext_form_background"
-                    android:layout_margin="10dp"
-                    android:padding="10dp"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
+                  style="@style/Foredit" />
 
 
 
 
                     <TextView
-                        android:layout_marginLeft="10dp"
+                        android:layout_marginLeft="20dp"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="Address"
@@ -216,13 +201,10 @@
                     <EditText
                         android:id="@+id/editAddress"
                         android:background="@drawable/custom_edittext_form_background"
-                        android:layout_margin="10dp"
-                        android:padding="10dp"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content" />
+                      style="@style/Foredit" />
 
                     <TextView
-                        android:layout_marginLeft="10dp"
+                        android:layout_marginLeft="20dp"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="Phone Number"
@@ -232,14 +214,11 @@
                     <EditText
                         android:id="@+id/editPhoneNumber"
                         android:background="@drawable/custom_edittext_form_background"
-                        android:layout_margin="10dp"
-                        android:padding="10dp"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content" />
+                      style="@style/Foredit" />
 
 
                     <TextView
-                        android:layout_marginLeft="10dp"
+                        android:layout_marginLeft="20dp"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="Date Of Birth"
@@ -249,10 +228,7 @@
                     <EditText
                         android:id="@+id/editDOB"
                         android:background="@drawable/custom_edittext_form_background"
-                        android:layout_margin="10dp"
-                        android:padding="10dp"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content" />
+                      style="@style/Foredit" />
 
 
 
@@ -260,7 +236,7 @@
 
 
                     <TextView
-                    android:layout_marginLeft="10dp"
+                    android:layout_marginLeft="20dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Township"
@@ -271,10 +247,7 @@
                 <EditText
                     android:id="@+id/editTownShip"
                     android:background="@drawable/custom_edittext_form_background"
-                    android:layout_margin="10dp"
-                    android:padding="10dp"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
+                  style="@style/Foredit" />
 
 
 
@@ -282,7 +255,7 @@
 
 
                 <TextView
-                    android:layout_marginLeft="10dp"
+                    android:layout_marginLeft="20dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Ring Description"
@@ -293,14 +266,11 @@
                 <EditText
                     android:id="@+id/editRingDes"
                     android:background="@drawable/custom_edittext_form_background"
-                    android:layout_margin="10dp"
-                    android:padding="10dp"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
+                  style="@style/Foredit" />
 
 
                 <TextView
-                    android:layout_marginLeft="10dp"
+                    android:layout_marginLeft="20dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Ring Number"
@@ -311,15 +281,12 @@
                 <EditText
                     android:id="@+id/editRingNumber"
                     android:background="@drawable/custom_edittext_form_background"
-                    android:layout_margin="10dp"
-                    android:padding="10dp"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
+                  style="@style/Foredit" />
 
 
 
                 <TextView
-                    android:layout_marginLeft="10dp"
+                    android:layout_marginLeft="20dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Ring Point Eight"
@@ -330,16 +297,13 @@
                 <EditText
                     android:id="@+id/editRingPointEight"
                     android:background="@drawable/custom_edittext_form_background"
-                    android:layout_margin="10dp"
-                    android:padding="10dp"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
+                  style="@style/Foredit" />
 
 
 
 
                     <TextView
-                        android:layout_marginLeft="10dp"
+                        android:layout_marginLeft="20dp"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="Ring Kyat"
@@ -350,14 +314,11 @@
                     <EditText
                         android:id="@+id/editRingKyat"
                         android:background="@drawable/custom_edittext_form_background"
-                        android:layout_margin="10dp"
-                        android:padding="10dp"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content" />
+                       style="@style/Foredit"/>
 
 
                     <TextView
-                        android:layout_marginLeft="10dp"
+                        android:layout_marginLeft="20dp"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="Ring Pal"
@@ -368,15 +329,12 @@
                     <EditText
                         android:id="@+id/editRingPal"
                         android:background="@drawable/custom_edittext_form_background"
-                        android:layout_margin="10dp"
-                        android:padding="10dp"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content" />
+                       style="@style/Foredit"/>
 
 
 
                     <TextView
-                        android:layout_marginLeft="10dp"
+                        android:layout_marginLeft="20dp"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="Ring Yae"
@@ -387,16 +345,13 @@
                     <EditText
                         android:id="@+id/editRingYae"
                         android:background="@drawable/custom_edittext_form_background"
-                        android:layout_margin="10dp"
-                        android:padding="10dp"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content" />
+                       style="@style/Foredit"/>
 
 
 
 
                     <TextView
-                        android:layout_marginLeft="10dp"
+                        android:layout_marginLeft="20dp"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="Bangles Description"
@@ -407,14 +362,11 @@
                     <EditText
                         android:id="@+id/editBanglesDes"
                         android:background="@drawable/custom_edittext_form_background"
-                        android:layout_margin="10dp"
-                        android:padding="10dp"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content" />
+                       style="@style/Foredit"/>
 
 
                     <TextView
-                        android:layout_marginLeft="10dp"
+                        android:layout_marginLeft="20dp"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="Bangles Number"
@@ -425,15 +377,12 @@
                     <EditText
                         android:id="@+id/editBanglesNumber"
                         android:background="@drawable/custom_edittext_form_background"
-                        android:layout_margin="10dp"
-                        android:padding="10dp"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content" />
+                       style="@style/Foredit"/>
 
 
 
                     <TextView
-                        android:layout_marginLeft="10dp"
+                        android:layout_marginLeft="20dp"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="Bangles Point Eight"
@@ -444,16 +393,13 @@
                     <EditText
                         android:id="@+id/editBanglesPointEight"
                         android:background="@drawable/custom_edittext_form_background"
-                        android:layout_margin="10dp"
-                        android:padding="10dp"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content" />
+                       style="@style/Foredit"/>
 
 
 
 
                     <TextView
-                        android:layout_marginLeft="10dp"
+                        android:layout_marginLeft="20dp"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="Bangles Kyat"
@@ -464,14 +410,11 @@
                     <EditText
                         android:id="@+id/editBanglesKyat"
                         android:background="@drawable/custom_edittext_form_background"
-                        android:layout_margin="10dp"
-                        android:padding="10dp"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content" />
+                       style="@style/Foredit"/>
 
 
                     <TextView
-                        android:layout_marginLeft="10dp"
+                        android:layout_marginLeft="20dp"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="Bangles Pal"
@@ -482,15 +425,12 @@
                     <EditText
                         android:id="@+id/editBanglesPal"
                         android:background="@drawable/custom_edittext_form_background"
-                        android:layout_margin="10dp"
-                        android:padding="10dp"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content" />
+                       style="@style/Foredit"/>
 
 
 
                     <TextView
-                        android:layout_marginLeft="10dp"
+                        android:layout_marginLeft="20dp"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="Bangles Yae"
@@ -501,15 +441,12 @@
                     <EditText
                         android:id="@+id/editBanglesYae"
                         android:background="@drawable/custom_edittext_form_background"
-                        android:layout_margin="10dp"
-                        android:padding="10dp"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content" />
+                       style="@style/Foredit"/>
 
 
 
                     <TextView
-                        android:layout_marginLeft="10dp"
+                        android:layout_marginLeft="20dp"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="Necklace Description"
@@ -520,14 +457,11 @@
                     <EditText
                         android:id="@+id/editNecklaceDes"
                         android:background="@drawable/custom_edittext_form_background"
-                        android:layout_margin="10dp"
-                        android:padding="10dp"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content" />
+                       style="@style/Foredit"/>
 
 
                     <TextView
-                        android:layout_marginLeft="10dp"
+                        android:layout_marginLeft="20dp"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="Necklace Number"
@@ -538,15 +472,12 @@
                     <EditText
                         android:id="@+id/editNecklaceNumber"
                         android:background="@drawable/custom_edittext_form_background"
-                        android:layout_margin="10dp"
-                        android:padding="10dp"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content" />
+                       style="@style/Foredit"/>
 
 
 
                     <TextView
-                        android:layout_marginLeft="10dp"
+                        android:layout_marginLeft="20dp"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="Necklace Point Eight"
@@ -557,16 +488,13 @@
                     <EditText
                         android:id="@+id/editNecklacePointEight"
                         android:background="@drawable/custom_edittext_form_background"
-                        android:layout_margin="10dp"
-                        android:padding="10dp"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content" />
+                       style="@style/Foredit"/>
 
 
 
 
                     <TextView
-                        android:layout_marginLeft="10dp"
+                        android:layout_marginLeft="20dp"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="Necklace Kyat"
@@ -577,14 +505,11 @@
                     <EditText
                         android:id="@+id/editNecklaceKyat"
                         android:background="@drawable/custom_edittext_form_background"
-                        android:layout_margin="10dp"
-                        android:padding="10dp"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content" />
+                       style="@style/Foredit"/>
 
 
                     <TextView
-                        android:layout_marginLeft="10dp"
+                        android:layout_marginLeft="20dp"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="Necklace Pal"
@@ -595,15 +520,12 @@
                     <EditText
                         android:id="@+id/editNecklacePal"
                         android:background="@drawable/custom_edittext_form_background"
-                        android:layout_margin="10dp"
-                        android:padding="10dp"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content" />
+                       style="@style/Foredit"/>
 
 
 
                     <TextView
-                        android:layout_marginLeft="10dp"
+                        android:layout_marginLeft="20dp"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="Necklace Yae"
@@ -614,15 +536,12 @@
                     <EditText
                         android:id="@+id/editNecklaceYae"
                         android:background="@drawable/custom_edittext_form_background"
-                        android:layout_margin="10dp"
-                        android:padding="10dp"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content" />
+                       style="@style/Foredit"/>
 
 
 
                     <TextView
-                        android:layout_marginLeft="10dp"
+                        android:layout_marginLeft="20dp"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="Earring Description"
@@ -633,14 +552,11 @@
                     <EditText
                         android:id="@+id/editEarringDes"
                         android:background="@drawable/custom_edittext_form_background"
-                        android:layout_margin="10dp"
-                        android:padding="10dp"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content" />
+                       style="@style/Foredit"/>
 
 
                     <TextView
-                        android:layout_marginLeft="10dp"
+                        android:layout_marginLeft="20dp"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="Earring Number"
@@ -651,15 +567,12 @@
                     <EditText
                         android:id="@+id/editEarringNumber"
                         android:background="@drawable/custom_edittext_form_background"
-                        android:layout_margin="10dp"
-                        android:padding="10dp"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content" />
+                       style="@style/Foredit"/>
 
 
 
                     <TextView
-                        android:layout_marginLeft="10dp"
+                        android:layout_marginLeft="20dp"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="Earring Point Eight"
@@ -670,16 +583,13 @@
                     <EditText
                         android:id="@+id/editEarringPointEight"
                         android:background="@drawable/custom_edittext_form_background"
-                        android:layout_margin="10dp"
-                        android:padding="10dp"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content" />
+                       style="@style/Foredit"/>
 
 
 
 
                     <TextView
-                        android:layout_marginLeft="10dp"
+                        android:layout_marginLeft="20dp"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="Earring Kyat"
@@ -690,14 +600,11 @@
                     <EditText
                         android:id="@+id/editEarringKyat"
                         android:background="@drawable/custom_edittext_form_background"
-                        android:layout_margin="10dp"
-                        android:padding="10dp"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content" />
+                       style="@style/Foredit"/>
 
 
                     <TextView
-                        android:layout_marginLeft="10dp"
+                        android:layout_marginLeft="20dp"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="Earring Pal"
@@ -708,15 +615,12 @@
                     <EditText
                         android:id="@+id/editEarringPal"
                         android:background="@drawable/custom_edittext_form_background"
-                        android:layout_margin="10dp"
-                        android:padding="10dp"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content" />
+                       style="@style/Foredit"/>
 
 
 
                     <TextView
-                        android:layout_marginLeft="10dp"
+                        android:layout_marginLeft="20dp"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="Earring Yae"
@@ -727,10 +631,7 @@
                     <EditText
                         android:id="@+id/editEarringYae"
                         android:background="@drawable/custom_edittext_form_background"
-                        android:layout_margin="10dp"
-                        android:padding="10dp"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content" />
+                       style="@style/Foredit"/>
 
 
 
@@ -738,7 +639,7 @@
 
 
                     <TextView
-                        android:layout_marginLeft="10dp"
+                        android:layout_marginLeft="20dp"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="Total Number"
@@ -749,15 +650,12 @@
                     <EditText
                         android:id="@+id/editTotalNumber"
                         android:background="@drawable/custom_edittext_form_background"
-                        android:layout_margin="10dp"
-                        android:padding="10dp"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content" />
+                       style="@style/Foredit"/>
 
 
 
                     <TextView
-                        android:layout_marginLeft="10dp"
+                        android:layout_marginLeft="20dp"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="Total Point Eight"
@@ -768,16 +666,13 @@
                     <EditText
                         android:id="@+id/editTotalPointEight"
                         android:background="@drawable/custom_edittext_form_background"
-                        android:layout_margin="10dp"
-                        android:padding="10dp"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content" />
+                       style="@style/Foredit"/>
 
 
 
 
                     <TextView
-                        android:layout_marginLeft="10dp"
+                        android:layout_marginLeft="20dp"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="Total Kyat"
@@ -788,14 +683,11 @@
                     <EditText
                         android:id="@+id/editTotalKyat"
                         android:background="@drawable/custom_edittext_form_background"
-                        android:layout_margin="10dp"
-                        android:padding="10dp"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content" />
+                       style="@style/Foredit"/>
 
 
                     <TextView
-                        android:layout_marginLeft="10dp"
+                        android:layout_marginLeft="20dp"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="Total Pal"
@@ -806,15 +698,12 @@
                     <EditText
                         android:id="@+id/editTotalPal"
                         android:background="@drawable/custom_edittext_form_background"
-                        android:layout_margin="10dp"
-                        android:padding="10dp"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content" />
+                       style="@style/Foredit"/>
 
 
 
                     <TextView
-                        android:layout_marginLeft="10dp"
+                        android:layout_marginLeft="20dp"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="Total Yae"
@@ -825,15 +714,12 @@
                     <EditText
                         android:id="@+id/editTotalYae"
                         android:background="@drawable/custom_edittext_form_background"
-                        android:layout_margin="10dp"
-                        android:padding="10dp"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content" />
+                       style="@style/Foredit"/>
 
 
 
                     <TextView
-                        android:layout_marginLeft="10dp"
+                        android:layout_marginLeft="20dp"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="Total Gram"
@@ -844,10 +730,7 @@
                     <EditText
                         android:id="@+id/editTotalGram"
                         android:background="@drawable/custom_edittext_form_background"
-                        android:layout_margin="10dp"
-                        android:padding="10dp"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content" />
+                       style="@style/Foredit"/>
 
 
 

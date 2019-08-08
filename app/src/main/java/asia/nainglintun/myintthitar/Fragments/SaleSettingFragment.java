@@ -1,6 +1,7 @@
 package asia.nainglintun.myintthitar.Fragments;
 
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -18,6 +19,10 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.bumptech.glide.request.RequestOptions;
+
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 
@@ -26,6 +31,7 @@ import asia.nainglintun.myintthitar.Activities.MainActivity;
 import asia.nainglintun.myintthitar.Activities.SalesActivity;
 import asia.nainglintun.myintthitar.R;
 import asia.nainglintun.myintthitar.models.ImageClass;
+import asia.nainglintun.myintthitar.models.Sale;
 import de.hdodenhof.circleimageview.CircleImageView;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -46,7 +52,8 @@ public class SaleSettingFragment extends Fragment implements View.OnClickListene
     private final int IMG_REQUEST=1;
    private Bitmap bitmap;
 
-    private Toolbar toolbar;
+
+    private ProgressDialog progressDialog;
     public SaleSettingFragment() {
         // Required empty public constructor
     }
@@ -58,27 +65,37 @@ public class SaleSettingFragment extends Fragment implements View.OnClickListene
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_sale_setting, container, false);
 
-        toolbar = view.findViewById(R.id.toolBar);
-        toolbar.setTitle("Setting");
+        ((SalesActivity)getActivity()).setTitle("Setting");
 
-        userName = view.findViewById(R.id.userName);
-        customerName = view.findViewById(R.id.custName);
-        shopName = view.findViewById(R.id.shopName);
-        phoneNumber = view.findViewById(R.id.phoneNumber);
-        Address = view.findViewById(R.id.address);
-        DOB = view.findViewById(R.id.dateOfBirth);
-        Nrc = view.findViewById(R.id.nrc);
-        Township = view.findViewById(R.id.township);
+        progressDialog = new ProgressDialog(getContext());
+        progressDialog.setMessage("please wait.....");
 
 
-        btnSaleChangePassword = view.findViewById(R.id.btnSaleChangePasswordSave);
+
+        btnSaleChangePassword = view.findViewById(R.id.btnSaleProfile);
         bnLogout = view.findViewById(R.id.btnLogout);
-        editTextSaleChangePassword = view.findViewById(R.id.saleChangePassword);
-        editTextSaleComfirmPassword = view.findViewById(R.id.saleComfirmPassword);
         saleProfile = view.findViewById(R.id.saleProfile);
         bitmap = BitmapFactory.decodeResource(getContext().getResources(),
-                R.drawable.profile);
+                R.drawable.default_profile);
         saleProfile.setImageBitmap(bitmap);
+
+        Call<Sale> saleCall = MainActivity.apiInterface.getSaleProfile(prefConfig.readName());
+        saleCall.enqueue(new Callback<Sale>() {
+            @Override
+            public void onResponse(Call<Sale> call, Response<Sale> response) {
+                String Profile=response.body().getProfile();
+//                if(Profile!=""){
+                  //  Glide.with(getContext()).load("http://mtdatabase.com/mtd/"+Profile).apply(RequestOptions.skipMemoryCacheOf(true).diskCacheStrategy(DiskCacheStrategy.NONE)).into(saleProfile);
+
+//                }
+                //Toast.makeText(getContext(), "This is a " +Profile, Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onFailure(Call<Sale> call, Throwable t) {
+
+            }
+        });
         saleProfile.setOnClickListener(this);
         btnSaleChangePassword.setOnClickListener(this);
         bnLogout.setOnClickListener(this);
@@ -91,9 +108,8 @@ public class SaleSettingFragment extends Fragment implements View.OnClickListene
             case R.id.saleProfile:
                 selectSaleImage();
                 break;
-            case R.id.btnSaleChangePasswordSave:
+            case R.id.btnSaleProfile:
                uploadImage();
-                Toast.makeText(getContext(), "Save Password", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.btnLogout:
 
@@ -106,38 +122,30 @@ public class SaleSettingFragment extends Fragment implements View.OnClickListene
         }
     }
 
-
     private void uploadImage(){
-        Log.e("work","upload method is work");
+        progressDialog.show();
+        Log.e("work","update method is work");
         String path = imageToString();
-        String title = editTextSaleChangePassword.getText().toString();
-        String username = userName.getText().toString();
-        String customername = customerName.getText().toString();
-        String shopname = shopName.getText().toString();
-        String phone = phoneNumber.getText().toString();
-        String customeraddress =Address.getText().toString();
-        String dob = DOB.getText().toString();
-        String nrc = Nrc.getText().toString();
-        String town = Township.getText().toString();
-        Call<ImageClass> call = MainActivity.apiInterface.uploadImage(username,customername,shopname,phone,customeraddress,dob,nrc,town,path);
-        call.enqueue(new Callback<ImageClass>() {
+        String user_name = MainActivity.prefConfig.readName();
+        Call<Sale> call = MainActivity.apiInterface.UpdateSaleProfile(user_name,path);
+        call.enqueue(new Callback<Sale>() {
             @Override
-            public void onResponse(Call<ImageClass> call, Response<ImageClass> response) {
-//                ImageClass imageClass = response.body();n
-//
-//               Toast.makeText(getContext(), "Server Response:" + imageClass.getResponse(), Toast.LENGTH_SHORT).show();
-                String result = response.body().getResponse();
-                Toast.makeText(getContext(), result, Toast.LENGTH_SHORT).show();
+            public void onResponse(Call<Sale> call, Response<Sale> response) {
+                progressDialog.dismiss();
 
+
+                Toast.makeText(getContext(), "Success Change profile", Toast.LENGTH_SHORT).show();
             }
 
 
             @Override
-            public void onFailure(Call<ImageClass> call, Throwable t) {
-
+            public void onFailure(Call<Sale> call, Throwable t) {
+                progressDialog.dismiss();
+               Toast.makeText(getContext(), "Change Fail", Toast.LENGTH_SHORT).show();
             }
         });
     }
+
 
     private void selectSaleImage() {
         Intent intent = new Intent();

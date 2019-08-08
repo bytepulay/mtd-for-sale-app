@@ -4,13 +4,14 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:layout_marginTop="56dp"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".Fragments.HistoryCustomerFragment">
 
     <!-- TODO: Update blank fragment layout -->
 
-    <include layout="@layout/toolbar_layout"></include>
-
+   <!--<include layout="@layout/toolbar_layout"></include>-->
+<!---->
     <!--<include layout="@layout/custom_customer_history"></include>-->
 
      <android.support.v7.widget.RecyclerView

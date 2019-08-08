@@ -18,6 +18,35 @@ public class Notification {
     private String noti_group;
 
 
+    @SerializedName("title")
+    private String title_one;
+
+    @SerializedName("noti_date")
+    private String date_one;
+
+
+    @SerializedName("noti_group_date")
+    private String date_group;
+
+    @SerializedName("group_title")
+    private String title_group;
+
+    public String getTitle_one() {
+        return title_one;
+    }
+
+    public String getDate_one() {
+        return date_one;
+    }
+
+    public String getDate_group() {
+        return date_group;
+    }
+
+    public String getTitle_group() {
+        return title_group;
+    }
+
     public String getNoti_one() {
         return noti_one;
     }

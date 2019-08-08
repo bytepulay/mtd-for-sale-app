@@ -1,4 +1,4 @@
-package asia.nainglintun.myintthitar.activities.Font;
+package asia.nainglintun.myintthitar.Font;
 
 import android.util.Log;
 

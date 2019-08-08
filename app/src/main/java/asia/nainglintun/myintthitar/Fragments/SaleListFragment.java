@@ -592,6 +592,8 @@ public class SaleListFragment extends Fragment implements SearchView.OnQueryText
 
             @Override
             public void onFailure(Call<List<Salehistory>> call, Throwable t) {
+                progressDialog.dismiss();
+                Toast.makeText(getContext(), "History Not Found", Toast.LENGTH_SHORT).show();
 
             }
         });

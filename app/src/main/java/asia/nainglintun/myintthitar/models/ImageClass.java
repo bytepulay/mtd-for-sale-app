@@ -4,12 +4,15 @@ import com.google.gson.annotations.SerializedName;
 
 public class ImageClass {
 
+    @SerializedName("customer_id")
+    private String Id;
+
     private String Title;
 
-
+    @SerializedName("image_path")
     private String Image;
 
-
+    @SerializedName("response_registration")
     private String Response;
 
 
@@ -40,7 +43,12 @@ public class ImageClass {
 
     private String town;
 
+    @SerializedName("profile")
     private String profile;
+
+    public String getId() {
+        return Id;
+    }
 
     public String getProfile() {
         return profile;

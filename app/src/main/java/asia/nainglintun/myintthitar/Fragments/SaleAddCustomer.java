@@ -120,8 +120,6 @@ public class SaleAddCustomer extends Fragment {
     public void performRegistration(){
         SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd_HHmmss");
         String currentDateandTime = sdf.format(new Date());
-
-        Toast.makeText(getContext(),currentDateandTime,Toast.LENGTH_LONG).show();
         String username = userName.getText().toString();
         String uniqueUserName=username.concat(currentDateandTime);
         MultiFormatWriter multiFormatWriter = new MultiFormatWriter();
@@ -230,7 +228,7 @@ public class SaleAddCustomer extends Fragment {
                     progressDialog.dismiss();
                 ImageClass imageClass = response.body();
 
-              Toast.makeText(getContext(), "Server Response:" + imageClass.getResponse(), Toast.LENGTH_SHORT).show();
+              Toast.makeText(getContext(),imageClass.getResponse(), Toast.LENGTH_SHORT).show();
 //                    String result = response.body().getResponse();
 //                    Toast.makeText(getContext(), result, Toast.LENGTH_SHORT).show();
 

@@ -4,11 +4,12 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:layout_marginTop="56dp"
     tools:context=".Fragments.SaleSettingFragment">
 
     <!-- TODO: Update blank fragment layout -->
 
-    <include layout="@layout/toolbar_layout"/>
+
 
     <android.support.v4.widget.NestedScrollView
         android:scrollbars="vertical"
@@ -34,170 +35,18 @@
             app:civ_border_color="#FF000000"/>
 
 
-        <EditText
-        android:shadowColor="#FFF"
-        android:shadowDy="5"
-        android:shadowDx="5"
-        android:padding="15dp"
-        android:background="@drawable/custom_edittext_background"
-        android:drawableRight="@drawable/icon_password"
-        android:inputType="textPassword"
-        android:id="@+id/saleChangePassword"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Change Password"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        android:layout_marginTop="30dp"/>
-
-        <EditText
-            android:shadowColor="#FFF"
-            android:shadowDy="5"
-            android:shadowDx="5"
-            android:padding="15dp"
-            android:background="@drawable/custom_edittext_background"
-            android:drawableRight="@drawable/icon_password"
-            android:inputType="textPassword"
-            android:id="@+id/saleComfirmPassword"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Comfirm Password"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp"
-            android:layout_marginTop="10dp"/>
-
-        <EditText
-            android:id="@+id/custName"
-            android:hint="Customer Name"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp"
-            android:layout_marginTop="10dp"
-            android:padding="10dp"
-            android:textAllCaps="false"
-            android:background="@drawable/custom_edittext_form_background"/>
-
-
-        <EditText
-            android:id="@+id/userName"
-            android:hint="User Name"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp"
-            android:layout_marginTop="10dp"
-            android:padding="10dp"
-            android:textAllCaps="false"
-            android:background="@drawable/custom_edittext_form_background"/>
-
-
-        <EditText
-            android:id="@+id/shopName"
-            android:hint="Shop Name"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp"
-            android:layout_marginTop="10dp"
-            android:padding="10dp"
-            android:textAllCaps="false"
-            android:background="@drawable/custom_edittext_form_background"/>
-
-
-
-
-
-
-
-        <EditText
-            android:id="@+id/phoneNumber"
-            android:hint="phone Number"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp"
-            android:layout_marginTop="10dp"
-            android:padding="10dp"
-            android:inputType="phone"
-            android:textAllCaps="false"
-            android:background="@drawable/custom_edittext_form_background"/>
-
-
-
-
-
-        <EditText
-            android:id="@+id/address"
-            android:hint="address"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp"
-            android:layout_marginTop="10dp"
-            android:padding="10dp"
-            android:textAllCaps="false"
-            android:background="@drawable/custom_edittext_form_background"/>
-
-
-
-
-        <EditText
-            android:id="@+id/dateOfBirth"
-            android:hint="Date Of Birth"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp"
-            android:layout_marginTop="10dp"
-            android:padding="10dp"
-            android:textAllCaps="false"
-            android:background="@drawable/custom_edittext_form_background"/>
-
-
-        <EditText
-            android:id="@+id/nrc"
-            android:hint="Nrc"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp"
-            android:layout_marginTop="10dp"
-            android:padding="10dp"
-            android:textAllCaps="false"
-            android:background="@drawable/custom_edittext_form_background"/>
-
-
-
-
-
-        <EditText
-            android:id="@+id/township"
-            android:hint="Township"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp"
-            android:layout_marginTop="10dp"
-            android:padding="10dp"
-            android:textAllCaps="false"
-            android:background="@drawable/custom_edittext_form_background"/>
-
-
-
-
         <Button
         android:padding="15dp"
         android:shadowColor="#000"
         android:shadowDx="5"
         android:shadowDy="5"
         android:layout_margin="20dp"
-        android:id="@+id/btnSaleChangePasswordSave"
+        android:id="@+id/btnSaleProfile"
         android:textAllCaps="false"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/button_login_back"
-        android:text="Save Password"
+        android:text="Change Profile"
         android:textSize="20sp"
         android:textColor="#fff"
        />

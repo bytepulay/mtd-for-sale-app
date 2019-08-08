@@ -51,15 +51,22 @@ public static EditText edShopName,edCustomerName,edCustomerPhone,edDOB,edCustome
     public static EditText edCustomerUserName;
 private  EditText saleDate;
 final Calendar myCalendar = Calendar.getInstance();
-private Button btnCreateInvoiceSave,scanForVoucher;
+private Button btnCreateInvoiceSave;
+private ImageButton scanForVoucher;
 private LinearLayout linearLayoutRing,linearLayoutBangles,linearLayoutNecklace,linearLayoutEarring;
 private Button hideRing,hideBangles,hideNecklace,hideEarring;
 private Spinner spinner;
 private static final String[] paths = {"Choose Items Type","Ring", "Bangles", "Necklace","Earring"};
 private ProgressDialog progressDialog;
+int totalRingNumber=0,totalBangesNumber=0,totalNecklaceNumber =0,totalEarringNumber=0,totalAllNumber=0,totalAllPointEight=0,totalAllKyat=0,totalAllPal=0,totalAllYae=0,
+        totalRingPointEight=0,totalBangesPointEight=0,totalNecklacePointEight=0,totalEarringPointEight=0,
+        totalRingKyat=0,totalBangesKyat=0,totalNecklaceKyat=0,totalEarringKyat=0,
+        totalRingPal=0,totalBangesPal=0,totalNecklacePal=0,totalEarringPal=0,
+        totalRingYae=0,totalBangesYae=0,totalNecklaceYae=0,totalEarringYae=0,totalPoint=0;
+
 
 private EditText ringTitle,ringNumber,ringPointEight,ringKyat,ringPal,ringYae,banglesTitle,banglesNumber,banglesPointEight,banglesKyat,banglesPal,banglesYae,necklaceTitle,necklaceNumber,necklacePointEight,necklaceKyat,necklacePal,necklaceYae,
-        earringTitle,earringNumber,earringPointEight,earringKyat,earringPal,earringYae,voucherNumber,Gram,CuponCode,totalKyat,totalPel,totalYae,totalQualtity,totalPointEight;
+        earringTitle,earringNumber,earringPointEight,earringKyat,earringPal,earringYae,voucherNumber,Gram,CuponCode,totalKyat,totalPal,totalYae,totalQualtity,totalPointEight;
 
     public SaleInvoiceCreate() {
         // Required empty public constructor
@@ -103,8 +110,8 @@ private EditText ringTitle,ringNumber,ringPointEight,ringKyat,ringPal,ringYae,ba
         ringNumber= view.findViewById(R.id.ringNumber);
         ringPointEight = view.findViewById(R.id.ringPointEight);
         ringKyat = view.findViewById(R.id.ringKyat);
-        ringPal = view.findViewById(R.id.ringPal);
-        ringYae = view.findViewById(R.id.ringYae);
+        ringPal = view.findViewById(R.id.rPal);
+        ringYae = view.findViewById(R.id.rYae);
 
 
         banglesTitle = view.findViewById(R.id.banglesText);
@@ -167,23 +174,23 @@ private EditText ringTitle,ringNumber,ringPointEight,ringKyat,ringPal,ringYae,ba
 
 
 
-       totalYae = view.findViewById(R.id.yawe);
-        totalYae.setFilters(new InputFilter[]{new InputFilterMinMax(1,7)});
+       totalYae = view.findViewById(R.id.yae);
+        //totalYae.setFilters(new InputFilter[]{new InputFilterMinMax(0,7)});
 
-        totalPel = view.findViewById(R.id.pel);
-        totalPel.setFilters(new InputFilter[]{new InputFilterMinMax(1,15)});
-
-
-        ringYae.setFilters(new InputFilter[]{new InputFilterMinMax(1,7)});
-        banglesYae.setFilters(new InputFilter[]{new InputFilterMinMax(1,7)});
-        necklaceYae.setFilters(new InputFilter[]{new InputFilterMinMax(1,7)});
-        earringYae.setFilters(new InputFilter[]{new InputFilterMinMax(1,7)});
+        totalPal = view.findViewById(R.id.pal);
+        //totalPal.setFilters(new InputFilter[]{new InputFilterMinMax(0,15)});
 
 
-        ringPal.setFilters(new InputFilter[]{new InputFilterMinMax(1,15)});
-        banglesPal.setFilters(new InputFilter[]{new InputFilterMinMax(1,15)});
-        necklacePal.setFilters(new InputFilter[]{new InputFilterMinMax(1,15)});
-        earringPal.setFilters(new InputFilter[]{new InputFilterMinMax(1,15)});
+        ringYae.setFilters(new InputFilter[]{new InputFilterMinMax(0,7)});
+        banglesYae.setFilters(new InputFilter[]{new InputFilterMinMax(0,7)});
+        necklaceYae.setFilters(new InputFilter[]{new InputFilterMinMax(0,7)});
+        earringYae.setFilters(new InputFilter[]{new InputFilterMinMax(0,7)});
+
+
+        ringPal.setFilters(new InputFilter[]{new InputFilterMinMax(0,15)});
+        banglesPal.setFilters(new InputFilter[]{new InputFilterMinMax(0,15)});
+        necklacePal.setFilters(new InputFilter[]{new InputFilterMinMax(0,15)});
+        earringPal.setFilters(new InputFilter[]{new InputFilterMinMax(0,15)});
 
         edShopName = view.findViewById(R.id.shopName);
         edCustomerName = view.findViewById(R.id.custName);
@@ -194,17 +201,9 @@ private EditText ringTitle,ringNumber,ringPointEight,ringKyat,ringPal,ringYae,ba
        edCustomerTown = view.findViewById(R.id.custTown);
        edCustomerNrc  = view.findViewById(R.id.custNrc);
        edCustomerID = view.findViewById(R.id.custId);
-       // edSarchPhone = view.findViewById(R.id.searchPhone);
-//        phoneNumber = edSarchPhone.getText().toString().trim();
-//
-//        Toast.makeText(getContext(),phoneNumber,Toast.LENGTH_LONG).show();
 
         totalKyat = view.findViewById(R.id.kyat);
-       // searchButton = view.findViewById(R.id.searchButton);
         btnCreateInvoiceSave = view.findViewById(R.id.btnInVoiceSave);
-        //searchButton.setOnClickListener(this);
-       // searchWithPhoneLayout.setVisibility(View.GONE);
-
         scanForVoucher = view.findViewById(R.id.scanForvoucher);
 
         scanForVoucher.setOnClickListener(this);
@@ -212,54 +211,12 @@ private EditText ringTitle,ringNumber,ringPointEight,ringKyat,ringPal,ringYae,ba
         btnCreateInvoiceSave.setOnClickListener(this);
 
 
-
-
         return view;
     }
-
-//    @Override
-//    public void onCheckedChanged(RadioGroup group, int checkedId) {
-//      switch (checkedId){
-//          case R.id.radioNewCustomer:
-//             linearLayoutCustomerNew.setVisibility(View.VISIBLE);
-//              edShopName.setText("");
-//              edCustomerName.setText("");
-//              //edSarchPhone.getText().toString();
-//              edCustomerPhone.setText("");
-//              //Toast.makeText(getContext(), edSarchPhone.getText().toString(),Toast.LENGTH_LONG).show();
-//              edDOB.setText("");
-//              edCustomerUserName.setText("");
-//              edCustomerPassword.setText("");
-//              //searchWithPhoneLayout.setVisibility(View.VISIBLE);
-//            // searchWithPhoneLayout.setVisibility(View.GONE);
-//              break;
-//          case R.id.radioExistingCustomer:
-//                linearLayoutCustomerNew.setVisibility(View.GONE);
-//              //searchWithPhoneLayout.setVisibility(View.VISIBLE);
-//
-//              break;
-//      }
-//    }
 
     @Override
     public void onClick(View v) {
         switch (v.getId()){
-//            case R.id.searchButton:
-//
-//                linearLayoutCustomerNew.setVisibility(View.VISIBLE);
-//                String phoneNumber = edSarchPhone.getText().toString();
-//                edShopName.setText("Sein nan Thaw");
-//                edCustomerName.setText("Ma Aye Myat Mon");
-//                //edSarchPhone.getText().toString();
-//                edCustomerPhone.setText(phoneNumber);
-//                //Toast.makeText(getContext(), edSarchPhone.getText().toString(),Toast.LENGTH_LONG).show();
-//                edDOB.setText("may 25,1990");
-//                edCustomerUserName.setText("Aye Myte");
-//                edCustomerPassword.setText("ayemyte009");
-//                //searchWithPhoneLayout.setVisibility(View.VISIBLE);
-//                //searchWithPhoneLayout.setVisibility(View.GONE);
-//
-//                break;
 
             case R.id.scanForvoucher:
 
@@ -269,23 +226,45 @@ private EditText ringTitle,ringNumber,ringPointEight,ringKyat,ringPal,ringYae,ba
 
             case R.id.btnInVoiceSave:
                 saveSaleInvoice();
-                //Toast.makeText(getContext(),"To do Invoice Save Operation in SaleInvoiceCreate.java",Toast.LENGTH_LONG).show();
-
                 break;
 
             case R.id.hideRing:
                 linearLayoutRing.setVisibility(View.GONE);
+                ringTitle.setText("");
+                ringNumber.setText("0");
+                ringPointEight.setText("0");
+                ringKyat.setText("0");
+                ringPal.setText("0");
+                ringYae.setText("0");
                 break;
 
             case R.id.hideBangles:
                 linearLayoutBangles.setVisibility(View.GONE);
+                banglesTitle.setText("");
+                banglesNumber.setText("0");
+                banglesPointEight.setText("0");
+                banglesKyat.setText("0");
+                banglesPal.setText("0");
+                banglesYae.setText("0");
                 break;
 
             case R.id.hideNecklace:
                 linearLayoutNecklace.setVisibility(View.GONE);
+                necklaceTitle.setText("");
+                necklaceNumber.setText("0");
+                necklacePointEight.setText("0");
+                necklaceKyat.setText("0");
+                necklacePal.setText("0");
+                necklaceYae.setText("0");
 
             case R.id.hideEarring:
                 linearLayoutEarring.setVisibility(View.GONE);
+                earringTitle.setText("");
+                earringNumber.setText("0");
+                earringPointEight.setText("0");
+                earringKyat.setText("0");
+                earringPal.setText("0");
+                earringYae.setText("0");
                 break;
 
 
@@ -331,25 +310,20 @@ private EditText ringTitle,ringNumber,ringPointEight,ringKyat,ringPal,ringYae,ba
     }
 
 
-    public void saveSaleInvoice(){
-       String voucher_Number,sale_Date,qualtity,pointEight,kyat,pal,yae,gram,cuponCode,CustomerID,ring_Title,ring_Number,ring_Point_Eight,ring_Kyat,ring_Pal,ring_Yae,bangles_Title,bangles_Number,bangles_Point_Eight,bangles_Kyat,bangles_Pal,bangles_Yae,necklace_Title,necklace_Number,necklace_Point_Eight,necklace_Kyat,necklace_Pal,necklace_Yae,
-        earring_Title,earring_Number,earring_Point_Eight,earring_Kyat,earring_Pal,earring_Yae;
-       voucher_Number = voucherNumber.getText().toString();
+    public void saveSaleInvoice() {
+        String voucher_Number, sale_Date, qualtity, pointEight, kyat, pal, yae, gram, cuponCode, CustomerID, ring_Title, ring_Number, ring_Point_Eight, ring_Kyat, ring_Pal, ring_Yae, bangles_Title, bangles_Number, bangles_Point_Eight, bangles_Kyat, bangles_Pal, bangles_Yae, necklace_Title, necklace_Number, necklace_Point_Eight, necklace_Kyat, necklace_Pal, necklace_Yae,
+                earring_Title, earring_Number, earring_Point_Eight, earring_Kyat, earring_Pal, earring_Yae;
+        voucher_Number = voucherNumber.getText().toString();
         CustomerID = edCustomerID.getText().toString();
-       sale_Date = saleDate.getText().toString();
-       qualtity = totalQualtity.getText().toString();
-       pointEight = totalPointEight.getText().toString();
-       kyat = totalKyat.getText().toString();
-       pal = totalPel.getText().toString();
-       yae = totalYae.getText().toString();
-       gram  = Gram.getText().toString();
-       cuponCode = CuponCode.getText().toString();
-       ring_Title = ringTitle.getText().toString();
-       ring_Number = ringNumber.getText().toString();
-       ring_Point_Eight = ringPointEight.getText().toString();
-       ring_Kyat = ringKyat.getText().toString();
-       ring_Pal = ringPal.getText().toString();
-       ring_Yae = ringYae.getText().toString();
+        sale_Date = saleDate.getText().toString();
+
+        cuponCode = CuponCode.getText().toString();
+        ring_Title = ringTitle.getText().toString();
+        ring_Number = ringNumber.getText().toString();
+        ring_Point_Eight = ringPointEight.getText().toString();
+        ring_Kyat = ringKyat.getText().toString();
+        ring_Pal = ringPal.getText().toString();
+        ring_Yae = ringYae.getText().toString();
 
 
         bangles_Title = banglesTitle.getText().toString();
@@ -360,45 +334,136 @@ private EditText ringTitle,ringNumber,ringPointEight,ringKyat,ringPal,ringYae,ba
         bangles_Yae = banglesYae.getText().toString();
 
 
-
-        necklace_Title =necklaceTitle.getText().toString();
-        necklace_Number =necklaceNumber.getText().toString();
-        necklace_Point_Eight =necklacePointEight.getText().toString();
-        necklace_Kyat =necklaceKyat.getText().toString();
-        necklace_Pal =necklacePal.getText().toString();
-        necklace_Yae =necklaceYae.getText().toString();
-
+        necklace_Title = necklaceTitle.getText().toString();
+        necklace_Number = necklaceNumber.getText().toString();
+        necklace_Point_Eight = necklacePointEight.getText().toString();
+        necklace_Kyat = necklaceKyat.getText().toString();
+        necklace_Pal = necklacePal.getText().toString();
+        necklace_Yae = necklaceYae.getText().toString();
 
 
-        earring_Title =earringTitle.getText().toString();
-        earring_Number =earringNumber.getText().toString();
-        earring_Point_Eight =earringPointEight.getText().toString();
-        earring_Kyat =earringKyat.getText().toString();
-        earring_Pal =earringPal.getText().toString();
-        earring_Yae =earringYae.getText().toString();
-
-        progressDialog.show();
-
-        Call<SaleInoviceData> call = MainActivity.apiInterface.insertSaleInvoice(MainActivity.prefConfig.readName(),voucher_Number,sale_Date,qualtity,pointEight,kyat,pal,yae,gram,cuponCode,CustomerID,ring_Title,ring_Number,ring_Point_Eight,ring_Kyat,ring_Pal,ring_Yae,bangles_Title,bangles_Number,bangles_Point_Eight,bangles_Kyat,bangles_Pal,bangles_Yae,
-                necklace_Title,necklace_Number,necklace_Point_Eight,necklace_Kyat,necklace_Pal,necklace_Yae,earring_Title,earring_Number,earring_Point_Eight,earring_Kyat,earring_Pal,earring_Yae);
-
-        call.enqueue(new Callback<SaleInoviceData>() {
+        earring_Title = earringTitle.getText().toString();
+        earring_Number = earringNumber.getText().toString();
+        earring_Point_Eight = earringPointEight.getText().toString();
+        earring_Kyat = earringKyat.getText().toString();
+        earring_Pal = earringPal.getText().toString();
+        earring_Yae = earringYae.getText().toString();
 
 
-            @Override
-            public void onResponse(Call<SaleInoviceData> call, Response<SaleInoviceData> response) {
-                progressDialog.dismiss();
-                if (response.body().getResponse().equals("ok")){
-                    Toast.makeText(getContext(),"Sale Invoice Successfully",Toast.LENGTH_LONG).show();
-                } else if (response.body().getResponse().equals("error")){
-                    Toast.makeText(getContext(),"sale Invoice fail",Toast.LENGTH_LONG).show();
+
+
+
+        try {
+            totalRingNumber = Integer.parseInt(ring_Number);
+            totalBangesNumber = Integer.parseInt(bangles_Number);
+            totalNecklaceNumber = Integer.parseInt(necklace_Number);
+            totalEarringNumber = Integer.parseInt(earring_Number);
+
+
+        } catch (NumberFormatException e) {
+                e.printStackTrace();
+        }
+
+        try {
+            totalRingPointEight = Integer.parseInt(ring_Point_Eight);
+            totalBangesPointEight = Integer.parseInt(bangles_Point_Eight);
+            totalNecklacePointEight = Integer.parseInt(necklace_Point_Eight);
+            totalEarringPointEight = Integer.parseInt(earring_Point_Eight);
+        } catch (NumberFormatException e) {
+            e.printStackTrace();
+        }
+
+
+        try {
+            totalRingKyat = Integer.parseInt(ring_Kyat);
+            totalBangesKyat = Integer.parseInt(bangles_Kyat);
+            totalNecklaceKyat = Integer.parseInt(necklace_Kyat);
+            totalEarringKyat = Integer.parseInt(earring_Kyat);
+
+        } catch (NumberFormatException e) {
+            e.printStackTrace();
+        }
+
+
+        try {
+
+            totalRingPal = Integer.parseInt(ring_Pal);
+            totalBangesPal = Integer.parseInt(bangles_Pal);
+            totalNecklacePal = Integer.parseInt(necklace_Pal);
+            totalEarringPal = Integer.parseInt(earring_Pal);
+        } catch (NumberFormatException e) {
+            e.printStackTrace();
+        }
+
+        try {
+
+            totalRingYae = Integer.parseInt(ring_Yae);
+            totalBangesYae = Integer.parseInt(bangles_Yae);
+            totalNecklaceYae = Integer.parseInt(necklace_Yae);
+            totalEarringYae = Integer.parseInt(earring_Yae);
+
+        } catch (NumberFormatException e) {
+            e.printStackTrace();
+        }
+
+
+
+
+        totalAllNumber = totalRingNumber+totalBangesNumber+totalNecklaceNumber+totalEarringNumber;
+        totalAllPointEight = totalRingPointEight+totalBangesPointEight+totalNecklacePointEight+totalEarringPointEight;
+        totalAllKyat = totalRingKyat + totalBangesKyat+totalNecklaceKyat+totalEarringKyat;
+        totalAllPal = totalRingPal + totalBangesPal+totalNecklacePal+totalEarringPal;
+        totalAllYae = totalRingYae + totalBangesYae+totalNecklaceYae+totalEarringYae;
+
+
+       totalPoint= totalAllNumber-(totalAllPointEight/2);
+       String stotalPoint = String.valueOf(totalPoint);
+        Toast.makeText(getContext(), String.valueOf(totalPoint), Toast.LENGTH_SHORT).show();
+
+        totalQualtity.setText(String.valueOf(totalAllNumber));
+        totalPointEight.setText(String.valueOf(totalAllPointEight));
+        totalKyat.setText(String.valueOf(totalAllKyat));
+        totalPal.setText(String.valueOf(totalAllPal));
+        totalYae.setText(String.valueOf(totalAllYae));
+
+        qualtity = totalQualtity.getText().toString();
+        pointEight = totalPointEight.getText().toString();
+        kyat = totalKyat.getText().toString();
+        pal = totalPal.getText().toString();
+        yae = totalYae.getText().toString();
+        gram = Gram.getText().toString();
+
+        Toast.makeText(getContext(), "qualtity: " +qualtity +"pointeight : " + pointEight+ "Kyat :" + kyat + "Pal :"+ pal + "Yae :" +yae, Toast.LENGTH_SHORT).show();
+
+
+        if (CustomerID.isEmpty()) {
+            edCustomerID.setError("Scan Customer Information");
+            Toast.makeText(getContext(), "Scan Cusotmer Information", Toast.LENGTH_SHORT).show();
+        } else if (!CustomerID.isEmpty()) {
+
+              progressDialog.show();
+
+            Call<SaleInoviceData> call = MainActivity.apiInterface.insertSaleInvoice(MainActivity.prefConfig.readName(), voucher_Number, sale_Date, qualtity, pointEight,stotalPoint, kyat, pal, yae, gram, cuponCode, CustomerID, ring_Title, ring_Number, ring_Point_Eight, ring_Kyat, ring_Pal, ring_Yae, bangles_Title, bangles_Number, bangles_Point_Eight, bangles_Kyat, bangles_Pal, bangles_Yae,
+                    necklace_Title, necklace_Number, necklace_Point_Eight, necklace_Kyat, necklace_Pal, necklace_Yae, earring_Title, earring_Number, earring_Point_Eight, earring_Kyat, earring_Pal, earring_Yae);
+
+            call.enqueue(new Callback<SaleInoviceData>() {
+
+
+                @Override
+                public void onResponse(Call<SaleInoviceData> call, Response<SaleInoviceData> response) {
+                    progressDialog.dismiss();
+                    if (response.body().getResponse().equals("ok")) {
+                        Toast.makeText(getContext(), "Sale Invoice Successfully", Toast.LENGTH_LONG).show();
+                    } else if (response.body().getResponse().equals("error")) {
+                        Toast.makeText(getContext(), "sale Invoice fail", Toast.LENGTH_LONG).show();
+                    }
                 }
-            }
 
-            @Override
-            public void onFailure(Call<SaleInoviceData> call, Throwable t) {
-                Toast.makeText(getContext(), "pull fail", Toast.LENGTH_SHORT).show();
-            }
-        });
+                @Override
+                public void onFailure(Call<SaleInoviceData> call, Throwable t) {
+                    Toast.makeText(getContext(), "pull fail", Toast.LENGTH_SHORT).show();
+                }
+            });
+        }
     }
 }

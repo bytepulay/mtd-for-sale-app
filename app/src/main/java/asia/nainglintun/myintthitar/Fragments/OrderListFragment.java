@@ -589,7 +589,8 @@ public class OrderListFragment extends Fragment implements SearchView.OnQueryTex
 
             @Override
             public void onFailure(Call<List<Orderhistory>> call, Throwable t) {
-                Toast.makeText(getContext(), "pull fail", Toast.LENGTH_SHORT).show();
+                progressDialog.dismiss();
+                Toast.makeText(getContext(), "No Order History", Toast.LENGTH_SHORT).show();
             }
         });
     }

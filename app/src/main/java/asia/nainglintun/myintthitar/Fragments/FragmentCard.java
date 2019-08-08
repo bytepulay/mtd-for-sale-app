@@ -2,6 +2,8 @@ package asia.nainglintun.myintthitar.Fragments;
 
 
 import android.content.res.Resources;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Rect;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -14,6 +16,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.bumptech.glide.request.RequestOptions;
 
 import java.util.ArrayList;
 
@@ -23,6 +30,12 @@ import asia.nainglintun.myintthitar.Activities.SalesActivity;
 import asia.nainglintun.myintthitar.Adapters.CardAdapter;
 import asia.nainglintun.myintthitar.R;
 import asia.nainglintun.myintthitar.ToDo.CardTodo;
+import asia.nainglintun.myintthitar.models.Sale;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
+import static asia.nainglintun.myintthitar.Activities.MainActivity.prefConfig;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -35,6 +48,7 @@ public class FragmentCard extends Fragment {
     private CardAdapter adapter;
     private ImageView sProfile;
     private TextView name;
+    private Bitmap bitmap;
     public FragmentCard() {
         // Required empty public constructor
     }
@@ -52,10 +66,48 @@ public class FragmentCard extends Fragment {
 
         todoList = new ArrayList<>();
 
-        sProfile = view.findViewById(R.id.saleProfile);
+        sProfile = view.findViewById(R.id.saleProfileCard);
         name = view.findViewById(R.id.saleName);
+        bitmap = BitmapFactory.decodeResource(getContext().getResources(),
+                R.drawable.default_profile);
+        sProfile.setImageBitmap(bitmap);
 
         name.setText(MainActivity.prefConfig.readName());
+
+       // Glide.with(getContext()).load("http://mtdatabase.com/mtd/uploads/"+prefConfig.readName()+".jpg").apply(RequestOptions.skipMemoryCacheOf(true).diskCacheStrategy(DiskCacheStrategy.NONE)).into(sProfile);
+
+//        Call<Sale> saleCall = MainActivity.apiInterface.getSaleProfile(prefConfig.readName());
+//        saleCall.enqueue(new Callback<Sale>() {
+//            @Override
+//            public void onResponse(Call<Sale> call, Response<Sale> response) {
+//                String Profile=response.body().getProfile();
+//
+//
+//
+////                if(Profile==""){
+////                    bitmap = BitmapFactory.decodeResource(getContext().getResources(),
+////                            R.drawable.default_profile);
+////                    sProfile.setImageBitmap(bitmap);
+////
+////                }else if(Profile!="") {
+////                    Glide.with(getContext()).load("http://mtdatabase.com/mtd/"+Profile).apply(RequestOptions.skipMemoryCacheOf(true).diskCacheStrategy(DiskCacheStrategy.NONE)).into(sProfile);
+////
+////                }
+////                if(Profile==""){
+////
+////                }
+////                 if(Profile!=""){
+//                    //Glide.with(getContext()).load("http://mtdatabase.com/mtd/"+Profile).apply(RequestOptions.skipMemoryCacheOf(true).diskCacheStrategy(DiskCacheStrategy.NONE)).into(sProfile);
+//
+//                //}
+//                Toast.makeText(getContext(), "This is a " +Profile, Toast.LENGTH_SHORT).show();
+//            }
+//
+//            @Override
+//            public void onFailure(Call<Sale> call, Throwable t) {
+//
+//            }
+//        });
 
 
 
@@ -72,8 +124,8 @@ public class FragmentCard extends Fragment {
         todoList.add(new CardTodo("Order Invoice",R.drawable.create_order));
         todoList.add(new CardTodo("Add Customer ",R.drawable.create_customer));
         todoList.add(new CardTodo("Sale History",R.drawable.my_history));
-        todoList.add(new CardTodo(" Order History ",R.drawable.order_history));
-        todoList.add(new CardTodo("Setting",R.drawable.ic_settings_black_24dp));
+        todoList.add(new CardTodo(" Order History ",R.drawable.icons_documents));
+        todoList.add(new CardTodo("Settings",R.drawable.icons_gears));
 
 
         recyclerView = view.findViewById(R.id.reView);

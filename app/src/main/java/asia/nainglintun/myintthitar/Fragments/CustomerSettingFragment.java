@@ -26,6 +26,7 @@ import com.bumptech.glide.request.RequestOptions;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 
+import asia.nainglintun.myintthitar.Activities.CustomerActivity;
 import asia.nainglintun.myintthitar.Activities.MainActivity;
 import asia.nainglintun.myintthitar.R;
 import asia.nainglintun.myintthitar.models.Customer;
@@ -63,12 +64,13 @@ public class CustomerSettingFragment extends Fragment implements View.OnClickLis
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_customer_setting, container, false);
 
+        ((CustomerActivity)getActivity()).setTitle("Setting");
         String name = MainActivity.prefConfig.readName();
         btnCustomerChangePassword = view.findViewById(R.id.btnCustomerPasswordSave);
         bnCustometLogout = view.findViewById(R.id.btnCustomerLogout);
        customerProfile = view.findViewById(R.id.customerProfile);
         bitmap = BitmapFactory.decodeResource(getContext().getResources(),
-                R.drawable.profile);
+                R.drawable.default_profile);
         customerProfile.setImageBitmap(bitmap);
         progressDialog = new ProgressDialog(getContext());
 
@@ -78,26 +80,28 @@ public class CustomerSettingFragment extends Fragment implements View.OnClickLis
         progressDialog.setMessage("Please Wait...");
 
 
-        Call<Customer> call = MainActivity.apiInterface.getCustomerInfo(MainActivity.prefConfig.readName());
-        call.enqueue(new Callback<Customer>() {
+        Call<Customer> call1 = MainActivity.apiInterface.getCustomerInfo(MainActivity.prefConfig.readName());
+        call1.enqueue(new Callback<Customer>() {
             @Override
             public void onResponse(Call<Customer> call, Response<Customer> response) {
                 Customer_Id = String.valueOf(response.body().getId());
-                profile = response.body().getProfile();
 
-                if(profile=="null"){
+               String paths = response.body().getProfile();
+
+
+                if(paths==""){
                     bitmap = BitmapFactory.decodeResource(getContext().getResources(),
-                            R.drawable.profile);
+                            R.drawable.default_profile);
                     customerProfile.setImageBitmap(bitmap);
+                }else if(paths!="") {
+                    Glide.with(getContext()).load("http://mtdatabase.com/mtd/"+paths).apply(RequestOptions.skipMemoryCacheOf(true).diskCacheStrategy(DiskCacheStrategy.NONE)).into(customerProfile);
+
                 }
 
-                if(profile!="null") {
-                    Glide.with(getContext()).load("https://datacenterasia.000webhostapp.com/mtd/uploads/profile" + name + ".jpg").apply(RequestOptions.skipMemoryCacheOf(true).diskCacheStrategy(DiskCacheStrategy.NONE)).into(customerProfile);
-                }
+                Toast.makeText(getContext(), paths, Toast.LENGTH_SHORT).show();
 
 
-              //fetchInformation(Customer_Id);
-                //Toast.makeText(getContext(), Customer_Id + profile, Toast.LENGTH_SHORT).show();
+
 
             }
 
@@ -108,6 +112,7 @@ public class CustomerSettingFragment extends Fragment implements View.OnClickLis
 
             }
         });
+
 
 //        if(profile!="empty") {
 //            Glide.with(getContext()).load("https://datacenterasia.000webhostapp.com/mtd/uploads/profile" + name + ".jpg").apply(RequestOptions.skipMemoryCacheOf(true).diskCacheStrategy(DiskCacheStrategy.NONE)).into(customerProfile);
@@ -159,20 +164,20 @@ public class CustomerSettingFragment extends Fragment implements View.OnClickLis
             @Override
             public void onResponse(Call<ImageClass> call, Response<ImageClass> response) {
                 progressDialog.dismiss();
-//                ImageClass imageClass = response.body();n
-//
-//               Toast.makeText(getContext(), "Server Response:" + imageClass.getResponse(), Toast.LENGTH_SHORT).show();
-                //String result = response.body().getResponse();
+                ImageClass imageClass = response.body();
 
-                Toast.makeText(getContext(), "Sucess", Toast.LENGTH_SHORT).show();
+               Toast.makeText(getContext(), "Server Response:" + imageClass.getResponse(), Toast.LENGTH_SHORT).show();
+                String result = response.body().getResponse();
+
+                Toast.makeText(getContext(), result, Toast.LENGTH_SHORT).show();
 
             }
 
 
             @Override
             public void onFailure(Call<ImageClass> call, Throwable t) {
-                progressDialog.dismiss();
-                Toast.makeText(getContext(), "Change Fail", Toast.LENGTH_SHORT).show();
+               progressDialog.dismiss();
+//                Toast.makeText(getContext(), "Change Fail", Toast.LENGTH_SHORT).show();
             }
         });
     }
