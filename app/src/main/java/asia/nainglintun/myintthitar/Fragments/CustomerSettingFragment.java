@@ -88,13 +88,13 @@ public class CustomerSettingFragment extends Fragment implements View.OnClickLis
 
                String paths = response.body().getProfile();
 
-
+                Toast.makeText(getContext(), paths, Toast.LENGTH_SHORT).show();
                 if(paths==""){
                     bitmap = BitmapFactory.decodeResource(getContext().getResources(),
                             R.drawable.default_profile);
                     customerProfile.setImageBitmap(bitmap);
                 }else if(paths!="") {
-                    Glide.with(getContext()).load("http://mtdatabase.com/mtd/"+paths).apply(RequestOptions.skipMemoryCacheOf(true).diskCacheStrategy(DiskCacheStrategy.NONE)).into(customerProfile);
+                    Glide.with(getContext()).load("http://128.199.190.233/mtd/"+paths).apply(RequestOptions.skipMemoryCacheOf(true).diskCacheStrategy(DiskCacheStrategy.NONE)).into(customerProfile);
 
                 }
 

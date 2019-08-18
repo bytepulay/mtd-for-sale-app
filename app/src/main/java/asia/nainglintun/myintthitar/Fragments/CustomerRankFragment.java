@@ -88,7 +88,7 @@ public class CustomerRankFragment extends Fragment {
                             R.drawable.default_profile);
                     Profile.setImageBitmap(bitmap);
                 }else if(paths!="") {
-                    Glide.with(getContext()).load("http://128.199.190.233/mtd/uploads"+paths).apply(RequestOptions.skipMemoryCacheOf(true).diskCacheStrategy(DiskCacheStrategy.NONE)).into(Profile);
+                    Glide.with(getContext()).load("http://128.199.190.233/mtd/"+paths).apply(RequestOptions.skipMemoryCacheOf(true).diskCacheStrategy(DiskCacheStrategy.NONE)).into(Profile);
 
                 }
 

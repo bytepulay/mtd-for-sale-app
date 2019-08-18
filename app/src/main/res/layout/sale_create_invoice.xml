@@ -93,7 +93,7 @@
                 android:layout_weight="5"
                 android:background="@drawable/custom_edittext_form_background"
                 android:hint="က်ပ္"
-                android:inputType="number" />
+                android:inputType="numberDecimal" />
 
             <EditText
                 style="@style/Foredit"
@@ -101,7 +101,7 @@
                 android:layout_weight="5"
                 android:background="@drawable/custom_edittext_form_background"
                 android:hint="ပဲ"
-                android:inputType="number"/>
+                android:inputType="numberDecimal"/>
 
             <EditText
                 style="@style/Foredit"
@@ -109,7 +109,7 @@
                 android:layout_weight="5"
                 android:background="@drawable/custom_edittext_form_background"
                 android:hint=" ေရြး"
-                android:inputType="number"
+                android:inputType="numberDecimal"
                 />
 
         </LinearLayout>
@@ -137,7 +137,7 @@
                     android:layout_weight="5"
                     android:background="@drawable/custom_edittext_form_background"
                     android:hint="က်ပ္"
-                    android:inputType="number" />
+                    android:inputType="numberDecimal" />
 
                 <EditText
                     style="@style/Foredit"
@@ -145,7 +145,7 @@
                     android:layout_weight="5"
                     android:background="@drawable/custom_edittext_form_background"
                     android:hint="ပဲ"
-                    android:inputType="number"/>
+                    android:inputType="numberDecimal"/>
 
                 <EditText
                     style="@style/Foredit"
@@ -153,7 +153,7 @@
                     android:layout_weight="5"
                     android:background="@drawable/custom_edittext_form_background"
                     android:hint=" ေရြး"
-                    android:inputType="number"
+                    android:inputType="numberDecimal"
                     />
 
             </LinearLayout>
@@ -254,7 +254,7 @@
                 android:layout_weight="5"
                 android:background="@drawable/custom_edittext_form_background"
                 android:hint="က်ပ္"
-                android:inputType="number" />
+                android:inputType="numberDecimal" />
 
             <EditText
                 style="@style/Foredit"
@@ -262,7 +262,7 @@
                 android:layout_weight="5"
                 android:background="@drawable/custom_edittext_form_background"
                 android:hint="ပဲ"
-                android:inputType="number"/>
+                android:inputType="numberDecimal"/>
 
             <EditText
                 style="@style/Foredit"
@@ -270,7 +270,7 @@
                 android:layout_weight="5"
                 android:background="@drawable/custom_edittext_form_background"
                 android:hint=" ေရြး"
-                android:inputType="number"
+                android:inputType="numberDecimal"
                 />
 
         </LinearLayout>
@@ -310,7 +310,7 @@
                 android:layout_weight="5"
                 android:background="@drawable/custom_edittext_form_background"
                 android:hint="က်ပ္"
-                android:inputType="number" />
+                android:inputType="numberDecimal" />
 
             <EditText
                 style="@style/Foredit"
@@ -318,7 +318,7 @@
                 android:layout_weight="5"
                 android:background="@drawable/custom_edittext_form_background"
                 android:hint="ပဲ"
-                android:inputType="number"/>
+                android:inputType="numberDecimal"/>
 
             <EditText
                 style="@style/Foredit"
@@ -326,7 +326,7 @@
                 android:layout_weight="5"
                 android:background="@drawable/custom_edittext_form_background"
                 android:hint=" ေရြး"
-                android:inputType="number"
+                android:inputType="numberDecimal"
                 />
 
         </LinearLayout>
@@ -354,7 +354,7 @@
                 android:layout_weight="5"
                 android:background="@drawable/custom_edittext_form_background"
                 android:hint="က်ပ္"
-                android:inputType="number" />
+                android:inputType="numberDecimal" />
 
             <EditText
                 style="@style/Foredit"
@@ -362,7 +362,7 @@
                 android:layout_weight="5"
                 android:background="@drawable/custom_edittext_form_background"
                 android:hint="ပဲ"
-                android:inputType="number"/>
+                android:inputType="numberDecimal"/>
 
             <EditText
                 style="@style/Foredit"
@@ -370,7 +370,7 @@
                 android:layout_weight="5"
                 android:background="@drawable/custom_edittext_form_background"
                 android:hint=" ေရြး"
-                android:inputType="number"
+                android:inputType="numberDecimal"
                 />
 
         </LinearLayout>
@@ -411,7 +411,7 @@
                 android:layout_weight="5"
                 android:background="@drawable/custom_edittext_form_background"
                 android:hint="က်ပ္"
-                android:inputType="number" />
+                android:inputType="numberDecimal" />
 
             <EditText
                 style="@style/Foredit"
@@ -419,7 +419,7 @@
                 android:layout_weight="5"
                 android:background="@drawable/custom_edittext_form_background"
                 android:hint="ပဲ"
-                android:inputType="number"/>
+                android:inputType="numberDecimal"/>
 
             <EditText
                 style="@style/Foredit"
@@ -427,7 +427,7 @@
                 android:layout_weight="5"
                 android:background="@drawable/custom_edittext_form_background"
                 android:hint=" ေရြး"
-                android:inputType="number"
+                android:inputType="numberDecimal"
                 />
 
         </LinearLayout>
@@ -448,7 +448,7 @@
                 android:layout_weight="5"
                 android:background="@drawable/custom_edittext_form_background"
                 android:hint="Qualtity"
-                android:inputType="number"
+                android:inputType="numberDecimal"
                 />
 
             <EditText
@@ -457,7 +457,7 @@
                 android:layout_weight="5"
                 android:background="@drawable/custom_edittext_form_background"
                 android:hint="Point Eight"
-                android:inputType="number"
+                android:inputType="numberDecimal"
                 />
 
 
@@ -485,7 +485,7 @@
                 android:layout_weight="5"
                 android:background="@drawable/custom_edittext_form_background"
                 android:hint="က်ပ္"
-                android:inputType="number" />
+                android:inputType="numberDecimal" />
 
             <EditText
                 style="@style/Foredit"
@@ -493,7 +493,7 @@
                 android:layout_weight="5"
                 android:background="@drawable/custom_edittext_form_background"
                 android:hint="ပဲ"
-                android:inputType="number"/>
+                android:inputType="numberDecimal"/>
 
             <EditText
                 style="@style/Foredit"
@@ -501,7 +501,7 @@
                 android:layout_weight="5"
                 android:background="@drawable/custom_edittext_form_background"
                 android:hint="ေရြး"
-                android:inputType="number"
+                android:inputType="numberDecimal"
                 />
 
 
@@ -520,7 +520,6 @@
                     android:background="@drawable/custom_edittext_form_background"
                     android:hint="Cupon Code"
                     android:layout_weight="5"
-                    android:inputType="number"
                     style="@style/Foredit"/>
 
 
@@ -530,7 +529,7 @@
                 android:background="@drawable/custom_edittext_form_background"
                 android:hint="Remark"
                 android:layout_weight="5"
-                android:inputType="number"
+                android:inputType="numberDecimal"
                 style="@style/Foredit"/>
 
 

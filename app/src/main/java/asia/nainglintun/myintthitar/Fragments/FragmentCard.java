@@ -83,41 +83,29 @@ public class FragmentCard extends Fragment {
 
         name.setText(MainActivity.prefConfig.readName());
 
-       // Glide.with(getContext()).load("http://mtdatabase.com/mtd/uploads/"+prefConfig.readName()+".jpg").apply(RequestOptions.skipMemoryCacheOf(true).diskCacheStrategy(DiskCacheStrategy.NONE)).into(sProfile);
+        Call<Sale> saleCall = MainActivity.apiInterface.getSaleProfile(prefConfig.readName());
+        saleCall.enqueue(new Callback<Sale>() {
+            @Override
+            public void onResponse(Call<Sale> call, Response<Sale> response) {
+                String Profile=response.body().getProfile();
+               // Toast.makeText(getContext(), Profile, Toast.LENGTH_SHORT).show();
+                if(!Profile.equals("No")){
+                    Glide.with(getContext()).load("http://128.199.190.233/mtd/"+Profile).apply(RequestOptions.skipMemoryCacheOf(true).diskCacheStrategy(DiskCacheStrategy.NONE)).into(sProfile);
 
-//        Call<Sale> saleCall = MainActivity.apiInterface.getSaleProfile(prefConfig.readName());
-//        saleCall.enqueue(new Callback<Sale>() {
-//            @Override
-//            public void onResponse(Call<Sale> call, Response<Sale> response) {
-//                String Profile=response.body().getProfile();
-//
-//
-//
-////                if(Profile==""){
-////                    bitmap = BitmapFactory.decodeResource(getContext().getResources(),
-////                            R.drawable.default_profile);
-////                    sProfile.setImageBitmap(bitmap);
-////
-////                }else if(Profile!="") {
-////                    Glide.with(getContext()).load("http://mtdatabase.com/mtd/"+Profile).apply(RequestOptions.skipMemoryCacheOf(true).diskCacheStrategy(DiskCacheStrategy.NONE)).into(sProfile);
-////
-////                }
-////                if(Profile==""){
-////
-////                }
-////                 if(Profile!=""){
-//                    //Glide.with(getContext()).load("http://mtdatabase.com/mtd/"+Profile).apply(RequestOptions.skipMemoryCacheOf(true).diskCacheStrategy(DiskCacheStrategy.NONE)).into(sProfile);
-//
-//                //}
-//                Toast.makeText(getContext(), "This is a " +Profile, Toast.LENGTH_SHORT).show();
-//            }
-//
-//            @Override
-//            public void onFailure(Call<Sale> call, Throwable t) {
-//
-//            }
-//        });
+                }
+                if(Profile.equals("No")){
+                    bitmap = BitmapFactory.decodeResource(getContext().getResources(),
+                            R.drawable.default_profile);
+                    sProfile.setImageBitmap(bitmap);
+                }
+                //Toast.makeText(getContext(), "This is a " +Profile, Toast.LENGTH_SHORT).show();
+            }
 
+            @Override
+            public void onFailure(Call<Sale> call, Throwable t) {
+
+            }
+        });
 
 
 //        todoList.add(new CardTodo("This is the first"));

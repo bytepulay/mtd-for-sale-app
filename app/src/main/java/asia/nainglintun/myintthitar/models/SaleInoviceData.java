@@ -205,6 +205,7 @@ public class SaleInoviceData {
     @SerializedName("note")
     private String note;
 
+
     public String getNote() {
         return note;
     }

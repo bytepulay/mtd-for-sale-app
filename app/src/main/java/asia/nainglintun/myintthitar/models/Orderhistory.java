@@ -243,6 +243,29 @@ public class Orderhistory {
     private String total_ayot_yae;
 
 
+    @SerializedName("new_total_kyat")
+    private String total_kyat;
+
+    @SerializedName("new_total_pal")
+    private String total_pal;
+
+
+    @SerializedName("new_total_yae")
+    private String total_yae;
+
+
+    public String getTotal_kyat() {
+        return total_kyat;
+    }
+
+    public String getTotal_pal() {
+        return total_pal;
+    }
+
+    public String getTotal_yae() {
+        return total_yae;
+    }
+
     public String getPreviousRemainKyat() {
         return previousRemainKyat;
     }

@@ -125,7 +125,7 @@ public class SaleListFragment extends Fragment implements SearchView.OnQueryText
                 earringDescription,earringNumber,earringPointEight,earringKyat,earringPal,earringYae,
                 totalQty,totalPointEight,totalKyat,totalPal,totalYae,ID,customerPhoneNumber,customerAddress,customerDob,customerNrc,
                 gram,cuponcode,totalAyotKyat,totalAyotPal,totalAyotYae,previous_kyat,previous_yae,previous_pal,buydebitkyat,buydebitpal,buydebityae,
-                paymentkyat,paymentpal,paymentyae,remainkyat,remainpal,remainyae;
+                paymentkyat,paymentpal,paymentyae,remainkyat,remainpal,remainyae,newTotalKyat,newTotalPal,newTotalYae;
 
                  ID = String.valueOf(salehistories.get(position).getId());
                 String voucher = salehistories.get(position).getVoucherNumber();
@@ -189,6 +189,10 @@ public class SaleListFragment extends Fragment implements SearchView.OnQueryText
                remainpal = salehistories.get(position).getNowRemainPal();
                remainyae = salehistories.get(position).getNowRemainYae();
 
+               newTotalKyat = salehistories.get(position).getTotal_kyat();
+               newTotalPal = salehistories.get(position).getTotal_pal();
+               newTotalYae = salehistories.get(position).getTotal_yae();
+
 
 
                customerPhoneNumber = salehistories.get(position).getCustomerPhoneNumber();
@@ -206,7 +210,7 @@ public class SaleListFragment extends Fragment implements SearchView.OnQueryText
                         necklaceDescription,necklaceNumber,necklacePointEight,necklaceKyat,necklacePal,necklaceYae,
                         earringDescription,earringNumber,earringPointEight,earringKyat,earringPal,earringYae,
                         totalQty,totalPointEight,totalKyat,totalPal,totalYae,
-                        gram,ID,previous_kyat,previous_pal,previous_yae,buydebitkyat,buydebitpal,buydebityae,paymentkyat,paymentpal,paymentyae,remainkyat,remainpal,remainyae);
+                        gram,ID,previous_kyat,previous_pal,previous_yae,buydebitkyat,buydebitpal,buydebityae,paymentkyat,paymentpal,paymentyae,remainkyat,remainpal,remainyae,newTotalKyat,newTotalPal,newTotalYae);
 
             }
 
@@ -224,7 +228,7 @@ public class SaleListFragment extends Fragment implements SearchView.OnQueryText
                            String banglesDescription,String banglesNumber,String banglesPointEight,String banglesKyat,String banglesPal,String banglesYae,
                            String necklaceDescription,String necklaceNumber,String necklacePointEight,String necklaceKyat,String necklacePal,String necklaceYae,
                            String earringDescription,String earringNumber,String earringPointEight,String earringKyat,String earringPal,String earringYae,String totalQty,String totalPointEight,String totalKyat,String totalPal,String totalYae,
-                          String gram,String ID,String previous_kyat,String previous_pal,String previous_yae,String buydebitkyat,String buydebitpal,String buydebityae,String paymentkyat,String paymentpal,String paymentyae,String remainkyat,String remainpal,String remainyae) {
+                          String gram,String ID,String previous_kyat,String previous_pal,String previous_yae,String buydebitkyat,String buydebitpal,String buydebityae,String paymentkyat,String paymentpal,String paymentyae,String remainkyat,String remainpal,String remainyae,String newTotalKyat,String newTotalPal,String newTotalYae) {
 
         dialog.setContentView(R.layout.custom_popup_dialog);
         recyclerView = dialog.findViewById(R.id.recyclerViewDialog);
@@ -248,13 +252,16 @@ public class SaleListFragment extends Fragment implements SearchView.OnQueryText
     nameList.add("Qualtity");
     nameList.add("Point eight");
     nameList.add("Cupon Code");
-    nameList.add(" အေလ်ာ့ က်ပ္");
-    nameList.add(" အေလ်ာ့ ပဲ");
-    nameList.add(" အေလ်ာ့ ေရြး");
-    nameList.add("စုစုေပါင္း အေလးခ်ိန္");
+    nameList.add("စုစုေပါင္း gram");
+    nameList.add("က်ပ္");
+    nameList.add("ပဲ");
+    nameList.add("ေရြး");
     nameList.add("ယခုဝယ္သည့္ က်ပ္");
     nameList.add("ယခုဝယ္သည့္ ပဲ");
     nameList.add("ယခုဝယ္သည့္ ေရြး");
+    nameList.add(" အေလ်ာ့ က်ပ္");
+    nameList.add(" အေလ်ာ့ ပဲ");
+    nameList.add(" အေလ်ာ့ ေရြး");
     nameList.add("ယခင္အေျကြး က်ပ္");
     nameList.add("ယခင္အေျကြး ပဲ");
     nameList.add("ယခင္အေျကြး ေရြး");
@@ -287,13 +294,16 @@ public class SaleListFragment extends Fragment implements SearchView.OnQueryText
     dataList.add(totalQty);
     dataList.add(totalPointEight);
     dataList.add(cuponCode);
-    dataList.add(total_ayot_kyat);
-    dataList.add(total_ayot_pal);
-    dataList.add(total_ayo_yae);
     dataList.add(gram);
     dataList.add(totalKyat);
     dataList.add(totalPal);
     dataList.add(totalYae);
+    dataList.add(newTotalKyat);
+    dataList.add(newTotalPal);
+    dataList.add(newTotalYae);
+    dataList.add(total_ayot_kyat);
+    dataList.add(total_ayot_pal);
+    dataList.add(total_ayo_yae);
     dataList.add(previous_kyat);
     dataList.add(previous_pal);
     dataList.add(previous_yae);

@@ -95,10 +95,16 @@ public class SaleSettingFragment extends Fragment implements View.OnClickListene
             @Override
             public void onResponse(Call<Sale> call, Response<Sale> response) {
                 String Profile=response.body().getProfile();
-//                if(Profile!=""){
-                  //  Glide.with(getContext()).load("http://mtdatabase.com/mtd/"+Profile).apply(RequestOptions.skipMemoryCacheOf(true).diskCacheStrategy(DiskCacheStrategy.NONE)).into(saleProfile);
+                //Toast.makeText(getContext(), Profile, Toast.LENGTH_SHORT).show();
+                if(!Profile.equals("No")){
+                    Glide.with(getContext()).load("http://128.199.190.233/mtd/"+Profile).apply(RequestOptions.skipMemoryCacheOf(true).diskCacheStrategy(DiskCacheStrategy.NONE)).into(saleProfile);
 
-//                }
+                }
+                if(Profile.equals("No")){
+                    bitmap = BitmapFactory.decodeResource(getContext().getResources(),
+                            R.drawable.default_profile);
+                    saleProfile.setImageBitmap(bitmap);
+                }
                 //Toast.makeText(getContext(), "This is a " +Profile, Toast.LENGTH_SHORT).show();
             }
 
