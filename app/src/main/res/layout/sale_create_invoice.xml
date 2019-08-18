@@ -1,31 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.v4.widget.NestedScrollView
+<LinearLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="#fafafa"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-       android:layout_marginTop="56dp">
+     android:orientation="vertical"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <include layout="@layout/toolbar_layout"></include>
 
 
-    <LinearLayout
+    <android.support.v4.widget.NestedScrollView
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
+        <ImageButton
+            android:textColor="#FFFFFF"
+            android:id="@+id/scanForvoucher"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:textAllCaps="false"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="10dp"
+            android:src="@drawable/ic_qr_code_scan"
+            android:background="@drawable/button_login_back"/>
 
-            <ImageButton
-                android:textColor="#FFFFFF"
-                android:id="@+id/scanForvoucher"
-                android:layout_width="match_parent"
-                android:layout_height="60dp"
-                android:textAllCaps="false"
-                android:layout_marginLeft="20dp"
-                android:layout_marginRight="20dp"
-                android:layout_marginTop="10dp"
-                android:src="@drawable/ic_qr_code_scan"
-                android:background="@drawable/button_login_back"/>
 
             <EditText
                 style="@style/Foredit"
@@ -48,574 +54,6 @@
                 android:background="@drawable/custom_edittext_form_background"/>
 
 
-            <!--<Spinner-->
-                <!--style="@style/Foredit"-->
-                <!--android:id="@+id/spinner"-->
-               <!--/>-->
-
-
-        <!--<LinearLayout-->
-            <!--android:visibility="gone"-->
-            <!--android:orientation="vertical"-->
-            <!--android:id="@+id/ring"-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="wrap_content">-->
-
-            <!--<Button-->
-                <!--android:id="@+id/hideRing"-->
-                <!--android:textAllCaps="false"-->
-                <!--android:layout_width="wrap_content"-->
-                <!--android:layout_height="match_parent"-->
-                <!--android:layout_marginLeft="20dp"-->
-                <!--android:background="@drawable/button_login_back"-->
-                <!--android:text="Delete Ring"/>-->
-
-
-            <!--<EditText-->
-                <!--android:elevation="8dp"-->
-                <!--android:shadowColor="#c7d0f8"-->
-                <!--android:shadowDy="6"-->
-                <!--android:shadowDx="0"-->
-                <!--android:id="@+id/ringText"-->
-                <!--android:layout_width="match_parent"-->
-                <!--android:layout_height="wrap_content"-->
-                <!--android:textAllCaps="false"-->
-                <!--android:hint="Ring"-->
-                <!--android:background="@drawable/custom_edittext_form_background"-->
-                <!--android:padding="10dp"-->
-                <!--android:layout_marginLeft="20dp"-->
-                <!--android:layout_marginRight="20dp"-->
-                <!--android:layout_marginTop="10dp"/>-->
-
-
-
-            <!--<LinearLayout-->
-                <!--android:weightSum="10"-->
-                <!--android:orientation="horizontal"-->
-                <!--android:layout_width="match_parent"-->
-                <!--android:layout_height="wrap_content">-->
-
-                <!--<EditText-->
-                    <!--android:elevation="8dp"-->
-                    <!--android:shadowColor="#c7d0f8"-->
-                    <!--android:shadowDy="6"-->
-                    <!--android:shadowDx="0"-->
-                    <!--android:inputType="number"-->
-                    <!--android:layout_weight="5"-->
-                    <!--android:id="@+id/ringNumber"-->
-                    <!--android:layout_width="match_parent"-->
-                    <!--android:layout_height="wrap_content"-->
-                    <!--android:textAllCaps="false"-->
-                    <!--android:hint="Qualtity"-->
-                    <!--android:background="@drawable/custom_edittext_form_background"-->
-                    <!--android:padding="10dp"-->
-                    <!--android:layout_marginLeft="20dp"-->
-                    <!--android:layout_marginRight="20dp"-->
-                    <!--android:layout_marginTop="10dp"/>-->
-
-                <!--<EditText-->
-                    <!--android:elevation="8dp"-->
-                    <!--android:shadowColor="#c7d0f8"-->
-                    <!--android:shadowDy="6"-->
-                    <!--android:shadowDx="0"-->
-                    <!--android:inputType="number"-->
-                    <!--android:layout_weight="5"-->
-                    <!--android:id="@+id/ringPointEight"-->
-                    <!--android:layout_width="match_parent"-->
-                    <!--android:layout_height="wrap_content"-->
-                    <!--android:textAllCaps="false"-->
-                    <!--android:hint="0.8"-->
-                    <!--android:background="@drawable/custom_edittext_form_background"-->
-                    <!--android:padding="10dp"-->
-                    <!--android:layout_marginLeft="20dp"-->
-                    <!--android:layout_marginRight="20dp"-->
-                    <!--android:layout_marginTop="10dp"/>-->
-
-            <!--</LinearLayout>-->
-
-
-            <!--<LinearLayout-->
-                <!--android:weightSum="15"-->
-                <!--android:orientation="horizontal"-->
-                <!--android:layout_width="match_parent"-->
-                <!--android:layout_height="wrap_content">-->
-
-                <!--<EditText-->
-                    <!--android:elevation="8dp"-->
-                    <!--android:shadowColor="#c7d0f8"-->
-                    <!--android:shadowDy="6"-->
-                    <!--android:shadowDx="0"-->
-                    <!--android:id="@+id/ringKyat"-->
-                    <!--android:layout_weight="5"-->
-                    <!--android:layout_width="match_parent"-->
-                    <!--android:layout_height="wrap_content"-->
-                    <!--android:background="@drawable/custom_edittext_form_background"-->
-                    <!--android:padding="10dp"-->
-                    <!--android:hint="က်ပ္"-->
-                    <!--android:inputType="number"-->
-                    <!--android:layout_margin="20dp"/>-->
-
-
-                <!--<EditText-->
-                    <!--android:elevation="8dp"-->
-                    <!--android:shadowColor="#c7d0f8"-->
-                    <!--android:shadowDy="6"-->
-                    <!--android:shadowDx="0"-->
-                    <!--android:id="@+id/rPal"-->
-                    <!--android:layout_weight="5"-->
-                    <!--android:layout_width="match_parent"-->
-                    <!--android:layout_height="wrap_content"-->
-                    <!--android:background="@drawable/custom_edittext_form_background"-->
-                    <!--android:padding="10dp"-->
-                    <!--android:hint="ပဲ"-->
-                    <!--android:inputType="number"-->
-                    <!--android:layout_margin="20dp"/>-->
-
-
-                <!--<EditText-->
-                    <!--android:elevation="8dp"-->
-                    <!--android:shadowColor="#c7d0f8"-->
-                    <!--android:shadowDy="6"-->
-                    <!--android:shadowDx="0"-->
-                    <!--android:id="@+id/rYae"-->
-                    <!--android:layout_weight="5"-->
-                    <!--android:layout_width="match_parent"-->
-                    <!--android:layout_height="wrap_content"-->
-                    <!--android:background="@drawable/custom_edittext_form_background"-->
-                    <!--android:padding="10dp"-->
-                    <!--android:hint="ေရြး"-->
-                    <!--android:inputType="number"-->
-                    <!--android:layout_margin="20dp"/>-->
-
-
-            <!--</LinearLayout>-->
-
-
-
-        <!--</LinearLayout>-->
-
-
-            <!--&lt;!&ndash;*****************************************start Bangles***********************************                   &ndash;&gt;-->
-            <!--<LinearLayout-->
-                <!--android:visibility="gone"-->
-                <!--android:orientation="vertical"-->
-                <!--android:id="@+id/bangles"-->
-                <!--android:layout_width="match_parent"-->
-                <!--android:layout_height="wrap_content">-->
-
-
-                <!--<Button-->
-                    <!--android:id="@+id/hideBangles"-->
-                    <!--android:textAllCaps="false"-->
-                    <!--android:layout_width="wrap_content"-->
-                    <!--android:layout_height="match_parent"-->
-                    <!--android:layout_marginLeft="20dp"-->
-                    <!--android:background="@drawable/button_login_back"-->
-                    <!--android:text="Delete Bangles"/>-->
-
-
-                <!--<EditText-->
-                    <!--android:elevation="8dp"-->
-                    <!--android:shadowColor="#c7d0f8"-->
-                    <!--android:shadowDy="6"-->
-                    <!--android:shadowDx="0"-->
-
-                    <!--android:id="@+id/banglesText"-->
-                    <!--android:layout_width="match_parent"-->
-                    <!--android:layout_height="wrap_content"-->
-                    <!--android:textAllCaps="false"-->
-                    <!--android:hint="Bangles"-->
-                    <!--android:background="@drawable/custom_edittext_form_background"-->
-                    <!--android:padding="10dp"-->
-                    <!--android:layout_marginLeft="20dp"-->
-                    <!--android:layout_marginRight="20dp"-->
-                    <!--android:layout_marginTop="10dp"/>-->
-
-                <!--<LinearLayout-->
-                    <!--android:weightSum="10"-->
-                    <!--android:orientation="horizontal"-->
-                    <!--android:layout_width="match_parent"-->
-                    <!--android:layout_height="wrap_content">-->
-
-                    <!--<EditText-->
-                        <!--android:elevation="8dp"-->
-                        <!--android:shadowColor="#c7d0f8"-->
-                        <!--android:shadowDy="6"-->
-                        <!--android:shadowDx="0"-->
-                        <!--android:inputType="number"-->
-                        <!--android:layout_weight="5"-->
-                        <!--android:id="@+id/banglesNumber"-->
-                        <!--android:layout_width="match_parent"-->
-                        <!--android:layout_height="wrap_content"-->
-                        <!--android:textAllCaps="false"-->
-                        <!--android:hint="Qualtity"-->
-                        <!--android:background="@drawable/custom_edittext_form_background"-->
-                        <!--android:padding="10dp"-->
-                        <!--android:layout_marginLeft="20dp"-->
-                        <!--android:layout_marginRight="20dp"-->
-                        <!--android:layout_marginTop="10dp"/>-->
-
-                    <!--<EditText-->
-                        <!--android:elevation="8dp"-->
-                        <!--android:shadowColor="#c7d0f8"-->
-                        <!--android:shadowDy="6"-->
-                        <!--android:shadowDx="0"-->
-                        <!--android:inputType="number"-->
-                        <!--android:layout_weight="5"-->
-                        <!--android:id="@+id/banglesPointEight"-->
-                        <!--android:layout_width="match_parent"-->
-                        <!--android:layout_height="wrap_content"-->
-                        <!--android:textAllCaps="false"-->
-                        <!--android:hint="0.8"-->
-                        <!--android:background="@drawable/custom_edittext_form_background"-->
-                        <!--android:padding="10dp"-->
-                        <!--android:layout_marginLeft="20dp"-->
-                        <!--android:layout_marginRight="20dp"-->
-                        <!--android:layout_marginTop="10dp"/>-->
-
-                <!--</LinearLayout>-->
-
-                <!--<LinearLayout-->
-                    <!--android:weightSum="15"-->
-                    <!--android:orientation="horizontal"-->
-                    <!--android:layout_width="match_parent"-->
-                    <!--android:layout_height="wrap_content">-->
-
-                    <!--<EditText-->
-                        <!--android:elevation="8dp"-->
-                        <!--android:shadowColor="#c7d0f8"-->
-                        <!--android:shadowDy="6"-->
-                        <!--android:shadowDx="0"-->
-                        <!--android:id="@+id/banglesKyat"-->
-                        <!--android:layout_weight="5"-->
-                        <!--android:layout_width="match_parent"-->
-                        <!--android:layout_height="wrap_content"-->
-                        <!--android:background="@drawable/custom_edittext_form_background"-->
-                        <!--android:padding="10dp"-->
-                        <!--android:hint="က်ပ္"-->
-                        <!--android:inputType="number"-->
-                        <!--android:layout_margin="20dp"/>-->
-
-                    <!--<EditText-->
-                        <!--android:elevation="8dp"-->
-                        <!--android:shadowColor="#c7d0f8"-->
-                        <!--android:shadowDy="6"-->
-                        <!--android:shadowDx="0"-->
-                        <!--android:id="@+id/banglesPal"-->
-                        <!--android:layout_weight="5"-->
-                        <!--android:layout_width="match_parent"-->
-                        <!--android:layout_height="wrap_content"-->
-                        <!--android:background="@drawable/custom_edittext_form_background"-->
-                        <!--android:padding="10dp"-->
-                        <!--android:hint="ပဲ"-->
-                        <!--android:inputType="number"-->
-                        <!--android:layout_margin="20dp"/>-->
-
-                    <!--<EditText-->
-                        <!--android:elevation="8dp"-->
-                        <!--android:shadowColor="#c7d0f8"-->
-                        <!--android:shadowDy="6"-->
-                        <!--android:shadowDx="0"-->
-                        <!--android:id="@+id/banglesYae"-->
-                        <!--android:layout_weight="5"-->
-                        <!--android:layout_width="match_parent"-->
-                        <!--android:layout_height="wrap_content"-->
-                        <!--android:background="@drawable/custom_edittext_form_background"-->
-                        <!--android:padding="10dp"-->
-                        <!--android:hint=" ေရြး"-->
-                        <!--android:inputType="number"-->
-                        <!--android:layout_margin="20dp"/>-->
-
-                <!--</LinearLayout>-->
-
-
-            <!--</LinearLayout>-->
-            <!--&lt;!&ndash;*****************************************End Bangles Layout***********************************                   &ndash;&gt;-->
-
-
-
-            <!--&lt;!&ndash;*****************************************start necklace Layout***********************************                   &ndash;&gt;-->
-
-            <!--<LinearLayout-->
-                <!--android:visibility="gone"-->
-                <!--android:orientation="vertical"-->
-                <!--android:id="@+id/necklace"-->
-                <!--android:layout_width="match_parent"-->
-                <!--android:layout_height="wrap_content">-->
-
-                <!--<Button-->
-                    <!--android:id="@+id/hideNecklace"-->
-                    <!--android:textAllCaps="false"-->
-                    <!--android:layout_width="wrap_content"-->
-                    <!--android:layout_height="match_parent"-->
-                    <!--android:layout_marginLeft="20dp"-->
-                    <!--android:background="@drawable/button_login_back"-->
-                    <!--android:text="Delete Necklace"/>-->
-
-                <!--<EditText-->
-                    <!--android:elevation="8dp"-->
-                    <!--android:shadowColor="#c7d0f8"-->
-                    <!--android:shadowDy="6"-->
-                    <!--android:shadowDx="0"-->
-                    <!--android:id="@+id/necklaceText"-->
-                    <!--android:layout_width="match_parent"-->
-                    <!--android:layout_height="wrap_content"-->
-                    <!--android:textAllCaps="false"-->
-                    <!--android:hint="Necklace"-->
-                    <!--android:background="@drawable/custom_edittext_form_background"-->
-                    <!--android:padding="10dp"-->
-                    <!--android:layout_marginLeft="20dp"-->
-                    <!--android:layout_marginRight="20dp"-->
-                    <!--android:layout_marginTop="10dp"/>-->
-
-                <!--<LinearLayout-->
-                    <!--android:weightSum="10"-->
-                    <!--android:orientation="horizontal"-->
-                    <!--android:layout_width="match_parent"-->
-                    <!--android:layout_height="wrap_content">-->
-
-                    <!--<EditText-->
-                        <!--android:elevation="8dp"-->
-                        <!--android:shadowColor="#c7d0f8"-->
-                        <!--android:shadowDy="6"-->
-                        <!--android:shadowDx="0"-->
-                        <!--android:inputType="number"-->
-                        <!--android:layout_weight="5"-->
-                        <!--android:id="@+id/necklaceNumber"-->
-                        <!--android:layout_width="match_parent"-->
-                        <!--android:layout_height="wrap_content"-->
-                        <!--android:textAllCaps="false"-->
-                        <!--android:hint="Qualtity"-->
-                        <!--android:background="@drawable/custom_edittext_form_background"-->
-                        <!--android:padding="10dp"-->
-                        <!--android:layout_marginLeft="20dp"-->
-                        <!--android:layout_marginRight="20dp"-->
-                        <!--android:layout_marginTop="10dp"/>-->
-
-                    <!--<EditText-->
-                        <!--android:elevation="8dp"-->
-                        <!--android:shadowColor="#c7d0f8"-->
-                        <!--android:shadowDy="6"-->
-                        <!--android:shadowDx="0"-->
-                        <!--android:inputType="number"-->
-                        <!--android:layout_weight="5"-->
-                        <!--android:id="@+id/necklacePointEight"-->
-                        <!--android:layout_width="match_parent"-->
-                        <!--android:layout_height="wrap_content"-->
-                        <!--android:textAllCaps="false"-->
-                        <!--android:hint="0.8"-->
-                        <!--android:background="@drawable/custom_edittext_form_background"-->
-                        <!--android:padding="10dp"-->
-                        <!--android:layout_marginLeft="20dp"-->
-                        <!--android:layout_marginRight="20dp"-->
-                        <!--android:layout_marginTop="10dp"/>-->
-
-                <!--</LinearLayout>-->
-
-                <!--<LinearLayout-->
-                    <!--android:weightSum="15"-->
-                    <!--android:orientation="horizontal"-->
-                    <!--android:layout_width="match_parent"-->
-                    <!--android:layout_height="wrap_content">-->
-
-                    <!--<EditText-->
-                        <!--android:elevation="8dp"-->
-                        <!--android:shadowColor="#c7d0f8"-->
-                        <!--android:shadowDy="6"-->
-                        <!--android:shadowDx="0"-->
-                        <!--android:id="@+id/necklaceKyat"-->
-                        <!--android:layout_weight="5"-->
-                        <!--android:layout_width="match_parent"-->
-                        <!--android:layout_height="wrap_content"-->
-                        <!--android:background="@drawable/custom_edittext_form_background"-->
-                        <!--android:padding="10dp"-->
-                        <!--android:hint="က်ပ္"-->
-                        <!--android:inputType="number"-->
-                        <!--android:layout_margin="20dp"/>-->
-
-                    <!--<EditText-->
-                        <!--android:elevation="8dp"-->
-                        <!--android:shadowColor="#c7d0f8"-->
-                        <!--android:shadowDy="6"-->
-                        <!--android:shadowDx="0"-->
-                        <!--android:id="@+id/necklacePal"-->
-                        <!--android:layout_weight="5"-->
-                        <!--android:layout_width="match_parent"-->
-                        <!--android:layout_height="wrap_content"-->
-                        <!--android:background="@drawable/custom_edittext_form_background"-->
-                        <!--android:padding="10dp"-->
-                        <!--android:hint="ပဲ"-->
-                        <!--android:inputType="number"-->
-                        <!--android:layout_margin="20dp"/>-->
-
-                    <!--<EditText-->
-                        <!--android:elevation="8dp"-->
-                        <!--android:shadowColor="#c7d0f8"-->
-                        <!--android:shadowDy="6"-->
-                        <!--android:shadowDx="0"-->
-                        <!--android:id="@+id/necklaceYae"-->
-                        <!--android:layout_weight="5"-->
-                        <!--android:layout_width="match_parent"-->
-                        <!--android:layout_height="wrap_content"-->
-                        <!--android:background="@drawable/custom_edittext_form_background"-->
-                        <!--android:padding="10dp"-->
-                        <!--android:hint=" ေရြး"-->
-                        <!--android:inputType="number"-->
-                        <!--android:layout_margin="20dp"/>-->
-
-                <!--</LinearLayout>-->
-
-
-
-
-
-            <!--</LinearLayout>-->
-
-            <!--&lt;!&ndash;*****************************************end  Necklace Layout***********************************                   &ndash;&gt;-->
-
-
-
-            <!--&lt;!&ndash;*****************************************start Earring Layout***********************************                   &ndash;&gt;-->
-
-            <!--<LinearLayout-->
-                <!--android:visibility="gone"-->
-                <!--android:orientation="vertical"-->
-                <!--android:id="@+id/earring"-->
-                <!--android:layout_width="match_parent"-->
-                <!--android:layout_height="wrap_content">-->
-
-                <!--<Button-->
-                    <!--android:id="@+id/hideEarring"-->
-                    <!--android:textAllCaps="false"-->
-                    <!--android:layout_width="wrap_content"-->
-                    <!--android:layout_height="match_parent"-->
-                    <!--android:layout_marginLeft="20dp"-->
-                    <!--android:background="@drawable/button_login_back"-->
-                    <!--android:text="Delete Earring"/>-->
-
-
-                <!--<EditText-->
-                    <!--android:elevation="8dp"-->
-                    <!--android:shadowColor="#c7d0f8"-->
-                    <!--android:shadowDy="6"-->
-                    <!--android:shadowDx="0"-->
-                    <!--android:id="@+id/earringText"-->
-                    <!--android:layout_width="match_parent"-->
-                    <!--android:layout_height="wrap_content"-->
-                    <!--android:textAllCaps="false"-->
-                    <!--android:hint="Earring"-->
-                    <!--android:background="@drawable/custom_edittext_form_background"-->
-                    <!--android:padding="10dp"-->
-                    <!--android:layout_marginLeft="20dp"-->
-                    <!--android:layout_marginRight="20dp"-->
-                    <!--android:layout_marginTop="10dp"/>-->
-
-                <!--<LinearLayout-->
-                    <!--android:background="#fafafa"-->
-                    <!--android:weightSum="10"-->
-                    <!--android:orientation="horizontal"-->
-                    <!--android:layout_width="match_parent"-->
-                    <!--android:layout_height="wrap_content">-->
-
-                    <!--<EditText-->
-                        <!--android:elevation="8dp"-->
-                        <!--android:shadowColor="#c7d0f8"-->
-                        <!--android:shadowDy="6"-->
-                        <!--android:shadowDx="0"-->
-                        <!--android:inputType="number"-->
-                        <!--android:layout_weight="5"-->
-                        <!--android:id="@+id/earringNumber"-->
-                        <!--android:layout_width="match_parent"-->
-                        <!--android:layout_height="wrap_content"-->
-                        <!--android:textAllCaps="false"-->
-                        <!--android:hint="Qualtity"-->
-                        <!--android:background="@drawable/custom_edittext_form_background"-->
-                        <!--android:padding="10dp"-->
-                        <!--android:layout_marginLeft="20dp"-->
-                        <!--android:layout_marginRight="20dp"-->
-                        <!--android:layout_marginTop="10dp"/>-->
-
-                    <!--<EditText-->
-                        <!--android:elevation="8dp"-->
-                        <!--android:shadowColor="#c7d0f8"-->
-                        <!--android:shadowDy="6"-->
-                        <!--android:shadowDx="0"-->
-                        <!--android:inputType="number"-->
-                        <!--android:layout_weight="5"-->
-                        <!--android:id="@+id/earringPointEight"-->
-                        <!--android:layout_width="match_parent"-->
-                        <!--android:layout_height="wrap_content"-->
-                        <!--android:textAllCaps="false"-->
-                        <!--android:hint="0.8"-->
-                        <!--android:background="@drawable/custom_edittext_form_background"-->
-                        <!--android:padding="10dp"-->
-                        <!--android:layout_marginLeft="20dp"-->
-                        <!--android:layout_marginRight="20dp"-->
-                        <!--android:layout_marginTop="10dp"/>-->
-
-                <!--</LinearLayout>-->
-
-                <!--<LinearLayout-->
-                    <!--android:weightSum="15"-->
-                    <!--android:orientation="horizontal"-->
-                    <!--android:layout_width="match_parent"-->
-                    <!--android:layout_height="wrap_content">-->
-
-                    <!--<EditText-->
-                        <!--android:elevation="8dp"-->
-                        <!--android:shadowColor="#c7d0f8"-->
-                        <!--android:shadowDy="6"-->
-                        <!--android:shadowDx="0"-->
-                        <!--android:id="@+id/earringKyat"-->
-                        <!--android:layout_weight="5"-->
-                        <!--android:layout_width="match_parent"-->
-                        <!--android:layout_height="wrap_content"-->
-                        <!--android:background="@drawable/custom_edittext_form_background"-->
-                        <!--android:padding="10dp"-->
-                        <!--android:hint="က်ပ္"-->
-                        <!--android:inputType="number"-->
-                        <!--android:layout_margin="20dp"/>-->
-
-                    <!--<EditText-->
-                        <!--android:elevation="8dp"-->
-                        <!--android:shadowColor="#c7d0f8"-->
-                        <!--android:shadowDy="6"-->
-                        <!--android:shadowDx="0"-->
-                        <!--android:id="@+id/earringPal"-->
-                        <!--android:layout_weight="5"-->
-                        <!--android:layout_width="match_parent"-->
-                        <!--android:layout_height="wrap_content"-->
-                        <!--android:background="@drawable/custom_edittext_form_background"-->
-                        <!--android:padding="10dp"-->
-                        <!--android:hint="ပဲ"-->
-                        <!--android:inputType="number"-->
-                        <!--android:layout_margin="20dp"/>-->
-
-                    <!--<EditText-->
-                        <!--android:elevation="8dp"-->
-                        <!--android:shadowColor="#c7d0f8"-->
-                        <!--android:shadowDy="6"-->
-                        <!--android:shadowDx="0"-->
-                        <!--android:id="@+id/earringYae"-->
-                        <!--android:layout_weight="5"-->
-                        <!--android:layout_width="match_parent"-->
-                        <!--android:layout_height="wrap_content"-->
-                        <!--android:background="@drawable/custom_edittext_form_background"-->
-                        <!--android:padding="10dp"-->
-                        <!--android:hint=" ေရြး"-->
-                        <!--android:inputType="number"-->
-                        <!--android:layout_margin="20dp"/>-->
-
-                <!--</LinearLayout>-->
-
-
-
-
-
-            <!--</LinearLayout>-->
-
-
-            <!--&lt;!&ndash;*****************************************end  Earring Layout***********************************                   &ndash;&gt;-->
 
         <LinearLayout
             android:weightSum="10"
@@ -676,8 +114,328 @@
 
         </LinearLayout>
 
+
+            <TextView
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="8dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="ယခုဝယ္သည့္ ပမာဏ"/>
+
+
+            <LinearLayout
+                android:layout_marginTop="10dp"
+                android:background="#fafafa"
+                android:weightSum="15"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <EditText
+                    style="@style/Foredit"
+                    android:id="@+id/totalkyat"
+                    android:layout_weight="5"
+                    android:background="@drawable/custom_edittext_form_background"
+                    android:hint="က်ပ္"
+                    android:inputType="number" />
+
+                <EditText
+                    style="@style/Foredit"
+                    android:id="@+id/totalpal"
+                    android:layout_weight="5"
+                    android:background="@drawable/custom_edittext_form_background"
+                    android:hint="ပဲ"
+                    android:inputType="number"/>
+
+                <EditText
+                    style="@style/Foredit"
+                    android:id="@+id/totalyae"
+                    android:layout_weight="5"
+                    android:background="@drawable/custom_edittext_form_background"
+                    android:hint=" ေရြး"
+                    android:inputType="number"
+                    />
+
+            </LinearLayout>
+
+
+        <TextView
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="8dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="ယခင္လက္က်န္ အေျကြး"/>
+
+            <LinearLayout
+                android:layout_marginTop="10dp"
+                android:background="#fafafa"
+                android:weightSum="15"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_height="wrap_content"
+                    android:layout_width="match_parent"
+                    android:text="Voucher No"
+                    android:layout_weight="5"
+                    />
+
+                <TextView
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_height="wrap_content"
+                    android:layout_width="match_parent"
+                    android:text="Sale Date"
+                    android:layout_weight="5"
+                    />
+
+                <TextView
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_height="wrap_content"
+                    android:layout_width="match_parent"
+                    android:text="Sale Name"
+                    android:layout_weight="5"
+                    />
+            </LinearLayout>
         <LinearLayout
             android:layout_marginTop="10dp"
+            android:background="#fafafa"
+            android:weightSum="15"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:textColor="#A0A0A0"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="10dp"
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:id="@+id/updatevoucher"
+                android:layout_weight="5"
+                />
+
+            <TextView
+                android:textColor="#A0A0A0"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="10dp"
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:id="@+id/updateSaleDate"
+                android:layout_weight="5"
+               />
+
+            <TextView
+                android:textColor="#A0A0A0"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="10dp"
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:id="@+id/updatSaleName"
+                android:layout_weight="5"
+                />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_marginTop="10dp"
+            android:background="#fafafa"
+            android:weightSum="15"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <EditText
+                style="@style/Foredit"
+                android:id="@+id/debitKyat"
+                android:layout_weight="5"
+                android:background="@drawable/custom_edittext_form_background"
+                android:hint="က်ပ္"
+                android:inputType="number" />
+
+            <EditText
+                style="@style/Foredit"
+                android:id="@+id/debitPal"
+                android:layout_weight="5"
+                android:background="@drawable/custom_edittext_form_background"
+                android:hint="ပဲ"
+                android:inputType="number"/>
+
+            <EditText
+                style="@style/Foredit"
+                android:id="@+id/debitYae"
+                android:layout_weight="5"
+                android:background="@drawable/custom_edittext_form_background"
+                android:hint=" ေရြး"
+                android:inputType="number"
+                />
+
+        </LinearLayout>
+
+
+
+        <TextView
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="8dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="စုစုေပါင္း ပမာဏ"/>
+
+        <Button
+            android:textColor="#FFFFFF"
+            android:id="@+id/totalAmount"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:textAllCaps="false"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="10dp"
+            android:text="Calculate"
+            android:background="@drawable/button_login_back"/>
+
+        <LinearLayout
+            android:layout_marginTop="10dp"
+            android:background="#fafafa"
+            android:weightSum="15"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <EditText
+                style="@style/Foredit"
+                android:id="@+id/buyDebitKyat"
+                android:layout_weight="5"
+                android:background="@drawable/custom_edittext_form_background"
+                android:hint="က်ပ္"
+                android:inputType="number" />
+
+            <EditText
+                style="@style/Foredit"
+                android:id="@+id/buyDebitPal"
+                android:layout_weight="5"
+                android:background="@drawable/custom_edittext_form_background"
+                android:hint="ပဲ"
+                android:inputType="number"/>
+
+            <EditText
+                style="@style/Foredit"
+                android:id="@+id/buyDebitYae"
+                android:layout_weight="5"
+                android:background="@drawable/custom_edittext_form_background"
+                android:hint=" ေရြး"
+                android:inputType="number"
+                />
+
+        </LinearLayout>
+
+
+
+        <TextView
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="8dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="ယခုေပးေခ်သည့္ ပမာဏ"/>
+
+        <LinearLayout
+            android:layout_marginTop="10dp"
+            android:background="#fafafa"
+            android:weightSum="15"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <EditText
+                style="@style/Foredit"
+                android:id="@+id/paymentKyat"
+                android:layout_weight="5"
+                android:background="@drawable/custom_edittext_form_background"
+                android:hint="က်ပ္"
+                android:inputType="number" />
+
+            <EditText
+                style="@style/Foredit"
+                android:id="@+id/paymentPal"
+                android:layout_weight="5"
+                android:background="@drawable/custom_edittext_form_background"
+                android:hint="ပဲ"
+                android:inputType="number"/>
+
+            <EditText
+                style="@style/Foredit"
+                android:id="@+id/paymentYae"
+                android:layout_weight="5"
+                android:background="@drawable/custom_edittext_form_background"
+                android:hint=" ေရြး"
+                android:inputType="number"
+                />
+
+        </LinearLayout>
+
+
+
+        <TextView
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="8dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="ယခုလက္က်န္ ပမာဏ"/>
+
+
+        <Button
+            android:textColor="#FFFFFF"
+            android:id="@+id/totalRemainAmount"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:textAllCaps="false"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="10dp"
+            android:text="Calculate"
+            android:background="@drawable/button_login_back"/>
+
+        <LinearLayout
+            android:layout_marginTop="10dp"
+            android:background="#fafafa"
+            android:weightSum="15"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <EditText
+                style="@style/Foredit"
+                android:id="@+id/remainKyat"
+                android:layout_weight="5"
+                android:background="@drawable/custom_edittext_form_background"
+                android:hint="က်ပ္"
+                android:inputType="number" />
+
+            <EditText
+                style="@style/Foredit"
+                android:id="@+id/remainPal"
+                android:layout_weight="5"
+                android:background="@drawable/custom_edittext_form_background"
+                android:hint="ပဲ"
+                android:inputType="number"/>
+
+            <EditText
+                style="@style/Foredit"
+                android:id="@+id/remainYae"
+                android:layout_weight="5"
+                android:background="@drawable/custom_edittext_form_background"
+                android:hint=" ေရြး"
+                android:inputType="number"
+                />
+
+        </LinearLayout>
+
+
+
+        <LinearLayout
+            android:layout_marginTop="8dp"
             android:background="#fafafa"
             android:weightSum="10"
             android:orientation="horizontal"
@@ -702,37 +460,57 @@
                 android:inputType="number"
                 />
 
+
+
+
         </LinearLayout>
 
 
 
-        <LinearLayout
+        <TextView
+            android:layout_marginLeft="20dp"
             android:layout_marginTop="10dp"
-            android:background="#fafafa"
-            android:weightSum="10"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="စုစုေပါင္း အေလ်ာ့"/>
+        <LinearLayout
+            android:weightSum="15"
             android:orientation="horizontal"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
             <EditText
                 style="@style/Foredit"
-                android:id="@+id/aYot"
+                android:id="@+id/ayotKyat"
                 android:layout_weight="5"
                 android:background="@drawable/custom_edittext_form_background"
-                android:hint="Ayot"
-                android:inputType="number"
-                />
+                android:hint="က်ပ္"
+                android:inputType="number" />
 
             <EditText
                 style="@style/Foredit"
-                android:id="@+id/totalAyot"
+                android:id="@+id/ayotPal"
                 android:layout_weight="5"
                 android:background="@drawable/custom_edittext_form_background"
-                android:hint="Total Ayot"
+                android:hint="ပဲ"
+                android:inputType="number"/>
+
+            <EditText
+                style="@style/Foredit"
+                android:id="@+id/ayotYae"
+                android:layout_weight="5"
+                android:background="@drawable/custom_edittext_form_background"
+                android:hint="ေရြး"
                 android:inputType="number"
                 />
 
+
+
         </LinearLayout>
+
+
+
+
 
 
 
@@ -741,10 +519,24 @@
                     android:id="@+id/cupon"
                     android:background="@drawable/custom_edittext_form_background"
                     android:hint="Cupon Code"
+                    android:layout_weight="5"
                     android:inputType="number"
                     style="@style/Foredit"/>
 
-    <LinearLayout
+
+
+            <EditText
+                android:id="@+id/note"
+                android:background="@drawable/custom_edittext_form_background"
+                android:hint="Remark"
+                android:layout_weight="5"
+                android:inputType="number"
+                style="@style/Foredit"/>
+
+
+
+
+        <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
@@ -846,12 +638,12 @@
 
     </LinearLayout>
 
-
-    </LinearLayout>
-
-
+        </LinearLayout>
+    </android.support.v4.widget.NestedScrollView>
 
 
 
 
-</android.support.v4.widget.NestedScrollView>
+
+
+</LinearLayout>

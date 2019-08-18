@@ -258,7 +258,7 @@
                     android:layout_marginLeft="20dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Ring Description"
+                    android:text="အေလ်ာ့ က်ပ္"
                     android:textSize="18sp"
                     />
 
@@ -273,7 +273,7 @@
                     android:layout_marginLeft="20dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Ring Number"
+                    android:text="အေလ်ာ့ ပဲ"
                     android:textSize="18sp"
                     />
 
@@ -289,7 +289,7 @@
                     android:layout_marginLeft="20dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Ring Point Eight"
+                    android:text="အေလ်ာ့ ေရြး"
                     android:textSize="18sp"
                     />
 
@@ -306,7 +306,7 @@
                         android:layout_marginLeft="20dp"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Ring Kyat"
+                        android:text="စုစုေပါင္း အေလးခ်ိန္"
                         android:textSize="18sp"
                         />
 
@@ -321,7 +321,7 @@
                         android:layout_marginLeft="20dp"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Ring Pal"
+                        android:text="ယခုဝယ္သည့္ က်ပ္"
                         android:textSize="18sp"
                         />
 
@@ -337,7 +337,7 @@
                         android:layout_marginLeft="20dp"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Ring Yae"
+                        android:text="ယခုဝယ္သည့္ ပဲ"
                         android:textSize="18sp"
                         />
 
@@ -354,7 +354,7 @@
                         android:layout_marginLeft="20dp"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Bangles Description"
+                        android:text="ယခုဝယ္သည့္ ေရြး"
                         android:textSize="18sp"
                         />
 
@@ -369,7 +369,7 @@
                         android:layout_marginLeft="20dp"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Bangles Number"
+                        android:text="ယခင္အေျကြး က်ပ္"
                         android:textSize="18sp"
                         />
 
@@ -385,7 +385,7 @@
                         android:layout_marginLeft="20dp"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Bangles Point Eight"
+                        android:text="ယခင္အေျကြး ပဲ"
                         android:textSize="18sp"
                         />
 
@@ -402,7 +402,7 @@
                         android:layout_marginLeft="20dp"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Bangles Kyat"
+                        android:text="ယခင္အေျကြး ေရြး"
                         android:textSize="18sp"
                         />
 
@@ -417,7 +417,7 @@
                         android:layout_marginLeft="20dp"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Bangles Pal"
+                        android:text="စုစုေပါင္း က်ပ္"
                         android:textSize="18sp"
                         />
 
@@ -433,7 +433,7 @@
                         android:layout_marginLeft="20dp"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Bangles Yae"
+                        android:text="စုစုေပါင္း ပဲ"
                         android:textSize="18sp"
                         />
 
@@ -449,7 +449,7 @@
                         android:layout_marginLeft="20dp"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Necklace Description"
+                        android:text="စုစုေပါင္း ေရြး"
                         android:textSize="18sp"
                         />
 
@@ -464,7 +464,7 @@
                         android:layout_marginLeft="20dp"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Necklace Number"
+                        android:text="ယခုေပးေခ်မည့္ က်ပ္"
                         android:textSize="18sp"
                         />
 
@@ -480,7 +480,7 @@
                         android:layout_marginLeft="20dp"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Necklace Point Eight"
+                        android:text="ယခုေပးေခ်မည့္ ပဲ"
                         android:textSize="18sp"
                         />
 
@@ -497,7 +497,7 @@
                         android:layout_marginLeft="20dp"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Necklace Kyat"
+                        android:text="ယခုေပးေခ်မည့္ ေရြး"
                         android:textSize="18sp"
                         />
 
@@ -512,7 +512,7 @@
                         android:layout_marginLeft="20dp"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Necklace Pal"
+                        android:text="ယခုလက္က်န္ က်ပ္"
                         android:textSize="18sp"
                         />
 
@@ -528,7 +528,7 @@
                         android:layout_marginLeft="20dp"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Necklace Yae"
+                        android:text="ယခုလက္က်န္ ပဲ"
                         android:textSize="18sp"
                         />
 
@@ -544,7 +544,7 @@
                         android:layout_marginLeft="20dp"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Earring Description"
+                        android:text="ယခုလက္က်န္ ေရြး"
                         android:textSize="18sp"
                         />
 

@@ -159,6 +159,104 @@ public class SaleInoviceData {
     private String town;
 
 
+    @SerializedName("previous_remain_kyat")
+    private String previousRemainKyat;
+
+    @SerializedName("previous_remain_pal")
+    private String previousRemainPal;
+
+    @SerializedName("previous_remain_yae")
+    private String previousRemainYae;
+
+
+    @SerializedName("buy_debit_kyat")
+    private String buyDebitKyat;
+
+    @SerializedName("buy_debit_pal")
+    private String buyDebitPal;
+
+
+    @SerializedName("buy_debit_yae")
+    private String buyDebitYae;
+
+
+    @SerializedName("payment_kyat")
+    private String paymentKyat;
+
+
+    @SerializedName("payment_pal")
+    private String paymentPal;
+
+    @SerializedName("payment_yae")
+    private String paymentYae;
+
+
+    @SerializedName("now_remain_kyat")
+    private String nowRemainKyat;
+
+
+    @SerializedName("now_remain_pal")
+    private String nowRemainPal;
+
+
+    @SerializedName("now_remain_yae")
+    private String nowRemainYae;
+
+    @SerializedName("note")
+    private String note;
+
+    public String getNote() {
+        return note;
+    }
+
+    public String getPreviousRemainKyat() {
+        return previousRemainKyat;
+    }
+
+    public String getPreviousRemainPal() {
+        return previousRemainPal;
+    }
+
+    public String getPreviousRemainYae() {
+        return previousRemainYae;
+    }
+
+    public String getBuyDebitKyat() {
+        return buyDebitKyat;
+    }
+
+    public String getBuyDebitPal() {
+        return buyDebitPal;
+    }
+
+    public String getBuyDebitYae() {
+        return buyDebitYae;
+    }
+
+    public String getPaymentKyat() {
+        return paymentKyat;
+    }
+
+    public String getPaymentPal() {
+        return paymentPal;
+    }
+
+    public String getPaymentYae() {
+        return paymentYae;
+    }
+
+    public String getNowRemainKyat() {
+        return nowRemainKyat;
+    }
+
+    public String getNowRemainPal() {
+        return nowRemainPal;
+    }
+
+    public String getNowRemainYae() {
+        return nowRemainYae;
+    }
+
     public String getSaleUserName() {
         return saleUserName;
     }

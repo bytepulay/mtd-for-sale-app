@@ -52,6 +52,20 @@ public class OrderScanForVoucherActivity extends AppCompatActivity implements ZX
                    String town = response.body().getTown();
                    String dob = response.body().getDob();
                    String customerName = response.body().getName();
+
+                    String nowRemainKayt = response.body().getDebitKyat();
+                    String nowRemainPal =response.body().getDebitPal();
+                    String nowRemainYae = response.body().getDebitYae();
+                    String update_Voucher = response.body().getUpdateVoucher();
+                    String update_SaleDate = response.body().getUpdateSaleDate();
+                    String update_SaleName = response.body().getUpdateSaleName();
+
+                    OrderInvoiceCreate.updateSaleDate.setText(update_SaleDate);
+                    OrderInvoiceCreate.updateVoucher.setText(update_Voucher);
+                    OrderInvoiceCreate.updateSaleName.setText(update_SaleName);
+                    OrderInvoiceCreate.previousRemainKyat.setText(nowRemainKayt);
+                    OrderInvoiceCreate.previousRemainPal.setText(nowRemainPal);
+                    OrderInvoiceCreate.previousRemainYae.setText(nowRemainYae);
                     OrderInvoiceCreate.edShopName.setText(shopName);
                     OrderInvoiceCreate.edCustomerPhone.setText(phoneNumber);
                     OrderInvoiceCreate.edCustomerID.setText(customerId);

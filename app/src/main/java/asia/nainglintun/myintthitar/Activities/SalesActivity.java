@@ -9,6 +9,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.Toast;
 
 import asia.nainglintun.myintthitar.Fragments.FragmentCard;
@@ -22,7 +23,7 @@ import asia.nainglintun.myintthitar.R;
 public class SalesActivity extends AppCompatActivity {
     public static FragmentManager fragmentManager;
    // private ActionBar actionBar;
-    private Toolbar toolbar;
+    public static Toolbar toolbar;
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -63,6 +64,14 @@ public class SalesActivity extends AppCompatActivity {
         toolbar = findViewById(R.id.toolBar);
         setSupportActionBar(toolbar);
         toolbar.setTitle("Home");
+        toolbar.setNavigationIcon(R.drawable.ic_keyboard_backspace_black_24dp);
+
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
 
         Toast.makeText(this, MainActivity.prefConfig.readName(), Toast.LENGTH_SHORT).show();
 //        actionBar.setDisplayHomeAsUpEnabled(true);
@@ -101,24 +110,26 @@ public class SalesActivity extends AppCompatActivity {
 
 
 
-        @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        return super.onCreateOptionsMenu(menu);
-    }
 
-    @Override
-    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        if (item.getItemId() == android.R.id.home){
-            fragmentManager.beginTransaction().replace(R.id.frame_layout_sales,new FragmentCard()).addToBackStack(null).commit();
-            //finish();
-        }else {
-            fragmentManager.beginTransaction().replace(R.id.frame_layout_sales,new FragmentCard()).addToBackStack(null).commit();
 
-        }
-
-        return super.onOptionsItemSelected(item);
-    }
+       // @Override
+//    public boolean onCreateOptionsMenu(Menu menu) {
+//        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+//        return super.onCreateOptionsMenu(menu);
+//    }
+//
+//    @Override
+//    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+//        if (item.getItemId() == android.R.id.home){
+//            fragmentManager.beginTransaction().replace(R.id.frame_layout_sales,new FragmentCard()).addToBackStack(null).commit();
+//            //finish();
+//        }else {
+//            fragmentManager.beginTransaction().replace(R.id.frame_layout_sales,new FragmentCard()).addToBackStack(null).commit();
+//
+//        }
+//
+//        return super.onOptionsItemSelected(item);
+//    }
 
     public void setActionBarTitle(String title) {
         getSupportActionBar().setTitle(title);

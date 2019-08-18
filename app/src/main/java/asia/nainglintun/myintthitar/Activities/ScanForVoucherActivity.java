@@ -52,6 +52,19 @@ public class ScanForVoucherActivity extends AppCompatActivity implements ZXingSc
                    String town = response.body().getTown();
                    String dob = response.body().getDob();
                    String customerName = response.body().getName();
+                   String nowRemainKayt = response.body().getDebitKyat();
+                   String nowRemainPal =response.body().getDebitPal();
+                   String nowRemainYae = response.body().getDebitYae();
+                   String update_Voucher = response.body().getUpdateVoucher();
+                   String update_SaleDate = response.body().getUpdateSaleDate();
+                   String update_SaleName = response.body().getUpdateSaleName();
+
+                   SaleInvoiceCreate.updateSaleDate.setText(update_SaleDate);
+                   SaleInvoiceCreate.updateVoucher.setText(update_Voucher);
+                   SaleInvoiceCreate.updateSaleName.setText(update_SaleName);
+                   SaleInvoiceCreate.previousRemainKyat.setText(nowRemainKayt);
+                   SaleInvoiceCreate.previousRemainPal.setText(nowRemainPal);
+                   SaleInvoiceCreate.previousRemainYae.setText(nowRemainYae);
                    SaleInvoiceCreate.edShopName.setText(shopName);
                    SaleInvoiceCreate.edCustomerPhone.setText(phoneNumber);
                   SaleInvoiceCreate.edCustomerID.setText(String.valueOf(customerId));

@@ -84,8 +84,20 @@ public class SaleListFragment extends Fragment implements SearchView.OnQueryText
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
        View view = inflater.inflate(R.layout.fragment_sale_list, container, false);
+//       toolbar = view.findViewById(R.id.toolBar);
+//       toolbar.setTitle("Sale History Lists");
 
-        ((SalesActivity)getActivity()).setTitle("Sale History Lists");
+       ((SalesActivity)getActivity()).setTitle("Sale History Lists");
+
+        SalesActivity.toolbar.setNavigationIcon(R.drawable.ic_keyboard_backspace_black_24dp);
+
+        SalesActivity.toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+               // SalesActivity.fragmentManager.beginTransaction().remove(new SaleListFragment()).commit();
+                SalesActivity.fragmentManager.beginTransaction().replace(R.id.frame_layout_sales, new FragmentCard()).addToBackStack(null).commit();
+            }
+        });
         setHasOptionsMenu(true);
         recyclerView = view.findViewById(R.id.recyclerView);
         layoutManager = new LinearLayoutManager(getContext());
@@ -112,7 +124,8 @@ public class SaleListFragment extends Fragment implements SearchView.OnQueryText
                 necklaceDescription,necklaceNumber,necklacePointEight,necklaceKyat,necklacePal,necklaceYae,
                 earringDescription,earringNumber,earringPointEight,earringKyat,earringPal,earringYae,
                 totalQty,totalPointEight,totalKyat,totalPal,totalYae,ID,customerPhoneNumber,customerAddress,customerDob,customerNrc,
-                gram,cuponcode;
+                gram,cuponcode,totalAyotKyat,totalAyotPal,totalAyotYae,previous_kyat,previous_yae,previous_pal,buydebitkyat,buydebitpal,buydebityae,
+                paymentkyat,paymentpal,paymentyae,remainkyat,remainpal,remainyae;
 
                  ID = String.valueOf(salehistories.get(position).getId());
                 String voucher = salehistories.get(position).getVoucherNumber();
@@ -156,23 +169,44 @@ public class SaleListFragment extends Fragment implements SearchView.OnQueryText
                totalPal = salehistories.get(position).getPal();
                totalYae = salehistories.get(position).getYae();
 
+               totalAyotKyat = salehistories.get(position).getTotal_ayot_kyat();
+               totalAyotPal = salehistories.get(position).getTotal_ayot_pal();
+               totalAyotYae = salehistories.get(position).getTotal_ayot_yae();
+
+               previous_kyat = salehistories.get(position).getPreviousRemainKyat();
+               previous_pal = salehistories.get(position).getPreviousRemainPal();
+               previous_yae =salehistories.get(position).getPreviousRemainYae();
+
+               buydebitkyat = salehistories.get(position).getBuyDebitKyat();
+               buydebitpal = salehistories.get(position).getBuyDebitPal();
+               buydebityae =salehistories.get(position).getBuyDebitYae();
+
+               paymentkyat = salehistories.get(position).getPaymentKyat();
+               paymentpal = salehistories.get(position).getPaymentPal();
+               paymentyae = salehistories.get(position).getPaymentYae();
+
+               remainkyat = salehistories.get(position).getNowRemainKyat();
+               remainpal = salehistories.get(position).getNowRemainPal();
+               remainyae = salehistories.get(position).getNowRemainYae();
+
+
 
                customerPhoneNumber = salehistories.get(position).getCustomerPhoneNumber();
                customerAddress = salehistories.get(position).getCustomerAddress();
                customerDob = salehistories.get(position).getCustomerDob();
 
-                Toast.makeText(getContext(), "gram is" + salehistories.get(position).getResponse(), Toast.LENGTH_SHORT).show();
+               // Toast.makeText(getContext(), "gram is" + salehistories.get(position).getResponse(), Toast.LENGTH_SHORT).show();
 
 
               // customerNrc = salehistories.get(position).getCustomerNrc();
 
-                Toast.makeText(getContext(),position + town + ID + ringDescription + banglesDescription + necklaceDescription + earringDescription + " is selected! and to do get data from database", Toast.LENGTH_LONG).show();
-                Showpopup(voucher,sDate,cuponcode,customerName,shopName,customerAddress,customerPhoneNumber,customerDob,town,ringDescription,ringNumber,ringPointEight,ringKyat,ringPal,ringYae,
+                //Toast.makeText(getContext(),position + town + ID + ringDescription + banglesDescription + necklaceDescription + earringDescription + " is selected! and to do get data from database", Toast.LENGTH_LONG).show();
+                Showpopup(voucher,sDate,cuponcode,totalAyotKyat,totalAyotPal,totalAyotYae,customerName,shopName,customerAddress,customerPhoneNumber,customerDob,town,ringDescription,ringNumber,ringPointEight,ringKyat,ringPal,ringYae,
                         banglesDescription,banglesNumber,banglesPointEight,banglesKyat,banglesPal,banglesYae,
                         necklaceDescription,necklaceNumber,necklacePointEight,necklaceKyat,necklacePal,necklaceYae,
                         earringDescription,earringNumber,earringPointEight,earringKyat,earringPal,earringYae,
                         totalQty,totalPointEight,totalKyat,totalPal,totalYae,
-                        gram,ID);
+                        gram,ID,previous_kyat,previous_pal,previous_yae,buydebitkyat,buydebitpal,buydebityae,paymentkyat,paymentpal,paymentyae,remainkyat,remainpal,remainyae);
 
             }
 
@@ -186,11 +220,11 @@ public class SaleListFragment extends Fragment implements SearchView.OnQueryText
        return view;
     }
 
-    private void Showpopup(String voucher,String sDate,String cuponCode,String customerName,String shopName, String customerAddress,String customerPhoneNumber,String customerDob,String town,String ringDescription,String ringNumber,String ringPointEight,String ringKyat,String ringPal,String ringYae,
+    private void Showpopup(String voucher,String sDate,String cuponCode,String total_ayot_kyat,String total_ayot_pal,String total_ayo_yae,String customerName,String shopName, String customerAddress,String customerPhoneNumber,String customerDob,String town,String ringDescription,String ringNumber,String ringPointEight,String ringKyat,String ringPal,String ringYae,
                            String banglesDescription,String banglesNumber,String banglesPointEight,String banglesKyat,String banglesPal,String banglesYae,
                            String necklaceDescription,String necklaceNumber,String necklacePointEight,String necklaceKyat,String necklacePal,String necklaceYae,
                            String earringDescription,String earringNumber,String earringPointEight,String earringKyat,String earringPal,String earringYae,String totalQty,String totalPointEight,String totalKyat,String totalPal,String totalYae,
-                          String gram,String ID) {
+                          String gram,String ID,String previous_kyat,String previous_pal,String previous_yae,String buydebitkyat,String buydebitpal,String buydebityae,String paymentkyat,String paymentpal,String paymentyae,String remainkyat,String remainpal,String remainyae) {
 
         dialog.setContentView(R.layout.custom_popup_dialog);
         recyclerView = dialog.findViewById(R.id.recyclerViewDialog);
@@ -208,55 +242,34 @@ public class SaleListFragment extends Fragment implements SearchView.OnQueryText
     nameList = new ArrayList<>();
     nameList.add("Voucher No");
     nameList.add("Sale Date");
-    nameList.add("Cupon Code");
     nameList.add("Customer Name");
     nameList.add("Shop Name");
     nameList.add("Township");
+    nameList.add("Qualtity");
+    nameList.add("Point eight");
+    nameList.add("Cupon Code");
+    nameList.add(" အေလ်ာ့ က်ပ္");
+    nameList.add(" အေလ်ာ့ ပဲ");
+    nameList.add(" အေလ်ာ့ ေရြး");
+    nameList.add("စုစုေပါင္း အေလးခ်ိန္");
+    nameList.add("ယခုဝယ္သည့္ က်ပ္");
+    nameList.add("ယခုဝယ္သည့္ ပဲ");
+    nameList.add("ယခုဝယ္သည့္ ေရြး");
+    nameList.add("ယခင္အေျကြး က်ပ္");
+    nameList.add("ယခင္အေျကြး ပဲ");
+    nameList.add("ယခင္အေျကြး ေရြး");
+    nameList.add("စုစုေပါင္း က်ပ္");
+    nameList.add("စုစုေပါင္း ပဲ");
+    nameList.add("စုစုေပါင္း ေရြး");
+    nameList.add("ယခုေပးေခ်မည့္ က်ပ္");
+    nameList.add("ယခုေပးေခ်မည့္ ပဲ");
+    nameList.add("ယခုေပးေခ်မည့္ ေရြး");
+    nameList.add("ယခုလက္က်န္ က်ပ္");
+    nameList.add("ယခုလက္က်န္ ပဲ");
+    nameList.add("ယခုလက္က်န္ ေရြး");
 
 
-        if (ringDescription!=null){
-        nameList.add("Ring Descriptions");
-        nameList.add("Ring Number");
-        nameList.add("Ring Point Eight");
-        nameList.add("Ring Kyat");
-        nameList.add("Ring Pal");
-        nameList.add("Ring Yae");
 
-    }
-
-
-        if (banglesDescription!=null){
-            nameList.add("Bangles Descriptions");
-            nameList.add("Bangles Number");
-            nameList.add("Bangles Point Eight");
-            nameList.add("Bangles Kyat");
-            nameList.add("Bangles Pal");
-            nameList.add("Bangles Yae");
-
-        }
-
-
-
-
-         if (necklaceDescription!=null){
-            nameList.add("Necklace Descriptions");
-            nameList.add("Necklace Number");
-            nameList.add("Necklace Point Eight");
-            nameList.add("Necklace Kyat");
-            nameList.add("Necklace Pal");
-            nameList.add("Necklace Yae");
-
-        }
-
-         if (earringDescription!=null){
-            nameList.add("Earring Descriptions");
-            nameList.add("Earring Number");
-            nameList.add("Earring Point Eight");
-            nameList.add("Earring Kyat");
-            nameList.add("Earring Pal");
-            nameList.add("Earring Yae");
-
-        }
 
 
 
@@ -268,64 +281,33 @@ public class SaleListFragment extends Fragment implements SearchView.OnQueryText
     dataList = new ArrayList<>();
     dataList.add(voucher);
     dataList.add(sDate);
-    dataList.add(cuponCode);
     dataList.add(customerName);
     dataList.add(shopName);
     dataList.add(town);
-
-    if(ringDescription!=null){
-        dataList.add(ringDescription);
-        dataList.add(ringNumber);
-        dataList.add(ringPointEight);
-        dataList.add(ringKyat);
-        dataList.add(ringPal);
-        dataList.add(ringYae);
-    }
-
-        if(banglesDescription!=null){
-            dataList.add(banglesDescription);
-            dataList.add(banglesNumber);
-            dataList.add(banglesPointEight);
-            dataList.add(banglesKyat);
-            dataList.add(banglesPal);
-            dataList.add(banglesYae);
-        }
-
-        if(necklaceDescription!=null){
-            dataList.add(necklaceDescription);
-            dataList.add(necklaceNumber);
-            dataList.add(necklacePointEight);
-            dataList.add(necklaceKyat);
-            dataList.add(necklacePal);
-            dataList.add(necklaceYae);
-        }
+    dataList.add(totalQty);
+    dataList.add(totalPointEight);
+    dataList.add(cuponCode);
+    dataList.add(total_ayot_kyat);
+    dataList.add(total_ayot_pal);
+    dataList.add(total_ayo_yae);
+    dataList.add(gram);
+    dataList.add(totalKyat);
+    dataList.add(totalPal);
+    dataList.add(totalYae);
+    dataList.add(previous_kyat);
+    dataList.add(previous_pal);
+    dataList.add(previous_yae);
+    dataList.add(buydebitkyat);
+    dataList.add(buydebitpal);
+    dataList.add(buydebityae);
+    dataList.add(paymentkyat);
+    dataList.add(paymentpal);
+    dataList.add(paymentyae);
+    dataList.add(remainkyat);
+    dataList.add(remainpal);
+    dataList.add(remainyae);
 
 
-
-        if(earringDescription!=null){
-            dataList.add(earringDescription);
-            dataList.add(earringNumber);
-            dataList.add(earringPointEight);
-            dataList.add(earringKyat);
-            dataList.add(earringPal);
-            dataList.add(earringYae);
-        }
-
-        if(ringDescription!=null || banglesDescription!=null || necklaceDescription!=null || earringDescription!=null){
-            nameList.add("Total Qualtity");
-            nameList.add("Total Point Eight");
-            nameList.add("Total Kyat");
-            nameList.add("Total Pal");
-            nameList.add("Total Yae");
-            nameList.add("Total Gram");
-
-            dataList.add(totalQty);
-            dataList.add(totalPointEight);
-            dataList.add(totalKyat);
-            dataList.add(totalPal);
-            dataList.add(totalYae);
-            dataList.add(gram);
-        }
 
 
 
@@ -339,235 +321,245 @@ public class SaleListFragment extends Fragment implements SearchView.OnQueryText
             }
         });
 
+//        btnEdit.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                recyclerView.setVisibility(View.GONE);
+//                linearLayoutUpdate = dialog.findViewById(R.id.updateLayout);
+//                btnSave = dialog.findViewById(R.id.btnUpdateSave);
+//                btnSave.setVisibility(View.VISIBLE);
+//
+//                edVoucher = dialog.findViewById(R.id.editVoucher);
+//                linearLayoutUpdate.setVisibility(View.VISIBLE);
+//                edSaleDate = dialog.findViewById(R.id.editSaleDate);
+//                edCustomerName = dialog.findViewById(R.id.editCustomerName);
+//                edShopName = dialog.findViewById(R.id.editShopName);
+//                edAddress = dialog.findViewById(R.id.editAddress);
+//                edPhoneNumber = dialog.findViewById(R.id.editPhoneNumber);
+//                edDob = dialog.findViewById(R.id.editDOB);
+//                edTownShip = dialog.findViewById(R.id.editTownShip);
+//                edRingDescription = dialog.findViewById(R.id.editRingDes);
+//                edRingNumber = dialog.findViewById(R.id.editRingNumber);
+//                edRingPointEight = dialog.findViewById(R.id.editRingPointEight);
+//                edRingKyat = dialog.findViewById(R.id.editRingKyat);
+//                edRingPal = dialog.findViewById(R.id.editRingPal);
+//                edRingYae = dialog.findViewById(R.id.editRingYae);
+//
+//
+//                edbanglesDescription = dialog.findViewById(R.id.editBanglesDes);
+//                edbanglesNumber = dialog.findViewById(R.id.editBanglesNumber);
+//                edbanglesPointEight = dialog.findViewById(R.id.editBanglesPointEight);
+//                edbanglesKyat = dialog.findViewById(R.id.editBanglesKyat);
+//                edbanglesPal = dialog.findViewById(R.id.editBanglesPal);
+//                edbanglesYae = dialog.findViewById(R.id.editBanglesYae);
+//
+//
+//
+//
+//                edNecklaceDescription = dialog.findViewById(R.id.editNecklaceDes);
+//                edNecklaceNumber = dialog.findViewById(R.id.editNecklaceNumber);
+//                edNecklacePointEight = dialog.findViewById(R.id.editNecklacePointEight);
+//                edNecklaceKyat = dialog.findViewById(R.id.editNecklaceKyat);
+//                edNecklacePal = dialog.findViewById(R.id.editNecklacePal);
+//                edNecklaceYae = dialog.findViewById(R.id.editNecklaceYae);
+//
+//
+//
+//                edEarringDescription = dialog.findViewById(R.id.editEarringDes);
+//                edEarringNumber = dialog.findViewById(R.id.editEarringNumber);
+//                edEarringPointEight = dialog.findViewById(R.id.editEarringPointEight);
+//                edEarringKyat = dialog.findViewById(R.id.editEarringKyat);
+//                edEarringPal = dialog.findViewById(R.id.editEarringPal);
+//                edEarringYae = dialog.findViewById(R.id.editEarringYae);
+//
+//
+//                edTotalNumber = dialog.findViewById(R.id.editTotalNumber);
+//                edTotalPointEight = dialog.findViewById(R.id.editTotalPointEight);
+//                edTotalKyat = dialog.findViewById(R.id.editTotalKyat);
+//                edTotalPal= dialog.findViewById(R.id.editTotalPal);
+//                edTotalYae = dialog.findViewById(R.id.editTotalYae);
+//
+//                edCuponCode = dialog.findViewById(R.id.editCuponCode);
+//                edGram = dialog.findViewById(R.id.editTotalGram);
+//
+//
+//
+//
+////                edbanglesDescription = dialog.findViewById(R.id.editB)
+////
+//
+//
+//
+//
+//
+//
+//                edVoucher.setText(voucher);
+//                edSaleDate.setText(sDate);
+//                edCuponCode.setText(cuponCode);
+//                edCustomerName.setText(customerName);
+//                edShopName.setText(shopName);
+//                edPhoneNumber.setText(customerPhoneNumber);
+//                edAddress.setText(customerAddress);
+//                edDob.setText(customerDob);
+//                edTownShip.setText(town);
+//
+//                edRingDescription.setText(total_ayot_kyat);
+//                edRingNumber.setText(total_ayot_pal);
+//                edRingPointEight.setText(total_ayot_pal);
+//                edGram.setText(gram);
+//                edRingKyat.setText(totalKyat);
+//                edRingPal.setText(totalPal);
+//                edRingYae.setText(totalYae);
+//
+//                edbanglesDescription.setText(previous_kyat);
+//                edbanglesNumber.setText(previous_pal);
+//                edbanglesPointEight.setText(previous_yae);
+//                edbanglesKyat.setText(buydebitkyat);
+//                edbanglesPal.setText(buydebitpal);
+//                edbanglesYae.setText(buydebityae);
+//
+//
+//                edNecklaceDescription.setText(paymentkyat);
+//                edNecklaceNumber.setText(paymentpal);
+//                edNecklacePointEight.setText(paymentyae);
+//                edNecklaceKyat.setText(remainkyat);
+//                edNecklacePal.setText(remainpal);
+//                edNecklaceYae.setText(remainyae);
+//
+//
+//                edEarringDescription.setText(earringDescription);
+//                edEarringNumber.setText(earringNumber);
+//                edEarringPointEight.setText(earringPointEight);
+//                edEarringKyat.setText(earringKyat);
+//                edEarringPal.setText(earringPal);
+//                edEarringYae.setText(earringYae);
+//
+//                edTotalNumber.setText(totalQty);
+//                edTotalPointEight.setText(totalPointEight);
+//                edTotalKyat.setText(totalKyat);
+//                edTotalYae.setText(totalYae);
+//                edTotalPal.setText(totalPal);
+//
+//
+//
+//
+//
+//
+//                btnSave.setOnClickListener(new View.OnClickListener() {
+//                    @Override
+//                    public void onClick(View v) {
+//
+//                        //Log.e("Response","doing this methos");
+////                        Toast.makeText(getContext(),edVoucher.getText().toString()+ ID
+////
+////                        , Toast.LENGTH_SHORT).show();
+//                        progressDialog.setTitle("Update Sale Invoice");
+//                        progressDialog.show();
+//                      Call<Salehistory> call = MainActivity.apiInterface.updateSaleInvoice( ID,edVoucher.getText().toString(),
+//                              edSaleDate.getText().toString(),
+//                              edCuponCode.getText().toString(),
+//                              edPhoneNumber.getText().toString(),
+//                              edCustomerName.getText().toString(),
+//                              edShopName.getText().toString(),
+//                              edAddress.getText().toString(),
+//                              edDob.getText().toString(),
+//                              edTownShip.getText().toString(),
+//                              edRingDescription.getText().toString(),
+//                              edRingNumber.getText().toString(),
+//                              edRingPointEight.getText().toString(),
+//                              edGram.getText().toString(),
+//                              edRingKyat.getText().toString(),
+//                              edRingKyat.getText().toString(),
+//                              edRingYae.getText().toString(),
+//
+//                              edbanglesDescription.getText().toString(),
+//                              edbanglesNumber.getText().toString(),
+//                              edbanglesPointEight.getText().toString(),
+//                              edbanglesKyat.getText().toString(),
+//                              edbanglesKyat.getText().toString(),
+//                              edbanglesYae.getText().toString(),
+//
+//
+//                              edNecklaceDescription.getText().toString(),
+//                              edNecklaceNumber.getText().toString(),
+//                              edNecklacePointEight.getText().toString(),
+//                              edNecklaceKyat.getText().toString(),
+//                              edNecklaceKyat.getText().toString(),
+//                              edNecklaceYae.getText().toString(),
+//
+//
+//                              edEarringDescription.getText().toString(),
+//                              edEarringNumber.getText().toString(),
+//                              edEarringPointEight.getText().toString(),
+//                              edEarringKyat.getText().toString(),
+//                              edEarringKyat.getText().toString(),
+//                              edEarringYae.getText().toString(),
+//                              edTotalNumber.getText().toString(),
+//                              edTotalPointEight.getText().toString(),
+//                              edTotalKyat.getText().toString(),
+//                              edTotalPal.getText().toString(),
+//                              edTotalYae.getText().toString()
+//
+//                              );
+//
+//
+////                        Log.e("Response","after doing this update ");
+//
+//                      call.enqueue(new Callback<Salehistory>() {
+//                          @Override
+//                          public void onResponse(Call<Salehistory> call, Response<Salehistory> response) {
+//                              progressDialog.dismiss();
+//                              if (response.body().getResponse().equals("ok")){
+//                                  Toast.makeText(getContext(), "Update successfully", Toast.LENGTH_SHORT).show();
+//                              }
+//
+//                          }
+//
+//                          @Override
+//                          public void onFailure(Call<Salehistory> call, Throwable t) {
+//
+//                          }
+//                      });
+//                    }
+//                });
+//
+//
+//
+//
+//
+//
+//
+////
+////                recyclerViewEdit = dialog.findViewById(R.id.recyclerViewEdit);
+////                recyclerViewEdit.setVisibility(View.VISIBLE);
+////                layoutManager = new LinearLayoutManager(getContext());
+////                recyclerViewEdit.setLayoutManager(layoutManager);
+////                recyclerViewEdit.setHasFixedSize(true);
+////                adapterEditDialog = new editbindvouchersaleRecyclerAdapter(nameList,dataList,getContext());
+////                recyclerViewEdit.setAdapter(adapterEditDialog);
+//
+//
+//            }
+//        });
+//
+//
+//
+////        dialogEdit.setOnClickListener(new View.OnClickListener() {
+////            @Override
+////            public void onClick(View v) {
+////               dialog.dismiss();
+////               dialog.setContentView(R.layout.sale_create_invoice);
+////               dialog.show();
+////            }
+////        });
+
         btnEdit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                recyclerView.setVisibility(View.GONE);
-                linearLayoutUpdate = dialog.findViewById(R.id.updateLayout);
-                btnSave = dialog.findViewById(R.id.btnUpdateSave);
-                btnSave.setVisibility(View.VISIBLE);
-
-                edVoucher = dialog.findViewById(R.id.editVoucher);
-                linearLayoutUpdate.setVisibility(View.VISIBLE);
-                edSaleDate = dialog.findViewById(R.id.editSaleDate);
-                edCustomerName = dialog.findViewById(R.id.editCustomerName);
-                edShopName = dialog.findViewById(R.id.editShopName);
-                edAddress = dialog.findViewById(R.id.editAddress);
-                edPhoneNumber = dialog.findViewById(R.id.editPhoneNumber);
-                edDob = dialog.findViewById(R.id.editDOB);
-                edTownShip = dialog.findViewById(R.id.editTownShip);
-                edRingDescription = dialog.findViewById(R.id.editRingDes);
-                edRingNumber = dialog.findViewById(R.id.editRingNumber);
-                edRingPointEight = dialog.findViewById(R.id.editRingPointEight);
-                edRingKyat = dialog.findViewById(R.id.editRingKyat);
-                edRingPal = dialog.findViewById(R.id.editRingPal);
-                edRingYae = dialog.findViewById(R.id.editRingYae);
-
-
-                edbanglesDescription = dialog.findViewById(R.id.editBanglesDes);
-                edbanglesNumber = dialog.findViewById(R.id.editBanglesNumber);
-                edbanglesPointEight = dialog.findViewById(R.id.editBanglesPointEight);
-                edbanglesKyat = dialog.findViewById(R.id.editBanglesKyat);
-                edbanglesPal = dialog.findViewById(R.id.editBanglesPal);
-                edbanglesYae = dialog.findViewById(R.id.editBanglesYae);
-
-
-
-
-                edNecklaceDescription = dialog.findViewById(R.id.editNecklaceDes);
-                edNecklaceNumber = dialog.findViewById(R.id.editNecklaceNumber);
-                edNecklacePointEight = dialog.findViewById(R.id.editNecklacePointEight);
-                edNecklaceKyat = dialog.findViewById(R.id.editNecklaceKyat);
-                edNecklacePal = dialog.findViewById(R.id.editNecklacePal);
-                edNecklaceYae = dialog.findViewById(R.id.editNecklaceYae);
-
-
-
-                edEarringDescription = dialog.findViewById(R.id.editEarringDes);
-                edEarringNumber = dialog.findViewById(R.id.editEarringNumber);
-                edEarringPointEight = dialog.findViewById(R.id.editEarringPointEight);
-                edEarringKyat = dialog.findViewById(R.id.editEarringKyat);
-                edEarringPal = dialog.findViewById(R.id.editEarringPal);
-                edEarringYae = dialog.findViewById(R.id.editEarringYae);
-
-
-                edTotalNumber = dialog.findViewById(R.id.editTotalNumber);
-                edTotalPointEight = dialog.findViewById(R.id.editTotalPointEight);
-                edTotalKyat = dialog.findViewById(R.id.editTotalKyat);
-                edTotalPal= dialog.findViewById(R.id.editTotalPal);
-                edTotalYae = dialog.findViewById(R.id.editTotalYae);
-
-                edCuponCode = dialog.findViewById(R.id.editCuponCode);
-                edGram = dialog.findViewById(R.id.editTotalGram);
-
-
-
-
-//                edbanglesDescription = dialog.findViewById(R.id.editB)
-//
-
-
-
-
-
-
-                edVoucher.setText(voucher);
-                edSaleDate.setText(sDate);
-                edCuponCode.setText(cuponCode);
-                edCustomerName.setText(customerName);
-                edShopName.setText(shopName);
-                edPhoneNumber.setText(customerPhoneNumber);
-                edAddress.setText(customerAddress);
-                edDob.setText(customerDob);
-                edTownShip.setText(town);
-
-                edRingDescription.setText(ringDescription);
-                edRingNumber.setText(ringNumber);
-                edRingPointEight.setText(ringPointEight);
-                edRingKyat.setText(ringKyat);
-                edRingPal.setText(ringPal);
-                edRingYae.setText(ringYae);
-
-                edbanglesDescription.setText(banglesDescription);
-                edbanglesNumber.setText(banglesNumber);
-                edbanglesPointEight.setText(banglesPointEight);
-                edbanglesKyat.setText(banglesKyat);
-                edbanglesPal.setText(banglesPal);
-                edbanglesYae.setText(banglesYae);
-
-
-                edNecklaceDescription.setText(necklaceDescription);
-                edNecklaceNumber.setText(necklaceNumber);
-                edNecklacePointEight.setText(necklacePointEight);
-                edNecklaceKyat.setText(necklaceKyat);
-                edNecklacePal.setText(necklacePal);
-                edNecklaceYae.setText(necklaceYae);
-
-
-                edEarringDescription.setText(earringDescription);
-                edEarringNumber.setText(earringNumber);
-                edEarringPointEight.setText(earringPointEight);
-                edEarringKyat.setText(earringKyat);
-                edEarringPal.setText(earringPal);
-                edEarringYae.setText(earringYae);
-
-                edTotalNumber.setText(totalQty);
-                edTotalPointEight.setText(totalPointEight);
-                edTotalKyat.setText(totalKyat);
-                edTotalYae.setText(totalYae);
-                edTotalPal.setText(totalPal);
-
-                edGram.setText(gram);
-
-
-
-
-                btnSave.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-
-                        //Log.e("Response","doing this methos");
-//                        Toast.makeText(getContext(),edVoucher.getText().toString()+ ID
-//
-//                        , Toast.LENGTH_SHORT).show();
-                        progressDialog.setTitle("Update Sale Invoice");
-                        progressDialog.show();
-                      Call<Salehistory> call = MainActivity.apiInterface.updateSaleInvoice( ID,edVoucher.getText().toString(),
-                              edSaleDate.getText().toString(),
-                              edCuponCode.getText().toString(),
-                              edPhoneNumber.getText().toString(),
-                              edCustomerName.getText().toString(),
-                              edShopName.getText().toString(),
-                              edAddress.getText().toString(),
-                              edDob.getText().toString(),
-                              edTownShip.getText().toString(),
-                              edRingDescription.getText().toString(),
-                              edRingNumber.getText().toString(),
-                              edRingPointEight.getText().toString(),
-                              edRingKyat.getText().toString(),
-                              edRingKyat.getText().toString(),
-                              edRingYae.getText().toString(),
-
-                              edbanglesDescription.getText().toString(),
-                              edbanglesNumber.getText().toString(),
-                              edbanglesPointEight.getText().toString(),
-                              edbanglesKyat.getText().toString(),
-                              edbanglesKyat.getText().toString(),
-                              edbanglesYae.getText().toString(),
-
-
-                              edNecklaceDescription.getText().toString(),
-                              edNecklaceNumber.getText().toString(),
-                              edNecklacePointEight.getText().toString(),
-                              edNecklaceKyat.getText().toString(),
-                              edNecklaceKyat.getText().toString(),
-                              edNecklaceYae.getText().toString(),
-
-
-                              edEarringDescription.getText().toString(),
-                              edEarringNumber.getText().toString(),
-                              edEarringPointEight.getText().toString(),
-                              edEarringKyat.getText().toString(),
-                              edEarringKyat.getText().toString(),
-                              edEarringYae.getText().toString(),
-                              edTotalNumber.getText().toString(),
-                              edTotalPointEight.getText().toString(),
-                              edTotalKyat.getText().toString(),
-                              edTotalPal.getText().toString(),
-                              edTotalYae.getText().toString(),
-                              edGram.getText().toString()
-                              );
-
-
-//                        Log.e("Response","after doing this update ");
-
-                      call.enqueue(new Callback<Salehistory>() {
-                          @Override
-                          public void onResponse(Call<Salehistory> call, Response<Salehistory> response) {
-                              progressDialog.dismiss();
-                              if (response.body().getResponse().equals("ok")){
-                                  Toast.makeText(getContext(), "Update successfully", Toast.LENGTH_SHORT).show();
-                              }
-
-                          }
-
-                          @Override
-                          public void onFailure(Call<Salehistory> call, Throwable t) {
-
-                          }
-                      });
-                    }
-                });
-
-
-
-
-
-
-
-//
-//                recyclerViewEdit = dialog.findViewById(R.id.recyclerViewEdit);
-//                recyclerViewEdit.setVisibility(View.VISIBLE);
-//                layoutManager = new LinearLayoutManager(getContext());
-//                recyclerViewEdit.setLayoutManager(layoutManager);
-//                recyclerViewEdit.setHasFixedSize(true);
-//                adapterEditDialog = new editbindvouchersaleRecyclerAdapter(nameList,dataList,getContext());
-//                recyclerViewEdit.setAdapter(adapterEditDialog);
-
-
+                Toast.makeText(getContext(), "Need Owner Approve", Toast.LENGTH_SHORT).show();
             }
         });
 
-
-
-//        dialogEdit.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//               dialog.dismiss();
-//               dialog.setContentView(R.layout.sale_create_invoice);
-//               dialog.show();
-//            }
-//        });
 
         dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         dialog.show();
@@ -606,6 +598,7 @@ public class SaleListFragment extends Fragment implements SearchView.OnQueryText
         MenuItem menuItem = menu.findItem(R.id.action_search);
         SearchView searchView = (SearchView) MenuItemCompat.getActionView(menuItem);
         searchView.setOnQueryTextListener(this);
+        //((SalesActivity) getActivity()).getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
 
     @Override
@@ -623,8 +616,9 @@ public class SaleListFragment extends Fragment implements SearchView.OnQueryText
         {
             String sDate = salehistory.getSaleDate().toLowerCase();
             String shopName = salehistory.getCustomerShop().toLowerCase();
-            String town = salehistory.getCustomerTwon().toLowerCase();
-            if (sDate.contains(s) || shopName.contains(s) || town.contains(s)){
+            String town = salehistory.getCustomerTwon();
+            String voucher = salehistory.getVoucherNumber();
+            if (sDate.contains(s) || shopName.contains(s) || town.contains(s) || voucher.contains(s)){
                 newList.add(salehistory);
             }
         }
@@ -642,11 +636,11 @@ public class SaleListFragment extends Fragment implements SearchView.OnQueryText
 //
 //    @Override
 //    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-//        if (item.getItemId() == android.R.id.home){
-//            getActivity().finish();
+//        if (item.getItemId()==android.R.id.home) {
+//            SalesActivity.fragmentManager.beginTransaction().add(R.id.frame_layout_sales, new FragmentCard()).addToBackStack(null).commit();
 //        }
 //        return super.onOptionsItemSelected(item);
 //    }
-//}
-
 }
+
+

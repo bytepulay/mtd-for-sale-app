@@ -19,8 +19,10 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Locale;
@@ -40,32 +42,31 @@ import retrofit2.Response;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class OrderInvoiceCreate extends Fragment implements  View.OnClickListener, AdapterView.OnItemSelectedListener {
+public class OrderInvoiceCreate extends Fragment implements  View.OnClickListener {
 
 //private RadioGroup radioGroup;
 private LinearLayout linearLayoutCustomerNew;
 
 public static EditText edShopName,edCustomerName,edCustomerPhone,edDOB,edCustomerAddress,edCustomerID,edCustomerTown,edCustomerNrc;
-public static EditText edCustomerUserName;
+public static EditText edCustomerUserName,previousRemainKyat,previousRemainPal,previousRemainYae;
 private  EditText saleDate;
+    public static TextView updateVoucher,updateSaleDate,updateSaleName;
 final Calendar myCalendar = Calendar.getInstance();
-private Button btnCreateInvoiceSave;
+private Button btnCreateInvoiceSave,Bnadd,BnCalculate,BntotalAmount,BntotalRemainAmount;;
 private ImageButton scanForVoucher;
-private LinearLayout linearLayoutRing,linearLayoutBangles,linearLayoutNecklace,linearLayoutEarring;
+//private LinearLayout linearLayoutRing,linearLayoutBangles,linearLayoutNecklace,linearLayoutEarring;
 private Button hideRing,hideBangles,hideNecklace,hideEarring;
-private Spinner spinner;
+//private Spinner spinner;
 private ProgressDialog progressDialog;
-private static final String[] paths = {"Choose Items Type","Ring", "Bangles", "Necklace","Earring"};
+private Toolbar toolbar;
 
 
-    int totalRingNumber=0,totalBangesNumber=0,totalNecklaceNumber =0,totalEarringNumber=0,totalAllNumber=0,totalAllPointEight=0,totalAllKyat=0,totalAllPal=0,totalAllYae=0,
-            totalRingPointEight=0,totalBangesPointEight=0,totalNecklacePointEight=0,totalEarringPointEight=0,
-            totalRingKyat=0,totalBangesKyat=0,totalNecklaceKyat=0,totalEarringKyat=0,
-            totalRingPal=0,totalBangesPal=0,totalNecklacePal=0,totalEarringPal=0,
-            totalRingYae=0,totalBangesYae=0,totalNecklaceYae=0,totalEarringYae=0,totalPoint=0;
+    private EditText voucherNumber,Gram,CuponCode,totalKyat,totalPal,totalYae,totalQualtity,totalPointEight,
+            TotalAyotKyat,TotalAyotPel,TotalAyotYae,
+            buyDebitKyat,buyDebitPal,buyDebitYae,paymentKyat,paymentPal,paymentYae,
+            nowRemainKyat,nowRemainPal,nowRemainYae,newTotalKyat,newTotalPal,newTotalYae,edNote;
 
-    private EditText ringTitle,ringNumber,ringPointEight,ringKyat,ringPal,ringYae,banglesTitle,banglesNumber,banglesPointEight,banglesKyat,banglesPal,banglesYae,necklaceTitle,necklaceNumber,necklacePointEight,necklaceKyat,necklacePal,necklaceYae,
-        earringTitle,earringNumber,earringPointEight,earringKyat,earringPal,earringYae,voucherNumber,Gram,CuponCode,totalKyat,totalPal,totalYae,totalQualtity,totalPointEight;
+    float Totalkyat, Totalpal,Totalyae;
 
     public OrderInvoiceCreate() {
         // Required empty public constructor
@@ -78,75 +79,151 @@ private static final String[] paths = {"Choose Items Type","Ring", "Bangles", "N
 
         View view = inflater.inflate(R.layout.order_create_invoice, container, false);
 
-        ((SalesActivity)getActivity()).setTitle("Create Order Invoice");
+        //((SalesActivity)getActivity()).setTitle("Create Order Invoice");
+        toolbar = view.findViewById(R.id.toolBar);
+        toolbar.setTitle("Order Invoice");
+        toolbar.setNavigationIcon(R.drawable.ic_keyboard_backspace_black_24dp);
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                SalesActivity.fragmentManager.beginTransaction().replace(R.id.frame_layout_sales, new FragmentCard()).addToBackStack(null).commit();
+
+            }
+        });
 
         progressDialog = new ProgressDialog(getContext());
 
         progressDialog.setTitle("Inserting Data");
         progressDialog.setMessage("Please wait..");
 
+        totalKyat = view.findViewById(R.id.kyat);
+        totalYae = view.findViewById(R.id.yawe);
+        totalPal = view.findViewById(R.id.pel);
+
 
         voucherNumber = view.findViewById(R.id.voucherNumber);
          saleDate= view.findViewById(R.id.saleDate);
+        newTotalKyat = view.findViewById(R.id.totalkyat);
+        newTotalPal = view.findViewById(R.id.totalpal);
+        newTotalYae = view.findViewById(R.id.totalyae);
          Gram = view.findViewById(R.id.gram);
          CuponCode = view.findViewById(R.id.cupon);
          totalQualtity =view.findViewById(R.id.custBuyNumber);
          totalPointEight = view.findViewById(R.id.custDiscountPoint);
 
-         linearLayoutRing = view.findViewById(R.id.ring);
-         linearLayoutBangles = view.findViewById(R.id.bangles);
-         linearLayoutNecklace = view.findViewById(R.id.necklace);
-         linearLayoutEarring  =view.findViewById(R.id.earring);
-         hideRing = view.findViewById(R.id.hideRing);
-         hideBangles =view.findViewById(R.id.hideBangles);
-         hideNecklace = view.findViewById(R.id.hideNecklace);
-         hideEarring = view.findViewById(R.id.hideEarring);
+        TotalAyotKyat = view.findViewById(R.id.ayotKyat);
+        TotalAyotPel = view.findViewById(R.id.ayotPal);
+        TotalAyotYae = view.findViewById(R.id.ayotYae);
 
+        previousRemainKyat = view.findViewById(R.id.debitKyat);
+        previousRemainPal = view.findViewById(R.id.debitPal);
+        previousRemainYae = view.findViewById(R.id.debitYae);
 
-        ringTitle = view.findViewById(R.id.ringText);
-        ringNumber= view.findViewById(R.id.ringNumber);
-        ringPointEight = view.findViewById(R.id.ringPointEight);
-        ringKyat = view.findViewById(R.id.ringKyat);
-        ringPal = view.findViewById(R.id.ringPal);
-        ringYae = view.findViewById(R.id.ringYae);
-
-
-        banglesTitle = view.findViewById(R.id.banglesText);
-        banglesNumber= view.findViewById(R.id.banglesNumber);
-        banglesPointEight = view.findViewById(R.id.banglesPointEight);
-        banglesKyat = view.findViewById(R.id.banglesKyat);
-        banglesPal = view.findViewById(R.id.banglesPal);
-        banglesYae = view.findViewById(R.id.banglesYae);
-
-        necklaceTitle = view.findViewById(R.id.necklaceText);
-        necklaceNumber= view.findViewById(R.id.necklaceNumber);
-        necklacePointEight = view.findViewById(R.id.necklacePointEight);
-        necklaceKyat = view.findViewById(R.id.necklaceKyat);
-        necklacePal = view.findViewById(R.id.necklacePal);
-        necklaceYae = view.findViewById(R.id.necklaceYae);
-
-        earringTitle = view.findViewById(R.id.earringText);
-        earringNumber= view.findViewById(R.id.earringNumber);
-        earringPointEight = view.findViewById(R.id.earringPointEight);
-        earringKyat = view.findViewById(R.id.earringKyat);
-        earringPal = view.findViewById(R.id.earringPal);
-        earringYae = view.findViewById(R.id.earringYae);
+        updateVoucher = view.findViewById(R.id.updatevoucher);
+        updateSaleDate = view.findViewById(R.id.updateSaleDate);
+        updateSaleName = view.findViewById(R.id.updatSaleName);
 
 
 
-          hideRing.setOnClickListener(this);
-          hideBangles.setOnClickListener(this);
-          hideNecklace.setOnClickListener(this);
-          hideEarring.setOnClickListener(this);
+        buyDebitKyat = view.findViewById(R.id.buyDebitKyat);
+        buyDebitPal = view.findViewById(R.id.buyDebitPal);
+        buyDebitYae = view.findViewById(R.id.buyDebitYae);
+
+        paymentKyat = view.findViewById(R.id.paymentKyat);
+        paymentPal = view.findViewById(R.id.paymentPal);
+        paymentYae = view.findViewById(R.id.paymentYae);
 
 
-        spinner = view.findViewById(R.id.spinner);
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(getContext(),
-                android.R.layout.simple_spinner_item,paths);
+        nowRemainKyat = view.findViewById(R.id.remainKyat);
+        nowRemainPal = view.findViewById(R.id.remainPal);
+        nowRemainYae = view.findViewById(R.id.remainYae);
 
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinner.setAdapter(adapter);
-        spinner.setOnItemSelectedListener(this);
+
+
+        Bnadd = view.findViewById(R.id.Add);
+
+
+        edShopName = view.findViewById(R.id.shopName);
+        edCustomerName = view.findViewById(R.id.custName);
+        edCustomerPhone = view.findViewById(R.id.custPhone);
+        edDOB = view.findViewById(R.id.custDOB);
+        edCustomerUserName = view.findViewById(R.id.custUserName);
+        edCustomerAddress = view.findViewById(R.id.custAddress);
+        edCustomerTown = view.findViewById(R.id.custTown);
+        edCustomerNrc  = view.findViewById(R.id.custNrc);
+        edCustomerID = view.findViewById(R.id.custId);
+        edNote = view.findViewById(R.id.note);
+
+        btnCreateInvoiceSave = view.findViewById(R.id.btnInVoiceSave);
+
+
+        Bnadd = view.findViewById(R.id.Add);
+        BntotalAmount = view.findViewById(R.id.totalAmount);
+        BntotalRemainAmount = view.findViewById(R.id.totalRemainAmount);
+        Bnadd.setOnClickListener(this);
+        BntotalAmount.setOnClickListener(this);
+        BntotalRemainAmount.setOnClickListener(this);
+
+
+
+        scanForVoucher = view.findViewById(R.id.scanForvoucher);
+
+
+//         linearLayoutRing = view.findViewById(R.id.ring);
+//         linearLayoutBangles = view.findViewById(R.id.bangles);
+//         linearLayoutNecklace = view.findViewById(R.id.necklace);
+//         linearLayoutEarring  =view.findViewById(R.id.earring);
+//         hideRing = view.findViewById(R.id.hideRing);
+//         hideBangles =view.findViewById(R.id.hideBangles);
+//         hideNecklace = view.findViewById(R.id.hideNecklace);
+//         hideEarring = view.findViewById(R.id.hideEarring);
+//
+//
+//        ringTitle = view.findViewById(R.id.ringText);
+//        ringNumber= view.findViewById(R.id.ringNumber);
+//        ringPointEight = view.findViewById(R.id.ringPointEight);
+//        ringKyat = view.findViewById(R.id.ringKyat);
+//        ringPal = view.findViewById(R.id.ringPal);
+//        ringYae = view.findViewById(R.id.ringYae);
+//
+//
+//        banglesTitle = view.findViewById(R.id.banglesText);
+//        banglesNumber= view.findViewById(R.id.banglesNumber);
+//        banglesPointEight = view.findViewById(R.id.banglesPointEight);
+//        banglesKyat = view.findViewById(R.id.banglesKyat);
+//        banglesPal = view.findViewById(R.id.banglesPal);
+//        banglesYae = view.findViewById(R.id.banglesYae);
+//
+//        necklaceTitle = view.findViewById(R.id.necklaceText);
+//        necklaceNumber= view.findViewById(R.id.necklaceNumber);
+//        necklacePointEight = view.findViewById(R.id.necklacePointEight);
+//        necklaceKyat = view.findViewById(R.id.necklaceKyat);
+//        necklacePal = view.findViewById(R.id.necklacePal);
+//        necklaceYae = view.findViewById(R.id.necklaceYae);
+//
+//        earringTitle = view.findViewById(R.id.earringText);
+//        earringNumber= view.findViewById(R.id.earringNumber);
+//        earringPointEight = view.findViewById(R.id.earringPointEight);
+//        earringKyat = view.findViewById(R.id.earringKyat);
+//        earringPal = view.findViewById(R.id.earringPal);
+//        earringYae = view.findViewById(R.id.earringYae);
+//
+//
+//
+//          hideRing.setOnClickListener(this);
+//          hideBangles.setOnClickListener(this);
+//          hideNecklace.setOnClickListener(this);
+//          hideEarring.setOnClickListener(this);
+//
+//
+//        spinner = view.findViewById(R.id.spinner);
+//        ArrayAdapter<String> adapter = new ArrayAdapter<String>(getContext(),
+//                android.R.layout.simple_spinner_item,paths);
+//
+//        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+//        spinner.setAdapter(adapter);
+//        spinner.setOnItemSelectedListener(this);
+
 
         final DatePickerDialog.OnDateSetListener date = new DatePickerDialog.OnDateSetListener() {
             @Override
@@ -171,44 +248,22 @@ private static final String[] paths = {"Choose Items Type","Ring", "Bangles", "N
 
 
 
-       totalYae = view.findViewById(R.id.yawe);
-        //totalYae.setFilters(new InputFilter[]{new InputFilterMinMax(1,7)});
-
-        totalPal = view.findViewById(R.id.pel);
        // totalPel.setFilters(new InputFilter[]{new InputFilterMinMax(1,15)});
 
-        ringYae.setFilters(new InputFilter[]{new InputFilterMinMax(0,7)});
-        banglesYae.setFilters(new InputFilter[]{new InputFilterMinMax(0,7)});
-        necklaceYae.setFilters(new InputFilter[]{new InputFilterMinMax(0,7)});
-        earringYae.setFilters(new InputFilter[]{new InputFilterMinMax(0,7)});
-
-
-        ringPal.setFilters(new InputFilter[]{new InputFilterMinMax(0,15)});
-        banglesPal.setFilters(new InputFilter[]{new InputFilterMinMax(0,15)});
-        necklacePal.setFilters(new InputFilter[]{new InputFilterMinMax(0,15)});
-        earringPal.setFilters(new InputFilter[]{new InputFilterMinMax(0,15)});
-
-        edShopName = view.findViewById(R.id.shopName);
-        edCustomerName = view.findViewById(R.id.custName);
-        edCustomerPhone = view.findViewById(R.id.custPhone);
-        edDOB = view.findViewById(R.id.custDOB);
-        edCustomerUserName = view.findViewById(R.id.custUserName);
-       edCustomerAddress = view.findViewById(R.id.custAddress);
-       edCustomerTown = view.findViewById(R.id.custTown);
-       edCustomerNrc  = view.findViewById(R.id.custNrc);
-       edCustomerID = view.findViewById(R.id.custId);
-       // edSarchPhone = view.findViewById(R.id.searchPhone);
-//        phoneNumber = edSarchPhone.getText().toString().trim();
+//        ringYae.setFilters(new InputFilter[]{new InputFilterMinMax(0,7)});
+//        banglesYae.setFilters(new InputFilter[]{new InputFilterMinMax(0,7)});
+//        necklaceYae.setFilters(new InputFilter[]{new InputFilterMinMax(0,7)});
+//        earringYae.setFilters(new InputFilter[]{new InputFilterMinMax(0,7)});
 //
-//        Toast.makeText(getContext(),phoneNumber,Toast.LENGTH_LONG).show();
+//
+//        ringPal.setFilters(new InputFilter[]{new InputFilterMinMax(0,15)});
+//        banglesPal.setFilters(new InputFilter[]{new InputFilterMinMax(0,15)});
+//        necklacePal.setFilters(new InputFilter[]{new InputFilterMinMax(0,15)});
+//        earringPal.setFilters(new InputFilter[]{new InputFilterMinMax(0,15)});
 
-        totalKyat = view.findViewById(R.id.kyat);
-       // searchButton = view.findViewById(R.id.searchButton);
-        btnCreateInvoiceSave = view.findViewById(R.id.btnInVoiceSave);
-        //searchButton.setOnClickListener(this);
-       // searchWithPhoneLayout.setVisibility(View.GONE);
 
-        scanForVoucher = view.findViewById(R.id.scanForvoucher);
+
+
 
         scanForVoucher.setOnClickListener(this);
 
@@ -237,47 +292,178 @@ private static final String[] paths = {"Choose Items Type","Ring", "Bangles", "N
 
                 break;
 
-            case R.id.hideRing:
-                linearLayoutRing.setVisibility(View.GONE);
-                ringTitle.setText("");
-                ringNumber.setText("0");
-                ringPointEight.setText("0");
-                ringKyat.setText("0");
-                ringPal.setText("0");
-                ringYae.setText("0");
-                break;
-
-            case R.id.hideBangles:
-                linearLayoutBangles.setVisibility(View.GONE);
-                banglesTitle.setText("");
-                banglesNumber.setText("0");
-                banglesPointEight.setText("0");
-                banglesKyat.setText("0");
-                banglesPal.setText("0");
-                banglesYae.setText("0");
-                break;
-
-            case R.id.hideNecklace:
-                linearLayoutNecklace.setVisibility(View.GONE);
-                necklaceTitle.setText("");
-                necklaceNumber.setText("0");
-                necklacePointEight.setText("0");
-                necklaceKyat.setText("0");
-                necklacePal.setText("0");
-                necklaceYae.setText("0");
-                break;
-            case R.id.hideEarring:
-                linearLayoutEarring.setVisibility(View.GONE);
-                earringTitle.setText("");
-                earringNumber.setText("0");
-                earringPointEight.setText("0");
-                earringKyat.setText("0");
-                earringPal.setText("0");
-                earringYae.setText("0");
-                break;
+            case R.id.Add:
+                try {
+                    Double editTextGram = Double.parseDouble(Gram.getText().toString());
 
 
+                    double number2 = 16.6;
+                    int kyat1 = (int) (editTextGram / number2);
 
+                    double beforePal = (((editTextGram / number2) - kyat1) * 16);
+
+                    int PalInt = (int) (beforePal);
+
+                    double beforeYae = (beforePal - PalInt);
+
+                    double RealYae = (beforeYae * 8);
+
+                    DecimalFormat form = new DecimalFormat("0.00");
+
+
+                    //double beforePal = (((editTextGram%number2)/number2)*16);
+
+                    //double afterPal = Math.round((((((editTextGram%number2)/number2)*16)/number2)*8));
+
+                    double afterPal = (((((editTextGram % number2) / number2) * 16) / number2) * 8);
+
+                    int Yae = (int) afterPal;
+                    int Pal = (int) beforePal;
+
+                    totalKyat.setText(String.valueOf(kyat1));
+                    totalPal.setText(String.valueOf(PalInt));
+                    totalYae.setText(String.valueOf(form.format(RealYae)));
+                    break;
+                }catch (Exception e){
+                    e.printStackTrace();
+                }
+
+            case R.id.totalAmount:
+                try {
+
+                    int totKyat = Integer.parseInt(newTotalKyat.getText().toString());
+                    int totPal = Integer.parseInt(newTotalPal.getText().toString());
+                    double totYae = Double.parseDouble(newTotalYae.getText().toString());
+                    double plusPal;
+                    int plusKyat;
+                    double plusYaeOne = 0;
+                    int realResultPal = 0;
+                    int resultpal = 0;
+
+                    int debitKyat = Integer.parseInt(previousRemainKyat.getText().toString());
+                    int debitPal = Integer.parseInt(previousRemainPal.getText().toString());
+                    double debitYae = Double.parseDouble(previousRemainYae.getText().toString());
+
+                    int TOTALKYAT = totKyat + debitKyat;
+                    int TOTALPAl = totPal + debitPal;
+                    double TOTALYAE = totYae + debitYae;
+
+                    if (TOTALPAl < 16) {
+                        if (TOTALYAE >= 8) {
+                            plusYaeOne = TOTALYAE / 8;
+                            int plusYaeOneInt = (int) plusYaeOne;
+                            TOTALPAl = TOTALPAl + plusYaeOneInt;
+                            plusKyat = TOTALPAl / 16;
+                            resultpal = TOTALPAl % 16;
+
+
+                            TOTALKYAT = TOTALKYAT + plusKyat;
+                            buyDebitKyat.setText(String.valueOf(TOTALKYAT));
+                            buyDebitPal.setText(String.valueOf(resultpal));
+                        } else if (TOTALYAE < 8) {
+                            buyDebitKyat.setText(String.valueOf(TOTALKYAT));
+                            buyDebitPal.setText(String.valueOf(TOTALPAl));
+                        }
+                    } else if (TOTALPAl >= 16) {
+                        if (TOTALYAE >= 8) {
+                            plusYaeOne = TOTALYAE / 8;
+                            int plusYaeOneInt = (int) plusYaeOne;
+                            TOTALPAl = TOTALPAl + plusYaeOneInt;
+                            plusKyat = TOTALPAl / 16;
+                            resultpal = TOTALPAl % 16;
+
+
+                            TOTALKYAT = TOTALKYAT + plusKyat;
+                            buyDebitKyat.setText(String.valueOf(TOTALKYAT));
+                            buyDebitPal.setText(String.valueOf(resultpal));
+                        } else if (TOTALYAE < 8) {
+                            plusKyat = TOTALPAl / 16;
+                            resultpal = TOTALPAl % 16;
+                            TOTALKYAT = TOTALKYAT + plusKyat;
+                            buyDebitKyat.setText(String.valueOf(TOTALKYAT));
+                            buyDebitPal.setText(String.valueOf(resultpal));
+                        }
+                    }
+                    if (TOTALYAE < 8) {
+                        DecimalFormat form1 = new DecimalFormat("0.00");
+                        buyDebitYae.setText(String.valueOf(form1.format(TOTALYAE)));
+                    } else if (TOTALYAE >= 8) {
+                        double resultYae;
+                        plusPal = TOTALYAE / 8;
+                        resultYae = TOTALYAE % 8;
+                        double totalPals = (double) resultpal;
+
+                        double resultPal1 = totalPals + plusPal;
+                        int resultPalInt = (int) resultPal1;
+
+//                    if(resultPalInt>=16){
+//                        realResultPal= resultPalInt%16;
+//                        buyDebitPal.setText(String.valueOf(realResultPal));
+//                    }else if(resultPalInt<16){
+//                    buyDebitPal.setText(String.valueOf(resultPalInt));
+//                }
+//
+
+
+                        DecimalFormat form1 = new DecimalFormat("0.00");
+                        buyDebitYae.setText(String.valueOf(form1.format(resultYae)));
+
+                    }
+
+
+                    break;
+                }catch (Exception e){
+                    e.printStackTrace();
+                }
+
+
+            case R.id.totalRemainAmount:
+
+                try {
+
+                    int getTotalAmountKyat = Integer.parseInt(buyDebitKyat.getText().toString());
+                    int getTotalAmountPal = Integer.parseInt(buyDebitPal.getText().toString());
+                    double getTotalAmountYae = Double.parseDouble(buyDebitYae.getText().toString());
+
+                    int PayKyat = Integer.parseInt(paymentKyat.getText().toString());
+                    int PayPal = Integer.parseInt(paymentPal.getText().toString());
+                    double PayYae = Double.parseDouble(paymentYae.getText().toString());
+
+                    int RemainKyat = 0;
+                    int RemainPal = 0;
+                    double RemainYae = 0.0;
+
+                    if (PayPal > getTotalAmountPal) {
+
+                        getTotalAmountKyat = getTotalAmountKyat - 1;
+                        getTotalAmountPal = getTotalAmountPal + 16;
+                        if (PayYae > getTotalAmountYae) {
+                            getTotalAmountPal = getTotalAmountPal - 1;
+                        }
+                        RemainPal = getTotalAmountPal - PayPal;
+                    } else if (PayPal < getTotalAmountPal) {
+                        RemainPal = getTotalAmountPal - PayPal;
+                    }
+                    if (PayYae > getTotalAmountYae) {
+                        getTotalAmountPal = getTotalAmountPal - 1;
+                        getTotalAmountYae = getTotalAmountYae + 8;
+                        RemainYae = getTotalAmountYae - PayYae;
+                    } else if (PayYae < getTotalAmountYae) {
+                        RemainYae = getTotalAmountYae - PayYae;
+                    }
+
+                    RemainKyat = getTotalAmountKyat - PayKyat;
+                    nowRemainKyat.setText(String.valueOf(RemainKyat));
+                    nowRemainPal.setText(String.valueOf(RemainPal));
+                    DecimalFormat form1 = new DecimalFormat("0.00");
+                    nowRemainYae.setText(String.valueOf(form1.format(RemainYae)));
+
+
+                    break;
+
+                }catch (Exception e){
+                    e.printStackTrace();
+                }
 
         }
     }
@@ -290,41 +476,21 @@ private static final String[] paths = {"Choose Items Type","Ring", "Bangles", "N
     }
 
 
-    @Override
-    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-        switch (position){
 
-            case 1:
-                linearLayoutRing.setVisibility(View.VISIBLE);
-                break;
-
-            case 2:
-                linearLayoutBangles.setVisibility(View.VISIBLE);
-                break;
-
-            case 3:
-               linearLayoutNecklace.setVisibility(View.VISIBLE);
-                break;
-
-            case 4:
-                linearLayoutEarring.setVisibility(View.VISIBLE);
-                break;
-        }
-
-    }
-
-    @Override
-    public void onNothingSelected(AdapterView<?> parent) {
-
-    }
 
 
     public void saveOrderInvoice(){
-       String voucher_Number,sale_Date,qualtity,pointEight,kyat,pal,yae,gram,cuponCode,CustomerID,ring_Title,ring_Number,ring_Point_Eight,ring_Kyat,ring_Pal,ring_Yae,bangles_Title,bangles_Number,bangles_Point_Eight,bangles_Kyat,bangles_Pal,bangles_Yae,necklace_Title,necklace_Number,necklace_Point_Eight,necklace_Kyat,necklace_Pal,necklace_Yae,
-        earring_Title,earring_Number,earring_Point_Eight,earring_Kyat,earring_Pal,earring_Yae;
+       String voucher_Number,sale_Date,qualtity,pointEight,kyat,pal,yae,gram,cuponCode,CustomerID,totalAyotkyat,totalAyotPel,totalAyotYae,
+               previous_remain_kyat,previous_remain_pal,previous_remain_yae,buy_debit_kyat,buy_debit_pal,buy_debit_yae,payment_kyat,payment_pal,payment_yae,now_remain_kyat,now_remain_pal,now_remain_yae,
+                new_total_kayt,new_total_pal,new_total_yae,note_description;
+
        voucher_Number = voucherNumber.getText().toString();
         CustomerID = edCustomerID.getText().toString();
        sale_Date = saleDate.getText().toString();
+       new_total_kayt = newTotalKyat.getText().toString();
+       new_total_pal = newTotalPal.getText().toString();
+       new_total_yae = newTotalYae.getText().toString();
+
        qualtity = totalQualtity.getText().toString();
        pointEight = totalPointEight.getText().toString();
        kyat = totalKyat.getText().toString();
@@ -332,111 +498,6 @@ private static final String[] paths = {"Choose Items Type","Ring", "Bangles", "N
        yae = totalYae.getText().toString();
        gram  = Gram.getText().toString();
        cuponCode = CuponCode.getText().toString();
-       ring_Title = ringTitle.getText().toString();
-       ring_Number = ringNumber.getText().toString();
-       ring_Point_Eight = ringPointEight.getText().toString();
-       ring_Kyat = ringKyat.getText().toString();
-       ring_Pal = ringPal.getText().toString();
-       ring_Yae = ringYae.getText().toString();
-
-
-        bangles_Title = banglesTitle.getText().toString();
-        bangles_Number = banglesNumber.getText().toString();
-        bangles_Point_Eight = banglesPointEight.getText().toString();
-        bangles_Kyat = banglesKyat.getText().toString();
-        bangles_Pal = banglesPal.getText().toString();
-        bangles_Yae = banglesYae.getText().toString();
-
-
-
-        necklace_Title =necklaceTitle.getText().toString();
-        necklace_Number =necklaceNumber.getText().toString();
-        necklace_Point_Eight =necklacePointEight.getText().toString();
-        necklace_Kyat =necklaceKyat.getText().toString();
-        necklace_Pal =necklacePal.getText().toString();
-        necklace_Yae =necklaceYae.getText().toString();
-
-
-
-        earring_Title =earringTitle.getText().toString();
-        earring_Number =earringNumber.getText().toString();
-        earring_Point_Eight =earringPointEight.getText().toString();
-        earring_Kyat =earringKyat.getText().toString();
-        earring_Pal =earringPal.getText().toString();
-        earring_Yae =earringYae.getText().toString();
-        try {
-            totalRingNumber = Integer.parseInt(ring_Number);
-            totalBangesNumber = Integer.parseInt(bangles_Number);
-            totalNecklaceNumber = Integer.parseInt(necklace_Number);
-            totalEarringNumber = Integer.parseInt(earring_Number);
-
-
-        } catch (NumberFormatException e) {
-            e.printStackTrace();
-        }
-
-        try {
-            totalRingPointEight = Integer.parseInt(ring_Point_Eight);
-            totalBangesPointEight = Integer.parseInt(bangles_Point_Eight);
-            totalNecklacePointEight = Integer.parseInt(necklace_Point_Eight);
-            totalEarringPointEight = Integer.parseInt(earring_Point_Eight);
-        } catch (NumberFormatException e) {
-            e.printStackTrace();
-        }
-
-
-        try {
-            totalRingKyat = Integer.parseInt(ring_Kyat);
-            totalBangesKyat = Integer.parseInt(bangles_Kyat);
-            totalNecklaceKyat = Integer.parseInt(necklace_Kyat);
-            totalEarringKyat = Integer.parseInt(earring_Kyat);
-
-        } catch (NumberFormatException e) {
-            e.printStackTrace();
-        }
-
-
-        try {
-
-            totalRingPal = Integer.parseInt(ring_Pal);
-            totalBangesPal = Integer.parseInt(bangles_Pal);
-            totalNecklacePal = Integer.parseInt(necklace_Pal);
-            totalEarringPal = Integer.parseInt(earring_Pal);
-        } catch (NumberFormatException e) {
-            e.printStackTrace();
-        }
-
-        try {
-
-            totalRingYae = Integer.parseInt(ring_Yae);
-            totalBangesYae = Integer.parseInt(bangles_Yae);
-            totalNecklaceYae = Integer.parseInt(necklace_Yae);
-            totalEarringYae = Integer.parseInt(earring_Yae);
-
-        } catch (NumberFormatException e) {
-            e.printStackTrace();
-        }
-
-
-
-
-        totalAllNumber = totalRingNumber+totalBangesNumber+totalNecklaceNumber+totalEarringNumber;
-        totalAllPointEight = totalRingPointEight+totalBangesPointEight+totalNecklacePointEight+totalEarringPointEight;
-        totalAllKyat = totalRingKyat + totalBangesKyat+totalNecklaceKyat+totalEarringKyat;
-        totalAllPal = totalRingPal + totalBangesPal+totalNecklacePal+totalEarringPal;
-        totalAllYae = totalRingYae + totalBangesYae+totalNecklaceYae+totalEarringYae;
-
-        totalQualtity.setText(String.valueOf(totalAllNumber));
-        totalPointEight.setText(String.valueOf(totalAllPointEight));
-        totalKyat.setText(String.valueOf(totalAllKyat));
-        totalPal.setText(String.valueOf(totalAllPal));
-        totalYae.setText(String.valueOf(totalAllYae));
-
-
-
-        totalPoint= totalAllNumber-(totalAllPointEight/2);
-        String stotalPoint = String.valueOf(totalPoint);
-        Toast.makeText(getContext(), String.valueOf(totalPoint), Toast.LENGTH_SHORT).show();
 
 
         qualtity = totalQualtity.getText().toString();
@@ -446,17 +507,30 @@ private static final String[] paths = {"Choose Items Type","Ring", "Bangles", "N
         yae = totalYae.getText().toString();
         gram = Gram.getText().toString();
 
-        Toast.makeText(getContext(), "qualtity: " +qualtity +"pointeight : " + pointEight+ "Kyat :" + kyat + "Pal :"+ pal + "Yae :" +yae, Toast.LENGTH_SHORT).show();
+
+        totalAyotkyat = TotalAyotKyat.getText().toString();
+        totalAyotPel = TotalAyotPel.getText().toString();
+        totalAyotYae = TotalAyotYae.getText().toString();
+
+        previous_remain_kyat = previousRemainKyat.getText().toString();
+        previous_remain_pal = previousRemainPal.getText().toString();
+        previous_remain_yae = previousRemainYae.getText().toString();
+
+        buy_debit_kyat = buyDebitKyat.getText().toString();
+        buy_debit_pal = buyDebitPal.getText().toString();
+        buy_debit_yae = buyDebitYae.getText().toString();
+
+        payment_kyat = paymentKyat.getText().toString();
+        payment_pal = paymentPal.getText().toString();
+        payment_yae = paymentYae.getText().toString();
 
 
- Toast.makeText(getContext(), String.valueOf(totalAllKyat)+String.valueOf(totalAllPointEight)+String.valueOf(totalAllNumber)+String.valueOf(totalAllPal) +String.valueOf(totalAllYae), Toast.LENGTH_SHORT).show();
+        now_remain_kyat = nowRemainKyat.getText().toString();
+        now_remain_pal = nowRemainPal.getText().toString();
+        now_remain_yae = nowRemainYae.getText().toString();
 
+        note_description = edNote.getText().toString();
 
-//Toast.makeText(getContext(), "qty" + qualtity + "point eight" +pointEight +"kyat" + kyat +"Pal"+pal+ "Yae"+yae, Toast.LENGTH_SHORT).show();
-
-//Toast.makeText(getContext(), "bangles :" + bangles_Number + "rings: " + ring_Number + "necklace:" + necklace_Number+ "earring :" + earring_Number, Toast.LENGTH_SHORT).show();
-
-//totalQualtity.setText(String.valueOf(totalAllNumber));
         if (CustomerID.isEmpty()) {
             edCustomerID.setError("Sacn Customer Information");
             Toast.makeText(getContext(), "Scan Cusotmer Information", Toast.LENGTH_SHORT).show();
@@ -466,15 +540,15 @@ private static final String[] paths = {"Choose Items Type","Ring", "Bangles", "N
 
             progressDialog.show();
 
-        Call<OrderInoviceData> call = MainActivity.apiInterface.insertOrderInvoice(MainActivity.prefConfig.readName(),voucher_Number,sale_Date,qualtity,pointEight,stotalPoint,kyat,pal,yae,gram,cuponCode,CustomerID,ring_Title,ring_Number,ring_Point_Eight,ring_Kyat,ring_Pal,ring_Yae,bangles_Title,bangles_Number,bangles_Point_Eight,bangles_Kyat,bangles_Pal,bangles_Yae,
-                necklace_Title,necklace_Number,necklace_Point_Eight,necklace_Kyat,necklace_Pal,necklace_Yae,earring_Title,earring_Number,earring_Point_Eight,earring_Kyat,earring_Pal,earring_Yae);
+        Call<OrderInoviceData> call = MainActivity.apiInterface.insertOrderInvoice(MainActivity.prefConfig.readName(),voucher_Number,sale_Date,new_total_kayt,new_total_pal,new_total_yae,qualtity,pointEight,totalAyotkyat,totalAyotPel,totalAyotYae,kyat,pal,yae,gram,cuponCode,CustomerID,previous_remain_kyat,previous_remain_pal,previous_remain_yae,buy_debit_kyat,buy_debit_pal,buy_debit_yae,
+                payment_kyat,payment_pal,payment_yae,now_remain_kyat,now_remain_pal,now_remain_yae,note_description);
 
         call.enqueue(new Callback<OrderInoviceData>() {
             @Override
             public void onResponse(Call<OrderInoviceData> call, Response<OrderInoviceData> response) {
                 progressDialog.dismiss();
                 if (response.body().getResponse().equals("ok")){
-                    Toast.makeText(getContext(),"order Invoice Successfully" + ring_Title + bangles_Title + earring_Title + necklace_Title,Toast.LENGTH_LONG).show();
+                    Toast.makeText(getContext(),"order Invoice Successfully" ,Toast.LENGTH_LONG).show();
                 } else if (response.body().getResponse().equals("error")){
                     Toast.makeText(getContext(),"order Invoice fail",Toast.LENGTH_LONG).show();
                 }
@@ -482,6 +556,7 @@ private static final String[] paths = {"Choose Items Type","Ring", "Bangles", "N
 
             @Override
             public void onFailure(Call<OrderInoviceData> call, Throwable t) {
+                progressDialog.dismiss();
 
             }
         });

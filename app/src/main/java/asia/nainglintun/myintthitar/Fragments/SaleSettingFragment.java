@@ -51,6 +51,7 @@ public class SaleSettingFragment extends Fragment implements View.OnClickListene
     private CircleImageView saleProfile;
     private final int IMG_REQUEST=1;
    private Bitmap bitmap;
+   private Toolbar toolbar;
 
 
     private ProgressDialog progressDialog;
@@ -65,7 +66,17 @@ public class SaleSettingFragment extends Fragment implements View.OnClickListene
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_sale_setting, container, false);
 
-        ((SalesActivity)getActivity()).setTitle("Setting");
+       // ((SalesActivity)getActivity()).setTitle("Setting");
+        toolbar = view.findViewById(R.id.toolBar);
+        toolbar.setTitle("Setting");
+        toolbar.setNavigationIcon(R.drawable.ic_keyboard_backspace_black_24dp);
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                SalesActivity.fragmentManager.beginTransaction().replace(R.id.frame_layout_sales, new FragmentCard()).addToBackStack(null).commit();
+
+            }
+        });
 
         progressDialog = new ProgressDialog(getContext());
         progressDialog.setMessage("please wait.....");

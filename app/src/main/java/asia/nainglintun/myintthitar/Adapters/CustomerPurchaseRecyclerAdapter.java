@@ -38,8 +38,8 @@ public class CustomerPurchaseRecyclerAdapter extends RecyclerView.Adapter <Custo
     public void onBindViewHolder(@NonNull MyViewHolder holder, int i) {
 
         holder.saleDate.setText("date : " + salehistories.get(i).getSaleDate());
-        holder.voucherNo.setText("cupon code :" + salehistories.get(i).getCuponCode());
-        holder.shopName.setText("Items: " +salehistories.get(i).getRingTitle() + salehistories.get(i).getBanglesTitle() + salehistories.get(i).getNecklaceTitle()+ salehistories.get(i).getEarringTitle());
+        holder.voucherNo.setText("Sale name:" + salehistories.get(i).getSaleUserName());
+        holder.shopName.setText("Voucher No: " +salehistories.get(i).getVoucherNumber());
         holder.town.setText("Gram : " + salehistories.get(i).getGram());
     }
 

@@ -38,7 +38,7 @@ public class CustomerRankFragment extends Fragment {
     //Toolbar toolbar;
     TextView Customername;
     private String Customer_Id,Customer_name,paths;
-    private TextView textViewPoint;
+    private TextView textViewPoint,textViewPointEight,textViewKyat,textViewPal,textViewYae;
 
     public CustomerRankFragment() {
         // Required empty public constructor
@@ -55,6 +55,10 @@ public class CustomerRankFragment extends Fragment {
         Customername = view.findViewById(R.id.customerName);
        // Customername.setText(MainActivity.prefConfig.readName());
         textViewPoint = view.findViewById(R.id.pointNumber);
+        textViewPointEight = view.findViewById(R.id.pointEight);
+        textViewKyat = view.findViewById(R.id.customerRemainKyat);
+        textViewPal = view.findViewById(R.id.customerRemaiPal);
+        textViewYae = view.findViewById(R.id.customerRemaiYae);
         Profile = view.findViewById(R.id.profile_image);
         bitmap = BitmapFactory.decodeResource(getContext().getResources(),
                 R.drawable.default_profile);
@@ -67,6 +71,14 @@ public class CustomerRankFragment extends Fragment {
                 Customer_Id = String.valueOf(response.body().getId());
                 Customer_name =response.body().getName();
                 paths = response.body().getProfile();
+                String totalRemainKyat = response.body().getDebitKyat();
+                String totalRemainPal = response.body().getDebitPal();
+                String totalRemainYae = response.body().getDebitYae();
+
+                textViewKyat.setText(totalRemainKyat);
+                textViewPal.setText(totalRemainPal);
+                textViewYae.setText(totalRemainYae);
+
 
                 Customername.setText(Customer_name);
                 Toast.makeText(getContext(), paths, Toast.LENGTH_SHORT).show();
@@ -76,7 +88,7 @@ public class CustomerRankFragment extends Fragment {
                             R.drawable.default_profile);
                     Profile.setImageBitmap(bitmap);
                 }else if(paths!="") {
-                    Glide.with(getContext()).load("http://mtdatabase.com/mtd/"+paths).apply(RequestOptions.skipMemoryCacheOf(true).diskCacheStrategy(DiskCacheStrategy.NONE)).into(Profile);
+                    Glide.with(getContext()).load("http://128.199.190.233/mtd/uploads"+paths).apply(RequestOptions.skipMemoryCacheOf(true).diskCacheStrategy(DiskCacheStrategy.NONE)).into(Profile);
 
                 }
 
@@ -84,7 +96,7 @@ public class CustomerRankFragment extends Fragment {
 
 
 
-                Toast.makeText(getContext(), Customer_Id +Customer_name + paths, Toast.LENGTH_SHORT).show();
+                //Toast.makeText(getContext(), Customer_Id +Customer_name + paths, Toast.LENGTH_SHORT).show();
                 getPoint(Customer_Id);
 
             }
@@ -103,7 +115,7 @@ public class CustomerRankFragment extends Fragment {
             @Override
             public void onResponse(Call<ImageClass> call, Response<ImageClass> response) {
                 String path = response.body().getImage();
-                Toast.makeText(getContext(), path , Toast.LENGTH_SHORT).show();
+                //Toast.makeText(getContext(), path , Toast.LENGTH_SHORT).show();
             }
 
             @Override
@@ -127,7 +139,7 @@ public class CustomerRankFragment extends Fragment {
 
 
 
-        Glide.with(getContext()).load("http://mtdatabase.com/mtd/uploads/"+name+".jpg").into(customerQrCode);
+        Glide.with(getContext()).load("http://128.199.190.233/mtd/uploads/"+name+".jpg").into(customerQrCode);
 
         //Glide.with(getContext()).load(R.drawable.qr_code).into(customerQrCode);
 
@@ -141,8 +153,13 @@ public class CustomerRankFragment extends Fragment {
         customerCall.enqueue(new Callback<Customer>() {
             @Override
             public void onResponse(Call<Customer> call, Response<Customer> response) {
-                String Points = response.body().getResponse();
-                textViewPoint.setText(Points);
+                String totalQualtity = response.body().getQualtity();
+                String totalPointEight = response.body().getPointEight();
+
+
+               // Toast.makeText(getContext(), totalRemainKyat+totalRemainPal+totalRemainYae, Toast.LENGTH_SHORT).show();
+                textViewPoint.setText(totalQualtity);
+                textViewPointEight.setText(totalPointEight);
 
             }
 

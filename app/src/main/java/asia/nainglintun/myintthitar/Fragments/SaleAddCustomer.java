@@ -65,7 +65,17 @@ public class SaleAddCustomer extends Fragment {
         // Inflate the layout for this fragment
        View view = inflater.inflate(R.layout.sale_add_customer, container, false);
 
-        ((SalesActivity)getActivity()).setTitle("Add New Customer");
+        //((SalesActivity)getActivity()).setTitle("Add New Customer");
+        toolbar = view.findViewById(R.id.toolBar);
+        toolbar.setTitle("Add New Customer");
+        toolbar.setNavigationIcon(R.drawable.ic_keyboard_backspace_black_24dp);
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                SalesActivity.fragmentManager.beginTransaction().replace(R.id.frame_layout_sales, new FragmentCard()).addToBackStack(null).commit();
+
+            }
+        });
 
        imageQrcode = view.findViewById(R.id.customerQrcode);
        userName = view.findViewById(R.id.userName);

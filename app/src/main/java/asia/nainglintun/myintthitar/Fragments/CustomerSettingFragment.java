@@ -98,7 +98,7 @@ public class CustomerSettingFragment extends Fragment implements View.OnClickLis
 
                 }
 
-                Toast.makeText(getContext(), paths, Toast.LENGTH_SHORT).show();
+               // Toast.makeText(getContext(), paths, Toast.LENGTH_SHORT).show();
 
 
 

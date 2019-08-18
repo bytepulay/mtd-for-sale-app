@@ -5,7 +5,11 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class ApiClient {
 
-    private static final String BASE_URL = "http://mtdatabase.com/mtd/";
+   // private static final String BASE_URL = "http://mtdatabase.com/mtd/";
+
+    private static final String BASE_URL = " http://128.199.190.233/mtd/";
+
+
 
     private static Retrofit retrofit = null;
 

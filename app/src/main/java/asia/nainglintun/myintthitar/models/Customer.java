@@ -7,6 +7,14 @@ public class Customer {
     @SerializedName("response")
     private String Response;
 
+
+    @SerializedName("qualtity")
+    private String qualtity;
+
+    @SerializedName("point_eight")
+    private String PointEight;
+
+
     @SerializedName("image")
     private String Image;
 
@@ -47,6 +55,64 @@ public class Customer {
 
     @SerializedName("profile")
     private String profile;
+
+
+    @SerializedName("debit_kyat")
+    private String debitKyat;
+
+    @SerializedName("debit_pal")
+    private String debitPal;
+
+    @SerializedName("debit_yae")
+    private String debitYae;
+
+    @SerializedName("password")
+    private String password;
+
+    @SerializedName("update_voucher")
+    private String updateVoucher;
+
+    @SerializedName("update_saleDate")
+    private String updateSaleDate;
+
+    @SerializedName("update_sale_name")
+    private String updateSaleName;
+
+    public String getUpdateVoucher() {
+        return updateVoucher;
+    }
+
+    public String getUpdateSaleDate() {
+        return updateSaleDate;
+    }
+
+    public String getUpdateSaleName() {
+        return updateSaleName;
+    }
+
+    public String getDebitKyat() {
+        return debitKyat;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public String getDebitPal() {
+        return debitPal;
+    }
+
+    public String getDebitYae() {
+        return debitYae;
+    }
+
+    public String getQualtity() {
+        return qualtity;
+    }
+
+    public String getPointEight() {
+        return PointEight;
+    }
 
     public String getImage() {
         return Image;
