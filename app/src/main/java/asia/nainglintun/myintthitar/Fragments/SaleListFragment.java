@@ -66,14 +66,8 @@ public class SaleListFragment extends Fragment implements SearchView.OnQueryText
     private Button dialogEdit,btnSave;
 
     private EditText edVoucher,edSaleDate,edCustomerName,edShopName,edAddress,edDob,edNrc,edPhoneNumber,edTownShip,edRingDescription,
-    edRingNumber,edRingPointEight,edRingKyat,edRingPal,edRingYae,
-            edbanglesDescription,
-            edbanglesNumber,edbanglesPointEight,edbanglesKyat,edbanglesPal,edbanglesYae,
-            edNecklaceDescription,
-            edNecklaceNumber,edNecklacePointEight,edNecklaceKyat,edNecklacePal,edNecklaceYae,
-            edEarringDescription,
-            edEarringNumber,edEarringPointEight,edEarringKyat,edEarringPal,edEarringYae,
-            edTotalNumber,edTotalPointEight,edTotalKyat,edTotalPal,edTotalYae,edCuponCode,edGram;
+            edTotalNumber,edTotalPointEight,edTotalKyat,edTotalPal,edTotalYae,edCuponCode,edGram,edviewVoucher,edviewDate,edviewGram,
+            edGramToKyat,edGramToPal,edGramToYae,edReturnGram,edRemainGram,edGramRemainKyat,edGramRemainPal,edGramRemainYae;
     private ArrayList<String> dataList;
     private ArrayList<String> nameList;
 
@@ -119,13 +113,10 @@ public class SaleListFragment extends Fragment implements SearchView.OnQueryText
         recyclerView.addOnItemTouchListener(new RecyclerTouchListener(getContext(), recyclerView, new RecyclerTouchListener.ClickListener() {
             @Override
             public void onClick(View view, int position) {
-                String sDate,customerName,shopName,ringDescription,ringNumber,ringPointEight,ringKyat,ringPal,ringYae,
-                banglesDescription,banglesNumber,banglesPointEight,banglesKyat,banglesPal,banglesYae,
-                necklaceDescription,necklaceNumber,necklacePointEight,necklaceKyat,necklacePal,necklaceYae,
-                earringDescription,earringNumber,earringPointEight,earringKyat,earringPal,earringYae,
+                String sDate,customerName,shopName,
                 totalQty,totalPointEight,totalKyat,totalPal,totalYae,ID,customerPhoneNumber,customerAddress,customerDob,customerNrc,
                 gram,cuponcode,totalAyotKyat,totalAyotPal,totalAyotYae,previous_kyat,previous_yae,previous_pal,buydebitkyat,buydebitpal,buydebityae,
-                paymentkyat,paymentpal,paymentyae,remainkyat,remainpal,remainyae,newTotalKyat,newTotalPal,newTotalYae;
+                paymentkyat,paymentpal,paymentyae,remainkyat,remainpal,remainyae,newTotalKyat,newTotalPal,newTotalYae,returnGram,remainGram;
 
                  ID = String.valueOf(salehistories.get(position).getId());
                 String voucher = salehistories.get(position).getVoucherNumber();
@@ -135,33 +126,7 @@ public class SaleListFragment extends Fragment implements SearchView.OnQueryText
                 String town=salehistories.get(position).getCustomerTwon();
                 gram = salehistories.get(position).getGram();
                 cuponcode = salehistories.get(position).getCuponCode();
-                ringDescription = salehistories.get(position).getRingTitle();
-                ringNumber = salehistories.get(position).getRingNumber();
-                ringPointEight = salehistories.get(position).getRingPointEight();
-                ringKyat = salehistories.get(position).getRingKyat();
-                ringPal = salehistories.get(position).getRingPal();
-                ringYae = salehistories.get(position).getRingYae();
-                banglesDescription = salehistories.get(position).getBanglesTitle();
-                banglesNumber = salehistories.get(position).getBanglesNumber();
-                banglesPointEight = salehistories.get(position).getBanglesPointEight();
-                banglesKyat = salehistories.get(position).getBanglesKyat();
-                banglesPal = salehistories.get(position).getBanglesPal();
-                banglesYae = salehistories.get(position).getBanglesYae();
 
-
-                necklaceDescription = salehistories.get(position).getNecklaceTitle();
-                necklaceNumber = salehistories.get(position).getNecklaceNumber();
-                necklacePointEight = salehistories.get(position).getNecklacePointEight();
-                necklaceKyat = salehistories.get(position).getNecklaceKyat();
-                necklacePal = salehistories.get(position).getNecklacePal();
-                necklaceYae = salehistories.get(position).getNecklaceYae();
-
-                earringDescription = salehistories.get(position).getEarringTitle();
-                earringNumber = salehistories.get(position).getEarringNumber();
-                earringPointEight = salehistories.get(position).getEarringPointEight();
-                earringKyat = salehistories.get(position).getEarringKyat();
-                earringPal = salehistories.get(position).getEarringPal();
-                earringYae = salehistories.get(position).getEarringYae();
 
                 totalQty = salehistories.get(position).getQty();
                totalPointEight = salehistories.get(position).getPointEight();
@@ -199,16 +164,14 @@ public class SaleListFragment extends Fragment implements SearchView.OnQueryText
                customerAddress = salehistories.get(position).getCustomerAddress();
                customerDob = salehistories.get(position).getCustomerDob();
 
+
                // Toast.makeText(getContext(), "gram is" + salehistories.get(position).getResponse(), Toast.LENGTH_SHORT).show();
 
 
               // customerNrc = salehistories.get(position).getCustomerNrc();
 
                 //Toast.makeText(getContext(),position + town + ID + ringDescription + banglesDescription + necklaceDescription + earringDescription + " is selected! and to do get data from database", Toast.LENGTH_LONG).show();
-                Showpopup(voucher,sDate,cuponcode,totalAyotKyat,totalAyotPal,totalAyotYae,customerName,shopName,customerAddress,customerPhoneNumber,customerDob,town,ringDescription,ringNumber,ringPointEight,ringKyat,ringPal,ringYae,
-                        banglesDescription,banglesNumber,banglesPointEight,banglesKyat,banglesPal,banglesYae,
-                        necklaceDescription,necklaceNumber,necklacePointEight,necklaceKyat,necklacePal,necklaceYae,
-                        earringDescription,earringNumber,earringPointEight,earringKyat,earringPal,earringYae,
+                Showpopup(voucher,sDate,cuponcode,totalAyotKyat,totalAyotPal,totalAyotYae,customerName,shopName,customerAddress,customerPhoneNumber,customerDob,town,
                         totalQty,totalPointEight,totalKyat,totalPal,totalYae,
                         gram,ID,previous_kyat,previous_pal,previous_yae,buydebitkyat,buydebitpal,buydebityae,paymentkyat,paymentpal,paymentyae,remainkyat,remainpal,remainyae,newTotalKyat,newTotalPal,newTotalYae);
 
@@ -224,56 +187,77 @@ public class SaleListFragment extends Fragment implements SearchView.OnQueryText
        return view;
     }
 
-    private void Showpopup(String voucher,String sDate,String cuponCode,String total_ayot_kyat,String total_ayot_pal,String total_ayo_yae,String customerName,String shopName, String customerAddress,String customerPhoneNumber,String customerDob,String town,String ringDescription,String ringNumber,String ringPointEight,String ringKyat,String ringPal,String ringYae,
-                           String banglesDescription,String banglesNumber,String banglesPointEight,String banglesKyat,String banglesPal,String banglesYae,
-                           String necklaceDescription,String necklaceNumber,String necklacePointEight,String necklaceKyat,String necklacePal,String necklaceYae,
-                           String earringDescription,String earringNumber,String earringPointEight,String earringKyat,String earringPal,String earringYae,String totalQty,String totalPointEight,String totalKyat,String totalPal,String totalYae,
+    private void Showpopup(String voucher,String sDate,String cuponCode,String total_ayot_kyat,String total_ayot_pal,String total_ayo_yae,String customerName,String shopName, String customerAddress,String customerPhoneNumber,String customerDob,String town,
+                         String totalQty,String totalPointEight,String totalKyat,String totalPal,String totalYae,
                           String gram,String ID,String previous_kyat,String previous_pal,String previous_yae,String buydebitkyat,String buydebitpal,String buydebityae,String paymentkyat,String paymentpal,String paymentyae,String remainkyat,String remainpal,String remainyae,String newTotalKyat,String newTotalPal,String newTotalYae) {
 
         dialog.setContentView(R.layout.custom_popup_dialog);
-        recyclerView = dialog.findViewById(R.id.recyclerViewDialog);
-        layoutManager = new LinearLayoutManager(getContext());
-        recyclerView.setLayoutManager(layoutManager);
-        recyclerView.setHasFixedSize(true);
+        //recyclerView = dialog.findViewById(R.id.recyclerViewDialog);
+//        layoutManager = new LinearLayoutManager(getContext());
+//        recyclerView.setLayoutManager(layoutManager);
+//        recyclerView.setHasFixedSize(true);
 
         closeImg = dialog.findViewById(R.id.closeImage);
         btnEdit = dialog.findViewById(R.id.btnVoucherEdit);
+        edviewVoucher = dialog.findViewById(R.id.viewVoucher);
+        edviewDate = dialog.findViewById(R.id.viewDate);
+        edviewGram = dialog.findViewById(R.id.viewGram);
+        edGramToKyat = dialog.findViewById(R.id.gramtoKyat);
+        edGramToPal = dialog.findViewById(R.id.gramtPal);
+        edGramToYae = dialog.findViewById(R.id.gramtoYae);
+        edReturnGram = dialog.findViewById(R.id.viewreturnGram);
+        edRemainGram = dialog.findViewById(R.id.viewRemainGram);
+        edGramRemainKyat = dialog.findViewById(R.id.remainGramtoKyat);
+        edGramRemainPal = dialog.findViewById(R.id.remainGramtoKyat);
+        edGramRemainYae = dialog.findViewById(R.id.remainGramtoYae);
+
+
+        edviewVoucher.setText(voucher);
+        edviewDate.setText(sDate);
+        edviewGram.setText(gram);
+
+        edGramToKyat.setText(totalKyat);
+        edGramToPal.setText(totalPal);
+        edGramToYae.setText(totalYae);
+        edReturnGram.setText(total_ayo_yae);
+
+
 
         //btnSave = dialog.findViewById(R.id.btnVoucherSave);
 
 
 
-    nameList = new ArrayList<>();
-    nameList.add("Voucher No");
-    nameList.add("Sale Date");
-    nameList.add("Customer Name");
-    nameList.add("Shop Name");
-    nameList.add("Township");
-    nameList.add("Qualtity");
-    nameList.add("Point eight");
-    nameList.add("Cupon Code");
-    nameList.add("စုစုေပါင္း gram");
-    nameList.add("က်ပ္");
-    nameList.add("ပဲ");
-    nameList.add("ေရြး");
-    nameList.add("ယခုဝယ္သည့္ က်ပ္");
-    nameList.add("ယခုဝယ္သည့္ ပဲ");
-    nameList.add("ယခုဝယ္သည့္ ေရြး");
-    nameList.add(" အေလ်ာ့ က်ပ္");
-    nameList.add(" အေလ်ာ့ ပဲ");
-    nameList.add(" အေလ်ာ့ ေရြး");
-    nameList.add("ယခင္အေျကြး က်ပ္");
-    nameList.add("ယခင္အေျကြး ပဲ");
-    nameList.add("ယခင္အေျကြး ေရြး");
-    nameList.add("စုစုေပါင္း က်ပ္");
-    nameList.add("စုစုေပါင္း ပဲ");
-    nameList.add("စုစုေပါင္း ေရြး");
-    nameList.add("ယခုေပးေခ်မည့္ က်ပ္");
-    nameList.add("ယခုေပးေခ်မည့္ ပဲ");
-    nameList.add("ယခုေပးေခ်မည့္ ေရြး");
-    nameList.add("ယခုလက္က်န္ က်ပ္");
-    nameList.add("ယခုလက္က်န္ ပဲ");
-    nameList.add("ယခုလက္က်န္ ေရြး");
+//    nameList = new ArrayList<>();
+//    nameList.add("Voucher No");
+//    nameList.add("Sale Date");
+//    nameList.add("Customer Name");
+//    nameList.add("Shop Name");
+//    nameList.add("Township");
+//    nameList.add("Qualtity");
+//    nameList.add("Point eight");
+//    nameList.add("Cupon Code");
+//    nameList.add("စုစုေပါင္း gram");
+//    nameList.add("က်ပ္");
+//    nameList.add("ပဲ");
+//    nameList.add("ေရြး");
+//    nameList.add("ယခုဝယ္သည့္ က်ပ္");
+//    nameList.add("ယခုဝယ္သည့္ ပဲ");
+//    nameList.add("ယခုဝယ္သည့္ ေရြး");
+//    nameList.add(" အေလ်ာ့ က်ပ္");
+//    nameList.add(" အေလ်ာ့ ပဲ");
+//    nameList.add(" အေလ်ာ့ ေရြး");
+//    nameList.add("ယခင္အေျကြး က်ပ္");
+//    nameList.add("ယခင္အေျကြး ပဲ");
+//    nameList.add("ယခင္အေျကြး ေရြး");
+//    nameList.add("စုစုေပါင္း က်ပ္");
+//    nameList.add("စုစုေပါင္း ပဲ");
+//    nameList.add("စုစုေပါင္း ေရြး");
+//    nameList.add("ယခုေပးေခ်မည့္ က်ပ္");
+//    nameList.add("ယခုေပးေခ်မည့္ ပဲ");
+//    nameList.add("ယခုေပးေခ်မည့္ ေရြး");
+//    nameList.add("ယခုလက္က်န္ က်ပ္");
+//    nameList.add("ယခုလက္က်န္ ပဲ");
+//    nameList.add("ယခုလက္က်န္ ေရြး");
 
 
 
@@ -321,8 +305,8 @@ public class SaleListFragment extends Fragment implements SearchView.OnQueryText
 
 
 
-    adapterDialog = new bindvouchersaleRecyclerAdapter(nameList,dataList,getContext());
-    recyclerView.setAdapter(adapterDialog);
+    //adapterDialog = new bindvouchersaleRecyclerAdapter(nameList,dataList,getContext());
+   // recyclerView.setAdapter(adapterDialog);
 
         closeImg.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -566,6 +550,20 @@ public class SaleListFragment extends Fragment implements SearchView.OnQueryText
         btnEdit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                try {
+                    edGram.setEnabled(true);
+                    edviewVoucher.setEnabled(true);
+                    edviewDate.setEnabled(true);
+                    edGramToKyat.setEnabled(true);
+                    edGramToPal.setEnabled(true);
+                    edGramToYae.setEnabled(true);
+
+
+                }catch (Exception e){
+                    e.printStackTrace();
+                }
+
+
                 Toast.makeText(getContext(), "Need Owner Approve", Toast.LENGTH_SHORT).show();
             }
         });

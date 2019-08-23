@@ -25,6 +25,10 @@ public interface ApiInterface
     Call<Customer> getCustomerInfo(@Query("user_name") String userName);
 
 
+    @GET("changePinCode.php")
+    Call<Customer> changePinCode(@Query("user_name") String userName,@Query("code") String pinCode);
+
+
 
 
     @GET("logintest.php")
@@ -32,7 +36,9 @@ public interface ApiInterface
 
     @GET("sale_invoice_insert_data.php")
     Call<SaleInoviceData> insertSaleInvoice(@Query("sale_user_name") String saleUserName,@Query("voucher_number") String voucherNumber,@Query("sdate") String saleDate,@Query("total_kyat") String totalKyat,@Query("total_pal") String totalPal,@Query("total_yae") String totalYae,@Query("qty") String qty,@Query("point_eight") String pointEight,@Query("total_ayot_kyat") String totalAyotKyat,@Query("total_ayot_pal") String totalAyotPel,@Query("total_ayot_yae") String totalAyotYae,@Query("kyat") String Kyat,@Query("pal") String Pal,@Query("yae") String Yae,@Query("gram") String Gram,@Query("cupon_code") String cuponCode,@Query("customer_id") String customerId,
-                                            @Query("previous_remain_kyat") String previousRemainKyat,@Query("previous_remain_pal") String previousRemainPal,@Query("previous_remain_yae") String previousRemainYae,@Query("buy_debit_kyat") String buyDebitKyat,@Query("buy_debit_pal") String buyDebitPal,@Query("buy_debit_yae") String buyDebitYae,@Query("payment_kyat") String paymentKyat,@Query("payment_pal") String paymentPal,@Query("payment_yae") String paymentYae,@Query("now_remain_kyat") String nowRemainKyat,@Query("now_remain_pal") String nowRemainPal,@Query("now_remain_yae") String nowRemainYae,@Query("note") String note);
+                                            @Query("previous_remain_kyat") String previousRemainKyat,@Query("previous_remain_pal") String previousRemainPal,@Query("previous_remain_yae") String previousRemainYae,@Query("buy_debit_kyat") String buyDebitKyat,@Query("buy_debit_pal") String buyDebitPal,@Query("buy_debit_yae") String buyDebitYae,@Query("payment_kyat") String paymentKyat,@Query("payment_pal") String paymentPal,@Query("payment_yae") String paymentYae,@Query("now_remain_kyat") String nowRemainKyat,@Query("now_remain_pal") String nowRemainPal,@Query("now_remain_yae") String nowRemainYae,@Query("note") String note,
+                                            @Query("return_gram") String returnGram,@Query("now_remain_gram") String nowRemainGram,@Query("sub_return_kayt") String subReturnKyat,@Query("sub_return_pal") String subReturnPal,@Query("sub_return_yae")String subReturnYae,@Query("return_quantity") String returnQuantity,@Query("return_pointeight") String returnPointEight,@Query("now_remain_quantity") String nowRemainQuantity,@Query("now_remain_pointeight") String nowRemainPointEight,@Query("return_ayot_kyat") String returnAyotKyat,@Query("return_ayot_pal") String returnAyotPal,@Query("return_ayot_yae") String returnAyotYae,
+                                            @Query("now_total_ayot_kyat") String nowTotalAyotKyat,@Query("now_total_ayot_pal") String nowTotalAyotPal,@Query("now_total_ayot_yae") String nowTotalAyotYae);
 
 
     @GET("order_invoice_insert_data.php")
@@ -75,7 +81,8 @@ public interface ApiInterface
 
     @FormUrlEncoded
     @POST("upload.php")
-    Call<ImageClass> uploadImage(@Field("name") String name,@Field("user_name") String userName,@Field("shop_name") String shopName,@Field("phone_number") String phoneNumber,@Field("address") String address,@Field("dob") String DOB,@Field("nrc") String Nrc,@Field("town_ship") String town,@Field("image") String image);
+        Call<ImageClass> uploadImage(@Field("name") String name,@Field("user_name") String userName,@Field("shop_name") String shopName,@Field("phone_number") String phoneNumber,@Field("address") String address,@Field("dob") String DOB,@Field("nrc") String Nrc,@Field("town_ship") String town,@Field("image") String image,@Field("password") String password);
+    //Call<ImageClass> uploadImage(@Field("name") String name,@Field("user_name") String userName,@Field("shop_name") String shopName,@Field("phone_number") String phoneNumber,@Field("address") String address,@Field("dob") String DOB,@Field("nrc") String Nrc,@Field("town_ship") String town,@Field("image") String image);
 
 
     @FormUrlEncoded

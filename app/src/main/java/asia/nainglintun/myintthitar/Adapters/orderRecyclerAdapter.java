@@ -42,6 +42,8 @@ public class orderRecyclerAdapter extends RecyclerView.Adapter <orderRecyclerAda
         holder.voucherNo.setText("voucher no :" + orderhistories.get(i).getVoucherNumber());
         holder.shopName.setText("shop: " +orderhistories.get(i).getCustomerShop());
         holder.town.setText("Town : " + orderhistories.get(i).getCustomerTwon());
+        holder.quantity.setText("Quantity :" +orderhistories.get(i).getQty());
+        holder.point_eight.setText("Point Eight :" +orderhistories.get(i).getPointEight());
     }
 
     @Override
@@ -51,7 +53,7 @@ public class orderRecyclerAdapter extends RecyclerView.Adapter <orderRecyclerAda
 
     public static class MyViewHolder extends RecyclerView.ViewHolder{
 
-        TextView shopName,saleDate,voucherNo,town;
+        TextView shopName,saleDate,voucherNo,town,quantity,point_eight;
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
 
@@ -59,6 +61,8 @@ public class orderRecyclerAdapter extends RecyclerView.Adapter <orderRecyclerAda
             saleDate = itemView.findViewById(R.id.sDate);
             voucherNo = itemView.findViewById(R.id.voucherNo);
             town = itemView.findViewById(R.id.town);
+            quantity = itemView.findViewById(R.id.normalItem);
+            point_eight = itemView.findViewById(R.id.pointEightItem);
         }
     }
 

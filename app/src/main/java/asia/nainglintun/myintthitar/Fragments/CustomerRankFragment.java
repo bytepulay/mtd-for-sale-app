@@ -83,11 +83,11 @@ public class CustomerRankFragment extends Fragment {
                 Customername.setText(Customer_name);
                 Toast.makeText(getContext(), paths, Toast.LENGTH_SHORT).show();
 
-                if(paths==""){
+                if(paths.equals("No")){
                     bitmap = BitmapFactory.decodeResource(getContext().getResources(),
                             R.drawable.default_profile);
                     Profile.setImageBitmap(bitmap);
-                }else if(paths!="") {
+                }else if(!paths.equals("NO")) {
                     Glide.with(getContext()).load("http://128.199.190.233/mtd/"+paths).apply(RequestOptions.skipMemoryCacheOf(true).diskCacheStrategy(DiskCacheStrategy.NONE)).into(Profile);
 
                 }

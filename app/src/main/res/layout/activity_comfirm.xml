@@ -29,7 +29,7 @@
 
         <EditText
             android:id="@+id/editComfirm"
-            android:inputType="number"
+            android:inputType="numberPassword"
             android:background="@drawable/custom_edittext_form_background"
             style="@style/Foredit" />
 

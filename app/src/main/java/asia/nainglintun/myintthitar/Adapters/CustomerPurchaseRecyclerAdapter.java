@@ -41,6 +41,8 @@ public class CustomerPurchaseRecyclerAdapter extends RecyclerView.Adapter <Custo
         holder.voucherNo.setText("Sale name:" + salehistories.get(i).getSaleUserName());
         holder.shopName.setText("Voucher No: " +salehistories.get(i).getVoucherNumber());
         holder.town.setText("Gram : " + salehistories.get(i).getGram());
+        holder.quantity.setText("Quantity :" +salehistories.get(i).getQty());
+        holder.point_eight.setText("Point Eight :" +salehistories.get(i).getPointEight());
     }
 
     @Override
@@ -50,7 +52,7 @@ public class CustomerPurchaseRecyclerAdapter extends RecyclerView.Adapter <Custo
 
     public static class MyViewHolder extends RecyclerView.ViewHolder{
 
-        TextView shopName,saleDate,voucherNo,town;
+        TextView shopName,saleDate,voucherNo,town,quantity,point_eight;
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
 
@@ -58,6 +60,9 @@ public class CustomerPurchaseRecyclerAdapter extends RecyclerView.Adapter <Custo
             saleDate = itemView.findViewById(R.id.sDate);
             voucherNo = itemView.findViewById(R.id.voucherNo);
             town = itemView.findViewById(R.id.town);
+            quantity = itemView.findViewById(R.id.normalItem);
+            point_eight = itemView.findViewById(R.id.pointEightItem);
+
         }
     }
 

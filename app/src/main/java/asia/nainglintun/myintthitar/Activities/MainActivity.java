@@ -63,10 +63,12 @@ public class MainActivity extends AppCompatActivity {
         final Activity activity = this;
 
 
-            if (!prefConfig.readName().isEmpty() &&  prefConfig.readRowUser().equals("customer") ){
-                startActivity(new Intent(MainActivity.this,CustomerActivity.class));
-                finish();
-            }else   if (!prefConfig.readName().isEmpty() &&  prefConfig.readRowUser().equals("sale") ){
+//            if (!prefConfig.readName().isEmpty() &&  prefConfig.readRowUser().equals("customer") ){
+//                startActivity(new Intent(MainActivity.this,CustomerActivity.class));
+//                finish();
+//            }else
+//
+                if (!prefConfig.readName().isEmpty() &&  prefConfig.readRowUser().equals("sale") ){
 
                 startActivity(new Intent(MainActivity.this,SalesActivity.class));
                  finish();
@@ -105,8 +107,9 @@ public class MainActivity extends AppCompatActivity {
                         if (response.body().getResponse().equals("customer")){
                             String name =response.body().getUserName();
                             String rowUser = response.body().getResponse();
-                            prefConfig.writeRowUser(rowUser);
-                            prefConfig.writeName(name);
+//                            prefConfig.writeRowUser(rowUser);
+//                          prefConfig.writeName(name);
+//                          prefConfig.DeleteName(name);
 
                             startActivity(new Intent(MainActivity.this,CustomerActivity.class));
                         }else if (response.body().getResponse().equals("sale")) {
@@ -122,13 +125,16 @@ public class MainActivity extends AppCompatActivity {
 
                     @Override
                     public void onFailure(Call<Customer> call, Throwable t) {
-
+                        progressDialog.dismiss();
+                        Toast.makeText(MainActivity.this, "Login Fail", Toast.LENGTH_SHORT).show();
                     }
                 });
             }
         });
 
     }
+
+        //finish();
 
     }
 

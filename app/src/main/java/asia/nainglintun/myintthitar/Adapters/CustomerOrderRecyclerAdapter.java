@@ -39,9 +39,11 @@ public class CustomerOrderRecyclerAdapter extends RecyclerView.Adapter <Customer
     public void onBindViewHolder(@NonNull MyViewHolder holder, int i) {
 
         holder.saleDate.setText("date : " + salehistories.get(i).getOrderDate());
-        holder.voucherNo.setText("sale name:" + salehistories.get(i).getCuponCode());
-        holder.shopName.setText("voucher no: " +salehistories.get(i).getRingTitle() + salehistories.get(i).getBanglesTitle()+ salehistories.get(i).getNecklaceTitle()+ salehistories.get(i).getEarringTitle());
+        holder.voucherNo.setText("sale name:" + salehistories.get(i).getSaleUserName());
+        holder.shopName.setText("voucher no: " +salehistories.get(i).getVoucherNumber());
         holder.town.setText("gram : " + salehistories.get(i).getGram());
+        holder.quantity.setText("Quantity :" +salehistories.get(i).getQty());
+        holder.point_eight.setText("Point Eight :" +salehistories.get(i).getPointEight());
     }
 
     @Override
@@ -51,7 +53,7 @@ public class CustomerOrderRecyclerAdapter extends RecyclerView.Adapter <Customer
 
     public static class MyViewHolder extends RecyclerView.ViewHolder{
 
-        TextView shopName,saleDate,voucherNo,town;
+        TextView shopName,saleDate,voucherNo,town,quantity,point_eight;
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
 
@@ -59,6 +61,8 @@ public class CustomerOrderRecyclerAdapter extends RecyclerView.Adapter <Customer
             saleDate = itemView.findViewById(R.id.sDate);
             voucherNo = itemView.findViewById(R.id.voucherNo);
             town = itemView.findViewById(R.id.town);
+            quantity = itemView.findViewById(R.id.normalItem);
+            point_eight = itemView.findViewById(R.id.pointEightItem);
         }
     }
 

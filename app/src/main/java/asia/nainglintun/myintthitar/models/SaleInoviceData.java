@@ -205,6 +205,52 @@ public class SaleInoviceData {
     @SerializedName("note")
     private String note;
 
+    @SerializedName("return_gram")
+    private String returnGram;
+
+    @SerializedName("now_remain_gram")
+    private String nowRemainGram;
+
+    @SerializedName("sub_return_kayt")
+    private String subReturnKyat;
+
+    @SerializedName("sub_return_pal")
+    private String subReturnPal;
+
+    @SerializedName("sub_return_yae")
+    private String subReturnYae;
+
+    @SerializedName("return_quantity")
+    private String returnQuantity;
+
+    @SerializedName("return_pointeight")
+    private String returnPointEight;
+
+    @SerializedName("now_remain_quantity")
+    private String nowRemainQuantity;
+
+    @SerializedName("now_remain_pointeight")
+    private String nowRemainPointEight;
+
+    @SerializedName("return_ayot_kyat")
+    private String returnAyotKyat;
+
+    @SerializedName("return_ayot_pal")
+    private String returnAyotPal;
+
+    @SerializedName("return_ayot_yae")
+    private String returnAyotYae;
+
+    @SerializedName("now_total_ayot_kyat")
+    private String nowTotalAyotKyat;
+
+    @SerializedName("now_total_ayot_pal")
+    private String nowTotalAyotPal;
+
+    @SerializedName("now_total_ayot_yae")
+    private String nowTotalAyotYae;
+
+
 
     public String getNote() {
         return note;

@@ -48,6 +48,7 @@ public class ScanForVoucherActivity extends AppCompatActivity implements ZXingSc
                    String shopName = response.body().getShopName();
                    String phoneNumber = response.body().getPhoneNumber();
                    String address = response.body().getAddress();
+
                    String nrc = response.body().getNrc();
                    String town = response.body().getTown();
                    String dob = response.body().getDob();

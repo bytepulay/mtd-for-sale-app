@@ -219,7 +219,7 @@ public class OrderListFragment extends Fragment implements SearchView.OnQueryTex
 
 
         dialog.setContentView(R.layout.custom_popup_dialog);
-        recyclerView = dialog.findViewById(R.id.recyclerViewDialog);
+        //recyclerView = dialog.findViewById(R.id.recyclerViewDialog);
         layoutManager = new LinearLayoutManager(getContext());
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setHasFixedSize(true);

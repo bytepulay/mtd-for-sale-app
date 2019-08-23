@@ -78,6 +78,13 @@ public class Customer {
     @SerializedName("update_sale_name")
     private String updateSaleName;
 
+    @SerializedName("code")
+    private String code;
+
+    public String getCode() {
+        return code;
+    }
+
     public String getUpdateVoucher() {
         return updateVoucher;
     }

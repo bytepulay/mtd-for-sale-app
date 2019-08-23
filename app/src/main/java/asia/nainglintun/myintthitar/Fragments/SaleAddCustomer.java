@@ -47,7 +47,7 @@ public class SaleAddCustomer extends Fragment {
 
     private Toolbar toolbar;
 
-    private EditText userName,shopName,phoneNumber,Address,DOB,Nrc,Township,customerName;
+    private EditText userName,shopName,phoneNumber,Address,DOB,Nrc,Township,customerName,Code;
     private Button btnCustomerSave;
     private ProgressDialog progressDialog;
     final Calendar myCalendar = Calendar.getInstance();
@@ -86,6 +86,7 @@ public class SaleAddCustomer extends Fragment {
        DOB = view.findViewById(R.id.dateOfBirth);
        Nrc = view.findViewById(R.id.nrc);
        Township = view.findViewById(R.id.township);
+       Code = view.findViewById(R.id.password);
 
        btnCustomerSave = view.findViewById(R.id.customerSave);
         progressDialog = new ProgressDialog(getContext());
@@ -231,7 +232,8 @@ public class SaleAddCustomer extends Fragment {
             String Dob = DOB.getText().toString();
             String NRC = Nrc.getText().toString();
             String town = Township.getText().toString();
-            Call<ImageClass> call = MainActivity.apiInterface.uploadImage(customer_name,uniqueUserName,shop_name,phone,customer_address,Dob,NRC,town,path);
+            String comfirmCode = Code.getText().toString();
+            Call<ImageClass> call = MainActivity.apiInterface.uploadImage(customer_name,uniqueUserName,shop_name,phone,customer_address,Dob,NRC,town,path,comfirmCode);
             call.enqueue(new Callback<ImageClass>() {
                 @Override
                 public void onResponse(Call<ImageClass> call, Response<ImageClass> response) {
@@ -254,14 +256,18 @@ public class SaleAddCustomer extends Fragment {
 
 
 
-//            userName.setText("");
-//            customerName.setText("");
-//            shopName.setText("");
-//            phoneNumber.setText("");
-//            Address.setText("");
-//            DOB.setText("");
-//            Nrc.setText("");
-//            Township.setText("");
+            userName.setText("");
+            customerName.setText("");
+            shopName.setText("");
+            phoneNumber.setText("");
+            Address.setText("");
+            DOB.setText("");
+            Nrc.setText("");
+            Township.setText("");
+
+            SalesActivity.fragmentManager.beginTransaction().replace(R.id.frame_layout_sales,new FragmentCard()).addToBackStack(null).commit();
+
+
 
 
 
@@ -270,37 +276,38 @@ public class SaleAddCustomer extends Fragment {
     }
 
 
-    private void uploadImage(){
-        Log.e("work","upload method is work");
-        String path = imageToString();
-       // String title = editTextSaleChangePassword.getText().toString();
-        String username = userName.getText().toString();
-        String customername = customerName.getText().toString();
-        String shopname = shopName.getText().toString();
-        String phone = phoneNumber.getText().toString();
-        String customeraddress =Address.getText().toString();
-        String dob = DOB.getText().toString();
-        String nrc = Nrc.getText().toString();
-        String town = Township.getText().toString();
-        Call<ImageClass> call = MainActivity.apiInterface.uploadImage(username,customername,shopname,phone,customeraddress,dob,nrc,town,path);
-        call.enqueue(new Callback<ImageClass>() {
-            @Override
-            public void onResponse(Call<ImageClass> call, Response<ImageClass> response) {
-//                ImageClass imageClass = response.body();n
+//    private void uploadImage(){
+//        Log.e("work","upload method is work");
+//        String path = imageToString();
+//       // String title = editTextSaleChangePassword.getText().toString();
+//        String username = userName.getText().toString();
+//        String customername = customerName.getText().toString();
+//        String shopname = shopName.getText().toString();
+//        String phone = phoneNumber.getText().toString();
+//        String customeraddress =Address.getText().toString();
+//        String dob = DOB.getText().toString();
+//        String nrc = Nrc.getText().toString();
+//        String town = Township.getText().toString();
+//        //String comfirmCode = comFirmCode.getText().toString();
+//        Call<ImageClass> call = MainActivity.apiInterface.uploadImage(username,customername,shopname,phone,customeraddress,dob,nrc,town,path);
+//        call.enqueue(new Callback<ImageClass>() {
+//            @Override
+//            public void onResponse(Call<ImageClass> call, Response<ImageClass> response) {
+////                ImageClass imageClass = response.body();n
+////
+////               Toast.makeText(getContext(), "Server Response:" + imageClass.getResponse(), Toast.LENGTH_SHORT).show();
+//                String result = response.body().getResponse();
+//                Toast.makeText(getContext(), result, Toast.LENGTH_SHORT).show();
 //
-//               Toast.makeText(getContext(), "Server Response:" + imageClass.getResponse(), Toast.LENGTH_SHORT).show();
-                String result = response.body().getResponse();
-                Toast.makeText(getContext(), result, Toast.LENGTH_SHORT).show();
-
-            }
-
-
-            @Override
-            public void onFailure(Call<ImageClass> call, Throwable t) {
-
-            }
-        });
-    }
+//            }
+//
+//
+//            @Override
+//            public void onFailure(Call<ImageClass> call, Throwable t) {
+//
+//            }
+//        });
+//    }
 
 
     private void updateLabel() {

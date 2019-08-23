@@ -1,6 +1,7 @@
 package asia.nainglintun.myintthitar.Fragments;
 
 
+import android.app.Application;
 import android.app.DatePickerDialog;
 import android.app.ProgressDialog;
 import android.content.Intent;
@@ -28,6 +29,7 @@ import java.math.BigInteger;
 import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.Locale;
 
 import asia.nainglintun.myintthitar.Activities.InputFilterMinMax;
@@ -53,14 +55,21 @@ private  EditText saleDate;
 final Calendar myCalendar = Calendar.getInstance();
 private Button btnCreateInvoiceSave;
 private ImageButton scanForVoucher;
-private Button Bnadd,BnCalculate,BntotalAmount,BntotalRemainAmount;
+private Button Bnadd,BntotalAmount,BntotalRemainAmount,BnSub,BnCalculate,BnItemCalculate,BnayotCalculate;
 private ProgressDialog progressDialog;
 private Toolbar toolbar;
+private double remainGram = 0.0;
+private int remainNumber=0;
+private int remainPointEight=0;
+private double remainAyotYae=0;
+private int remainAyotKyat=0,remainAyotPal=0;
 
 
 private EditText voucherNumber,Gram,CuponCode,totalKyat,totalPal,totalYae,totalQualtity,totalPointEight,TotalAyotKyat,TotalAyotPel,TotalAyotYae,
        buyDebitKyat,buyDebitPal,buyDebitYae,paymentKyat,paymentPal,paymentYae,
-        nowRemainKyat,nowRemainPal,nowRemainYae,newTotalKyat,newTotalPal,newTotalYae,edNote;
+        nowRemainKyat,nowRemainPal,nowRemainYae,newTotalKyat,newTotalPal,newTotalYae,edNote,
+        edReturnGram,edRemainGram,edRemainKyat,edRemainPal,edRemainYae,edReturnNumber,edReturnPointEight,edRemainNumber,edRemainPointEight,
+        edReturnAyoutKyat,edReturnAyotPal,edReturnAyotYae,edRemainAyotKyat,edRemainAyotPal,edRemainAyotYae;
     float Totalkyat, Totalpal,Totalyae;
 
     public SaleInvoiceCreate() {
@@ -139,6 +148,32 @@ private EditText voucherNumber,Gram,CuponCode,totalKyat,totalPal,totalYae,totalQ
         edCustomerID = view.findViewById(R.id.custId);
 
         edNote = view.findViewById(R.id.note);
+        edReturnGram = view.findViewById(R.id.returnGram);
+        edRemainGram = view.findViewById(R.id.remainGram);
+
+        edRemainKyat =view.findViewById(R.id.nowRmainkyat);
+        edRemainPal = view.findViewById(R.id.nowRemainpal);
+        edRemainYae = view.findViewById(R.id.nowRemainyae);
+
+        edReturnNumber = view.findViewById(R.id.returnNumber);
+        edReturnPointEight = view.findViewById(R.id.returnDiscountPoint);
+
+        edRemainNumber = view.findViewById(R.id.remainNumber);
+        edRemainPointEight = view.findViewById(R.id.remainDiscountPoint);
+        edReturnAyoutKyat = view.findViewById(R.id.returnAyotKyat);
+        edReturnAyotPal = view.findViewById(R.id.returnAyotPal);
+        edReturnAyotYae = view.findViewById(R.id.returnAyotYae);
+
+        edRemainAyotKyat = view.findViewById(R.id.remainAyotKyat);
+        edRemainAyotPal = view.findViewById(R.id.remainAyotPal);
+        edRemainAyotYae = view.findViewById(R.id.remainAyotYae);
+
+        BnSub = view.findViewById(R.id.Sub);
+        BnCalculate = view.findViewById(R.id.Calculate);
+        BnItemCalculate = view.findViewById(R.id.itemCalculate);
+        BnayotCalculate = view.findViewById(R.id.ayotCalculate);
+
+
 
         Bnadd = view.findViewById(R.id.Add);
         BntotalAmount = view.findViewById(R.id.totalAmount);
@@ -146,6 +181,17 @@ private EditText voucherNumber,Gram,CuponCode,totalKyat,totalPal,totalYae,totalQ
         Bnadd.setOnClickListener(this);
         BntotalAmount.setOnClickListener(this);
         BntotalRemainAmount.setOnClickListener(this);
+        BnCalculate.setOnClickListener(this);
+        BnSub.setOnClickListener(this);
+        BnItemCalculate.setOnClickListener(this);
+        BnayotCalculate.setOnClickListener(this);
+
+
+
+
+
+        String date_n = new SimpleDateFormat("dd/MM/YYYY", Locale.getDefault()).format(new Date());
+        saleDate.setText(date_n);
 
 
 
@@ -191,10 +237,125 @@ private EditText voucherNumber,Gram,CuponCode,totalKyat,totalPal,totalYae,totalQ
                 startActivity(new Intent(getContext(), ScanForVoucherActivity.class));
 
                 break;
+            case R.id.Sub:
+                try {
+                    double buyGram = Double.parseDouble(Gram.getText().toString());
+                    double returnGram = Double.parseDouble(edReturnGram.getText().toString());
+                    remainGram = buyGram - returnGram;
+                    edRemainGram.setText(String.valueOf(remainGram));
+                    break;
+                }catch (Exception e){
+                    e.printStackTrace();
+                }
+
+            case R.id.Calculate:
+                try {
+                    //Double editTextGram = Double.parseDouble(.getText().toString());
+
+                    double number2 = 16.6;
+                    int kyat1 =  (int) (remainGram/number2);
+
+                    double beforePal = (((remainGram/number2)-kyat1)*16);
+
+                    int PalInt = (int)(beforePal);
+
+                    double beforeYae = (beforePal-PalInt);
+
+                    double RealYae = (beforeYae*8);
+
+                    DecimalFormat form = new DecimalFormat("0.00");
+
+
+                    double afterPal = (((((remainGram%number2)/number2)*16)/number2)*8);
+
+                    int Yae = (int)afterPal;
+                    int Pal = (int)beforePal;
+
+                    edRemainKyat.setText(String.valueOf(kyat1));
+                    edRemainPal.setText(String.valueOf(PalInt));
+                    edRemainYae.setText(String.valueOf(form.format(RealYae)));
+                    break;
+
+                }catch (Exception e){
+                    e.printStackTrace();
+                }
+
+
+
 
             case R.id.btnInVoiceSave:
-                saveSaleInvoice();
-                break;
+                try {
+                    saveSaleInvoice();
+                    break;
+                }catch (Exception e){
+                    e.printStackTrace();
+                }
+
+            case R.id.itemCalculate:
+                try {
+                    int itemNumber = Integer.parseInt(totalQualtity.getText().toString());
+                    int itemPointEight = Integer.parseInt(totalPointEight.getText().toString());
+                    int returnItemNumber = Integer.parseInt(edReturnNumber.getText().toString());
+                    int returnItemPointEight = Integer.parseInt(edReturnPointEight.getText().toString());
+
+                    remainNumber = itemNumber-returnItemNumber;
+                    remainPointEight = itemPointEight-returnItemPointEight;
+
+                    edRemainNumber.setText(String.valueOf(remainNumber));
+                    edRemainPointEight.setText(String.valueOf(remainPointEight));
+                    break;
+                }catch (Exception e){
+                    e.printStackTrace();
+                }
+
+
+            case R.id.ayotCalculate:
+                try{
+                    int returnAyotKyat= Integer.parseInt(edReturnAyoutKyat.getText().toString());
+                    int returnAyotPal = Integer.parseInt(edReturnAyotPal.getText().toString());
+                    double returnAyotYae = Double.parseDouble(edReturnAyotYae.getText().toString());
+
+                    int AyotKyat = Integer.parseInt(TotalAyotKyat.getText().toString());
+                    int AyotPal = Integer.parseInt(TotalAyotPel.getText().toString());
+                    double AyotYae = Double.parseDouble(TotalAyotYae.getText().toString());
+
+                    if (returnAyotYae > AyotYae)
+                    {
+                        AyotPal = AyotPal - 1;
+                        AyotYae = AyotYae + 8;
+                        remainAyotYae = AyotYae - returnAyotYae;
+                        Toast.makeText(getContext(), String.valueOf(remainAyotYae), Toast.LENGTH_SHORT).show();
+                    } else if (returnAyotYae < AyotYae)
+                    {
+                        remainAyotYae = AyotYae - returnAyotYae;
+                        Toast.makeText(getContext(), String.valueOf(remainAyotYae), Toast.LENGTH_SHORT).show();
+                    }
+
+
+
+                    if (returnAyotPal > AyotPal)
+                    {
+                        AyotKyat = AyotKyat - 1;
+                        AyotPal = AyotPal + 16;
+
+                        remainAyotPal = AyotPal -returnAyotPal;
+                    }
+                    else if (returnAyotPal < AyotPal)
+                    {
+                        remainAyotPal = AyotPal - returnAyotPal;
+                    }
+
+                    remainAyotKyat = AyotKyat - returnAyotKyat;
+                    edRemainAyotKyat.setText(String.valueOf(remainAyotKyat));
+                    edRemainAyotPal.setText(String.valueOf(remainAyotPal));
+                    DecimalFormat form1 = new DecimalFormat("0.00");
+                    edRemainAyotYae.setText(String.valueOf(form1.format(remainAyotYae)));
+
+                    break;
+
+                }catch (Exception e){
+                    e.printStackTrace();
+                }
 
             case R.id.Add:
                 try {
@@ -335,28 +496,76 @@ private EditText voucherNumber,Gram,CuponCode,totalKyat,totalPal,totalYae,totalQ
                     double RemainYae = 0.0;
 
 
-                    if (PayPal > getTotalAmountPal) {
-                        getTotalAmountKyat = getTotalAmountKyat - 1;
-                        getTotalAmountPal = getTotalAmountPal + 16;
-                        if (PayYae > getTotalAmountYae) {
-                            getTotalAmountPal = getTotalAmountPal - 1;
+                    if(PayKyat>getTotalAmountKyat && PayPal>getTotalAmountPal && PayYae>getTotalAmountYae){
+                        getTotalAmountPal = getTotalAmountPal-1;
+                        getTotalAmountYae=getTotalAmountYae+8;
+                        RemainYae = getTotalAmountYae-PayYae;
+                        if (PayPal==getTotalAmountPal){
+                            RemainPal = getTotalAmountPal-PayPal;
+                        }else if(PayPal>getTotalAmountPal){
+                            getTotalAmountKyat = getTotalAmountKyat-1;
+                            getTotalAmountPal = getTotalAmountPal+16;
+                            RemainPal=getTotalAmountPal-PayPal;
                         }
-                        RemainPal = getTotalAmountPal - PayPal;
-                    } else if (PayPal < getTotalAmountPal) {
-                        RemainPal = getTotalAmountPal - PayPal;
+
+                        RemainKyat=getTotalAmountKyat-PayKyat;
+
+                    }else if(PayKyat>getTotalAmountKyat && PayPal<getTotalAmountPal && PayYae<getTotalAmountYae){
+
+                        RemainYae=getTotalAmountYae-PayYae;
+                        RemainPal=getTotalAmountPal-PayPal;
+                        RemainKyat=getTotalAmountKyat-PayKyat;
+                    }else if (PayKyat>getTotalAmountKyat && PayPal<getTotalAmountPal && PayYae>getTotalAmountYae){
+                        getTotalAmountPal=getTotalAmountPal-1;
+                        getTotalAmountYae=getTotalAmountYae+8;
+                        RemainYae = getTotalAmountYae-PayYae;
+
+                        if (PayPal<=getTotalAmountPal){
+                            RemainPal = getTotalAmountPal-PayPal;
+                        }
+
+                        RemainKyat = getTotalAmountKyat-PayKyat;
                     }
-                    if (PayYae > getTotalAmountYae) {
+
+                    else if (PayKyat>getTotalAmountKyat && PayPal>getTotalAmountPal && PayYae<getTotalAmountYae){
+                        RemainYae = getTotalAmountYae-PayYae;
+                        getTotalAmountKyat = getTotalAmountKyat-1;
+                        getTotalAmountPal = getTotalAmountPal+16;
+                        RemainPal = getTotalAmountPal-PayPal;
+                        RemainKyat = getTotalAmountKyat-PayKyat;
+                    }
+
+
+                    if (PayYae > getTotalAmountYae)
+                    {
                         getTotalAmountPal = getTotalAmountPal - 1;
-                        Toast.makeText(getContext(), String.valueOf(getTotalAmountPal), Toast.LENGTH_SHORT).show();
                         getTotalAmountYae = getTotalAmountYae + 8;
                         RemainYae = getTotalAmountYae - PayYae;
-                    } else if (PayYae < getTotalAmountYae) {
+                    } else if (PayYae < getTotalAmountYae)
+                    {
                         RemainYae = getTotalAmountYae - PayYae;
                     }
 
+
+
+                    if (PayPal > getTotalAmountPal)
+                    {
+                        getTotalAmountKyat = getTotalAmountKyat - 1;
+                        getTotalAmountPal = getTotalAmountPal + 16;
+//                        if (PayYae > getTotalAmountYae) {
+//                            getTotalAmountPal = getTotalAmountPal - 1;
+//                            RemainPal = getTotalAmountPal;
+//                        }
+                        RemainPal = getTotalAmountPal - PayPal;
+                    }
+                    else if (PayPal < getTotalAmountPal)
+                    {
+                        RemainPal = getTotalAmountPal - PayPal;
+                    }
+
+
+
                     RemainKyat = getTotalAmountKyat - PayKyat;
-
-
                     nowRemainKyat.setText(String.valueOf(RemainKyat));
                     nowRemainPal.setText(String.valueOf(RemainPal));
                     DecimalFormat form1 = new DecimalFormat("0.00");
@@ -373,7 +582,7 @@ private EditText voucherNumber,Gram,CuponCode,totalKyat,totalPal,totalYae,totalQ
     }
 
     private void updateLabel() {
-        String myFormat = "MM/dd/yy"; //In which you need put here
+        String myFormat = "dd/MM/YYYY"; //In which you need put here
         SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.US);
 
         saleDate.setText(sdf.format(myCalendar.getTime()));
@@ -383,7 +592,8 @@ private EditText voucherNumber,Gram,CuponCode,totalKyat,totalPal,totalYae,totalQ
     public void saveSaleInvoice() {
 
         String voucher_Number, sale_Date, qualtity, pointEight, kyat, pal, yae, gram, cuponCode, CustomerID,totalAyotkyat,totalAyotPel,totalAyotYae,
-        previous_remain_kyat,previous_remain_pal,previous_remain_yae,buy_debit_kyat,buy_debit_pal,buy_debit_yae,payment_kyat,payment_pal,payment_yae,now_remain_kyat,now_remain_pal,now_remain_yae,new_total_kyat,new_total_pal,new_total_yae,note_description;
+        previous_remain_kyat,previous_remain_pal,previous_remain_yae,buy_debit_kyat,buy_debit_pal,buy_debit_yae,payment_kyat,payment_pal,payment_yae,now_remain_kyat,now_remain_pal,now_remain_yae,new_total_kyat,new_total_pal,new_total_yae,note_description,
+        return_gram,now_remain_gram,sub_return_kyat,sub_return_pal,sub_return_yae,return_quantity,return_point_eight,now_remain_quantity,now_remain_pointeight,return_ayot_kyat,return_ayot_pal,return_ayot_yae,now_total_ayot_kyat,now_total_ayot_pal,now_total_ayot_yae;
         voucher_Number = voucherNumber.getText().toString();
         gram = Gram.getText().toString();
 
@@ -424,6 +634,27 @@ private EditText voucherNumber,Gram,CuponCode,totalKyat,totalPal,totalYae,totalQ
         now_remain_pal = nowRemainPal.getText().toString();
         now_remain_yae = nowRemainYae.getText().toString();
 
+        return_gram = edReturnGram.getText().toString();
+        now_remain_gram = edRemainGram.getText().toString();
+        sub_return_kyat = edRemainKyat.getText().toString();
+        sub_return_pal = edRemainPal.getText().toString();
+        sub_return_yae = edRemainYae.getText().toString();
+
+        return_quantity = edReturnNumber.getText().toString();
+        return_point_eight = edReturnPointEight.getText().toString();
+        now_remain_quantity = edRemainNumber.getText().toString();
+        now_remain_pointeight = edRemainPointEight.getText().toString();
+
+        return_ayot_kyat = edReturnAyoutKyat.getText().toString();
+        return_ayot_pal = edReturnAyotPal.getText().toString();
+        return_ayot_yae = edReturnAyotYae.getText().toString();
+
+        now_total_ayot_kyat =edRemainAyotKyat.getText().toString();
+        now_total_ayot_pal = edRemainAyotPal.getText().toString();
+        now_total_ayot_yae = edRemainAyotYae.getText().toString();
+
+
+
 
 
 
@@ -442,7 +673,7 @@ private EditText voucherNumber,Gram,CuponCode,totalKyat,totalPal,totalYae,totalQ
               progressDialog.show();
 
             Call<SaleInoviceData> call = MainActivity.apiInterface.insertSaleInvoice(MainActivity.prefConfig.readName(), voucher_Number, sale_Date,new_total_kyat,new_total_pal,new_total_yae,qualtity, pointEight,totalAyotkyat,totalAyotPel,totalAyotYae,kyat, pal, yae, gram, cuponCode, CustomerID,previous_remain_kyat,previous_remain_pal,previous_remain_yae,buy_debit_kyat,buy_debit_pal,buy_debit_yae,
-                    payment_kyat,payment_pal,payment_yae,now_remain_kyat,now_remain_pal,now_remain_yae,note_description);
+                    payment_kyat,payment_pal,payment_yae,now_remain_kyat,now_remain_pal,now_remain_yae,note_description,return_gram,now_remain_gram,sub_return_kyat,sub_return_pal,sub_return_yae,return_quantity,return_point_eight,now_remain_quantity,now_remain_pointeight,return_ayot_kyat,return_ayot_pal,return_ayot_yae,now_total_ayot_kyat,now_total_ayot_pal,now_total_ayot_yae);
 
             call.enqueue(new Callback<SaleInoviceData>() {
 

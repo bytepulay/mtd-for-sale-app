@@ -65,14 +65,14 @@ public class FragmentCard extends Fragment {
 //        ((SalesActivity)getActivity()).setTitle("Home");
         toolbar = view.findViewById(R.id.toolBar);
         toolbar.setTitle("Home");
-        toolbar.setNavigationIcon(R.drawable.ic_keyboard_backspace_black_24dp);
+       // toolbar.setNavigationIcon(R.drawable.ic_keyboard_backspace_black_24dp);
 
-        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                getActivity().finish();
-                            }
-        });
+//        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                getActivity().finish();
+//                            }
+//        });
         todoList = new ArrayList<>();
 
         sProfile = view.findViewById(R.id.saleProfileCard);

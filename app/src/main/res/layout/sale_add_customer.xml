@@ -100,8 +100,16 @@
                     android:textAllCaps="false"
                     android:background="@drawable/custom_edittext_form_background"/>
 
+                <EditText
+                    android:visibility="gone"
+                    android:id="@+id/password"
+                    android:hint="Comfirm Code"
+                    style="@style/Foredit"
+                    android:textAllCaps="false"
+                    android:background="@drawable/custom_edittext_form_background"/>
 
-                    <ImageView
+
+                <ImageView
                         android:visibility="gone"
                         android:layout_marginTop="10dp"
                         android:layout_gravity="center"
@@ -127,7 +135,6 @@
                     android:layout_marginTop="80dp"
                     android:layout_marginRight="20dp"
                     android:layout_marginBottom="30dp"
-                    android:textAllCaps="false"
                     android:layout_width="match_parent"
                     android:layout_height="60dp"
                     android:text="Save"

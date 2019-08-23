@@ -18,6 +18,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+import android.widget.Toolbar;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
@@ -43,7 +44,8 @@ import static android.app.Activity.RESULT_OK;
  */
 public class CustomerSettingFragment extends Fragment implements View.OnClickListener {
 
-    private Button btnCustomerChangePassword,bnCustometLogout;
+    private Button btnCustomerChangePassword,bnCustometLogout,BnChangeCode;
+    private EditText edCode;
    // private EditText editTextCustomerChangePassword,getEditTextCustomerComfirmPassword;
     private static CircleImageView customerProfile;
     private final int IMG_REQUEST=1;
@@ -72,6 +74,8 @@ public class CustomerSettingFragment extends Fragment implements View.OnClickLis
         bitmap = BitmapFactory.decodeResource(getContext().getResources(),
                 R.drawable.default_profile);
         customerProfile.setImageBitmap(bitmap);
+        edCode = view.findViewById(R.id.changeCode);
+        BnChangeCode = view.findViewById(R.id.btnChangeCode);
         progressDialog = new ProgressDialog(getContext());
 
        // Glide.with(getContext()).load("https://datacenterasia.000webhostapp.com/mtd/uploads/profile"+name+".jpg").apply(RequestOptions.skipMemoryCacheOf(true).diskCacheStrategy(DiskCacheStrategy.NONE)).into(customerProfile);
@@ -88,12 +92,12 @@ public class CustomerSettingFragment extends Fragment implements View.OnClickLis
 
                String paths = response.body().getProfile();
 
-                Toast.makeText(getContext(), paths, Toast.LENGTH_SHORT).show();
-                if(paths==""){
+                Toast.makeText(getContext(), paths+Customer_Id, Toast.LENGTH_SHORT).show();
+                if(paths.equals("No")){
                     bitmap = BitmapFactory.decodeResource(getContext().getResources(),
                             R.drawable.default_profile);
                     customerProfile.setImageBitmap(bitmap);
-                }else if(paths!="") {
+                }else if(!paths.equals("No")) {
                     Glide.with(getContext()).load("http://128.199.190.233/mtd/"+paths).apply(RequestOptions.skipMemoryCacheOf(true).diskCacheStrategy(DiskCacheStrategy.NONE)).into(customerProfile);
 
                 }
@@ -114,6 +118,7 @@ public class CustomerSettingFragment extends Fragment implements View.OnClickLis
         });
 
 
+
 //        if(profile!="empty") {
 //            Glide.with(getContext()).load("https://datacenterasia.000webhostapp.com/mtd/uploads/profile" + name + ".jpg").apply(RequestOptions.skipMemoryCacheOf(true).diskCacheStrategy(DiskCacheStrategy.NONE)).into(customerProfile);
 //
@@ -131,6 +136,7 @@ public class CustomerSettingFragment extends Fragment implements View.OnClickLis
         customerProfile.setOnClickListener(this);
         btnCustomerChangePassword.setOnClickListener(this);
         bnCustometLogout.setOnClickListener(this);
+        BnChangeCode.setOnClickListener(this);
         return view;
     }
 
@@ -139,7 +145,6 @@ public class CustomerSettingFragment extends Fragment implements View.OnClickLis
       switch (v.getId()){
           case R.id.btnCustomerPasswordSave:
               uploadImage();
-
               break;
           case R.id.customerProfile:
               selectSaleImage();
@@ -148,6 +153,26 @@ public class CustomerSettingFragment extends Fragment implements View.OnClickLis
               MainActivity.prefConfig.DeleteName(MainActivity.prefConfig.readName());
               startActivity(new Intent(getContext(), MainActivity.class));
               getActivity().finish();
+              break;
+
+          case R.id.btnChangeCode:
+              String eddCode =edCode.getText().toString();
+              Toast.makeText(getContext(), eddCode, Toast.LENGTH_SHORT).show();
+              Call<Customer> call =MainActivity.apiInterface.changePinCode(MainActivity.prefConfig.readName(),eddCode);
+               call.enqueue(new Callback<Customer>() {
+                   @Override
+                   public void onResponse(Call<Customer> call, Response<Customer> response) {
+                       if(response.body().getResponse().equals("ok")){
+                           Toast.makeText(getContext(), "Success Change Comfirm Code", Toast.LENGTH_LONG).show();
+                       }
+                   }
+
+                   @Override
+                   public void onFailure(Call<Customer> call, Throwable t) {
+                       Toast.makeText(getContext(), "Fail Change Comfirm Code", Toast.LENGTH_LONG).show();
+
+                   }
+               });
               break;
       }
     }

@@ -68,6 +68,7 @@
                             style="@style/Foredit"
                             android:id="@+id/gram"
                             android:hint="Gram"
+                            android:inputType="numberDecimal"
                             android:background="@drawable/custom_edittext_form_background" />
 
 
@@ -127,7 +128,7 @@
                         android:layout_marginTop="8dp"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="ယခုဝယ္သည့္ ပမာဏ"/>
+                        android:text="ယခုဝယ္သည့္ ေရႊခ်ိန္ (100%)"/>
 
 
                     <LinearLayout
@@ -264,7 +265,8 @@
                             android:layout_weight="5"
                             android:background="@drawable/custom_edittext_form_background"
                             android:hint="က်ပ္"
-                            android:inputType="numberDecimal" />
+                            android:inputType="numberDecimal"
+                            android:enabled="false"/>
 
                         <EditText
                             style="@style/Foredit"
@@ -272,7 +274,8 @@
                             android:layout_weight="5"
                             android:background="@drawable/custom_edittext_form_background"
                             android:hint="ပဲ"
-                            android:inputType="numberDecimal"/>
+                            android:inputType="numberDecimal"
+                            android:enabled="false"/>
 
                         <EditText
                             style="@style/Foredit"
@@ -281,6 +284,7 @@
                             android:background="@drawable/custom_edittext_form_background"
                             android:hint=" ေရြး"
                             android:inputType="numberDecimal"
+                            android:enabled="false"
                             />
 
                     </LinearLayout>
@@ -292,7 +296,7 @@
                         android:layout_marginTop="8dp"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="စုစုေပါင္း ပမာဏ"/>
+                        android:text="စုစုေပါင္း ေရႊခ်ိန္ (100%)"/>
 
                     <Button
                         android:textColor="#FFFFFF"
@@ -320,7 +324,8 @@
                             android:layout_weight="5"
                             android:background="@drawable/custom_edittext_form_background"
                             android:hint="က်ပ္"
-                            android:inputType="numberDecimal" />
+                            android:inputType="numberDecimal"
+                            android:enabled="false"/>
 
                         <EditText
                             style="@style/Foredit"
@@ -328,6 +333,7 @@
                             android:layout_weight="5"
                             android:background="@drawable/custom_edittext_form_background"
                             android:hint="ပဲ"
+                            android:enabled="false"
                             android:inputType="numberDecimal"/>
 
                         <EditText
@@ -336,6 +342,7 @@
                             android:layout_weight="5"
                             android:background="@drawable/custom_edittext_form_background"
                             android:hint=" ေရြး"
+                            android:enabled="false"
                             android:inputType="numberDecimal"
                             />
 
@@ -348,7 +355,7 @@
                         android:layout_marginTop="8dp"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="ယခုေပးေခ်သည့္ ပမာဏ"/>
+                        android:text="ယခုေပးေခ်သည့္ ေရႊခ်ိန္ (100%)"/>
 
                     <LinearLayout
                         android:layout_marginTop="10dp"
@@ -392,7 +399,7 @@
                         android:layout_marginTop="8dp"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="ယခုလက္က်န္ ပမာဏ"/>
+                        android:text="ယခုလက္က်န္ ေရႊခ်ိန္ (100%)"/>
 
 
                     <Button
@@ -421,7 +428,8 @@
                             android:layout_weight="5"
                             android:background="@drawable/custom_edittext_form_background"
                             android:hint="က်ပ္"
-                            android:inputType="numberDecimal" />
+                            android:inputType="numberDecimal"
+                            android:enabled="false"/>
 
                         <EditText
                             style="@style/Foredit"
@@ -429,6 +437,7 @@
                             android:layout_weight="5"
                             android:background="@drawable/custom_edittext_form_background"
                             android:hint="ပဲ"
+                            android:enabled="false"
                             android:inputType="numberDecimal"/>
 
                         <EditText
@@ -437,6 +446,7 @@
                             android:layout_weight="5"
                             android:background="@drawable/custom_edittext_form_background"
                             android:hint=" ေရြး"
+                            android:enabled="false"
                             android:inputType="numberDecimal"
                             />
 
@@ -530,11 +540,12 @@
 
 
                     <EditText
+                        android:layout_height="120dp"
                         android:id="@+id/note"
                         android:background="@drawable/custom_edittext_form_background"
                         android:hint="Remark"
                         android:layout_weight="5"
-                        android:inputType="numberDecimal"
+                        android:inputType="text"
                         style="@style/Foredit"/>
 
 

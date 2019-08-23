@@ -32,51 +32,55 @@ public class Comfirm extends AppCompatActivity {
         edComfirm = findViewById(R.id.editComfirm);
         bnComfirm = findViewById(R.id.btnComfirm);
 
-       bnComfirm.setOnClickListener(new View.OnClickListener() {
-           @Override
-           public void onClick(View v) {
-               comfirmCode=edComfirm.getText().toString();
-               Call<Customer> call = MainActivity.apiInterface.performUserLogin(text);
-               call.enqueue(new Callback<Customer>() {
-                   @Override
-                   public void onResponse(Call<Customer> call, Response<Customer> response) {
+       try{
+        bnComfirm.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                comfirmCode = edComfirm.getText().toString();
+                Call<Customer> call = MainActivity.apiInterface.performUserLogin(text);
+                call.enqueue(new Callback<Customer>() {
+                    @Override
+                    public void onResponse(Call<Customer> call, Response<Customer> response) {
 //                progressDialog.dismiss();
-                       if (response.body().getResponse().equals("customer")){
-                           String name =response.body().getUserName();
-                           String rowUser = response.body().getResponse();
-                           String password = response.body().getPassword();
-                           prefConfig.writeRowUser(rowUser);
-                           prefConfig.writeName(name);
+                        if (response.body().getResponse().equals("customer")) {
+                            String name = response.body().getUserName();
+                            String rowUser = response.body().getResponse();
+                            String password = response.body().getPassword();
+                            prefConfig.writeRowUser(rowUser);
+                            prefConfig.writeName(name);
 
-                           if (password.equals(comfirmCode)) {
-                               startActivity(new Intent(Comfirm.this, CustomerActivity.class));
-                             finish();
-                           }
-                           else if(!password.equals(comfirmCode)){
-                               prefConfig.DeleteName(name);
-                               startActivity(new Intent(Comfirm.this,MainActivity.class));
-                               finish();
-                           }
+                            if (password.equals(comfirmCode)) {
+                                startActivity(new Intent(Comfirm.this, CustomerActivity.class));
+                                finish();
+                            } else if (!password.equals(comfirmCode)) {
+                                prefConfig.DeleteName(name);
+                                startActivity(new Intent(Comfirm.this, MainActivity.class));
+                                finish();
+                            }
 
-                       }else if (response.body().getResponse().equals("sale")) {
-                           String name =response.body().getUserName();
-                           String rowUser = response.body().getResponse();
-                           prefConfig.writeRowUser(rowUser);
-                           prefConfig.writeName(name);
-                           startActivity(new Intent(Comfirm.this, SalesActivity.class));
-                       }else if (response.body().getResponse().equals("new")){
-                           Toast.makeText(Comfirm.this, "please register", Toast.LENGTH_SHORT).show();
-                       }
-                   }
+                        } else if (response.body().getResponse().equals("sale")) {
+                            String name = response.body().getUserName();
+                            String rowUser = response.body().getResponse();
+                            prefConfig.writeRowUser(rowUser);
+                            prefConfig.writeName(name);
+                            startActivity(new Intent(Comfirm.this, SalesActivity.class));
+                        } else if (response.body().getResponse().equals("new")) {
+                            Toast.makeText(Comfirm.this, "please register", Toast.LENGTH_SHORT).show();
+                        }
+                    }
 
-                   @Override
-                   public void onFailure(Call<Customer> call, Throwable t) {
+                    @Override
+                    public void onFailure(Call<Customer> call, Throwable t) {
 
-                   }
-               });
+                    }
+                });
 
-           }
-       });
+            }
+        });
+
+    }catch (Exception e){
+           e.printStackTrace();
+       }
 
 
     }

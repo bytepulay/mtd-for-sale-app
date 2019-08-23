@@ -25,6 +25,7 @@ import android.widget.Toast;
 import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.Locale;
 
 import asia.nainglintun.myintthitar.Activities.InputFilterMinMax;
@@ -163,6 +164,11 @@ private Toolbar toolbar;
         Bnadd.setOnClickListener(this);
         BntotalAmount.setOnClickListener(this);
         BntotalRemainAmount.setOnClickListener(this);
+
+
+
+        String date_n = new SimpleDateFormat("dd/MM/YYYY", Locale.getDefault()).format(new Date());
+        saleDate.setText(date_n);
 
 
 
@@ -469,7 +475,7 @@ private Toolbar toolbar;
     }
 
     private void updateLabel() {
-        String myFormat = "MM/dd/yy"; //In which you need put here
+        String myFormat = "dd/MM/YYYY"; //In which you need put here
         SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.US);
 
         saleDate.setText(sdf.format(myCalendar.getTime()));

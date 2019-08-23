@@ -115,6 +115,7 @@ public class CustomerActivity extends AppCompatActivity {
         else
         {
             mBottomNavigationView.setSelectedItemId(R.id.navigation_home);
+            finish();
         }
     }
 }

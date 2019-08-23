@@ -43,6 +43,12 @@ public class ImageClass {
 
     private String town;
 
+    private String password;
+
+    public String getPassword() {
+        return password;
+    }
+
     @SerializedName("profile")
     private String profile;
 
