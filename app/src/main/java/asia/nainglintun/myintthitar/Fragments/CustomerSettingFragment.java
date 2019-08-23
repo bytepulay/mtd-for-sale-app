@@ -98,7 +98,7 @@ public class CustomerSettingFragment extends Fragment implements View.OnClickLis
                             R.drawable.default_profile);
                     customerProfile.setImageBitmap(bitmap);
                 }else if(!paths.equals("No")) {
-                    Glide.with(getContext()).load("http://128.199.190.233/mtd/"+paths).apply(RequestOptions.skipMemoryCacheOf(true).diskCacheStrategy(DiskCacheStrategy.NONE)).into(customerProfile);
+                    Glide.with(getContext()).load("http://167.71.193.226/mtd/"+paths).apply(RequestOptions.skipMemoryCacheOf(true).diskCacheStrategy(DiskCacheStrategy.NONE)).into(customerProfile);
 
                 }
 

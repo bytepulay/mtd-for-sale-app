@@ -88,7 +88,7 @@ public class CustomerRankFragment extends Fragment {
                             R.drawable.default_profile);
                     Profile.setImageBitmap(bitmap);
                 }else if(!paths.equals("NO")) {
-                    Glide.with(getContext()).load("http://128.199.190.233/mtd/"+paths).apply(RequestOptions.skipMemoryCacheOf(true).diskCacheStrategy(DiskCacheStrategy.NONE)).into(Profile);
+                    Glide.with(getContext()).load("http://167.71.193.226/mtd/"+paths).apply(RequestOptions.skipMemoryCacheOf(true).diskCacheStrategy(DiskCacheStrategy.NONE)).into(Profile);
 
                 }
 
@@ -139,7 +139,7 @@ public class CustomerRankFragment extends Fragment {
 
 
 
-        Glide.with(getContext()).load("http://128.199.190.233/mtd/uploads/"+name+".jpg").into(customerQrCode);
+        Glide.with(getContext()).load("http://167.71.193.226/mtd/uploads/"+name+".jpg").into(customerQrCode);
 
         //Glide.with(getContext()).load(R.drawable.qr_code).into(customerQrCode);
 

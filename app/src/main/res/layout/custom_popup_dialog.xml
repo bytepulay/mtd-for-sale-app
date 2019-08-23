@@ -107,7 +107,7 @@
 
                 <EditText
                     android:enabled="false"
-                    style="@style/Foredit"
+                   style="@style/Forview"
                     android:id="@+id/viewVoucher"
                     android:background="@drawable/custom_edittext_form_background"
                      />
@@ -120,7 +120,7 @@
 
                 <EditText
                     android:enabled="false"
-                    style="@style/Foredit"
+                   style="@style/Forview"
                     android:id="@+id/viewDate"
                     android:background="@drawable/custom_edittext_form_background"
                     />
@@ -133,7 +133,7 @@
 
                 <EditText
                     android:enabled="false"
-                    style="@style/Foredit"
+                   style="@style/Forview"
                     android:id="@+id/viewGram"
                     android:background="@drawable/custom_edittext_form_background"
                     />
@@ -183,7 +183,7 @@
                         android:id="@+id/gramtoKyat"
                         android:layout_weight="5"
                         android:gravity="center"
-                        style="@style/Foredit"
+                       style="@style/Forview"
                         android:background="@drawable/custom_edittext_form_background"
                         />
 
@@ -192,7 +192,7 @@
                         android:id="@+id/gramtPal"
                         android:layout_weight="5"
                         android:gravity="center"
-                        style="@style/Foredit"
+                       style="@style/Forview"
                         android:background="@drawable/custom_edittext_form_background"
                         />
 
@@ -201,7 +201,7 @@
                         android:id="@+id/gramtoYae"
                         android:layout_weight="5"
                         android:gravity="center"
-                        style="@style/Foredit"
+                       style="@style/Forview"
                         android:background="@drawable/custom_edittext_form_background" />
 
 
@@ -213,11 +213,11 @@
                     android:layout_marginLeft="20dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Gram"/>
+                    android:text="ျပန္ေပး Gram"/>
 
                 <EditText
                     android:enabled="false"
-                    style="@style/Foredit"
+                   style="@style/Forview"
                     android:id="@+id/viewreturnGram"
                     android:background="@drawable/custom_edittext_form_background"
                     />
@@ -227,11 +227,11 @@
                     android:layout_marginLeft="20dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="ျပန္ေပး Gram"/>
+                    android:text="လက္က်န္ Gram"/>
 
                 <EditText
                     android:enabled="false"
-                    style="@style/Foredit"
+                   style="@style/Forview"
                     android:id="@+id/viewRemainGram"
                     android:background="@drawable/custom_edittext_form_background"
                     />
@@ -278,20 +278,19 @@
                     android:layout_height="wrap_content">
 
                     <EditText
-                        android:enabled="false"
                         android:id="@+id/remainGramtoKyat"
+                        style="@style/Forview"
                         android:layout_weight="5"
-                        android:gravity="center"
-                        style="@style/Foredit"
                         android:background="@drawable/custom_edittext_form_background"
-                        />
+                        android:enabled="false"
+                        android:gravity="center" />
 
                     <EditText
                         android:enabled="false"
                         android:id="@+id/remainGramtoPal"
                         android:layout_weight="5"
                         android:gravity="center"
-                        style="@style/Foredit"
+                       style="@style/Forview"
                         android:background="@drawable/custom_edittext_form_background"
                         />
 
@@ -300,12 +299,172 @@
                         android:id="@+id/remainGramtoYae"
                         android:layout_weight="5"
                         android:gravity="center"
-                        style="@style/Foredit"
+                       style="@style/Forview"
                         android:background="@drawable/custom_edittext_form_background" />
 
 
 
                 </LinearLayout>
+
+
+
+
+                <TextView
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="ယခုဝယ္သည့္ ေရႊခ်ိန္ (100%)"/>
+
+
+                <LinearLayout
+                    android:weightSum="15"
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:layout_weight="5"
+                        android:layout_marginLeft="20dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="က်ပ္"/>
+
+                    <TextView
+                        android:layout_weight="5"
+                        android:layout_marginLeft="20dp"
+                        android:gravity="center"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="ပဲ"/>
+
+                    <TextView
+                        android:gravity="center"
+                        android:layout_weight="5"
+                        android:layout_marginLeft="20dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="ေရြး"/>
+
+                </LinearLayout>
+
+
+
+                <LinearLayout
+                    android:weightSum="15"
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <EditText
+                        android:id="@+id/buyKyat"
+                        style="@style/Forview"
+                        android:layout_weight="5"
+                        android:background="@drawable/custom_edittext_form_background"
+                        android:enabled="false"
+                        android:gravity="center" />
+
+                    <EditText
+                        android:enabled="false"
+                        android:id="@+id/buyPal"
+                        android:layout_weight="5"
+                        android:gravity="center"
+                        style="@style/Forview"
+                        android:background="@drawable/custom_edittext_form_background"
+                        />
+
+                    <EditText
+                        android:enabled="false"
+                        android:id="@+id/buyYae"
+                        android:layout_weight="5"
+                        android:gravity="center"
+                        style="@style/Forview"
+                        android:background="@drawable/custom_edittext_form_background" />
+
+
+
+                </LinearLayout>
+
+
+
+
+                <TextView
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="ယခင္လက္က်န္ အေျကြး"/>
+
+
+                <LinearLayout
+                    android:weightSum="15"
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:layout_weight="5"
+                        android:layout_marginLeft="20dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="က်ပ္"/>
+
+                    <TextView
+                        android:layout_weight="5"
+                        android:layout_marginLeft="20dp"
+                        android:gravity="center"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="ပဲ"/>
+
+                    <TextView
+                        android:gravity="center"
+                        android:layout_weight="5"
+                        android:layout_marginLeft="20dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="ေရြး"/>
+
+                </LinearLayout>
+
+
+
+                <LinearLayout
+                    android:weightSum="15"
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <EditText
+                        android:id="@+id/preRemainKyat"
+                        style="@style/Forview"
+                        android:layout_weight="5"
+                        android:background="@drawable/custom_edittext_form_background"
+                        android:enabled="false"
+                        android:gravity="center" />
+
+                    <EditText
+                        android:enabled="false"
+                        android:id="@+id/preRemainPal"
+                        android:layout_weight="5"
+                        android:gravity="center"
+                        style="@style/Forview"
+                        android:background="@drawable/custom_edittext_form_background"
+                        />
+
+                    <EditText
+                        android:enabled="false"
+                        android:id="@+id/preRemainYae"
+                        android:layout_weight="5"
+                        android:gravity="center"
+                        style="@style/Forview"
+                        android:background="@drawable/custom_edittext_form_background" />
+
+
+
+                </LinearLayout>
+
+
 
 
 

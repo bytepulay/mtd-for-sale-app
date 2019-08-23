@@ -97,7 +97,7 @@ public class SaleSettingFragment extends Fragment implements View.OnClickListene
                 String Profile=response.body().getProfile();
                 //Toast.makeText(getContext(), Profile, Toast.LENGTH_SHORT).show();
                 if(!Profile.equals("No")){
-                    Glide.with(getContext()).load("http://128.199.190.233/mtd/"+Profile).apply(RequestOptions.skipMemoryCacheOf(true).diskCacheStrategy(DiskCacheStrategy.NONE)).into(saleProfile);
+                    Glide.with(getContext()).load("http://167.71.193.226/mtd/"+Profile).apply(RequestOptions.skipMemoryCacheOf(true).diskCacheStrategy(DiskCacheStrategy.NONE)).into(saleProfile);
 
                 }
                 if(Profile.equals("No")){

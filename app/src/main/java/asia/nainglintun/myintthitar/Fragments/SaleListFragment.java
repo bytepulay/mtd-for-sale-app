@@ -116,7 +116,9 @@ public class SaleListFragment extends Fragment implements SearchView.OnQueryText
                 String sDate,customerName,shopName,
                 totalQty,totalPointEight,totalKyat,totalPal,totalYae,ID,customerPhoneNumber,customerAddress,customerDob,customerNrc,
                 gram,cuponcode,totalAyotKyat,totalAyotPal,totalAyotYae,previous_kyat,previous_yae,previous_pal,buydebitkyat,buydebitpal,buydebityae,
-                paymentkyat,paymentpal,paymentyae,remainkyat,remainpal,remainyae,newTotalKyat,newTotalPal,newTotalYae,returnGram,remainGram;
+                paymentkyat,paymentpal,paymentyae,remainkyat,remainpal,remainyae,newTotalKyat,newTotalPal,newTotalYae,
+                returnGram,returnRemainGram,sub_return_kyat,sub_return_pal,sub_return_yae,return_quantity,return_pointeight,
+                now_remain_quantity,now_remain_pointeight,return_ayot_kyat,return_ayot_pal,return_ayot_yae,now_total_ayot_kyat,now_total_ayot_pal,now_total_ayot_yae;
 
                  ID = String.valueOf(salehistories.get(position).getId());
                 String voucher = salehistories.get(position).getVoucherNumber();
@@ -126,6 +128,26 @@ public class SaleListFragment extends Fragment implements SearchView.OnQueryText
                 String town=salehistories.get(position).getCustomerTwon();
                 gram = salehistories.get(position).getGram();
                 cuponcode = salehistories.get(position).getCuponCode();
+
+                returnGram = salehistories.get(position).getReturnGram();
+                returnRemainGram = salehistories.get(position).getRemainGram();
+                sub_return_kyat=salehistories.get(position).getSubReturnKyat();
+                sub_return_pal = salehistories.get(position).getReturnAyotPal();
+                sub_return_yae = salehistories.get(position).getSubReturnYae();
+
+                return_quantity = salehistories.get(position).getReturnQuantity();
+                return_pointeight = salehistories.get(position).getReturnPointEight();
+
+                now_remain_quantity = salehistories.get(position).getRemainQuantity();
+                now_remain_pointeight = salehistories.get(position).getRemainPointEight();
+
+                return_ayot_kyat = salehistories.get(position).getReturnAyotKyat();
+                return_ayot_pal = salehistories.get(position).getReturnAyotPal();
+                return_ayot_yae = salehistories.get(position).getReturnAyotYae();
+
+                now_total_ayot_kyat = salehistories.get(position).getRemainAyotKyat();
+                now_total_ayot_pal = salehistories.get(position).getRemainAyotPal();
+                now_total_ayot_yae = salehistories.get(position).getReturnAyotYae();
 
 
                 totalQty = salehistories.get(position).getQty();
@@ -173,7 +195,8 @@ public class SaleListFragment extends Fragment implements SearchView.OnQueryText
                 //Toast.makeText(getContext(),position + town + ID + ringDescription + banglesDescription + necklaceDescription + earringDescription + " is selected! and to do get data from database", Toast.LENGTH_LONG).show();
                 Showpopup(voucher,sDate,cuponcode,totalAyotKyat,totalAyotPal,totalAyotYae,customerName,shopName,customerAddress,customerPhoneNumber,customerDob,town,
                         totalQty,totalPointEight,totalKyat,totalPal,totalYae,
-                        gram,ID,previous_kyat,previous_pal,previous_yae,buydebitkyat,buydebitpal,buydebityae,paymentkyat,paymentpal,paymentyae,remainkyat,remainpal,remainyae,newTotalKyat,newTotalPal,newTotalYae);
+                        gram,ID,previous_kyat,previous_pal,previous_yae,buydebitkyat,buydebitpal,buydebityae,paymentkyat,paymentpal,paymentyae,remainkyat,remainpal,remainyae,newTotalKyat,newTotalPal,newTotalYae,
+                        returnGram,returnRemainGram,sub_return_kyat,sub_return_pal,sub_return_yae);
 
             }
 
@@ -189,7 +212,9 @@ public class SaleListFragment extends Fragment implements SearchView.OnQueryText
 
     private void Showpopup(String voucher,String sDate,String cuponCode,String total_ayot_kyat,String total_ayot_pal,String total_ayo_yae,String customerName,String shopName, String customerAddress,String customerPhoneNumber,String customerDob,String town,
                          String totalQty,String totalPointEight,String totalKyat,String totalPal,String totalYae,
-                          String gram,String ID,String previous_kyat,String previous_pal,String previous_yae,String buydebitkyat,String buydebitpal,String buydebityae,String paymentkyat,String paymentpal,String paymentyae,String remainkyat,String remainpal,String remainyae,String newTotalKyat,String newTotalPal,String newTotalYae) {
+                          String gram,String ID,String previous_kyat,String previous_pal,String previous_yae,String buydebitkyat,String buydebitpal,String buydebityae,String paymentkyat,String paymentpal,String paymentyae,String remainkyat,String remainpal,String remainyae,String newTotalKyat,String newTotalPal,String newTotalYae,
+                           String returnGram,String returnRemainGram,String SubReturnKyat,
+                           String SubReturnPal,String SubReturnYae) {
 
         dialog.setContentView(R.layout.custom_popup_dialog);
         //recyclerView = dialog.findViewById(R.id.recyclerViewDialog);
@@ -219,7 +244,13 @@ public class SaleListFragment extends Fragment implements SearchView.OnQueryText
         edGramToKyat.setText(totalKyat);
         edGramToPal.setText(totalPal);
         edGramToYae.setText(totalYae);
-        edReturnGram.setText(total_ayo_yae);
+        edReturnGram.setText(returnGram);
+        edRemainGram.setText(returnRemainGram);
+        edGramRemainKyat.setText(SubReturnKyat);
+        edGramRemainPal.setText(SubReturnPal);
+        edGramRemainYae.setText(SubReturnYae);
+
+
 
 
 

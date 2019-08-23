@@ -448,9 +448,101 @@
 
         </LinearLayout>
 
+            <TextView
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="8dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="ျပန္ေပးေရႊခ်ိန္ + အေလ်ာ့ (100%)"/>
+
+            <LinearLayout
+                android:layout_marginTop="10dp"
+                android:background="#fafafa"
+                android:weightSum="15"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <EditText
+                    style="@style/Foredit"
+                    android:id="@+id/retunGoldKyat"
+                    android:layout_weight="5"
+                    android:background="@drawable/custom_edittext_form_background"
+                    android:hint="က်ပ္"
+                    android:inputType="numberDecimal"
+                    android:enabled="false"/>
+
+                <EditText
+                    style="@style/Foredit"
+                    android:id="@+id/retunGoldPal"
+                    android:layout_weight="5"
+                    android:background="@drawable/custom_edittext_form_background"
+                    android:hint="ပဲ"
+                    android:inputType="numberDecimal"
+                    android:enabled="false"/>
+
+                <EditText
+                    style="@style/Foredit"
+                    android:id="@+id/retunGoldYae"
+                    android:layout_weight="5"
+                    android:background="@drawable/custom_edittext_form_background"
+                    android:hint=" ေရြး"
+                    android:inputType="numberDecimal"
+                    android:enabled="false"
+                    />
+
+            </LinearLayout>
 
 
-        <TextView
+            <TextView
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="8dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="ယခုေပးခ်ရမည့္ ေရႊခ်ိန္"/>
+
+            <LinearLayout
+                android:layout_marginTop="10dp"
+                android:background="#fafafa"
+                android:weightSum="15"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <EditText
+                    style="@style/Foredit"
+                    android:id="@+id/netPayGoldKyat"
+                    android:layout_weight="5"
+                    android:background="@drawable/custom_edittext_form_background"
+                    android:hint="က်ပ္"
+                    android:inputType="numberDecimal"
+                    android:enabled="false"/>
+
+                <EditText
+                    style="@style/Foredit"
+                    android:id="@+id/netPayGoldPal"
+                    android:layout_weight="5"
+                    android:background="@drawable/custom_edittext_form_background"
+                    android:hint="ပဲ"
+                    android:inputType="numberDecimal"
+                    android:enabled="false"/>
+
+                <EditText
+                    style="@style/Foredit"
+                    android:id="@+id/netPayGoldYae"
+                    android:layout_weight="5"
+                    android:background="@drawable/custom_edittext_form_background"
+                    android:hint=" ေရြး"
+                    android:inputType="numberDecimal"
+                    android:enabled="false"
+                    />
+
+            </LinearLayout>
+
+
+
+
+            <TextView
             android:layout_marginLeft="20dp"
             android:layout_marginTop="8dp"
             android:layout_width="match_parent"

@@ -482,7 +482,6 @@ private EditText voucherNumber,Gram,CuponCode,totalKyat,totalPal,totalYae,totalQ
             case R.id.totalRemainAmount:
                 try {
 
-
                     int getTotalAmountKyat = Integer.parseInt(buyDebitKyat.getText().toString());
                     int getTotalAmountPal = Integer.parseInt(buyDebitPal.getText().toString());
                     double getTotalAmountYae = Double.parseDouble(buyDebitYae.getText().toString());
@@ -496,80 +495,252 @@ private EditText voucherNumber,Gram,CuponCode,totalKyat,totalPal,totalYae,totalQ
                     double RemainYae = 0.0;
 
 
-                    if(PayKyat>getTotalAmountKyat && PayPal>getTotalAmountPal && PayYae>getTotalAmountYae){
-                        getTotalAmountPal = getTotalAmountPal-1;
-                        getTotalAmountYae=getTotalAmountYae+8;
-                        RemainYae = getTotalAmountYae-PayYae;
-                        if (PayPal==getTotalAmountPal){
-                            RemainPal = getTotalAmountPal-PayPal;
-                        }else if(PayPal>getTotalAmountPal){
-                            getTotalAmountKyat = getTotalAmountKyat-1;
-                            getTotalAmountPal = getTotalAmountPal+16;
-                            RemainPal=getTotalAmountPal-PayPal;
+                    if(PayKyat>getTotalAmountKyat && PayPal>getTotalAmountPal && PayYae>getTotalAmountYae)
+                    {
+                        RemainYae = PayYae-getTotalAmountYae;
+                        RemainPal = PayPal-getTotalAmountPal;
+                        RemainKyat=PayKyat-getTotalAmountKyat;
+                        nowRemainKyat.setText(String.valueOf(-RemainKyat));
+                       nowRemainPal.setText(String.valueOf(-RemainPal));
+                        DecimalFormat form1 = new DecimalFormat("0.00");
+                        nowRemainYae.setText(String.valueOf(form1.format(-RemainYae)));
+                        Toast.makeText(getContext(), nowRemainYae.getText().toString(), Toast.LENGTH_SHORT).show();
+
+                    }else if(PayKyat>getTotalAmountKyat && PayPal<getTotalAmountPal && PayYae<getTotalAmountYae)
+                    {
+                        PayPal=PayPal-1;
+                        PayYae = PayYae+8;
+                        RemainYae = PayYae-getTotalAmountYae;
+                        PayKyat=PayKyat-1;
+                        PayPal=PayPal+16;
+                        RemainPal = PayPal-getTotalAmountPal;
+                        RemainKyat=PayKyat-getTotalAmountKyat;
+                        nowRemainKyat.setText(String.valueOf(-RemainKyat));
+                        if (RemainPal==0) {
+                            nowRemainPal.setText(String.valueOf(RemainPal));
+                        }else if (RemainPal!=0) {
+                            nowRemainPal.setText(String.valueOf(-RemainPal));
+                        }
+                        DecimalFormat form1 = new DecimalFormat("0.00");
+                        nowRemainYae.setText(String.valueOf(form1.format(-RemainYae)));
+                        Toast.makeText(getContext(), nowRemainYae.getText().toString(), Toast.LENGTH_SHORT).show();
+
+                    }
+                    else if (PayKyat>getTotalAmountKyat && PayPal>getTotalAmountPal && PayYae<getTotalAmountYae)
+                    {
+                       PayPal=PayPal-1;
+                       PayYae=PayYae+8;
+                       RemainYae=PayYae-getTotalAmountYae;
+                        RemainPal=PayPal-getTotalAmountPal;
+                        RemainKyat = PayKyat -getTotalAmountKyat;
+
+                        if(RemainYae==0){
+                            DecimalFormat form1 = new DecimalFormat("0.00");
+                            nowRemainYae.setText(String.valueOf(form1.format(RemainYae)));
+                        }else if(RemainYae!=0) {
+                            DecimalFormat form1 = new DecimalFormat("0.00");
+                            nowRemainYae.setText(String.valueOf(form1.format(-RemainYae)));
+                        }
+                        if(RemainPal==0){
+                            nowRemainPal.setText(String.valueOf(RemainPal));
+                        }else if(RemainPal!=0) {
+                            nowRemainPal.setText(String.valueOf(-RemainPal));
+                        }
+                         if(RemainKyat==0){
+                            nowRemainKyat.setText(String.valueOf(RemainKyat));
+                        } else if(RemainKyat!=0){
+                            nowRemainKyat.setText(String.valueOf(-RemainKyat));
                         }
 
-                        RemainKyat=getTotalAmountKyat-PayKyat;
+                    }else if (PayKyat>getTotalAmountKyat && PayPal<getTotalAmountPal && PayYae>getTotalAmountYae)
 
-                    }else if(PayKyat>getTotalAmountKyat && PayPal<getTotalAmountPal && PayYae<getTotalAmountYae){
+                    {
+                        RemainYae=PayYae-getTotalAmountYae;
+                        PayKyat=PayKyat-1;
+                        PayPal=PayPal+16;
+                        RemainPal=PayPal-getTotalAmountPal;
+                        RemainKyat = PayKyat-getTotalAmountKyat;
+                       if (RemainYae==0){
+                           DecimalFormat form1 = new DecimalFormat("0.00");
+                           nowRemainYae.setText(String.valueOf(form1.format(RemainYae)));
+                       }else if(RemainYae!=0){
+                           DecimalFormat form1 = new DecimalFormat("0.00");
+                           nowRemainYae.setText(String.valueOf(form1.format(-RemainYae)));
+                       }
 
-                        RemainYae=getTotalAmountYae-PayYae;
-                        RemainPal=getTotalAmountPal-PayPal;
-                        RemainKyat=getTotalAmountKyat-PayKyat;
-                    }else if (PayKyat>getTotalAmountKyat && PayPal<getTotalAmountPal && PayYae>getTotalAmountYae){
-                        getTotalAmountPal=getTotalAmountPal-1;
-                        getTotalAmountYae=getTotalAmountYae+8;
-                        RemainYae = getTotalAmountYae-PayYae;
+                       if (RemainPal==0){
+                           nowRemainPal.setText(String.valueOf(RemainPal));
+                       }else if(RemainPal!=0){
+                           nowRemainPal.setText(String.valueOf(-RemainPal));
+                       }
 
-                        if (PayPal<=getTotalAmountPal){
-                            RemainPal = getTotalAmountPal-PayPal;
+                       if (RemainKyat==0){
+                           nowRemainKyat.setText(String.valueOf(RemainKyat));
+                       }else if(RemainKyat!=0){
+                           nowRemainKyat.setText(String.valueOf(-RemainKyat));
                         }
 
-                        RemainKyat = getTotalAmountKyat-PayKyat;
+                    }
+                    else if(PayKyat>getTotalAmountKyat && PayPal==getTotalAmountPal && PayYae==getTotalAmountYae)
+                    {
+
+                        RemainYae=PayYae-getTotalAmountYae;
+                        RemainPal=PayPal-getTotalAmountPal;
+                        RemainKyat=PayKyat-getTotalAmountKyat;
+                        DecimalFormat form1 = new DecimalFormat("0.00");
+                        nowRemainYae.setText(String.valueOf(form1.format(RemainYae)));
+                        nowRemainPal.setText(String.valueOf(RemainPal));
+                        if (RemainKyat==0){
+                            nowRemainKyat.setText(String.valueOf(RemainKyat));
+                        }else if (RemainKyat!=0){
+
+                            nowRemainKyat.setText(String.valueOf(-RemainKyat));
+                        }
                     }
 
-                    else if (PayKyat>getTotalAmountKyat && PayPal>getTotalAmountPal && PayYae<getTotalAmountYae){
-                        RemainYae = getTotalAmountYae-PayYae;
-                        getTotalAmountKyat = getTotalAmountKyat-1;
-                        getTotalAmountPal = getTotalAmountPal+16;
-                        RemainPal = getTotalAmountPal-PayPal;
-                        RemainKyat = getTotalAmountKyat-PayKyat;
+                    else if(PayKyat>getTotalAmountKyat && PayPal>getTotalAmountPal && PayYae==getTotalAmountYae)
+                    {
+
+                        RemainYae=PayYae-getTotalAmountYae;
+                        RemainPal=PayPal-getTotalAmountPal;
+                        RemainKyat=PayKyat-getTotalAmountKyat;
+                        DecimalFormat form1 = new DecimalFormat("0.00");
+                        nowRemainYae.setText(String.valueOf(form1.format(RemainYae)));
+                        if(RemainPal==0){
+                            nowRemainPal.setText(String.valueOf(RemainPal));
+                        }else if (RemainPal!=0){
+                            nowRemainPal.setText(String.valueOf(-RemainPal));
+                        }
+                        if (RemainKyat==0){
+                            nowRemainKyat.setText(String.valueOf(RemainKyat));
+                        }else if (RemainKyat!=0){
+
+                            nowRemainKyat.setText(String.valueOf(-RemainKyat));
+                        }
                     }
 
+
+
+                    else if(PayKyat>getTotalAmountKyat && PayPal<getTotalAmountPal && PayYae==getTotalAmountYae)
+                    {
+
+                        RemainYae=PayYae-getTotalAmountYae;
+                        PayKyat=PayKyat-1;
+                        PayPal=PayPal+16;
+                        RemainPal=PayPal-getTotalAmountPal;
+                        RemainKyat=PayKyat-getTotalAmountKyat;
+                        DecimalFormat form1 = new DecimalFormat("0.00");
+                        nowRemainYae.setText(String.valueOf(form1.format(RemainYae)));
+                        if(RemainPal==0){
+                            nowRemainPal.setText(String.valueOf(RemainPal));
+                        }else if (RemainPal!=0){
+                            nowRemainPal.setText(String.valueOf(-RemainPal));
+                        }
+                        if (RemainKyat==0){
+                            nowRemainKyat.setText(String.valueOf(RemainKyat));
+                        }else if (RemainKyat!=0){
+
+                            nowRemainKyat.setText(String.valueOf(-RemainKyat));
+                        }
+                    }
+
+                    else if(PayKyat>getTotalAmountKyat && PayPal==getTotalAmountPal && PayYae>getTotalAmountYae) {
+                        RemainYae = PayYae - getTotalAmountYae;
+                        RemainPal = PayPal - getTotalAmountPal;
+                        RemainKyat = PayKyat - getTotalAmountKyat;
+                        if(RemainYae==0) {
+                            DecimalFormat form1 = new DecimalFormat("0.00");
+                            nowRemainYae.setText(String.valueOf(form1.format(RemainYae)));
+                        }else if(RemainYae!=0){
+                            DecimalFormat form1 = new DecimalFormat("0.00");
+                            nowRemainYae.setText(String.valueOf(form1.format(-RemainYae)));
+                        }
+
+                        if (RemainPal == 0)
+                        {
+                            nowRemainPal.setText(String.valueOf(RemainPal));
+                        }
+                        else if (RemainPal != 0)
+                        {
+                            nowRemainPal.setText(String.valueOf(-RemainPal));
+                        }else if(RemainKyat == 0)
+                        {
+                            nowRemainKyat.setText(String.valueOf(RemainKyat));
+                        } else if (RemainKyat != 0)
+                        {
+                            nowRemainKyat.setText(String.valueOf(-RemainKyat));
+                        }
+                        }
+                    else if (PayKyat > getTotalAmountKyat && PayPal == getTotalAmountPal && PayYae < getTotalAmountYae)
+                    {
+                            PayKyat = PayKyat - 1;
+                            PayPal = (PayPal + 16) - 1;
+                            PayYae = PayYae + 8;
+                            RemainYae = PayYae - getTotalAmountYae;
+                            RemainPal = PayPal - getTotalAmountPal;
+                            RemainKyat = PayKyat - getTotalAmountKyat;
+                            if (RemainYae == 0) {
+                                DecimalFormat form1 = new DecimalFormat("0.00");
+                                nowRemainYae.setText(String.valueOf(form1.format(RemainYae)));
+                            } else if(RemainYae!=0) {
+                                DecimalFormat form1 = new DecimalFormat("0.00");
+                                nowRemainYae.setText(String.valueOf(form1.format(-RemainYae)));
+                            }
+                            if (RemainPal == 0) {
+                                nowRemainPal.setText(String.valueOf(RemainPal));
+                            } else {
+                                nowRemainPal.setText(String.valueOf(-RemainPal));
+                            }
+                            if (RemainKyat == 0) {
+                                nowRemainKyat.setText(String.valueOf(RemainKyat));
+                            } else if (RemainKyat != 0) {
+
+                                nowRemainKyat.setText(String.valueOf(-RemainKyat));
+                            }
+                        }
+
+
+
+                     if (PayKyat<=getTotalAmountKyat){
 
                     if (PayYae > getTotalAmountYae)
                     {
                         getTotalAmountPal = getTotalAmountPal - 1;
                         getTotalAmountYae = getTotalAmountYae + 8;
                         RemainYae = getTotalAmountYae - PayYae;
+                        DecimalFormat form1 = new DecimalFormat("0.00");
+                        nowRemainYae.setText(String.valueOf(form1.format(RemainYae)));
                     } else if (PayYae < getTotalAmountYae)
                     {
                         RemainYae = getTotalAmountYae - PayYae;
+                        DecimalFormat form1 = new DecimalFormat("0.00");
+                        nowRemainYae.setText(String.valueOf(form1.format(RemainYae)));
+                    }else if(PayYae==getTotalAmountYae){
+                        RemainYae=getTotalAmountYae-PayYae;
+                        DecimalFormat form1 = new DecimalFormat("0.00");
+                        nowRemainYae.setText(String.valueOf(form1.format(RemainYae)));
                     }
-
-
 
                     if (PayPal > getTotalAmountPal)
-                    {
-                        getTotalAmountKyat = getTotalAmountKyat - 1;
-                        getTotalAmountPal = getTotalAmountPal + 16;
-//                        if (PayYae > getTotalAmountYae) {
-//                            getTotalAmountPal = getTotalAmountPal - 1;
-//                            RemainPal = getTotalAmountPal;
-//                        }
-                        RemainPal = getTotalAmountPal - PayPal;
+                         {
+                             getTotalAmountKyat = getTotalAmountKyat - 1;
+                             getTotalAmountPal = getTotalAmountPal + 16;
+                             RemainPal = getTotalAmountPal - PayPal;
+                            nowRemainPal.setText(String.valueOf(RemainPal));
+                         } else if (PayYae < getTotalAmountYae)
+                         {
+                             RemainPal = getTotalAmountPal - PayPal;
+                             nowRemainPal.setText(String.valueOf(RemainPal));
+
+                         }else if(PayPal==getTotalAmountPal){
+                             RemainPal=getTotalAmountPal-PayPal;
+                        nowRemainPal.setText(String.valueOf(RemainPal));
+                         }
+
+                         RemainKyat=getTotalAmountKyat-PayKyat;
+                       nowRemainKyat.setText(String.valueOf(RemainKyat));
+
                     }
-                    else if (PayPal < getTotalAmountPal)
-                    {
-                        RemainPal = getTotalAmountPal - PayPal;
-                    }
-
-
-
-                    RemainKyat = getTotalAmountKyat - PayKyat;
-                    nowRemainKyat.setText(String.valueOf(RemainKyat));
-                    nowRemainPal.setText(String.valueOf(RemainPal));
-                    DecimalFormat form1 = new DecimalFormat("0.00");
-                    nowRemainYae.setText(String.valueOf(form1.format(RemainYae)));
 
 
                     break;

@@ -90,7 +90,7 @@ public class FragmentCard extends Fragment {
                 String Profile=response.body().getProfile();
                // Toast.makeText(getContext(), Profile, Toast.LENGTH_SHORT).show();
                 if(!Profile.equals("No")){
-                    Glide.with(getContext()).load("http://128.199.190.233/mtd/"+Profile).apply(RequestOptions.skipMemoryCacheOf(true).diskCacheStrategy(DiskCacheStrategy.NONE)).into(sProfile);
+                    Glide.with(getContext()).load("http://167.71.193.226/mtd/"+Profile).apply(RequestOptions.skipMemoryCacheOf(true).diskCacheStrategy(DiskCacheStrategy.NONE)).into(sProfile);
 
                 }
                 if(Profile.equals("No")){
@@ -107,15 +107,6 @@ public class FragmentCard extends Fragment {
             }
         });
 
-
-//        todoList.add(new CardTodo("This is the first"));
-//        todoList.add(new CardTodo("This is the seCond"));
-//        todoList.add(new CardTodo("This is the third"));
-//        todoList.add(new CardTodo("This is the four"));
-//        todoList.add(new CardTodo("This is the five"));
-//        todoList.add(new CardTodo("This is the Seven"));
-//        todoList.add(new CardTodo("This is the Eight"));
-//        todoList.add(new CardTodo("This is the Nine"));
 
         todoList.add(new CardTodo("Sale Invoice",R.drawable.create_invoice));
         todoList.add(new CardTodo("Order Invoice",R.drawable.create_order));

@@ -246,6 +246,68 @@ public class Salehistory {
     @SerializedName("new_total_yae")
     private String total_yae;
 
+
+    @SerializedName("return_gram")
+    private String returnGram;
+
+    @SerializedName("now_remain_gram")
+    private String remainGram;
+
+
+    @SerializedName("sub_return_kyat")
+    private String subReturnKyat;
+
+    @SerializedName("sub_return_pal")
+    private String subReturnPal;
+
+    @SerializedName("sub_return_yae")
+    private String subReturnYae;
+
+
+
+    @SerializedName("return_quantity")
+    private String returnQuantity;
+
+    @SerializedName("return_pointeight")
+    private String returnPointEight;
+
+    @SerializedName("now_remain_quantity")
+    private String RemainQuantity;
+
+    @SerializedName("now_remain_pointeight")
+    private String RemainPointEight;
+
+
+    @SerializedName("return_ayot_kyat")
+    private String ReturnAyotKyat;
+
+    @SerializedName("return_ayot_pal")
+    private String ReturnAyotPal;
+
+    @SerializedName("return_ayot_yae")
+    private String ReturnAyotYae;
+
+    @SerializedName("now_total_ayot_kyat")
+    private String RemainAyotKyat;
+
+    @SerializedName("now_total_ayot_pal")
+    private String RemainAyotPal;
+
+    @SerializedName("now_total_ayot_yae")
+    private String RemainAyotYae;
+
+
+
+
+
+
+
+
+
+
+
+
+
     public String getTotal_kyat() {
         return total_kyat;
     }
@@ -524,5 +586,65 @@ public class Salehistory {
 
     public String getCustomerTwon() {
         return customerTwon;
+    }
+
+    public String getReturnGram() {
+        return returnGram;
+    }
+
+    public String getRemainGram() {
+        return remainGram;
+    }
+
+    public String getSubReturnKyat() {
+        return subReturnKyat;
+    }
+
+    public String getSubReturnPal() {
+        return subReturnPal;
+    }
+
+    public String getSubReturnYae() {
+        return subReturnYae;
+    }
+
+    public String getReturnQuantity() {
+        return returnQuantity;
+    }
+
+    public String getReturnPointEight() {
+        return returnPointEight;
+    }
+
+    public String getRemainQuantity() {
+        return RemainQuantity;
+    }
+
+    public String getRemainPointEight() {
+        return RemainPointEight;
+    }
+
+    public String getReturnAyotKyat() {
+        return ReturnAyotKyat;
+    }
+
+    public String getReturnAyotPal() {
+        return ReturnAyotPal;
+    }
+
+    public String getReturnAyotYae() {
+        return ReturnAyotYae;
+    }
+
+    public String getRemainAyotKyat() {
+        return RemainAyotKyat;
+    }
+
+    public String getRemainAyotPal() {
+        return RemainAyotPal;
+    }
+
+    public String getRemainAyotYae() {
+        return RemainAyotYae;
     }
 }

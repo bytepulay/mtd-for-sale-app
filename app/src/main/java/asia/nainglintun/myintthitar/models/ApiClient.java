@@ -7,14 +7,15 @@ public class ApiClient {
 
    // private static final String BASE_URL = "http://mtdatabase.com/mtd/";
 
-    private static final String BASE_URL = " http://128.199.190.233/mtd/";
+    private static final String BASE_URL = "http://167.71.193.226/mtd/";
+
+
 
 
 
     private static Retrofit retrofit = null;
 
     private ApiClient(){}
-
     public static Retrofit getApiClient() {
         if (retrofit == null) {
             retrofit = new Retrofit.Builder().baseUrl(BASE_URL).addConverterFactory(GsonConverterFactory.create()).build();
