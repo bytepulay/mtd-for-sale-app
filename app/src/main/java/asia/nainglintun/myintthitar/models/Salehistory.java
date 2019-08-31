@@ -4,8 +4,26 @@ import com.google.gson.annotations.SerializedName;
 
 public class Salehistory {
 
+    @SerializedName("customer_id")
+    private String customerId;
+
     @SerializedName("sale_user_name")
     private String saleUserName;
+
+    @SerializedName("voucher_number")
+    private String voucherNumber;
+
+    @SerializedName("sale_date")
+    private String saleDate;
+
+    @SerializedName("kyat")
+    private String Kyat;
+
+    @SerializedName("pal")
+    private String Pal;
+
+    @SerializedName("yae")
+    private String Yae;
 
     @SerializedName("total_ayot_kyat")
     private String total_ayot_kyat;
@@ -16,102 +34,6 @@ public class Salehistory {
     @SerializedName("total_ayot_yae")
     private String total_ayot_yae;
 
-    @SerializedName("voucher_number")
-    private String voucherNumber;
-
-     @SerializedName("sale_date")
-    private String saleDate;
-
-
-     @SerializedName("ring")
-    private String ringTitle;
-
-
-     @SerializedName("ring_number")
-    private String ringNumber;
-
-
-     @SerializedName("ring_point_eight")
-    private String ringPointEight;
-
-   @SerializedName("ring_kyat")
-    private String ringKyat;
-
-    @SerializedName("ring_pal")
-    private String ringPal;
-
-   @SerializedName("ring_yae")
-    private String ringYae;
-
-
-     @SerializedName("bangles")
-    private String banglesTitle;
-
-    @SerializedName("bangles_number")
-    private String banglesNumber;
-
-    @SerializedName("bangles_point_eight")
-    private String banglesPointEight;
-
-
-    @SerializedName("bangles_kyat")
-    private String banglesKyat;
-
-
-    @SerializedName("bangles_pal")
-    private String banglesPal;
-
-    @SerializedName("bangles_yae")
-    private String banglesYae;
-
-
-    @SerializedName("necklace")
-    private String necklaceTitle;
-
-    @SerializedName("necklace_number")
-    private String necklaceNumber;
-
-    @SerializedName("necklace_point_eight")
-    private String necklacePointEight;
-
-    @SerializedName("necklace_kyat")
-    private String necklaceKyat;
-
-    @SerializedName("necklace_pal")
-    private String necklacePal;
-
-  @SerializedName("necklace_yae")
-    private String necklaceYae;
-
-
-    @SerializedName("earring")
-    private String earringTitle;
-
-    @SerializedName("earring_number")
-    private String earringNumber;
-
-    @SerializedName("earring_point_eight")
-    private String earringPointEight;
-
-    @SerializedName("earring_kyat")
-    private String earringKyat;
-
-    @SerializedName("earring_pal")
-    private String earringPal;
-
-    @SerializedName("earring_yae")
-    private String earringYae;
-
-
-
-  @SerializedName("kyat")
-    private String Kyat;
-
-    @SerializedName("pal")
-    private String Pal;
-
-    @SerializedName("yae")
-    private String Yae;
 
     @SerializedName("gram")
     private String Gram;
@@ -120,8 +42,7 @@ public class Salehistory {
     private String cuponCode;
 
 
-    @SerializedName("customer_id")
-    private int customerId;
+
 
     @SerializedName("total_qualtity")
     private String qty;
@@ -242,7 +163,6 @@ public class Salehistory {
     @SerializedName("new_total_pal")
     private String total_pal;
 
-
     @SerializedName("new_total_yae")
     private String total_yae;
 
@@ -297,14 +217,75 @@ public class Salehistory {
     private String RemainAyotYae;
 
 
+    @SerializedName("return_gold_kyat")
+    private String return_gold_kyat;
+
+    @SerializedName("return_gold_pal")
+    private String return_gold_pal;
+
+    @SerializedName("return_gold_yae")
+    private String return_gold_yae;
+
+    @SerializedName("net_pay_kayt")
+    private String net_pay_kayt;
+
+    @SerializedName("net_pay_pal")
+    private String net_pay_pal;
+
+    @SerializedName("net_pay_yae")
+    private String net_pay_yae;
+
+
+    @SerializedName("s_voucher")
+    private String debitVoucher;
+
+    @SerializedName("s_date")
+    private String debitSaleDate;
+
+    @SerializedName("s_name")
+    private String debitSaleName;
+
+    @SerializedName("remark")
+    private String remark;
 
 
 
+    @SerializedName("debit_kyat")
+    private String debitKyat;
 
+    @SerializedName("debit_pal")
+    private String debitPal;
 
+    @SerializedName("debit_yae")
+    private String debitYae;
 
+    public String getDebitKyat() {
+        return debitKyat;
+    }
 
+    public String getDebitPal() {
+        return debitPal;
+    }
 
+    public String getDebitYae() {
+        return debitYae;
+    }
+
+    public String getRemark() {
+        return remark;
+    }
+
+    public String getDebitVoucher() {
+        return debitVoucher;
+    }
+
+    public String getDebitSaleDate() {
+        return debitSaleDate;
+    }
+
+    public String getDebitSaleName() {
+        return debitSaleName;
+    }
 
 
 
@@ -392,103 +373,6 @@ public class Salehistory {
     public String getSaleDate() {
         return saleDate;
     }
-
-    public String getRingTitle() {
-        return ringTitle;
-    }
-
-    public String getRingNumber() {
-        return ringNumber;
-    }
-
-    public String getRingPointEight() {
-        return ringPointEight;
-    }
-
-    public String getRingKyat() {
-        return ringKyat;
-    }
-
-    public String getRingPal() {
-        return ringPal;
-    }
-
-    public String getRingYae() {
-        return ringYae;
-    }
-
-    public String getBanglesTitle() {
-        return banglesTitle;
-    }
-
-    public String getBanglesNumber() {
-        return banglesNumber;
-    }
-
-    public String getBanglesPointEight() {
-        return banglesPointEight;
-    }
-
-    public String getBanglesKyat() {
-        return banglesKyat;
-    }
-
-    public String getBanglesPal() {
-        return banglesPal;
-    }
-
-    public String getBanglesYae() {
-        return banglesYae;
-    }
-
-    public String getNecklaceTitle() {
-        return necklaceTitle;
-    }
-
-    public String getNecklaceNumber() {
-        return necklaceNumber;
-    }
-
-    public String getNecklacePointEight() {
-        return necklacePointEight;
-    }
-
-    public String getNecklaceKyat() {
-        return necklaceKyat;
-    }
-
-    public String getNecklacePal() {
-        return necklacePal;
-    }
-
-    public String getNecklaceYae() {
-        return necklaceYae;
-    }
-
-    public String getEarringTitle() {
-        return earringTitle;
-    }
-
-    public String getEarringNumber() {
-        return earringNumber;
-    }
-
-    public String getEarringPointEight() {
-        return earringPointEight;
-    }
-
-    public String getEarringKyat() {
-        return earringKyat;
-    }
-
-    public String getEarringPal() {
-        return earringPal;
-    }
-
-    public String getEarringYae() {
-        return earringYae;
-    }
-
     public String getKyat() {
         return Kyat;
     }
@@ -544,7 +428,7 @@ public class Salehistory {
         return cuponCode;
     }
 
-    public int getCustomerId() {
+    public String getCustomerId() {
         return customerId;
     }
 
@@ -646,5 +530,29 @@ public class Salehistory {
 
     public String getRemainAyotYae() {
         return RemainAyotYae;
+    }
+
+    public String getReturn_gold_kyat() {
+        return return_gold_kyat;
+    }
+
+    public String getReturn_gold_pal() {
+        return return_gold_pal;
+    }
+
+    public String getReturn_gold_yae() {
+        return return_gold_yae;
+    }
+
+    public String getNet_pay_kayt() {
+        return net_pay_kayt;
+    }
+
+    public String getNet_pay_pal() {
+        return net_pay_pal;
+    }
+
+    public String getNet_pay_yae() {
+        return net_pay_yae;
     }
 }

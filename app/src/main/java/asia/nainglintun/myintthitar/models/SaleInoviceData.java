@@ -250,7 +250,108 @@ public class SaleInoviceData {
     @SerializedName("now_total_ayot_yae")
     private String nowTotalAyotYae;
 
+    @SerializedName("return_gold_kyat")
+    private String return_gold_kyat;
 
+    @SerializedName("return_gold_pal")
+    private String return_gold_pal;
+
+    @SerializedName("return_gold_yae")
+    private String return_gold_yae;
+
+    @SerializedName("net_pay_kayt")
+    private String net_pay_kayt;
+
+    @SerializedName("net_pay_pal")
+    private String net_pay_pal;
+
+    @SerializedName("net_pay_yae")
+    private String net_pay_yae;
+
+
+    public String getReturnGram() {
+        return returnGram;
+    }
+
+    public String getNowRemainGram() {
+        return nowRemainGram;
+    }
+
+    public String getSubReturnKyat() {
+        return subReturnKyat;
+    }
+
+    public String getSubReturnPal() {
+        return subReturnPal;
+    }
+
+    public String getSubReturnYae() {
+        return subReturnYae;
+    }
+
+    public String getReturnQuantity() {
+        return returnQuantity;
+    }
+
+    public String getReturnPointEight() {
+        return returnPointEight;
+    }
+
+    public String getNowRemainQuantity() {
+        return nowRemainQuantity;
+    }
+
+    public String getNowRemainPointEight() {
+        return nowRemainPointEight;
+    }
+
+    public String getReturnAyotKyat() {
+        return returnAyotKyat;
+    }
+
+    public String getReturnAyotPal() {
+        return returnAyotPal;
+    }
+
+    public String getReturnAyotYae() {
+        return returnAyotYae;
+    }
+
+    public String getNowTotalAyotKyat() {
+        return nowTotalAyotKyat;
+    }
+
+    public String getNowTotalAyotPal() {
+        return nowTotalAyotPal;
+    }
+
+    public String getNowTotalAyotYae() {
+        return nowTotalAyotYae;
+    }
+
+    public String getReturn_gold_kyat() {
+        return return_gold_kyat;
+    }
+
+    public String getReturn_gold_pal() {
+        return return_gold_pal;
+    }
+
+    public String getReturn_gold_yae() {
+        return return_gold_yae;
+    }
+
+    public String getNet_pay_kayt() {
+        return net_pay_kayt;
+    }
+
+    public String getNet_pay_pal() {
+        return net_pay_pal;
+    }
+
+    public String getNet_pay_yae() {
+        return net_pay_yae;
+    }
 
     public String getNote() {
         return note;

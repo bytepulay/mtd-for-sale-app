@@ -92,7 +92,7 @@ public class CustomerSettingFragment extends Fragment implements View.OnClickLis
 
                String paths = response.body().getProfile();
 
-                Toast.makeText(getContext(), paths+Customer_Id, Toast.LENGTH_SHORT).show();
+                //Toast.makeText(getContext(), paths+Customer_Id, Toast.LENGTH_SHORT).show();
                 if(paths.equals("No")){
                     bitmap = BitmapFactory.decodeResource(getContext().getResources(),
                             R.drawable.default_profile);

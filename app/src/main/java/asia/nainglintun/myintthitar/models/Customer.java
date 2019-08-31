@@ -81,6 +81,20 @@ public class Customer {
     @SerializedName("code")
     private String code;
 
+    @SerializedName("status_condition")
+    private String status;
+
+    @SerializedName("total_point")
+    private String total_point;
+
+    public String getTotal_point() {
+        return total_point;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
     public String getCode() {
         return code;
     }

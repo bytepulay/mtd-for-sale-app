@@ -107,9 +107,9 @@ public class MainActivity extends AppCompatActivity {
                         if (response.body().getResponse().equals("customer")){
                             String name =response.body().getUserName();
                             String rowUser = response.body().getResponse();
-//                            prefConfig.writeRowUser(rowUser);
-//                          prefConfig.writeName(name);
-//                          prefConfig.DeleteName(name);
+                            prefConfig.writeRowUser(rowUser);
+                          prefConfig.writeName(name);
+                          prefConfig.DeleteName(name);
 
                             startActivity(new Intent(MainActivity.this,CustomerActivity.class));
                         }else if (response.body().getResponse().equals("sale")) {

@@ -117,7 +117,7 @@ public class Orderhistory {
 
 
     @SerializedName("customer_id")
-    private int customerId;
+    private String customerId;
 
     @SerializedName("total_qualtity")
     private String qty;
@@ -252,6 +252,58 @@ public class Orderhistory {
 
     @SerializedName("new_total_yae")
     private String total_yae;
+
+    @SerializedName("s_voucher")
+    private String debitVoucher;
+
+    @SerializedName("s_date")
+    private String debitSaleDate;
+
+    @SerializedName("s_name")
+    private String debitSaleName;
+
+    @SerializedName("debit_kyat")
+    private String debitKyat;
+
+    @SerializedName("debit_pal")
+    private String debitPal;
+
+    @SerializedName("debit_yae")
+    private String debitYae;
+
+
+
+    @SerializedName("remark")
+    private String remark;
+
+
+    public String getRemark() {
+        return remark;
+    }
+
+    public String getDebitKyat() {
+        return debitKyat;
+    }
+
+    public String getDebitPal() {
+        return debitPal;
+    }
+
+    public String getDebitYae() {
+        return debitYae;
+    }
+
+    public String getDebitVoucher() {
+        return debitVoucher;
+    }
+
+    public String getDebitSaleDate() {
+        return debitSaleDate;
+    }
+
+    public String getDebitSaleName() {
+        return debitSaleName;
+    }
 
 
     public String getTotal_kyat() {
@@ -494,7 +546,7 @@ public class Orderhistory {
         return cuponCode;
     }
 
-    public int getCustomerId() {
+    public String getCustomerId() {
         return customerId;
     }
 

@@ -28,6 +28,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
 
+import asia.nainglintun.myintthitar.Activities.CustomRangeInputFilter;
 import asia.nainglintun.myintthitar.Activities.InputFilterMinMax;
 import asia.nainglintun.myintthitar.Activities.MainActivity;
 import asia.nainglintun.myintthitar.Activities.OrderScanForVoucherActivity;
@@ -68,6 +69,9 @@ private Toolbar toolbar;
             nowRemainKyat,nowRemainPal,nowRemainYae,newTotalKyat,newTotalPal,newTotalYae,edNote;
 
     float Totalkyat, Totalpal,Totalyae;
+    int TOTALKYAT =0;
+    int TOTALPAl = 0;
+    double TOTALYAE = 0;
 
     public OrderInvoiceCreate() {
         // Required empty public constructor
@@ -167,7 +171,7 @@ private Toolbar toolbar;
 
 
 
-        String date_n = new SimpleDateFormat("dd/MM/YYYY", Locale.getDefault()).format(new Date());
+        String date_n = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault()).format(new Date());
         saleDate.setText(date_n);
 
 
@@ -254,7 +258,20 @@ private Toolbar toolbar;
 
 
 
-       // totalPel.setFilters(new InputFilter[]{new InputFilterMinMax(1,15)});
+       // totalPel.setFilters(new InputFilter[]{new InputFilterMinMax(1,15)};
+        newTotalYae.setFilters(new InputFilter[]{new CustomRangeInputFilter(0f, 7.9f)});
+        newTotalPal.setFilters(new InputFilter[]{new InputFilterMinMax(0,15)});
+
+        paymentYae.setFilters(new InputFilter[]{new CustomRangeInputFilter(0f, 7.9f)});
+        paymentPal.setFilters(new InputFilter[]{new InputFilterMinMax(0,15)});
+
+
+
+        TotalAyotYae.setFilters(new InputFilter[]{new CustomRangeInputFilter(0f, 7.9f)});
+        TotalAyotPel.setFilters(new InputFilter[]{new InputFilterMinMax(0,15)});
+
+
+
 
 //        ringYae.setFilters(new InputFilter[]{new InputFilterMinMax(0,7)});
 //        banglesYae.setFilters(new InputFilter[]{new InputFilterMinMax(0,7)});
@@ -335,8 +352,93 @@ private Toolbar toolbar;
                 }
 
             case R.id.totalAmount:
+//                try {
+//
+//                    int totKyat = Integer.parseInt(newTotalKyat.getText().toString());
+//                    int totPal = Integer.parseInt(newTotalPal.getText().toString());
+//                    double totYae = Double.parseDouble(newTotalYae.getText().toString());
+//                    double plusPal;
+//                    int plusKyat;
+//                    double plusYaeOne = 0;
+//                    int realResultPal = 0;
+//                    int resultpal = 0;
+//
+//                    int debitKyat = Integer.parseInt(previousRemainKyat.getText().toString());
+//                    int debitPal = Integer.parseInt(previousRemainPal.getText().toString());
+//                    double debitYae = Double.parseDouble(previousRemainYae.getText().toString());
+//
+//                    int TOTALKYAT = totKyat + debitKyat;
+//                    int TOTALPAl = totPal + debitPal;
+//                    double TOTALYAE = totYae + debitYae;
+//
+//                    if (TOTALPAl < 16) {
+//                        if (TOTALYAE >= 8) {
+//                            plusYaeOne = TOTALYAE / 8;
+//                            int plusYaeOneInt = (int) plusYaeOne;
+//                            TOTALPAl = TOTALPAl + plusYaeOneInt;
+//                            plusKyat = TOTALPAl / 16;
+//                            resultpal = TOTALPAl % 16;
+//
+//
+//                            TOTALKYAT = TOTALKYAT + plusKyat;
+//                            buyDebitKyat.setText(String.valueOf(TOTALKYAT));
+//                            buyDebitPal.setText(String.valueOf(resultpal));
+//                        } else if (TOTALYAE < 8) {
+//                            buyDebitKyat.setText(String.valueOf(TOTALKYAT));
+//                            buyDebitPal.setText(String.valueOf(TOTALPAl));
+//                        }
+//                    } else if (TOTALPAl >= 16) {
+//                        if (TOTALYAE >= 8) {
+//                            plusYaeOne = TOTALYAE / 8;
+//                            int plusYaeOneInt = (int) plusYaeOne;
+//                            TOTALPAl = TOTALPAl + plusYaeOneInt;
+//                            plusKyat = TOTALPAl / 16;
+//                            resultpal = TOTALPAl % 16;
+//
+//
+//                            TOTALKYAT = TOTALKYAT + plusKyat;
+//                            buyDebitKyat.setText(String.valueOf(TOTALKYAT));
+//                            buyDebitPal.setText(String.valueOf(resultpal));
+//                        } else if (TOTALYAE < 8) {
+//                            plusKyat = TOTALPAl / 16;
+//                            resultpal = TOTALPAl % 16;
+//                            TOTALKYAT = TOTALKYAT + plusKyat;
+//                            buyDebitKyat.setText(String.valueOf(TOTALKYAT));
+//                            buyDebitPal.setText(String.valueOf(resultpal));
+//                        }
+//                    }
+//                    if (TOTALYAE < 8) {
+//                        DecimalFormat form1 = new DecimalFormat("0.00");
+//                        buyDebitYae.setText(String.valueOf(form1.format(TOTALYAE)));
+//                    } else if (TOTALYAE >= 8) {
+//                        double resultYae;
+//                        plusPal = TOTALYAE / 8;
+//                        resultYae = TOTALYAE % 8;
+//                        double totalPals = (double) resultpal;
+//
+//                        double resultPal1 = totalPals + plusPal;
+//                        int resultPalInt = (int) resultPal1;
+//
+////                    if(resultPalInt>=16){
+////                        realResultPal= resultPalInt%16;
+////                        buyDebitPal.setText(String.valueOf(realResultPal));
+////                    }else if(resultPalInt<16){
+////                    buyDebitPal.setText(String.valueOf(resultPalInt));
+////                }
+////
+//
+//
+//                        DecimalFormat form1 = new DecimalFormat("0.00");
+//                        buyDebitYae.setText(String.valueOf(form1.format(resultYae)));
+//
+//                    }
+//
+//
+//                    break;
+//                }catch (Exception e){
+//                    e.printStackTrace();
+//                }
                 try {
-
                     int totKyat = Integer.parseInt(newTotalKyat.getText().toString());
                     int totPal = Integer.parseInt(newTotalPal.getText().toString());
                     double totYae = Double.parseDouble(newTotalYae.getText().toString());
@@ -344,76 +446,371 @@ private Toolbar toolbar;
                     int plusKyat;
                     double plusYaeOne = 0;
                     int realResultPal = 0;
+                    int plusForKyat = 0;
                     int resultpal = 0;
 
                     int debitKyat = Integer.parseInt(previousRemainKyat.getText().toString());
                     int debitPal = Integer.parseInt(previousRemainPal.getText().toString());
                     double debitYae = Double.parseDouble(previousRemainYae.getText().toString());
 
-                    int TOTALKYAT = totKyat + debitKyat;
-                    int TOTALPAl = totPal + debitPal;
-                    double TOTALYAE = totYae + debitYae;
+                    String DebitKyat = String.valueOf(debitKyat);
+                    String DebitPal = String.valueOf(debitPal);
+                    String DebitYae = String.valueOf(debitYae);
 
-                    if (TOTALPAl < 16) {
-                        if (TOTALYAE >= 8) {
-                            plusYaeOne = TOTALYAE / 8;
-                            int plusYaeOneInt = (int) plusYaeOne;
-                            TOTALPAl = TOTALPAl + plusYaeOneInt;
-                            plusKyat = TOTALPAl / 16;
-                            resultpal = TOTALPAl % 16;
+                    if (DebitKyat.contains("-") || DebitPal.contains("-") || DebitYae.contains("-")){
+                        Toast.makeText(getContext(), "Negative Operation work", Toast.LENGTH_SHORT).show();
+                        int nowDebitKyat=Math.abs(debitKyat);
+                        int nowDebitPal=Math.abs(debitPal);
+                        double nowDebitYae=Math.abs(debitYae);
+                        if (nowDebitKyat>totKyat && nowDebitPal >totPal && nowDebitYae>totYae){
+                            TOTALKYAT=nowDebitKyat-totKyat;
+                            TOTALPAl=nowDebitPal-totPal;
+                            TOTALYAE=nowDebitYae-totYae;
 
+                            buyDebitKyat.setText(String.valueOf(-TOTALKYAT));
+                            buyDebitPal.setText(String.valueOf(-TOTALPAl));
+                            buyDebitYae.setText(String.valueOf(-TOTALYAE));
 
-                            TOTALKYAT = TOTALKYAT + plusKyat;
-                            buyDebitKyat.setText(String.valueOf(TOTALKYAT));
-                            buyDebitPal.setText(String.valueOf(resultpal));
-                        } else if (TOTALYAE < 8) {
-                            buyDebitKyat.setText(String.valueOf(TOTALKYAT));
+                        }else  if (nowDebitKyat>totKyat && nowDebitPal>totPal && nowDebitYae==totYae){
+                            TOTALKYAT=nowDebitKyat-totKyat;
+                            TOTALPAl=nowDebitPal-totPal;
+                            TOTALYAE=nowDebitYae-totYae;
+
+                            buyDebitKyat.setText(String.valueOf(-TOTALKYAT));
+                            buyDebitPal.setText(String.valueOf(-TOTALPAl));
+                            buyDebitYae.setText(String.valueOf(TOTALYAE));
+
+                        }else if (nowDebitKyat>totKyat && nowDebitPal>totPal && nowDebitYae<totYae){
+                            nowDebitPal=nowDebitPal-1;
+                            nowDebitYae=nowDebitYae+8;
+                            TOTALKYAT=nowDebitKyat-totKyat;
+                            TOTALPAl=nowDebitPal-totPal;
+                            TOTALYAE=nowDebitYae-totYae;
+
+                            DecimalFormat form1 = new DecimalFormat("0.00");
+                            buyDebitYae.setText(String.valueOf(form1.format(-TOTALYAE)));
+                            if(TOTALPAl==0) {
+                                buyDebitPal.setText(String.valueOf(TOTALPAl));
+                            }else if(TOTALPAl!=0){
+                                buyDebitPal.setText(String.valueOf(-TOTALPAl));
+                            }
+
+                            if (TOTALKYAT==0){
+                                buyDebitKyat.setText(String.valueOf(TOTALKYAT));
+                            }else  if (TOTALKYAT!=0){
+                                buyDebitKyat.setText(String.valueOf(-TOTALKYAT));
+                            }
+
+                        }else if (nowDebitKyat>totKyat && nowDebitPal<totPal && nowDebitYae>=totYae){
+                            TOTALYAE=nowDebitYae-totYae;
+                            nowDebitKyat=nowDebitKyat-1;
+                            nowDebitPal=nowDebitPal+16;
+                            TOTALPAl=nowDebitPal-totPal;
+                            TOTALKYAT=nowDebitKyat-totKyat;
+
+                            if (TOTALYAE==0){
+                                buyDebitYae.setText("0");
+                            }else if (TOTALYAE!=0){
+                                DecimalFormat form1 = new DecimalFormat("0.00");
+                                buyDebitYae.setText(String.valueOf(form1.format(-TOTALYAE)));
+                            }
+                            buyDebitPal.setText(String.valueOf(-TOTALPAl));
+                            if (TOTALKYAT==0){
+                                buyDebitKyat.setText(String.valueOf(TOTALKYAT));
+                            }else  if (TOTALKYAT!=0){
+                                buyDebitKyat.setText(String.valueOf(-TOTALKYAT));
+                            }
+
+                        }else if (nowDebitKyat>totKyat && nowDebitPal==totPal && nowDebitYae>=totYae){
+                            TOTALYAE=nowDebitYae-totYae;
+                            TOTALPAl=nowDebitPal-totPal;
+                            TOTALKYAT=nowDebitKyat-totKyat;
+                            if (TOTALYAE==0){
+                                buyDebitYae.setText("0");
+                            }else if (TOTALYAE!=0){
+                                DecimalFormat form1 = new DecimalFormat("0.00");
+                                buyDebitYae.setText(String.valueOf(form1.format(-TOTALYAE)));
+                            }
+                            buyDebitPal.setText(String.valueOf(0));
+                            buyDebitKyat.setText(String.valueOf(-TOTALKYAT));
+
+                        }else if (nowDebitKyat>totKyat && nowDebitPal==totPal && nowDebitYae<totYae){
+                            nowDebitKyat=nowDebitKyat-1;
+                            nowDebitPal=(nowDebitPal+16)-1;
+                            nowDebitYae=nowDebitYae+8;
+                            TOTALYAE=nowDebitYae-totYae;
+                            TOTALPAl=nowDebitPal-totPal;
+                            TOTALKYAT=nowDebitKyat-totKyat;
+
+                            DecimalFormat form1 = new DecimalFormat("0.00");
+                            buyDebitYae.setText(String.valueOf(form1.format(-TOTALYAE)));
+                            buyDebitPal.setText(String.valueOf(-TOTALPAl));
+                            if (TOTALKYAT==0){
+                                buyDebitKyat.setText(String.valueOf(TOTALKYAT));
+                            }else  if (TOTALKYAT!=0){
+                                buyDebitKyat.setText(String.valueOf(-TOTALKYAT));
+                            }
+
+                        }else if (nowDebitKyat==totKyat && nowDebitPal==totPal && nowDebitYae==totYae){
+                            //for equal
+                            buyDebitKyat.setText("0");
+                            buyDebitPal.setText("0");
+                            buyDebitYae.setText("0.0");
+
+                        }else if (nowDebitKyat==totKyat && nowDebitPal==totPal && nowDebitYae>totYae){
+                            //for equal
+                            TOTALYAE=nowDebitYae-totYae;
+                            DecimalFormat form1 = new DecimalFormat("0.00");
+                            buyDebitYae.setText(String.valueOf(form1.format(-TOTALYAE)));
+                            buyDebitKyat.setText("0");
+                            buyDebitPal.setText("0");
+
+                        }else if (nowDebitKyat==totKyat && nowDebitPal==totPal && nowDebitYae<totYae){
+                            //for equal
+                            TOTALYAE=totYae-nowDebitYae;
+                            DecimalFormat form1 = new DecimalFormat("0.00");
+                            buyDebitYae.setText(String.valueOf(form1.format(TOTALYAE)));
+                            buyDebitKyat.setText("0");
+                            buyDebitPal.setText("0");
+
+                        }else if (nowDebitKyat==totKyat && nowDebitPal>totPal && nowDebitYae==totYae){
+                            //for equal
+                            buyDebitKyat.setText("0");
+                            TOTALPAl=nowDebitPal-totPal;
+                            buyDebitPal.setText(String.valueOf(-TOTALPAl));
+                            buyDebitYae.setText("0.0");
+
+                        }else if (nowDebitKyat==totKyat && nowDebitPal>totPal && nowDebitYae>totYae){
+                            //for equal
+                            TOTALYAE=nowDebitYae-totYae;
+                            TOTALPAl=nowDebitPal-totPal;
+                            DecimalFormat form1 = new DecimalFormat("0.00");
+                            buyDebitYae.setText(String.valueOf(form1.format(-TOTALYAE)));
+                            buyDebitPal.setText(String.valueOf(-TOTALPAl));
+                            buyDebitKyat.setText("0");
+
+                        }else if (nowDebitKyat==totKyat && nowDebitPal>totPal && nowDebitYae<totYae){
+                            //for equal
+                            nowDebitPal=nowDebitPal-1;
+                            nowDebitYae=nowDebitYae+8;
+                            TOTALYAE=nowDebitYae-totYae;
+                            TOTALPAl=nowDebitPal-totPal;
+                            DecimalFormat form1 = new DecimalFormat("0.00");
+                            buyDebitYae.setText(String.valueOf(form1.format(-TOTALYAE)));
+                            if (TOTALPAl==0){
+                                buyDebitPal.setText("0");
+                            }else if (TOTALPAl!=0){
+                                buyDebitPal.setText(String.valueOf(-TOTALPAl));
+                            }
+                            buyDebitKyat.setText("0");
+
+                        }else if (nowDebitKyat==totKyat && nowDebitPal<totPal && nowDebitYae==totYae){
+                            //for equal
+                            TOTALPAl=totPal-nowDebitPal;
                             buyDebitPal.setText(String.valueOf(TOTALPAl));
-                        }
-                    } else if (TOTALPAl >= 16) {
-                        if (TOTALYAE >= 8) {
-                            plusYaeOne = TOTALYAE / 8;
-                            int plusYaeOneInt = (int) plusYaeOne;
-                            TOTALPAl = TOTALPAl + plusYaeOneInt;
-                            plusKyat = TOTALPAl / 16;
-                            resultpal = TOTALPAl % 16;
+                            buyDebitKyat.setText("0");
+                            buyDebitYae.setText("0");
+
+                        }else if (nowDebitKyat==totKyat && nowDebitPal<totPal && nowDebitYae>totYae){
+                            //for equal
+                            totPal=totPal-1;
+                            totYae=totYae+8;
+                            TOTALYAE=totYae-nowDebitYae;
+                            TOTALPAl=totPal-nowDebitPal;
+                            DecimalFormat form1 = new DecimalFormat("0.00");
+                            buyDebitYae.setText(String.valueOf(form1.format(TOTALYAE)));
+
+                            if (TOTALPAl==0){
+                                buyDebitPal.setText("0");
+                            }else if (TOTALPAl!=0){
+                                buyDebitPal.setText(String.valueOf(TOTALPAl));
+                            }
+                            buyDebitKyat.setText("0");
 
 
-                            TOTALKYAT = TOTALKYAT + plusKyat;
+                        }else if (nowDebitKyat==totKyat && nowDebitPal<totPal && nowDebitYae<totYae){
+                            //for equal
+
+                            TOTALYAE=totYae-nowDebitYae;
+                            TOTALPAl=totPal-nowDebitPal;
+                            DecimalFormat form1 = new DecimalFormat("0.00");
+                            buyDebitYae.setText(String.valueOf(form1.format(TOTALYAE)));
+                            buyDebitPal.setText(String.valueOf(TOTALPAl));
+                            buyDebitKyat.setText("0");
+
+
+                        }else if (nowDebitKyat<totKyat && nowDebitPal>totPal && nowDebitYae>totYae){
+                            // for minus < >>
+                            totKyat=totKyat-1;
+                            totPal = (totPal+16)-1;
+                            totYae=totYae+8;
+
+                            TOTALYAE=totYae-nowDebitYae;
+                            TOTALPAl=totPal-nowDebitPal;
+                            TOTALKYAT=totKyat-nowDebitKyat;
+
+                            DecimalFormat form1 = new DecimalFormat("0.00");
+                            buyDebitYae.setText(String.valueOf(form1.format(TOTALYAE)));
+
+                            buyDebitPal.setText(String.valueOf(TOTALPAl));
                             buyDebitKyat.setText(String.valueOf(TOTALKYAT));
-                            buyDebitPal.setText(String.valueOf(resultpal));
-                        } else if (TOTALYAE < 8) {
-                            plusKyat = TOTALPAl / 16;
-                            resultpal = TOTALPAl % 16;
-                            TOTALKYAT = TOTALKYAT + plusKyat;
+                        }else if (nowDebitKyat<totKyat && nowDebitPal>totPal && nowDebitYae<=totYae){
+                            // for minus < ><=
+                            totKyat=totKyat-1;
+                            totPal = totPal+16;
+
+                            TOTALYAE=totYae-nowDebitYae;
+                            TOTALPAl=totPal-nowDebitPal;
+                            TOTALKYAT=totKyat-nowDebitKyat;
+
+                            DecimalFormat form1 = new DecimalFormat("0.00");
+                            buyDebitYae.setText(String.valueOf(form1.format(TOTALYAE)));
+
+                            buyDebitPal.setText(String.valueOf(TOTALPAl));
                             buyDebitKyat.setText(String.valueOf(TOTALKYAT));
-                            buyDebitPal.setText(String.valueOf(resultpal));
+                        }else if (nowDebitKyat<totKyat && nowDebitPal<totPal && nowDebitYae<=totYae){
+                            // for minus < < <=
+                            TOTALYAE=totYae-nowDebitYae;
+                            TOTALPAl=totPal-nowDebitPal;
+                            TOTALKYAT=totKyat-nowDebitKyat;
+
+                            DecimalFormat form1 = new DecimalFormat("0.00");
+                            buyDebitYae.setText(String.valueOf(form1.format(TOTALYAE)));
+
+                            buyDebitPal.setText(String.valueOf(TOTALPAl));
+                            buyDebitKyat.setText(String.valueOf(TOTALKYAT));
+                        }else if (nowDebitKyat<totKyat && nowDebitPal<totPal && nowDebitYae>totYae){
+                            // for minus < < >
+                            totPal=totPal-1;
+                            totYae=totYae+8;
+
+                            TOTALYAE=totYae-nowDebitYae;
+                            TOTALPAl=totPal-nowDebitPal;
+                            TOTALKYAT=totKyat-nowDebitKyat;
+
+                            DecimalFormat form1 = new DecimalFormat("0.00");
+                            buyDebitYae.setText(String.valueOf(form1.format(TOTALYAE)));
+
+                            if (TOTALPAl==0){
+                                buyDebitKyat.setText("0");
+                            }else if (TOTALPAl!=0){
+                                buyDebitPal.setText(String.valueOf(TOTALPAl));
+                            }
+
+                            buyDebitKyat.setText(String.valueOf(TOTALKYAT));
+                        }else if (nowDebitKyat<totKyat && nowDebitPal==totPal && nowDebitYae<=totYae){
+                            // for minus < == or < = <
+
+                            TOTALKYAT=totKyat-nowDebitKyat;
+                            TOTALYAE=totYae-nowDebitYae;
+                            DecimalFormat form1 = new DecimalFormat("0.00");
+                            buyDebitYae.setText(String.valueOf(form1.format(TOTALYAE)));
+                            buyDebitPal.setText("0");
+                            buyDebitKyat.setText(String.valueOf(TOTALKYAT));
+
+                        }else if (nowDebitKyat<totKyat && nowDebitPal==totPal && nowDebitYae>totYae){
+                            // for minus < = >
+                            totKyat=totKyat-1;
+                            totPal=totPal+15;
+                            totYae=totYae+8;
+                            TOTALKYAT=totKyat-nowDebitKyat;
+                            TOTALPAl=totPal-nowDebitPal;
+                            TOTALYAE=totYae-nowDebitYae;
+                            DecimalFormat form1 = new DecimalFormat("0.00");
+                            buyDebitYae.setText(String.valueOf(form1.format(TOTALYAE)));
+                            buyDebitPal.setText(String.valueOf(TOTALPAl));
+                            if (TOTALKYAT==0){
+                                buyDebitKyat.setText("0");
+                            }
+                            buyDebitKyat.setText(String.valueOf(TOTALKYAT));
+
                         }
-                    }
-                    if (TOTALYAE < 8) {
-                        DecimalFormat form1 = new DecimalFormat("0.00");
-                        buyDebitYae.setText(String.valueOf(form1.format(TOTALYAE)));
-                    } else if (TOTALYAE >= 8) {
-                        double resultYae;
-                        plusPal = TOTALYAE / 8;
-                        resultYae = TOTALYAE % 8;
-                        double totalPals = (double) resultpal;
 
-                        double resultPal1 = totalPals + plusPal;
-                        int resultPalInt = (int) resultPal1;
 
+
+
+
+
+
+                        // Toast.makeText(getContext(), String.valueOf(nowDebitKyat) +String.valueOf(nowDebitPal)+String.valueOf(nowDebitYae), Toast.LENGTH_SHORT).show();
+//                            }
+
+//                            if (totKyat>debitKyat){
+//                                Toast.makeText(getContext(), "plus", Toast.LENGTH_SHORT).show();
+//                            }else if (totKyat<debitKyat){
+//                                Toast.makeText(getContext(), "minus", Toast.LENGTH_SHORT).show();
+//                            }
+
+                        //Toast.makeText(getContext(), "ok minus", Toast.LENGTH_SHORT).show();
+                    }else if(!DebitKyat.contains("-") && !DebitPal.contains("-") && !DebitYae.contains("-")){
+                        Toast.makeText(getContext(), "positive operation is work ", Toast.LENGTH_SHORT).show();
+                        TOTALKYAT = totKyat + debitKyat;
+                        TOTALPAl = totPal + debitPal;
+                        TOTALYAE = totYae + debitYae;
+
+
+                        if (TOTALPAl < 16) {
+
+                            if (TOTALYAE >= 8) {
+                                plusYaeOne = TOTALYAE / 8;
+                                int plusYaeOneInt = (int) plusYaeOne;
+                                TOTALPAl = TOTALPAl + plusYaeOneInt;
+                                plusKyat = TOTALPAl / 16;
+                                resultpal = TOTALPAl % 16;
+
+                                TOTALKYAT = TOTALKYAT + plusKyat;
+                                buyDebitKyat.setText(String.valueOf(TOTALKYAT));
+                                buyDebitPal.setText(String.valueOf(resultpal));
+                            } else if (TOTALYAE < 8) {
+                                buyDebitKyat.setText(String.valueOf(TOTALKYAT));
+                                buyDebitPal.setText(String.valueOf(TOTALPAl));
+                            }
+                        } else if (TOTALPAl >= 16) {
+                            if (TOTALYAE >= 8) {
+                                plusYaeOne = TOTALYAE / 8;
+                                int plusYaeOneInt = (int) plusYaeOne;
+                                TOTALPAl = TOTALPAl + plusYaeOneInt;
+                                plusKyat = TOTALPAl / 16;
+                                resultpal = TOTALPAl % 16;
+
+                                TOTALKYAT = TOTALKYAT + plusKyat;
+                                buyDebitKyat.setText(String.valueOf(TOTALKYAT));
+                                buyDebitPal.setText(String.valueOf(resultpal));
+                            } else if (TOTALYAE < 8) {
+                                plusKyat = TOTALPAl / 16;
+                                resultpal = TOTALPAl % 16;
+                                TOTALKYAT = TOTALKYAT + plusKyat;
+                                buyDebitKyat.setText(String.valueOf(TOTALKYAT));
+                                buyDebitPal.setText(String.valueOf(resultpal));
+                            }
+                        }
+                        if (TOTALYAE < 8) {
+                            DecimalFormat form1 = new DecimalFormat("0.00");
+                            buyDebitYae.setText(String.valueOf(form1.format(TOTALYAE)));
+                        } else if (TOTALYAE >= 8) {
+                            double resultYae;
+                            plusPal = TOTALYAE / 8;
+                            resultYae = TOTALYAE % 8;
+                            double totalPals = (double) resultpal;
+
+                            double resultPal1 = totalPals + plusPal;
+                            int resultPalInt = (int) resultPal1;
+//
 //                    if(resultPalInt>=16){
+//                        plusForKyat=resultPalInt/16;
+//                        TOTALKYAT = TOTALKYAT+plusForKyat;
+//                        buyDebitKyat.setText(String.valueOf(TOTALKYAT));
 //                        realResultPal= resultPalInt%16;
 //                        buyDebitPal.setText(String.valueOf(realResultPal));
 //                    }else if(resultPalInt<16){
-//                    buyDebitPal.setText(String.valueOf(resultPalInt));
-//                }
-//
+//                        buyDebitPal.setText(String.valueOf(resultPalInt));
+//                    }
 
 
-                        DecimalFormat form1 = new DecimalFormat("0.00");
-                        buyDebitYae.setText(String.valueOf(form1.format(resultYae)));
+                            DecimalFormat form1 = new DecimalFormat("0.00");
+                            buyDebitYae.setText(String.valueOf(form1.format(resultYae)));
 
+                        }
                     }
 
 
@@ -421,7 +818,6 @@ private Toolbar toolbar;
                 }catch (Exception e){
                     e.printStackTrace();
                 }
-
 
             case R.id.totalRemainAmount:
 
@@ -475,7 +871,7 @@ private Toolbar toolbar;
     }
 
     private void updateLabel() {
-        String myFormat = "dd/MM/YYYY"; //In which you need put here
+        String myFormat = "dd/MM/yyyy"; //In which you need put here
         SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.US);
 
         saleDate.setText(sdf.format(myCalendar.getTime()));
@@ -491,32 +887,76 @@ private Toolbar toolbar;
                 new_total_kayt,new_total_pal,new_total_yae,note_description;
 
        voucher_Number = voucherNumber.getText().toString();
+       if (voucher_Number.isEmpty()){
+           voucherNumber.setError("Enter Voucher No");
+       }
         CustomerID = edCustomerID.getText().toString();
        sale_Date = saleDate.getText().toString();
        new_total_kayt = newTotalKyat.getText().toString();
+        if (new_total_kayt.isEmpty()){
+            newTotalKyat.setError("Enter Kyat");
+        }
        new_total_pal = newTotalPal.getText().toString();
+        if (new_total_pal.isEmpty()){
+            newTotalPal.setError("Enter Pal");
+        }
        new_total_yae = newTotalYae.getText().toString();
+        if (new_total_yae.isEmpty()){
+            newTotalYae.setError("Enter Yae");
+        }
 
        qualtity = totalQualtity.getText().toString();
+        if (qualtity.isEmpty()){
+            totalQualtity.setError("Enter Quantity");
+        }
        pointEight = totalPointEight.getText().toString();
+        if (pointEight.isEmpty()){
+            totalPointEight.setError("Enter Point Eight");
+        }
+
        kyat = totalKyat.getText().toString();
+        if (pointEight.isEmpty()){
+            totalPointEight.setError("Enter Kyat");
+        }
+
        pal = totalPal.getText().toString();
+        if (pointEight.isEmpty()){
+            totalPal.setError("Enter Pal");
+        }
+
        yae = totalYae.getText().toString();
-       gram  = Gram.getText().toString();
+        if (yae.isEmpty()){
+            totalYae.setError("Enter Yae");
+        }
+
+        gram  = Gram.getText().toString();
+        if (gram.isEmpty()){
+            Gram.setError("Enter Gram");
+        }
+
        cuponCode = CuponCode.getText().toString();
 
 
-        qualtity = totalQualtity.getText().toString();
-        pointEight = totalPointEight.getText().toString();
-        kyat = totalKyat.getText().toString();
-        pal = totalPal.getText().toString();
-        yae = totalYae.getText().toString();
-        gram = Gram.getText().toString();
+////        qualtity = totalQualtity.getText().toString();
+////        pointEight = totalPointEight.getText().toString();
+////        kyat = totalKyat.getText().toString();
+////        pal = totalPal.getText().toString();
+////        yae = totalYae.getText().toString();
+//        gram = Gram.getText().toString();
 
 
         totalAyotkyat = TotalAyotKyat.getText().toString();
+        if (totalAyotkyat.isEmpty()){
+            TotalAyotKyat.setError("Enter Ayot Kyat");
+        }
         totalAyotPel = TotalAyotPel.getText().toString();
+        if (totalAyotPel.isEmpty()){
+            TotalAyotPel.setError("Enter Ayot Yae");
+        }
         totalAyotYae = TotalAyotYae.getText().toString();
+        if (totalAyotYae.isEmpty()){
+            TotalAyotYae.setError("Enter Ayot Kyat");
+        }
 
         previous_remain_kyat = previousRemainKyat.getText().toString();
         previous_remain_pal = previousRemainPal.getText().toString();
@@ -527,20 +967,42 @@ private Toolbar toolbar;
         buy_debit_yae = buyDebitYae.getText().toString();
 
         payment_kyat = paymentKyat.getText().toString();
+        if (payment_kyat.isEmpty()){
+            paymentKyat.setError("Enter Payment Kyat");
+        }
+
         payment_pal = paymentPal.getText().toString();
+        if (payment_pal.isEmpty()){
+            paymentPal.setError("Enter Payment Pal");
+        }
+
         payment_yae = paymentYae.getText().toString();
+        if (payment_yae.isEmpty()){
+            paymentYae.setError("Enter Payment Yae");
+        }
+
 
 
         now_remain_kyat = nowRemainKyat.getText().toString();
+        if (now_remain_kyat.isEmpty()){
+            nowRemainKyat.setError("Enter Remain Kyat");
+        }
+
         now_remain_pal = nowRemainPal.getText().toString();
+        if (now_remain_pal.isEmpty()){
+            nowRemainPal.setError("Enter Remain Yae");
+        }
         now_remain_yae = nowRemainYae.getText().toString();
+        if (now_remain_yae.isEmpty()){
+            nowRemainYae.setError("Enter Remain Yae");
+        }
 
         note_description = edNote.getText().toString();
 
         if (CustomerID.isEmpty()) {
             edCustomerID.setError("Sacn Customer Information");
             Toast.makeText(getContext(), "Scan Cusotmer Information", Toast.LENGTH_SHORT).show();
-        } else if (!CustomerID.isEmpty()) {
+        } else if (!CustomerID.isEmpty() && !voucher_Number.isEmpty() && !new_total_kayt.isEmpty() && !new_total_pal.isEmpty() && !new_total_yae.isEmpty() && !qualtity.isEmpty() && !pointEight.isEmpty() && !kyat.isEmpty() && !pal.isEmpty() && !yae.isEmpty() && !gram.isEmpty() && !now_remain_kyat.isEmpty() && !now_remain_pal.isEmpty() && !now_remain_yae.isEmpty() && !payment_kyat.isEmpty() && !payment_pal.isEmpty() && !payment_yae.isEmpty()) {
 
 
 

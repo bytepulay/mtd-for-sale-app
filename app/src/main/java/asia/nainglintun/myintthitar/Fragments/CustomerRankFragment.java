@@ -12,6 +12,7 @@ import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -38,7 +39,8 @@ public class CustomerRankFragment extends Fragment {
     //Toolbar toolbar;
     TextView Customername;
     private String Customer_Id,Customer_name,paths;
-    private TextView textViewPoint,textViewPointEight,textViewKyat,textViewPal,textViewYae;
+    private TextView textViewPoint,textViewPointEight,textViewKyat,textViewPal,textViewYae,textViewshowTotalPoint;
+    private LinearLayout linearLayout;
 
     public CustomerRankFragment() {
         // Required empty public constructor
@@ -59,10 +61,13 @@ public class CustomerRankFragment extends Fragment {
         textViewKyat = view.findViewById(R.id.customerRemainKyat);
         textViewPal = view.findViewById(R.id.customerRemaiPal);
         textViewYae = view.findViewById(R.id.customerRemaiYae);
+        textViewshowTotalPoint = view.findViewById(R.id.showTotalPoint);
         Profile = view.findViewById(R.id.profile_image);
         bitmap = BitmapFactory.decodeResource(getContext().getResources(),
                 R.drawable.default_profile);
         Profile.setImageBitmap(bitmap);
+
+        linearLayout = view.findViewById(R.id.totalPointLayout);
 
         Call<Customer> call1 = MainActivity.apiInterface.getCustomerInfo(MainActivity.prefConfig.readName());
         call1.enqueue(new Callback<Customer>() {
@@ -74,6 +79,13 @@ public class CustomerRankFragment extends Fragment {
                 String totalRemainKyat = response.body().getDebitKyat();
                 String totalRemainPal = response.body().getDebitPal();
                 String totalRemainYae = response.body().getDebitYae();
+                String Status = response.body().getStatus();
+                String totalPoint = response.body().getTotal_point();
+                if(Status.equals("Yes")){
+                    linearLayout.setVisibility(View.VISIBLE);
+                    textViewshowTotalPoint.setText(totalPoint);
+
+                }
 
                 textViewKyat.setText(totalRemainKyat);
                 textViewPal.setText(totalRemainPal);
@@ -81,7 +93,7 @@ public class CustomerRankFragment extends Fragment {
 
 
                 Customername.setText(Customer_name);
-                Toast.makeText(getContext(), paths, Toast.LENGTH_SHORT).show();
+
 
                 if(paths.equals("No")){
                     bitmap = BitmapFactory.decodeResource(getContext().getResources(),

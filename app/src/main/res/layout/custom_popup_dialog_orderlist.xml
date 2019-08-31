@@ -1147,17 +1147,17 @@
                         android:layout_height="wrap_content">
 
 
-                        <Button
-                            android:id="@+id/btnUpdateInVoiceSave"
-                            android:layout_marginLeft="20dp"
-                            android:layout_marginTop="10dp"
-                            android:layout_marginRight="20dp"
-                            android:layout_width="match_parent"
-                            android:layout_height="60dp"
-                            android:text="Save"
-                            android:textSize="18sp"
-                            android:textColor="#FFF"
-                            android:background="@drawable/button_login_back"/>
+<!--                        <Button-->
+<!--                            android:id="@+id/btnUpdateInVoiceSave"-->
+<!--                            android:layout_marginLeft="20dp"-->
+<!--                            android:layout_marginTop="10dp"-->
+<!--                            android:layout_marginRight="20dp"-->
+<!--                            android:layout_width="match_parent"-->
+<!--                            android:layout_height="60dp"-->
+<!--                            android:text="Save"-->
+<!--                            android:textSize="18sp"-->
+<!--                            android:textColor="#FFF"-->
+<!--                            android:background="@drawable/button_login_back"/>-->
 
 
                         <TextView
@@ -1248,112 +1248,6 @@
                                 />
 
                         </LinearLayout>
-
-
-
-                        <TextView
-                            android:layout_marginLeft="20dp"
-                            android:layout_marginTop="8dp"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="ျပန္ေပးေရႊခ်ိန္ gram"/>
-
-
-                        <LinearLayout
-                            android:weightSum="10"
-                            android:orientation="horizontal"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content">
-
-                            <EditText
-                                android:text="0"
-                                android:layout_weight="5"
-                                style="@style/Foredit"
-                                android:id="@+id/returnGram"
-                                android:background="@drawable/custom_edittext_form_background"
-                                android:hint="Gram"
-                                android:inputType="numberDecimal" />
-
-                            <Button
-                                android:background="@drawable/button_login_back"
-                                style="@style/Foredit"
-                                android:id="@+id/Sub"
-                                android:textColor="#FFF"
-                                android:layout_weight="5"
-                                android:text="Sub"/>
-
-                        </LinearLayout>
-
-
-                        <TextView
-                            android:layout_marginLeft="20dp"
-                            android:layout_marginTop="8dp"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="ယခုလက္က်န္ gram"/>
-
-
-                        <LinearLayout
-                            android:weightSum="10"
-                            android:orientation="horizontal"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content">
-
-                            <EditText
-                                android:id="@+id/remainGram"
-                                style="@style/Foredit"
-                                android:layout_weight="5"
-                                android:background="@drawable/custom_edittext_form_background"
-                                android:enabled="false"
-                                android:hint="remain gram"
-                                android:inputType="numberDecimal" />
-
-                            <Button
-                                android:background="@drawable/button_login_back"
-                                style="@style/Foredit"
-                                android:id="@+id/Calculate"
-                                android:textColor="#FFF"
-                                android:layout_weight="5"
-                                android:text="Calculate"/>
-
-                        </LinearLayout>
-
-
-                        <LinearLayout
-                            android:layout_marginTop="10dp"
-                            android:weightSum="15"
-                            android:orientation="horizontal"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content">
-
-                            <EditText
-                                style="@style/Foredit"
-                                android:id="@+id/nowRmainkyat"
-                                android:layout_weight="5"
-                                android:background="@drawable/custom_edittext_form_background"
-                                android:hint="က်ပ္"
-                                android:inputType="numberDecimal" />
-
-                            <EditText
-                                style="@style/Foredit"
-                                android:id="@+id/nowRemainpal"
-                                android:layout_weight="5"
-                                android:background="@drawable/custom_edittext_form_background"
-                                android:hint="ပဲ"
-                                android:inputType="numberDecimal"/>
-
-                            <EditText
-                                style="@style/Foredit"
-                                android:id="@+id/nowRemainyae"
-                                android:layout_weight="5"
-                                android:background="@drawable/custom_edittext_form_background"
-                                android:hint=" ေရြး"
-                                android:inputType="numberDecimal"
-                                />
-
-                        </LinearLayout>
-
-
 
 
                         <TextView
@@ -1581,113 +1475,6 @@
                             android:layout_marginTop="8dp"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="ျပန္ေပးေရႊခ်ိန္ + အေလ်ာ့ (100%)"/>
-
-                        <LinearLayout
-                            android:layout_marginTop="10dp"
-                            android:weightSum="15"
-                            android:orientation="horizontal"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content">
-
-                            <EditText
-                                android:text="0"
-                                style="@style/Foredit"
-                                android:id="@+id/retunGoldKyat"
-                                android:layout_weight="5"
-                                android:background="@drawable/custom_edittext_form_background"
-                                android:hint="က်ပ္"
-                                android:inputType="numberDecimal"
-                                />
-
-                            <EditText
-                                android:text="0"
-                                style="@style/Foredit"
-                                android:id="@+id/retunGoldPal"
-                                android:layout_weight="5"
-                                android:background="@drawable/custom_edittext_form_background"
-                                android:hint="ပဲ"
-                                android:inputType="numberDecimal"
-                                />
-
-                            <EditText
-                                android:text="0"
-                                style="@style/Foredit"
-                                android:id="@+id/retunGoldYae"
-                                android:layout_weight="5"
-                                android:background="@drawable/custom_edittext_form_background"
-                                android:hint=" ေရြး"
-                                android:inputType="numberDecimal"
-                                />
-
-                        </LinearLayout>
-
-
-                        <Button
-                            android:textColor="#FFFFFF"
-                            android:id="@+id/returnGoldPlusAyot"
-                            android:layout_width="match_parent"
-                            android:layout_height="60dp"
-                            android:layout_marginLeft="20dp"
-                            android:layout_marginRight="20dp"
-                            android:layout_marginTop="10dp"
-                            android:text="Calculate"
-                            android:background="@drawable/button_login_back"/>
-
-
-
-                        <TextView
-                            android:layout_marginLeft="20dp"
-                            android:layout_marginTop="8dp"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="ယခုေပးခ်ရမည့္ ေရႊခ်ိန္"/>
-
-                        <LinearLayout
-                            android:layout_marginTop="10dp"
-                            android:weightSum="15"
-                            android:orientation="horizontal"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content">
-
-                            <EditText
-                                style="@style/Foredit"
-                                android:id="@+id/netPayGoldKyat"
-                                android:layout_weight="5"
-                                android:background="@drawable/custom_edittext_form_background"
-                                android:hint="က်ပ္"
-                                android:inputType="numberDecimal"
-                                android:enabled="false"/>
-
-                            <EditText
-                                style="@style/Foredit"
-                                android:id="@+id/netPayGoldPal"
-                                android:layout_weight="5"
-                                android:background="@drawable/custom_edittext_form_background"
-                                android:hint="ပဲ"
-                                android:inputType="numberDecimal"
-                                android:enabled="false"/>
-
-                            <EditText
-                                style="@style/Foredit"
-                                android:id="@+id/netPayGoldYae"
-                                android:layout_weight="5"
-                                android:background="@drawable/custom_edittext_form_background"
-                                android:hint=" ေရြး"
-                                android:inputType="numberDecimal"
-                                android:enabled="false"
-                                />
-
-                        </LinearLayout>
-
-
-
-
-                        <TextView
-                            android:layout_marginLeft="20dp"
-                            android:layout_marginTop="8dp"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
                             android:text="ယခုေပးေခ်သည့္ ေရႊခ်ိန္ (100%)"/>
 
                         <LinearLayout
@@ -1852,132 +1639,13 @@
                         </LinearLayout>
 
 
-                        <TextView
-                            android:layout_marginLeft="20dp"
-                            android:layout_marginTop="8dp"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="ျပန္ေပး အခုအေရ"/>
-
-
-                        <LinearLayout
-                            android:layout_marginTop="8dp"
-                            android:weightSum="10"
-                            android:orientation="horizontal"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content">
-
-                            <TextView
-                               android:layout_marginLeft="20dp"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="5"
-                                android:text="Qualtity"
-
-                                />
-
-                            <TextView
-                               android:layout_marginLeft="20dp"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="5"
-                                android:text="Point Eight"/>
-
-
-
-
-                        </LinearLayout>
-
-
-                        <LinearLayout
-                            android:layout_marginTop="8dp"
-                            android:weightSum="10"
-                            android:orientation="horizontal"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content">
-
-                            <EditText
-                                android:text="0"
-                                style="@style/Foredit"
-                                android:id="@+id/returnNumber"
-                                android:layout_weight="5"
-                                android:background="@drawable/custom_edittext_form_background"
-                                android:hint="Qualtity"
-                                android:inputType="numberDecimal"
-                                />
-
-                            <EditText
-                                android:text="0"
-                                style="@style/Foredit"
-                                android:id="@+id/returnDiscountPoint"
-                                android:layout_weight="5"
-                                android:background="@drawable/custom_edittext_form_background"
-                                android:hint="Point Eight"
-                                android:inputType="numberDecimal"
-                                />
-
-
-
-
-                        </LinearLayout>
-
-                        <Button
-                            android:textColor="#FFFFFF"
-                            android:id="@+id/itemCalculate"
-                            android:layout_width="match_parent"
-                            android:layout_height="60dp"
-                            android:layout_marginLeft="20dp"
-                            android:layout_marginRight="20dp"
-                            android:layout_marginTop="10dp"
-                            android:text="Calculate"
-                            android:background="@drawable/button_login_back"/>
-
-
-                        <TextView
-                            android:layout_marginLeft="20dp"
-                            android:layout_marginTop="8dp"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="ယခုလက္က်န္ စုစုေပါင္ းအခုအေရ"/>
-
-
-                        <LinearLayout
-                            android:layout_marginTop="8dp"
-                            android:weightSum="10"
-                            android:orientation="horizontal"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content">
-
-                            <EditText
-                                style="@style/Foredit"
-                                android:id="@+id/remainNumber"
-                                android:layout_weight="5"
-                                android:background="@drawable/custom_edittext_form_background"
-                                android:hint="Qualtity"
-                                android:inputType="numberDecimal"
-                                />
-
-                            <EditText
-                                style="@style/Foredit"
-                                android:id="@+id/remainDiscountPoint"
-                                android:layout_weight="5"
-                                android:background="@drawable/custom_edittext_form_background"
-                                android:hint="Point Eight"
-                                android:inputType="numberDecimal"
-                                />
-                        </LinearLayout>
-
-
-
-
-
 
                         <TextView
                             android:layout_marginLeft="20dp"
                             android:layout_marginTop="10dp"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="ယခုဝယ္သည့္ အေလ်ာ့"/>
+                            android:text="စုစုေပါင္း အေလ်ာ့"/>
 
                         <LinearLayout
                             android:weightSum="15"
@@ -2013,111 +1681,6 @@
 
 
                         </LinearLayout>
-
-                        <TextView
-                            android:layout_marginLeft="20dp"
-                            android:layout_marginTop="10dp"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="ျပန္ေပး အေလ်ာ့"/>
-
-                        <LinearLayout
-                            android:weightSum="15"
-                            android:orientation="horizontal"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content">
-
-                            <EditText
-                                android:text="0"
-                                style="@style/Foredit"
-                                android:id="@+id/returnAyotKyat"
-                                android:layout_weight="5"
-                                android:background="@drawable/custom_edittext_form_background"
-                                android:hint="က်ပ္"
-                                android:inputType="numberDecimal" />
-
-                            <EditText
-                                android:text="0"
-                                style="@style/Foredit"
-                                android:id="@+id/returnAyotPal"
-                                android:layout_weight="5"
-                                android:background="@drawable/custom_edittext_form_background"
-                                android:hint="ပဲ"
-                                android:inputType="numberDecimal" />
-
-                            <EditText
-                                android:text="0"
-                                style="@style/Foredit"
-                                android:id="@+id/returnAyotYae"
-                                android:layout_weight="5"
-                                android:background="@drawable/custom_edittext_form_background"
-                                android:hint="ေရြး"
-                                android:inputType="numberDecimal"
-                                />
-
-
-
-                        </LinearLayout>
-
-                        <Button
-                            android:textColor="#FFFFFF"
-                            android:id="@+id/ayotCalculate"
-                            android:layout_width="match_parent"
-                            android:layout_height="60dp"
-                            android:layout_marginLeft="20dp"
-                            android:layout_marginRight="20dp"
-                            android:layout_marginTop="10dp"
-                            android:text="Calculate"
-                            android:background="@drawable/button_login_back"/>
-
-
-
-                        <TextView
-                            android:layout_marginLeft="20dp"
-                            android:layout_marginTop="10dp"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="ယခုလက္က်န္ စုစုေပါင္း အေလ်ာ့"/>
-
-                        <LinearLayout
-                            android:weightSum="15"
-                            android:orientation="horizontal"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content">
-
-                            <EditText
-                                style="@style/Foredit"
-                                android:id="@+id/remainAyotKyat"
-                                android:layout_weight="5"
-                                android:background="@drawable/custom_edittext_form_background"
-                                android:hint="က်ပ္"
-                                android:inputType="numberDecimal" />
-
-                            <EditText
-                                style="@style/Foredit"
-                                android:id="@+id/remainAyotPal"
-                                android:layout_weight="5"
-                                android:background="@drawable/custom_edittext_form_background"
-                                android:hint="ပဲ"
-                                android:inputType="numberDecimal" />
-
-                            <EditText
-                                style="@style/Foredit"
-                                android:id="@+id/remainAyotYae"
-                                android:layout_weight="5"
-                                android:background="@drawable/custom_edittext_form_background"
-                                android:hint="ေရြး"
-                                android:inputType="numberDecimal"
-                                />
-
-
-
-                        </LinearLayout>
-
-
-
-
-
 
                         <EditText
                             android:id="@+id/cupon"

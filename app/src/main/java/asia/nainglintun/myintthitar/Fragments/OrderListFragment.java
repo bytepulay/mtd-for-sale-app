@@ -1,6 +1,7 @@
 package asia.nainglintun.myintthitar.Fragments;
 
 
+import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.graphics.Color;
@@ -19,6 +20,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
@@ -26,8 +28,12 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.text.DecimalFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
+import java.util.Locale;
 
 import asia.nainglintun.myintthitar.Activities.MainActivity;
 import asia.nainglintun.myintthitar.Activities.RecyclerTouchListener;
@@ -59,12 +65,25 @@ public class OrderListFragment extends Fragment implements SearchView.OnQueryTex
     private Dialog dialog;
     private ImageView closeImg;
     private ImageButton btnEdit;
-    private Button dialogEdit,btnSave;
+    private Button dialogEdit,BnUpdateInVoiceSave,btnAdd,btnSub,btnCalculateRemainGramTOKyatPalYae,btnCalculateTotalAmount,btnreturnGoldPlusAyot,btntotalRemainAmount,btnitemCalculate,btnayotCalculate;
+    final Calendar myCalendar = Calendar.getInstance();
     private Toolbar toolbar;
 
 
+    private EditText edVoucher,edSaleDate,edCustomerName,edShopName,edAddress,edDob,edNrc,edPhoneNumber,edTownShip,edCustomerId,edCustomerUserName,edNote,
+            edTotalKyat,edTotalPal,edTotalYae,edCuponCode,edGram,edviewVoucher,edviewDate,edviewGram,
+            edGramToKyat,edGramToPal,edGramToYae,edReturnGram,edRemainGram,edGramRemainKyat,edGramRemainPal,edGramRemainYae;
     private ArrayList<String> dataList;
     private ArrayList<String> nameList;
+
+    private double RemainGram=0;
+
+
+    private EditText ednowPurchaseKyat,ednowPurchasePal,ednowPurchaseYae,edPreviousRemainKyat,edPreviousRemainPal,edPreviousRemainYae,edBuyDebitKyat,edBuyDebitPal,edBuyDebitYae,edReturnGoldKyat,edReturnGoldPal,edReturnGoldYae,ednowPaymentKyat,
+            ednowPaymentYae,ednowPaymentPal, ednetPaymentKyat, ednetPaymentPal,ednetPaymentYae,ednowRemainKyat,ednowRemainPal,ednowRemainYae,edTotalNumber,edTotalPointEight,
+            edReturnQualtity,edReturnPointEight,edRemainQualtity,edRemainPointEight,edAyotkyat,edAyotYae,edAyotPal,edReturnAyotKyat,edReturnAyotPal,edReturnAyotYae,
+            edNowRemainAyotKyat,edNowRemainAyotPal,edNowRemainAyotYae;
+    private TextView textViewDebitVoucherNo,textViewDebitSaleDate,textViewDebitSaleName;
 
     private LinearLayout linearLayoutUpdate;
 
@@ -104,15 +123,17 @@ public class OrderListFragment extends Fragment implements SearchView.OnQueryTex
         recyclerView.addOnItemTouchListener(new RecyclerTouchListener(getContext(), recyclerView, new RecyclerTouchListener.ClickListener() {
             @Override
             public void onClick(View view, int position) {
-                String sDate,customerName,shopName,ringDescription,ringNumber,ringPointEight,ringKyat,ringPal,ringYae,
+                String sDate,customerName,shopName,customer_id,ringDescription,ringNumber,ringPointEight,ringKyat,ringPal,ringYae,
                 banglesDescription,banglesNumber,banglesPointEight,banglesKyat,banglesPal,banglesYae,
                 necklaceDescription,necklaceNumber,necklacePointEight,necklaceKyat,necklacePal,necklaceYae,
                 earringDescription,earringNumber,earringPointEight,earringKyat,earringPal,earringYae,
                 totalQty,totalPointEight,totalKyat,totalPal,totalYae,ID,customerPhoneNumber,customerAddress,customerDob,customerNrc,
                 gram,cuponcode,totalAyotKyat,totalAyotPal,totalAyotYae,previous_kyat,previous_yae,previous_pal,buydebitkyat,buydebitpal,buydebityae,
-                        paymentkyat,paymentpal,paymentyae,remainkyat,remainpal,remainyae,newTotalKyat,newTotalPal,newTotalYae;
+                        paymentkyat,paymentpal,paymentyae,remainkyat,remainpal,remainyae,newTotalKyat,newTotalPal,newTotalYae,
+                debitVoucherNo,debitSaleDate,debitSaleName ,customernrc,remark,customerUserName;
 
                  ID = String.valueOf(salehistories.get(position).getId());
+                 customer_id = salehistories.get(position).getCustomerId();
                 String voucher = salehistories.get(position).getVoucherNumber();
                 sDate = salehistories.get(position).getOrderDate();
                 customerName = salehistories.get(position).getCustomerName();
@@ -132,6 +153,10 @@ public class OrderListFragment extends Fragment implements SearchView.OnQueryTex
                 banglesKyat = salehistories.get(position).getBanglesKyat();
                 banglesPal = salehistories.get(position).getBanglesPal();
                 banglesYae = salehistories.get(position).getBanglesYae();
+                customernrc = salehistories.get(position).getCustomerNrc();
+                customerUserName = salehistories.get(position).getCustomerUserName();
+                remark = salehistories.get(position).getRemark();
+
 
 
                 necklaceDescription = salehistories.get(position).getNecklaceTitle();
@@ -185,6 +210,12 @@ public class OrderListFragment extends Fragment implements SearchView.OnQueryTex
                customerAddress = salehistories.get(position).getCustomerAddress();
                customerDob = salehistories.get(position).getCustomerDob();
 
+
+                debitVoucherNo = salehistories.get(position).getDebitVoucher();
+                debitSaleDate = salehistories.get(position).getDebitSaleDate();
+                debitSaleName = salehistories.get(position).getDebitSaleName();
+
+
                 //Toast.makeText(getContext(), "gram is" + salehistories.get(position).getGram(), Toast.LENGTH_SHORT).show();
 
 
@@ -196,7 +227,8 @@ public class OrderListFragment extends Fragment implements SearchView.OnQueryTex
                         necklaceDescription,necklaceNumber,necklacePointEight,necklaceKyat,necklacePal,necklaceYae,
                         earringDescription,earringNumber,earringPointEight,earringKyat,earringPal,earringYae,
                         totalQty,totalPointEight,totalKyat,totalPal,totalYae,
-                        gram,ID,previous_kyat,previous_pal,previous_yae,buydebitkyat,buydebitpal,buydebityae,paymentkyat,paymentpal,paymentyae,remainkyat,remainpal,remainyae,newTotalKyat,newTotalPal,newTotalYae);
+                        gram,ID,previous_kyat,previous_pal,previous_yae,buydebitkyat,buydebitpal,buydebityae,paymentkyat,paymentpal,paymentyae,remainkyat,remainpal,remainyae,newTotalKyat,newTotalPal,newTotalYae,
+                        debitVoucherNo,debitSaleDate,debitSaleName,customer_id,customernrc,remark,customerUserName);
 
 
             }
@@ -215,106 +247,616 @@ public class OrderListFragment extends Fragment implements SearchView.OnQueryTex
                            String banglesDescription,String banglesNumber,String banglesPointEight,String banglesKyat,String banglesPal,String banglesYae,
                            String necklaceDescription,String necklaceNumber,String necklacePointEight,String necklaceKyat,String necklacePal,String necklaceYae,
                            String earringDescription,String earringNumber,String earringPointEight,String earringKyat,String earringPal,String earringYae,String totalQty,String totalPointEight,String totalKyat,String totalPal,String totalYae,
-                           String gram,String ID,String previous_kyat,String previous_pal,String previous_yae,String buydebitkyat,String buydebitpal,String buydebityae,String paymentkyat,String paymentpal,String paymentyae,String remainkyat,String remainpal,String remainyae,String newTotalKyat,String newTotalPal,String newTotalYae) {
+                           String gram,String ID,String previous_kyat,String previous_pal,String previous_yae,String buydebitkyat,String buydebitpal,String buydebityae,String paymentkyat,String paymentpal,String paymentyae,String remainkyat,String remainpal,String remainyae,String newTotalKyat,String newTotalPal,String newTotalYae,
+                           String debitVoucherNo,String debitSaleDate,String debitSaleName,String customer_id,String customernrc,String remark,String customerUserName) {
 
 
-        dialog.setContentView(R.layout.custom_popup_dialog);
+        dialog.setContentView(R.layout.custom_popup_dialog_orderlist);
         //recyclerView = dialog.findViewById(R.id.recyclerViewDialog);
-        layoutManager = new LinearLayoutManager(getContext());
-        recyclerView.setLayoutManager(layoutManager);
-        recyclerView.setHasFixedSize(true);
+//        layoutManager = new LinearLayoutManager(getContext());
+//        recyclerView.setLayoutManager(layoutManager);
+//        recyclerView.setHasFixedSize(true);
+
+
+        edviewVoucher = dialog.findViewById(R.id.voucherNumber);
+        edviewVoucher.setText(voucher);
+
+        edSaleDate=dialog.findViewById(R.id.saleDate);
+        edSaleDate.setText(sDate);
+
+        BnUpdateInVoiceSave = dialog.findViewById(R.id.btnUpdateInVoiceSave);
+
+
+
+        final DatePickerDialog.OnDateSetListener date = new DatePickerDialog.OnDateSetListener() {
+            @Override
+            public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
+
+                myCalendar.set(Calendar.YEAR, year);
+                myCalendar.set(Calendar.MONTH, month);
+                myCalendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
+                updateLabel();
+
+            }
+        };
+
+
+        edSaleDate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                new DatePickerDialog(getContext(),date,myCalendar.get(Calendar.YEAR),myCalendar.get(Calendar.MONTH),myCalendar.get(Calendar.DAY_OF_MONTH)).show();
+            }
+        });
+
+
+
+        edGram = dialog.findViewById(R.id.gram);
+        edGram.setText(gram);
+
+        btnAdd = dialog.findViewById(R.id.Add);
+        edTotalKyat=dialog.findViewById(R.id.kyat);
+        edTotalPal=dialog.findViewById(R.id.pal);
+        edTotalYae=dialog.findViewById(R.id.yae);
+
+        edTotalKyat.setText(totalKyat);
+        edTotalPal.setText(totalPal);
+        edTotalYae.setText(totalYae);
+        btnAdd.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                try {
+                    Double editTextGram = Double.parseDouble(edGram.getText().toString());
+
+
+                    double number2 = 16.6;
+                    int kyat1 =  (int) (editTextGram/number2);
+
+                    double beforePal = (((editTextGram/number2)-kyat1)*16);
+
+                    int PalInt = (int)(beforePal);
+
+                    double beforeYae = (beforePal-PalInt);
+
+                    double RealYae = (beforeYae*8);
+
+                    DecimalFormat form = new DecimalFormat("0.00");
+
+
+                    double afterPal = (((((editTextGram%number2)/number2)*16)/number2)*8);
+
+                    int Yae = (int)afterPal;
+                    int Pal = (int)beforePal;
+
+                    edTotalKyat.setText(String.valueOf(kyat1));
+                    edTotalPal.setText(String.valueOf(PalInt));
+                    edTotalYae.setText(String.valueOf(form.format(RealYae)));
+
+
+                }catch (Exception e){
+                    e.printStackTrace();
+                }
+            }
+        });
+
+
+
+        ednowPurchaseKyat = dialog.findViewById(R.id.totalkyat);
+        ednowPurchasePal = dialog.findViewById(R.id.totalpal);
+        ednowPurchaseYae = dialog.findViewById(R.id.totalyae);
+
+        ednowPurchaseKyat.setText(newTotalKyat);
+        ednowPurchasePal.setText(newTotalPal);
+        ednowPurchaseYae.setText(newTotalYae);
+
+
+        textViewDebitVoucherNo=dialog.findViewById(R.id.updatevoucher);
+        textViewDebitSaleDate=dialog.findViewById(R.id.updateSaleDate);
+        textViewDebitSaleName=dialog.findViewById(R.id.updatSaleName);
+
+        textViewDebitVoucherNo.setText(debitVoucherNo);
+        textViewDebitSaleDate.setText(debitSaleDate);
+        textViewDebitSaleName.setText(debitSaleName);
+
+        edPreviousRemainKyat=dialog.findViewById(R.id.debitKyat);
+        edPreviousRemainPal=dialog.findViewById(R.id.debitPal);
+        edPreviousRemainYae=dialog.findViewById(R.id.debitYae);
+
+        edPreviousRemainKyat.setText(previous_kyat);
+        edPreviousRemainPal.setText(previous_pal);
+        edPreviousRemainYae.setText(previous_yae);
+
+
+
+        btnCalculateTotalAmount = dialog.findViewById(R.id.totalAmount);
+        btnCalculateTotalAmount.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                int totKyat = Integer.parseInt(ednowPurchaseKyat.getText().toString());
+                int totPal = Integer.parseInt(ednowPurchasePal.getText().toString());
+                double totYae = Double.parseDouble(ednowPurchaseYae.getText().toString());
+                double plusPal;
+                int plusKyat;
+                double plusYaeOne = 0;
+                int realResultPal = 0;
+                int plusForKyat = 0;
+                int resultpal = 0;
+
+                int debitKyat = Integer.parseInt(edPreviousRemainKyat.getText().toString());
+                int debitPal = Integer.parseInt(edPreviousRemainPal.getText().toString());
+                double debitYae = Double.parseDouble(edPreviousRemainYae.getText().toString());
+
+                int TOTALKYAT = totKyat + debitKyat;
+                int TOTALPAl = totPal + debitPal;
+                double TOTALYAE = totYae + debitYae;
+
+                if (TOTALPAl < 16) {
+
+                    if (TOTALYAE >= 8) {
+                        plusYaeOne = TOTALYAE / 8;
+                        int plusYaeOneInt = (int) plusYaeOne;
+                        TOTALPAl = TOTALPAl + plusYaeOneInt;
+                        plusKyat = TOTALPAl / 16;
+                        resultpal = TOTALPAl % 16;
+
+                        TOTALKYAT = TOTALKYAT + plusKyat;
+                        edBuyDebitKyat.setText(String.valueOf(TOTALKYAT));
+                        edBuyDebitPal.setText(String.valueOf(resultpal));
+                    } else if (TOTALYAE < 8) {
+                        edBuyDebitKyat.setText(String.valueOf(TOTALKYAT));
+                        edBuyDebitPal.setText(String.valueOf(TOTALPAl));
+                    }
+                } else if (TOTALPAl >= 16) {
+                    if (TOTALYAE >= 8) {
+                        plusYaeOne = TOTALYAE / 8;
+                        int plusYaeOneInt = (int) plusYaeOne;
+                        TOTALPAl = TOTALPAl + plusYaeOneInt;
+                        plusKyat = TOTALPAl / 16;
+                        resultpal = TOTALPAl % 16;
+
+                        TOTALKYAT = TOTALKYAT + plusKyat;
+                        edBuyDebitKyat.setText(String.valueOf(TOTALKYAT));
+                        edBuyDebitPal.setText(String.valueOf(resultpal));
+                    } else if (TOTALYAE < 8) {
+                        plusKyat = TOTALPAl / 16;
+                        resultpal = TOTALPAl % 16;
+                        TOTALKYAT = TOTALKYAT + plusKyat;
+                        edBuyDebitKyat.setText(String.valueOf(TOTALKYAT));
+                        edBuyDebitPal.setText(String.valueOf(resultpal));
+                    }
+                }
+                if (TOTALYAE < 8) {
+                    DecimalFormat form1 = new DecimalFormat("0.00");
+                    edBuyDebitYae.setText(String.valueOf(form1.format(TOTALYAE)));
+                } else if (TOTALYAE >= 8) {
+                    double resultYae;
+                    plusPal = TOTALYAE / 8;
+                    resultYae = TOTALYAE % 8;
+                    double totalPals = (double) resultpal;
+
+                    double resultPal1 = totalPals + plusPal;
+                    int resultPalInt = (int) resultPal1;
+
+
+                    DecimalFormat form1 = new DecimalFormat("0.00");
+                    edBuyDebitYae.setText(String.valueOf(form1.format(resultYae)));
+
+                }
+
+
+
+
+            }
+        });
+        edBuyDebitKyat = dialog.findViewById(R.id.buyDebitKyat);
+        edBuyDebitPal=dialog.findViewById(R.id.buyDebitPal);
+        edBuyDebitYae = dialog.findViewById(R.id.buyDebitYae);
+
+        edBuyDebitKyat.setText(buydebitkyat);
+        edBuyDebitPal.setText(buydebitpal);
+        edBuyDebitYae.setText(buydebityae);
+
+
+        ednowPaymentKyat = dialog.findViewById(R.id.paymentKyat);
+        ednowPaymentYae = dialog.findViewById(R.id.paymentYae);
+        ednowPaymentPal = dialog.findViewById(R.id.paymentPal);
+
+        ednowPaymentKyat.setText(paymentkyat);
+        ednowPaymentPal.setText(paymentpal);
+        ednowPaymentYae.setText(paymentyae);
+
+
+
+        btntotalRemainAmount=dialog.findViewById(R.id.totalRemainAmount);
+        btntotalRemainAmount.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                try {
+                    //  Toast.makeText(getContext(), "Total Remain Amount", Toast.LENGTH_SHORT).show();
+                    int getTotalAmountKyat = Integer.parseInt(edBuyDebitKyat.getText().toString());
+                    int getTotalAmountPal = Integer.parseInt(edBuyDebitPal.getText().toString());
+                    double getTotalAmountYae = Double.parseDouble(edBuyDebitYae.getText().toString());
+
+                    int PayKyat = Integer.parseInt(ednowPaymentKyat.getText().toString());
+                    int PayPal = Integer.parseInt(ednowPaymentPal.getText().toString());
+                    double PayYae = Double.parseDouble(ednowPaymentYae.getText().toString());
+
+                    int RemainKyat = 0;
+                    int RemainPal = 0;
+                    double RemainYae = 0.0;
+
+
+                    if (PayKyat > getTotalAmountKyat && PayPal < getTotalAmountPal && PayYae == getTotalAmountYae) {
+
+                        PayKyat = PayKyat-1;
+                        PayPal=PayPal+16;
+                        RemainPal=PayPal-getTotalAmountPal;
+                        RemainKyat=PayKyat-getTotalAmountKyat;
+                        ednowRemainYae.setText("0.0");
+                        ednowRemainPal.setText(String.valueOf(-RemainPal));
+                        if (RemainKyat==0){
+                            ednowRemainKyat.setText("0");
+                        }else if (RemainKyat!=0){
+                            ednowRemainKyat.setText(String.valueOf(-RemainKyat));
+                        }
+                    }else if(PayKyat > getTotalAmountKyat && PayPal < getTotalAmountPal && PayYae > getTotalAmountYae){
+                        RemainYae=PayYae-getTotalAmountYae;
+                        PayKyat = PayKyat-1;
+                        PayPal=PayPal+16;
+                        RemainPal=PayPal-getTotalAmountPal;
+                        RemainKyat=PayKyat-getTotalAmountKyat;
+
+                        DecimalFormat form1 = new DecimalFormat("0.00");
+                        ednowRemainYae.setText(String.valueOf(form1.format(-RemainYae)));
+                        ednowRemainPal.setText(String.valueOf(-RemainPal));
+                        if (RemainKyat==0){
+                            ednowRemainKyat.setText("0");
+                        }else if (RemainKyat!=0){
+                            ednowRemainKyat.setText(String.valueOf(-RemainKyat));
+                        }
+
+                    }else if(PayKyat > getTotalAmountKyat && PayPal < getTotalAmountPal && PayYae < getTotalAmountYae){
+
+                        PayKyat = PayKyat-1;
+                        PayPal=(PayPal+16)-1;
+                        PayYae=PayYae+8;
+                        RemainYae=PayYae-getTotalAmountYae;
+                        RemainPal=PayPal-getTotalAmountPal;
+                        RemainKyat=PayKyat-getTotalAmountKyat;
+
+                        DecimalFormat form1 = new DecimalFormat("0.00");
+                        ednowRemainYae.setText(String.valueOf(form1.format(-RemainYae)));
+                        ednowRemainPal.setText(String.valueOf(-RemainPal));
+                        if (RemainKyat==0){
+                            ednowRemainKyat.setText("0");
+                        }else if (RemainKyat!=0){
+                            ednowRemainKyat.setText(String.valueOf(-RemainKyat));
+                        }
+
+                    }else if (PayKyat > getTotalAmountKyat && PayPal == getTotalAmountPal && PayYae == getTotalAmountYae) {
+                        RemainKyat = PayKyat - getTotalAmountKyat;
+                        ednowRemainKyat.setText(String.valueOf(-RemainKyat));
+                        ednowRemainPal.setText("0");
+                        ednowRemainYae.setText("0");
+                    }
+                    else if (PayKyat > getTotalAmountKyat && PayPal == getTotalAmountPal && PayYae > getTotalAmountYae) {
+                        RemainYae = PayYae - getTotalAmountYae;
+                        RemainPal = PayPal - getTotalAmountPal;
+                        RemainKyat = PayKyat - getTotalAmountKyat;
+
+                        ednowRemainKyat.setText(String.valueOf(-RemainKyat));
+                        ednowRemainPal.setText(String.valueOf(RemainPal));
+                        DecimalFormat form1 = new DecimalFormat("0.00");
+                        ednowRemainYae.setText(String.valueOf(form1.format(-RemainYae)));
+                    } else if (PayKyat > getTotalAmountKyat && PayPal == getTotalAmountPal && PayYae < getTotalAmountYae) {
+
+                        PayKyat = PayKyat - 1;
+                        PayPal = (PayPal + 16) - 1;
+                        PayYae = PayYae + 8;
+                        RemainYae = PayYae - getTotalAmountYae;
+                        RemainPal = PayPal - getTotalAmountPal;
+                        RemainKyat = PayKyat - getTotalAmountKyat;
+
+                        if (RemainKyat == 0) {
+                            ednowRemainKyat.setText(String.valueOf(RemainKyat));
+                        } else if (RemainKyat != 0) {
+                            ednowRemainKyat.setText(String.valueOf(-RemainKyat));
+                        }
+                        if (RemainPal == 0) {
+                            ednowRemainPal.setText(String.valueOf(RemainPal));
+                        } else if (RemainPal != 0) {
+                            ednowRemainPal.setText(String.valueOf(-RemainPal));
+                        }
+                        DecimalFormat form1 = new DecimalFormat("0.00");
+                        ednowRemainYae.setText(String.valueOf(form1.format(-RemainYae)));
+                    } else if (PayKyat > getTotalAmountKyat && PayPal > getTotalAmountYae && PayYae == getTotalAmountYae) {
+                        RemainYae = PayYae - getTotalAmountYae;
+                        RemainPal = PayPal - getTotalAmountPal;
+                        RemainKyat = PayKyat - getTotalAmountKyat;
+
+                        ednowRemainKyat.setText(String.valueOf(-RemainKyat));
+                        ednowRemainPal.setText(String.valueOf(-RemainPal));
+                        DecimalFormat form1 = new DecimalFormat("0.00");
+                        ednowRemainYae.setText(String.valueOf(form1.format(RemainYae)));
+                    } else if (PayKyat > getTotalAmountKyat && PayPal > getTotalAmountYae && PayYae > getTotalAmountYae) {
+                        RemainYae = PayYae - getTotalAmountYae;
+                        RemainPal = PayPal - getTotalAmountPal;
+                        RemainKyat = PayKyat - getTotalAmountKyat;
+
+                        ednowRemainKyat.setText(String.valueOf(-RemainKyat));
+                        ednowRemainPal.setText(String.valueOf(-RemainPal));
+                        DecimalFormat form1 = new DecimalFormat("0.00");
+                        ednowRemainYae.setText(String.valueOf(form1.format(-RemainYae)));
+                    } else if (PayKyat > getTotalAmountKyat && PayPal > getTotalAmountYae && PayYae < getTotalAmountYae) {
+                        PayPal = PayPal - 1;
+                        PayYae = PayYae + 8;
+                        RemainYae = PayYae - getTotalAmountYae;
+                        RemainPal = PayPal - getTotalAmountPal;
+                        RemainKyat = PayKyat - getTotalAmountKyat;
+
+                        ednowRemainKyat.setText(String.valueOf(-RemainKyat));
+                        if (RemainPal == 0) {
+                            ednowRemainPal.setText(String.valueOf(RemainPal));
+                        } else if (RemainPal != 0) {
+                            ednowRemainPal.setText(String.valueOf(-RemainPal));
+                        }
+
+                        DecimalFormat form1 = new DecimalFormat("0.00");
+                        ednowRemainYae.setText(String.valueOf(form1.format(-RemainYae)));
+                    } else if (PayKyat == getTotalAmountKyat && PayPal > getTotalAmountPal && PayYae > getTotalAmountYae){
+                        //for equal
+                        RemainYae = PayYae - getTotalAmountYae;
+                        RemainPal = PayPal - getTotalAmountPal;
+                        RemainKyat = PayKyat - getTotalAmountKyat;
+
+                        DecimalFormat form1 = new DecimalFormat("0.00");
+                        ednowRemainYae.setText(String.valueOf(form1.format(-RemainYae)));
+                        ednowRemainPal.setText(String.valueOf(-RemainPal));
+                        ednowRemainKyat.setText(String.valueOf(RemainKyat));
+                    } else if (PayKyat == getTotalAmountKyat && PayPal > getTotalAmountPal && PayYae < getTotalAmountYae) {
+                        PayPal = PayPal - 1;
+                        PayYae = PayYae + 8;
+                        RemainYae = PayYae - getTotalAmountYae;
+                        RemainPal = PayPal - getTotalAmountPal;
+                        RemainKyat = PayKyat - getTotalAmountKyat;
+
+                        DecimalFormat form1 = new DecimalFormat("0.00");
+                        ednowRemainYae.setText(String.valueOf(form1.format(-RemainYae)));
+                        ednowRemainPal.setText(String.valueOf(-RemainPal));
+                        ednowRemainKyat.setText(String.valueOf(RemainKyat));
+                    } else if (PayKyat == getTotalAmountKyat && PayPal > getTotalAmountPal && PayYae == getTotalAmountYae) {
+                        RemainYae = PayYae - getTotalAmountYae;
+                        RemainPal = PayPal - getTotalAmountPal;
+                        RemainKyat = PayKyat - getTotalAmountKyat;
+
+                        DecimalFormat form1 = new DecimalFormat("0.00");
+                        ednowRemainYae.setText(String.valueOf(form1.format(RemainYae)));
+                        ednowRemainPal.setText(String.valueOf(-RemainPal));
+                        ednowRemainKyat.setText(String.valueOf(RemainKyat));
+                    } else if (PayKyat == getTotalAmountKyat && PayPal == getTotalAmountPal && PayYae == getTotalAmountYae) {
+                        ednowRemainKyat.setText("0");
+                        ednowRemainPal.setText("0");
+                        ednowRemainYae.setText("0.0");
+                    } else if (PayKyat == getTotalAmountKyat && PayPal == getTotalAmountPal && PayYae > getTotalAmountYae) {
+                        RemainYae = PayYae - getTotalAmountYae;
+                        DecimalFormat form1 = new DecimalFormat("0.00");
+                        ednowRemainYae.setText(String.valueOf(form1.format(-RemainYae)));
+                        ednowRemainKyat.setText("0");
+                        ednowRemainPal.setText("0");
+                    } else if (PayKyat == getTotalAmountKyat && PayPal == getTotalAmountPal && PayYae < getTotalAmountYae) {
+                        RemainYae = getTotalAmountYae - PayYae;
+                        DecimalFormat form1 = new DecimalFormat("0.00");
+                        ednowRemainYae.setText(String.valueOf(form1.format(RemainYae)));
+                        ednowRemainKyat.setText("0");
+                        ednowRemainPal.setText("0");
+                    } else if (PayKyat == getTotalAmountKyat && PayPal < getTotalAmountPal && PayYae == getTotalAmountYae) {
+                        RemainYae = PayYae - getTotalAmountYae;
+                        RemainPal = getTotalAmountPal - PayPal;
+                        RemainKyat = PayKyat - getTotalAmountKyat;
+                        ednowRemainYae.setText(String.valueOf(RemainYae));
+                        ednowRemainPal.setText(String.valueOf(RemainPal));
+                        ednowRemainKyat.setText(String.valueOf(RemainKyat));
+                    } else if (PayKyat == getTotalAmountKyat && PayPal < getTotalAmountPal && PayYae > getTotalAmountYae) {
+
+                        getTotalAmountPal = getTotalAmountPal - 1;
+                        getTotalAmountYae = getTotalAmountYae + 8;
+                        RemainYae = getTotalAmountYae - PayYae;
+                        RemainPal = getTotalAmountPal - PayPal;
+                        RemainKyat = getTotalAmountKyat - PayKyat;
+
+                        ednowRemainYae.setText(String.valueOf(RemainYae));
+                        ednowRemainPal.setText(String.valueOf(RemainPal));
+                        ednowRemainKyat.setText(String.valueOf(RemainKyat));
+                    } else if (PayKyat == getTotalAmountKyat && PayPal < getTotalAmountPal && PayYae < getTotalAmountYae) {
+                        RemainYae = getTotalAmountYae - PayYae;
+                        RemainPal = getTotalAmountPal - PayPal;
+                        RemainKyat = getTotalAmountKyat - PayKyat;
+                        ednowRemainYae.setText(String.valueOf(RemainYae));
+                        ednowRemainPal.setText(String.valueOf(RemainPal));
+                        ednowRemainKyat.setText(String.valueOf(RemainKyat));
+                    } else if (PayKyat < getTotalAmountKyat) {
+                        //for less than
+                        if (PayYae > getTotalAmountYae) {
+                            getTotalAmountPal = getTotalAmountPal - 1;
+                            getTotalAmountYae = getTotalAmountYae + 8;
+                            RemainYae = getTotalAmountYae - PayYae;
+                            DecimalFormat form1 = new DecimalFormat("0.00");
+                            ednowRemainYae.setText(String.valueOf(form1.format(RemainYae)));
+                        } else if (PayYae < getTotalAmountYae) {
+                            RemainYae = getTotalAmountYae - PayYae;
+                            DecimalFormat form1 = new DecimalFormat("0.00");
+                            ednowRemainYae.setText(String.valueOf(form1.format(RemainYae)));
+                        } else if (PayYae == getTotalAmountYae) {
+                            RemainYae = getTotalAmountYae - PayYae;
+                            DecimalFormat form1 = new DecimalFormat("0.00");
+                            ednowRemainYae.setText(String.valueOf(form1.format(RemainYae)));
+                        }
+
+                        if (PayPal > getTotalAmountPal) {
+                            getTotalAmountKyat = getTotalAmountKyat - 1;
+                            getTotalAmountPal = getTotalAmountPal + 16;
+                            RemainPal = getTotalAmountPal - PayPal;
+                            ednowRemainPal.setText(String.valueOf(RemainPal));
+                        } else if (PayPal < getTotalAmountYae) {
+                            RemainPal = getTotalAmountPal - PayPal;
+                            ednowRemainPal.setText(String.valueOf(RemainPal));
+
+                        } else if (PayPal == getTotalAmountPal) {
+                            RemainPal = getTotalAmountPal - PayPal;
+                            ednowRemainPal.setText(String.valueOf(RemainPal));
+                        }
+
+                        RemainKyat = getTotalAmountKyat - PayKyat;
+                        ednowRemainKyat.setText(String.valueOf(RemainKyat));
+                    }
+
+
+                }catch (Exception e){
+                    e.printStackTrace();
+                }
+            }
+        });
+
+
+        edTotalNumber = dialog.findViewById(R.id.custBuyNumber);
+        edTotalPointEight = dialog.findViewById(R.id.custDiscountPoint);
+
+        edTotalNumber.setText(totalQty);
+        edTotalPointEight.setText(totalPointEight);
+
+        edAyotkyat = dialog.findViewById(R.id.ayotKyat);
+        edAyotPal= dialog.findViewById(R.id.ayotPal);
+        edAyotYae = dialog.findViewById(R.id.ayotYae);
+
+        edAyotkyat.setText(total_ayot_kyat);
+        edAyotPal.setText(total_ayot_pal);
+        edAyotYae.setText(total_ayo_yae);
+
+
+
+
+
+        edCuponCode = dialog.findViewById(R.id.cupon);
+        edShopName = dialog.findViewById(R.id.shopName);
+        edCustomerName = dialog.findViewById(R.id.custName);
+        edPhoneNumber = dialog.findViewById(R.id.custPhone);
+        edDob = dialog.findViewById(R.id.custDOB);
+        edCustomerUserName = dialog.findViewById(R.id.custUserName);
+        edAddress = dialog.findViewById(R.id.custAddress);
+        edTownShip = dialog.findViewById(R.id.custTown);
+        edNrc  = dialog.findViewById(R.id.custNrc);
+        edCustomerId = dialog.findViewById(R.id.custId);
+
+        edNote = dialog.findViewById(R.id.note);
+
+
+        edCuponCode.setText(cuponCode);
+        edShopName.setText(shopName);
+        edCustomerName.setText(customerName);
+        edPhoneNumber.setText(customerPhoneNumber);
+        edDob.setText(customerDob);
+        edAddress.setText(customerAddress);
+        edTownShip.setText(town);
+        edCustomerId.setText(customer_id);
+        edNote.setText(remark);
+        edCustomerUserName.setText(customerUserName);
+        edNrc.setText(customernrc);
+
+
+
+
 
         closeImg = dialog.findViewById(R.id.closeImage);
-        btnEdit = dialog.findViewById(R.id.btnVoucherEdit);
+        //btnEdit = dialog.findViewById(R.id.btnVoucherEdit);
         //btnSave = dialog.findViewById(R.id.btnVoucherSave);
 
 
 
-    nameList = new ArrayList<>();
-    nameList.add("Voucher No");
-    nameList.add("Sale Date");
-    nameList.add("Cupon Code");
-    nameList.add("Customer Name");
-    nameList.add("Shop Name");
-    nameList.add("Township");
-
-        nameList.add("Qualtity");
-        nameList.add("Point eight");
-        nameList.add("Cupon Code");
-        nameList.add("စုစုေပါင္း gram");
-        nameList.add("က်ပ္");
-        nameList.add("ပဲ");
-        nameList.add("ေရြး");
-        nameList.add("ယခုဝယ္သည့္ က်ပ္");
-        nameList.add("ယခုဝယ္သည့္ ပဲ");
-        nameList.add("ယခုဝယ္သည့္ ေရြး");
-        nameList.add(" အေလ်ာ့ က်ပ္");
-        nameList.add(" အေလ်ာ့ ပဲ");
-        nameList.add(" အေလ်ာ့ ေရြး");
-        nameList.add("ယခင္အေျကြး က်ပ္");
-        nameList.add("ယခင္အေျကြး ပဲ");
-        nameList.add("ယခင္အေျကြး ေရြး");
-        nameList.add("စုစုေပါင္း က်ပ္");
-        nameList.add("စုစုေပါင္း ပဲ");
-        nameList.add("စုစုေပါင္း ေရြး");
-        nameList.add("ယခုေပးေခ်မည့္ က်ပ္");
-        nameList.add("ယခုေပးေခ်မည့္ ပဲ");
-        nameList.add("ယခုေပးေခ်မည့္ ေရြး");
-        nameList.add("ယခုလက္က်န္ က်ပ္");
-        nameList.add("ယခုလက္က်န္ ပဲ");
-        nameList.add("ယခုလက္က်န္ ေရြး");
-
-
-
-
-
-
-
-
-
-
-
-        dataList = new ArrayList<>();
-    dataList.add(voucher);
-    dataList.add(sDate);
-    dataList.add(cuponCode);
-    dataList.add(customerName);
-    dataList.add(shopName);
-    dataList.add(town);  dataList.add(totalQty);
-        dataList.add(totalPointEight);
-        dataList.add(cuponCode);
-        dataList.add(gram);
-        dataList.add(totalKyat);
-        dataList.add(totalPal);
-        dataList.add(totalYae);
-        dataList.add(newTotalKyat);
-        dataList.add(newTotalPal);
-        dataList.add(newTotalYae);
-        dataList.add(total_ayot_kyat);
-        dataList.add(total_ayot_pal);
-        dataList.add(total_ayo_yae);
-        dataList.add(previous_kyat);
-        dataList.add(previous_pal);
-        dataList.add(previous_yae);
-        dataList.add(buydebitkyat);
-        dataList.add(buydebitpal);
-        dataList.add(buydebityae);
-        dataList.add(paymentkyat);
-        dataList.add(paymentpal);
-        dataList.add(paymentyae);
-        dataList.add(remainkyat);
-        dataList.add(remainpal);
-        dataList.add(remainyae);
-
-
-
+//    nameList = new ArrayList<>();
+//    nameList.add("Voucher No");
+//    nameList.add("Sale Date");
+//    nameList.add("Cupon Code");
+//    nameList.add("Customer Name");
+//    nameList.add("Shop Name");
+//    nameList.add("Township");
+//
+//        nameList.add("Qualtity");
+//        nameList.add("Point eight");
+//        nameList.add("Cupon Code");
+//        nameList.add("စုစုေပါင္း gram");
+//        nameList.add("က်ပ္");
+//        nameList.add("ပဲ");
+//        nameList.add("ေရြး");
+//        nameList.add("ယခုဝယ္သည့္ က်ပ္");
+//        nameList.add("ယခုဝယ္သည့္ ပဲ");
+//        nameList.add("ယခုဝယ္သည့္ ေရြး");
+//        nameList.add(" အေလ်ာ့ က်ပ္");
+//        nameList.add(" အေလ်ာ့ ပဲ");
+//        nameList.add(" အေလ်ာ့ ေရြး");
+//        nameList.add("ယခင္အေျကြး က်ပ္");
+//        nameList.add("ယခင္အေျကြး ပဲ");
+//        nameList.add("ယခင္အေျကြး ေရြး");
+//        nameList.add("စုစုေပါင္း က်ပ္");
+//        nameList.add("စုစုေပါင္း ပဲ");
+//        nameList.add("စုစုေပါင္း ေရြး");
+//        nameList.add("ယခုေပးေခ်မည့္ က်ပ္");
+//        nameList.add("ယခုေပးေခ်မည့္ ပဲ");
+//        nameList.add("ယခုေပးေခ်မည့္ ေရြး");
+//        nameList.add("ယခုလက္က်န္ က်ပ္");
+//        nameList.add("ယခုလက္က်န္ ပဲ");
+//        nameList.add("ယခုလက္က်န္ ေရြး");
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//        dataList = new ArrayList<>();
+//    dataList.add(voucher);
+//    dataList.add(sDate);
+//    dataList.add(cuponCode);
+//    dataList.add(customerName);
+//    dataList.add(shopName);
+//    dataList.add(town);  dataList.add(totalQty);
+//        dataList.add(totalPointEight);
+//        dataList.add(cuponCode);
+//        dataList.add(gram);
+//        dataList.add(totalKyat);
+//        dataList.add(totalPal);
+//        dataList.add(totalYae);
+//        dataList.add(newTotalKyat);
+//        dataList.add(newTotalPal);
+//        dataList.add(newTotalYae);
+//        dataList.add(total_ayot_kyat);
+//        dataList.add(total_ayot_pal);
+//        dataList.add(total_ayo_yae);
+//        dataList.add(previous_kyat);
+//        dataList.add(previous_pal);
+//        dataList.add(previous_yae);
+//        dataList.add(buydebitkyat);
+//        dataList.add(buydebitpal);
+//        dataList.add(buydebityae);
+//        dataList.add(paymentkyat);
+//        dataList.add(paymentpal);
+//        dataList.add(paymentyae);
+//        dataList.add(remainkyat);
+//        dataList.add(remainpal);
+//        dataList.add(remainyae);
+//
 
 
 
 
 
-        adapterDialog = new bindvouchersaleRecyclerAdapter(nameList,dataList,getContext());
-    recyclerView.setAdapter(adapterDialog);
+
+
+//        adapterDialog = new bindvouchersaleRecyclerAdapter(nameList,dataList,getContext());
+//    recyclerView.setAdapter(adapterDialog);
 
         closeImg.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -558,12 +1100,6 @@ public class OrderListFragment extends Fragment implements SearchView.OnQueryTex
 //            }
 //        });
 
-        btnEdit.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(getContext(), "Need Owner Approve", Toast.LENGTH_SHORT).show();
-            }
-        });
 
         dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         dialog.show();
@@ -629,20 +1165,12 @@ public class OrderListFragment extends Fragment implements SearchView.OnQueryTex
 
     }
 
+    private void updateLabel() {
+        String myFormat = "dd/MM/yyyy"; //In which you need put here
+        SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.US);
 
-    //    @Override
-//    public boolean onCreateOptionsMenu(Menu menu) {
-//        getActivity().getActionBar().setDisplayHomeAsUpEnabled(true);
-//        return super.onCreateOptionsMenu(getActivity(menu);
-//    }
-//
-//    @Override
-//    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-//        if (item.getItemId() == android.R.id.home){
-//            getActivity().finish();
-//        }
-//        return super.onOptionsItemSelected(item);
-//    }
-//}
+        edSaleDate.setText(sdf.format(myCalendar.getTime()));
+    }
+
 
 }

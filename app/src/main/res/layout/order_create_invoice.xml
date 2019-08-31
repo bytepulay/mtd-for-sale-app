@@ -95,6 +95,7 @@
                         android:layout_height="wrap_content">
 
                         <EditText
+                            android:enabled="false"
                             style="@style/Foredit"
                             android:id="@+id/kyat"
                             android:layout_weight="5"
@@ -104,6 +105,7 @@
                            />
 
                         <EditText
+                            android:enabled="false"
                             style="@style/Foredit"
                             android:id="@+id/pel"
                             android:layout_weight="5"
@@ -112,6 +114,7 @@
                             android:inputType="numberDecimal" />
 
                         <EditText
+                            android:enabled="false"
                             style="@style/Foredit"
                             android:id="@+id/yawe"
                             android:layout_weight="5"
@@ -366,6 +369,7 @@
                         android:layout_height="wrap_content">
 
                         <EditText
+                            android:text="0"
                             style="@style/Foredit"
                             android:id="@+id/paymentKyat"
                             android:layout_weight="5"
@@ -374,6 +378,7 @@
                             android:inputType="numberDecimal" />
 
                         <EditText
+                            android:text="0"
                             style="@style/Foredit"
                             android:id="@+id/paymentPal"
                             android:layout_weight="5"
@@ -382,6 +387,7 @@
                             android:inputType="numberDecimal"/>
 
                         <EditText
+                            android:text="0"
                             style="@style/Foredit"
                             android:id="@+id/paymentYae"
                             android:layout_weight="5"
@@ -478,7 +484,7 @@
                             android:layout_weight="5"
                             android:id="@+id/custDiscountPoint"
                             android:textAllCaps="false"
-                            android:hint="0.8"
+                            android:hint="Point Eight"
                             android:background="@drawable/custom_edittext_form_background"
                             />
 

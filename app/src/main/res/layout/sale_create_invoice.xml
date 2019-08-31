@@ -88,6 +88,7 @@
             android:layout_height="wrap_content">
 
             <EditText
+                android:enabled="false"
                 style="@style/Foredit"
                 android:id="@+id/kyat"
                 android:layout_weight="5"
@@ -96,6 +97,7 @@
                 android:inputType="numberDecimal" />
 
             <EditText
+                android:enabled="false"
                 style="@style/Foredit"
                 android:id="@+id/pal"
                 android:layout_weight="5"
@@ -104,6 +106,7 @@
                 android:inputType="numberDecimal"/>
 
             <EditText
+                android:enabled="false"
                 style="@style/Foredit"
                 android:id="@+id/yae"
                 android:layout_weight="5"
@@ -193,6 +196,7 @@
                 android:layout_height="wrap_content">
 
                 <EditText
+                    android:enabled="false"
                     style="@style/Foredit"
                     android:id="@+id/nowRmainkyat"
                     android:layout_weight="5"
@@ -201,6 +205,7 @@
                     android:inputType="numberDecimal" />
 
                 <EditText
+                    android:enabled="false"
                     style="@style/Foredit"
                     android:id="@+id/nowRemainpal"
                     android:layout_weight="5"
@@ -209,6 +214,7 @@
                     android:inputType="numberDecimal"/>
 
                 <EditText
+                    android:enabled="false"
                     style="@style/Foredit"
                     android:id="@+id/nowRemainyae"
                     android:layout_weight="5"
@@ -244,7 +250,7 @@
                     android:layout_weight="5"
                     android:background="@drawable/custom_edittext_form_background"
                     android:hint="က်ပ္"
-                    android:inputType="numberDecimal" />
+                    android:inputType="number" />
 
                 <EditText
                     style="@style/Foredit"
@@ -252,7 +258,7 @@
                     android:layout_weight="5"
                     android:background="@drawable/custom_edittext_form_background"
                     android:hint="ပဲ"
-                    android:inputType="numberDecimal"/>
+                    android:inputType="number"/>
 
                 <EditText
                     style="@style/Foredit"
@@ -464,42 +470,52 @@
                 android:layout_height="wrap_content">
 
                 <EditText
+                    android:text="0"
                     style="@style/Foredit"
                     android:id="@+id/retunGoldKyat"
                     android:layout_weight="5"
                     android:background="@drawable/custom_edittext_form_background"
                     android:hint="က်ပ္"
                     android:inputType="numberDecimal"
-                    android:enabled="false"/>
+                    />
 
                 <EditText
+                    android:text="0"
                     style="@style/Foredit"
                     android:id="@+id/retunGoldPal"
                     android:layout_weight="5"
                     android:background="@drawable/custom_edittext_form_background"
                     android:hint="ပဲ"
                     android:inputType="numberDecimal"
-                    android:enabled="false"/>
+                   />
 
                 <EditText
+                    android:text="0"
                     style="@style/Foredit"
                     android:id="@+id/retunGoldYae"
                     android:layout_weight="5"
                     android:background="@drawable/custom_edittext_form_background"
                     android:hint=" ေရြး"
                     android:inputType="numberDecimal"
-                    android:enabled="false"
                     />
 
             </LinearLayout>
 
 
-            <TextView
-                android:layout_marginLeft="20dp"
-                android:layout_marginTop="8dp"
+            <Button
+                android:textColor="#FFFFFF"
+                android:id="@+id/returnGoldPlusAyot"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="ယခုေပးခ်ရမည့္ ေရႊခ်ိန္"/>
+                android:layout_height="60dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginTop="10dp"
+                android:text="Calculate"
+                android:background="@drawable/button_login_back"/>
+
+
+
+
 
             <LinearLayout
                 android:layout_marginTop="10dp"
@@ -617,7 +633,6 @@
             android:layout_height="wrap_content">
 
             <EditText
-                android:text="0"
                 style="@style/Foredit"
                 android:id="@+id/remainKyat"
                 android:layout_weight="5"
@@ -627,7 +642,6 @@
                 android:enabled="false"/>
 
             <EditText
-                android:text="0"
                 style="@style/Foredit"
                 android:id="@+id/remainPal"
                 android:layout_weight="5"
@@ -637,7 +651,6 @@
                 android:enabled="false"/>
 
             <EditText
-                android:text="0"
                 style="@style/Foredit"
                 android:id="@+id/remainYae"
                 android:layout_weight="5"
@@ -890,6 +903,7 @@
                 android:layout_height="wrap_content">
 
                 <EditText
+                    android:enabled="false"
                     style="@style/Foredit"
                     android:id="@+id/remainAyotKyat"
                     android:layout_weight="5"
@@ -898,6 +912,7 @@
                     android:inputType="numberDecimal" />
 
                 <EditText
+                    android:enabled="false"
                     style="@style/Foredit"
                     android:id="@+id/remainAyotPal"
                     android:layout_weight="5"
@@ -906,6 +921,7 @@
                     android:inputType="numberDecimal" />
 
                 <EditText
+                    android:enabled="false"
                     style="@style/Foredit"
                     android:id="@+id/remainAyotYae"
                     android:layout_weight="5"

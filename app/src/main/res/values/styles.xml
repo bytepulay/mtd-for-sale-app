@@ -32,10 +32,8 @@
         <item name="android:textColor">#A0A0A0</item>
     </style>
 
-    <style name="Forview">
-        <item name="android:layout_height">60dp</item>
-        <item name="android:elevation">7dp</item>
-        <item name="android:shadowColor">#c7d0f8</item>
+    <style name="ForViewEdit">
+        <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_marginTop">5dp</item>
         <item name="android:layout_marginRight">20dp</item>
