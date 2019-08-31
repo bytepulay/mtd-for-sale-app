@@ -23,6 +23,7 @@ import com.bumptech.glide.request.RequestOptions;
 import asia.nainglintun.myintthitar.Activities.CustomerActivity;
 import asia.nainglintun.myintthitar.Activities.MainActivity;
 import asia.nainglintun.myintthitar.R;
+import asia.nainglintun.myintthitar.models.ApiClient;
 import asia.nainglintun.myintthitar.models.Customer;
 import asia.nainglintun.myintthitar.models.ImageClass;
 import retrofit2.Call;
@@ -100,7 +101,7 @@ public class CustomerRankFragment extends Fragment {
                             R.drawable.default_profile);
                     Profile.setImageBitmap(bitmap);
                 }else if(!paths.equals("NO")) {
-                    Glide.with(getContext()).load("http://167.71.193.226/mtd/"+paths).apply(RequestOptions.skipMemoryCacheOf(true).diskCacheStrategy(DiskCacheStrategy.NONE)).into(Profile);
+                    Glide.with(getContext()).load(ApiClient.BASE_URL +paths).apply(RequestOptions.skipMemoryCacheOf(true).diskCacheStrategy(DiskCacheStrategy.NONE)).into(Profile);
 
                 }
 

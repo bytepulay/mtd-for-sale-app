@@ -30,6 +30,7 @@ import asia.nainglintun.myintthitar.Activities.SalesActivity;
 import asia.nainglintun.myintthitar.Adapters.CardAdapter;
 import asia.nainglintun.myintthitar.R;
 import asia.nainglintun.myintthitar.ToDo.CardTodo;
+import asia.nainglintun.myintthitar.models.ApiClient;
 import asia.nainglintun.myintthitar.models.Sale;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -90,7 +91,7 @@ public class FragmentCard extends Fragment {
                 String Profile=response.body().getProfile();
                // Toast.makeText(getContext(), Profile, Toast.LENGTH_SHORT).show();
                 if(!Profile.equals("No")){
-                    Glide.with(getContext()).load("http://167.71.193.226/mtd/"+Profile).apply(RequestOptions.skipMemoryCacheOf(true).diskCacheStrategy(DiskCacheStrategy.NONE)).into(sProfile);
+                    Glide.with(getContext()).load(ApiClient.BASE_URL +Profile).apply(RequestOptions.skipMemoryCacheOf(true).diskCacheStrategy(DiskCacheStrategy.NONE)).into(sProfile);
 
                 }
                 if(Profile.equals("No")){

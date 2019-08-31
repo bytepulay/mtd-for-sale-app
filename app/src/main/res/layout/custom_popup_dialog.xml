@@ -2183,6 +2183,7 @@
                                 android:background="@drawable/custom_edittext_form_background" />
 
                             <EditText
+                                android:enabled="false"
                                 style="@style/Foredit"
                                 android:id="@+id/custNrc"
                                 android:textAllCaps="false"

@@ -73,7 +73,7 @@ public class SalesActivity extends AppCompatActivity {
             }
         });
 
-        Toast.makeText(this, MainActivity.prefConfig.readName(), Toast.LENGTH_SHORT).show();
+
 //        actionBar.setDisplayHomeAsUpEnabled(true);
 
         BottomNavigationView navView = findViewById(R.id.nav_view);

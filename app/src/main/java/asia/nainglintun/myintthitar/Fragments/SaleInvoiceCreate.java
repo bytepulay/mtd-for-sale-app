@@ -514,7 +514,23 @@ private EditText voucherNumber,Gram,CuponCode,totalKyat,totalPal,totalYae,totalQ
                                      buyDebitKyat.setText(String.valueOf(-TOTALKYAT));
                                  }
 
-                             }else if (nowDebitKyat>totKyat && nowDebitPal==totPal && nowDebitYae>=totYae){
+                             }else if (nowDebitKyat>totKyat && nowDebitPal<totPal && nowDebitYae<totYae) {
+                                 nowDebitPal = nowDebitPal - 1;
+                                 nowDebitYae = nowDebitYae + 8;
+                                 TOTALYAE = nowDebitYae - totYae;
+                                 TOTALPAl = nowDebitPal - totPal;
+                                 TOTALKYAT = nowDebitKyat - totKyat;
+                                     DecimalFormat form1 = new DecimalFormat("0.00");
+                                     buyDebitYae.setText(String.valueOf(form1.format(-TOTALYAE)));
+                                 if (TOTALPAl==0){
+                                     buyDebitPal.setText("0.0");
+                                 }else if (TOTALPAl!=0) {
+                                     buyDebitPal.setText(String.valueOf(-TOTALPAl));
+                                 }
+                                 buyDebitKyat.setText(String.valueOf(-TOTALKYAT));
+                             }
+
+                             else if (nowDebitKyat>totKyat && nowDebitPal==totPal && nowDebitYae>=totYae){
                                  TOTALYAE=nowDebitYae-totYae;
                                  TOTALPAl=nowDebitPal-totPal;
                                  TOTALKYAT=nowDebitKyat-totKyat;
@@ -685,7 +701,7 @@ private EditText voucherNumber,Gram,CuponCode,totalKyat,totalPal,totalYae,totalQ
                                  buyDebitYae.setText(String.valueOf(form1.format(TOTALYAE)));
 
                                  if (TOTALPAl==0){
-                                     buyDebitKyat.setText("0");
+                                     buyDebitPal.setText("0");
                                  }else if (TOTALPAl!=0){
                                      buyDebitPal.setText(String.valueOf(TOTALPAl));
                                  }

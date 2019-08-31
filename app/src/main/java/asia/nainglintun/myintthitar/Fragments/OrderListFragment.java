@@ -13,6 +13,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -44,10 +45,13 @@ import asia.nainglintun.myintthitar.Adapters.orderRecyclerAdapter;
 import asia.nainglintun.myintthitar.Adapters.saleRecyclerAdapter;
 import asia.nainglintun.myintthitar.R;
 import asia.nainglintun.myintthitar.models.Orderhistory;
-import asia.nainglintun.myintthitar.models.Salehistory;
+//import asia.nainglintun.myintthitar.models.Salehistory;
+import asia.nainglintun.myintthitar.models.Sale;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
+
+import static asia.nainglintun.myintthitar.Activities.MainActivity.prefConfig;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -68,6 +72,7 @@ public class OrderListFragment extends Fragment implements SearchView.OnQueryTex
     private Button dialogEdit,BnUpdateInVoiceSave,btnAdd,btnSub,btnCalculateRemainGramTOKyatPalYae,btnCalculateTotalAmount,btnreturnGoldPlusAyot,btntotalRemainAmount,btnitemCalculate,btnayotCalculate;
     final Calendar myCalendar = Calendar.getInstance();
     private Toolbar toolbar;
+    public static String Status;
 
 
     private EditText edVoucher,edSaleDate,edCustomerName,edShopName,edAddress,edDob,edNrc,edPhoneNumber,edTownShip,edCustomerId,edCustomerUserName,edNote,
@@ -86,6 +91,7 @@ public class OrderListFragment extends Fragment implements SearchView.OnQueryTex
     private TextView textViewDebitVoucherNo,textViewDebitSaleDate,textViewDebitSaleName;
 
     private LinearLayout linearLayoutUpdate;
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -460,10 +466,11 @@ public class OrderListFragment extends Fragment implements SearchView.OnQueryTex
         ednowPaymentKyat = dialog.findViewById(R.id.paymentKyat);
         ednowPaymentYae = dialog.findViewById(R.id.paymentYae);
         ednowPaymentPal = dialog.findViewById(R.id.paymentPal);
-
-        ednowPaymentKyat.setText(paymentkyat);
-        ednowPaymentPal.setText(paymentpal);
         ednowPaymentYae.setText(paymentyae);
+
+        ednowRemainKyat = dialog.findViewById(R.id.remainKyat);
+        ednowRemainPal = dialog.findViewById(R.id.remainPal);
+        ednowRemainYae = dialog.findViewById(R.id.remainYae);
 
 
 
@@ -763,7 +770,7 @@ public class OrderListFragment extends Fragment implements SearchView.OnQueryTex
         edNrc.setText(customernrc);
 
 
-
+    BnUpdateInVoiceSave = dialog.findViewById(R.id.btnUpdateInVoiceSave);
 
 
         closeImg = dialog.findViewById(R.id.closeImage);
@@ -865,212 +872,98 @@ public class OrderListFragment extends Fragment implements SearchView.OnQueryTex
             }
         });
 
-//        btnEdit.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                recyclerView.setVisibility(View.GONE);
-//                linearLayoutUpdate = dialog.findViewById(R.id.updateLayout);
-//                btnSave = dialog.findViewById(R.id.btnUpdateSave);
-//                btnSave.setVisibility(View.VISIBLE);
-//
-//                edVoucher = dialog.findViewById(R.id.editVoucher);
-//                linearLayoutUpdate.setVisibility(View.VISIBLE);
-//                edSaleDate = dialog.findViewById(R.id.editSaleDate);
-//                edCustomerName = dialog.findViewById(R.id.editCustomerName);
-//                edShopName = dialog.findViewById(R.id.editShopName);
-//                edAddress = dialog.findViewById(R.id.editAddress);
-//                edPhoneNumber = dialog.findViewById(R.id.editPhoneNumber);
-//                edDob = dialog.findViewById(R.id.editDOB);
-//                edTownShip = dialog.findViewById(R.id.editTownShip);
-//                edRingDescription = dialog.findViewById(R.id.editRingDes);
-//                edRingNumber = dialog.findViewById(R.id.editRingNumber);
-//                edRingPointEight = dialog.findViewById(R.id.editRingPointEight);
-//                edRingKyat = dialog.findViewById(R.id.editRingKyat);
-//                edRingPal = dialog.findViewById(R.id.editRingPal);
-//                edRingYae = dialog.findViewById(R.id.editRingYae);
-//
-//
-//                edbanglesDescription = dialog.findViewById(R.id.editBanglesDes);
-//                edbanglesNumber = dialog.findViewById(R.id.editBanglesNumber);
-//                edbanglesPointEight = dialog.findViewById(R.id.editBanglesPointEight);
-//                edbanglesKyat = dialog.findViewById(R.id.editBanglesKyat);
-//                edbanglesPal = dialog.findViewById(R.id.editBanglesPal);
-//                edbanglesYae = dialog.findViewById(R.id.editBanglesYae);
-//
-//
-//
-//
-//                edNecklaceDescription = dialog.findViewById(R.id.editNecklaceDes);
-//                edNecklaceNumber = dialog.findViewById(R.id.editNecklaceNumber);
-//                edNecklacePointEight = dialog.findViewById(R.id.editNecklacePointEight);
-//                edNecklaceKyat = dialog.findViewById(R.id.editNecklaceKyat);
-//                edNecklacePal = dialog.findViewById(R.id.editNecklacePal);
-//                edNecklaceYae = dialog.findViewById(R.id.editNecklaceYae);
-//
-//
-//
-//                edEarringDescription = dialog.findViewById(R.id.editEarringDes);
-//                edEarringNumber = dialog.findViewById(R.id.editEarringNumber);
-//                edEarringPointEight = dialog.findViewById(R.id.editEarringPointEight);
-//                edEarringKyat = dialog.findViewById(R.id.editEarringKyat);
-//                edEarringPal = dialog.findViewById(R.id.editEarringPal);
-//                edEarringYae = dialog.findViewById(R.id.editEarringYae);
-//
-//
-//                edTotalNumber = dialog.findViewById(R.id.editTotalNumber);
-//                edTotalPointEight = dialog.findViewById(R.id.editTotalPointEight);
-//                edTotalKyat = dialog.findViewById(R.id.editTotalKyat);
-//                edTotalPal= dialog.findViewById(R.id.editTotalPal);
-//                edTotalYae = dialog.findViewById(R.id.editTotalYae);
-//
-//                edCuponCode = dialog.findViewById(R.id.editCuponCode);
-//                edGram = dialog.findViewById(R.id.editTotalGram);
-//
-//
-//
-//
-////                edbanglesDescription = dialog.findViewById(R.id.editB)
-////
-//
-//
-//
-//
-//
-//
-//                edVoucher.setText(voucher);
-//                edSaleDate.setText(sDate);
-//                edCuponCode.setText(cuponCode);
-//                edCustomerName.setText(customerName);
-//                edShopName.setText(shopName);
-//                edPhoneNumber.setText(customerPhoneNumber);
-//                edAddress.setText(customerAddress);
-//                edDob.setText(customerDob);
-//                edTownShip.setText(town);
-//
-//                edRingDescription.setText(ringDescription);
-//                edRingNumber.setText(ringNumber);
-//                edRingPointEight.setText(ringPointEight);
-//                edRingKyat.setText(ringKyat);
-//                edRingPal.setText(ringPal);
-//                edRingYae.setText(ringYae);
-//
-//                edbanglesDescription.setText(banglesDescription);
-//                edbanglesNumber.setText(banglesNumber);
-//                edbanglesPointEight.setText(banglesPointEight);
-//                edbanglesKyat.setText(banglesKyat);
-//                edbanglesPal.setText(banglesPal);
-//                edbanglesYae.setText(banglesYae);
-//
-//
-//                edNecklaceDescription.setText(necklaceDescription);
-//                edNecklaceNumber.setText(necklaceNumber);
-//                edNecklacePointEight.setText(necklacePointEight);
-//                edNecklaceKyat.setText(necklaceKyat);
-//                edNecklacePal.setText(necklacePal);
-//                edNecklaceYae.setText(necklaceYae);
-//
-//
-//                edEarringDescription.setText(earringDescription);
-//                edEarringNumber.setText(earringNumber);
-//                edEarringPointEight.setText(earringPointEight);
-//                edEarringKyat.setText(earringKyat);
-//                edEarringPal.setText(earringPal);
-//                edEarringYae.setText(earringYae);
-//
-//                edTotalNumber.setText(totalQty);
-//                edTotalPointEight.setText(totalPointEight);
-//                edTotalKyat.setText(totalKyat);
-//                edTotalYae.setText(totalYae);
-//                edTotalPal.setText(totalPal);
-//
-//                edGram.setText(gram);
-//
-//
-//
-//
-//                btnSave.setOnClickListener(new View.OnClickListener() {
-//                    @Override
-//                    public void onClick(View v) {
-//
-//                        //Log.e("Response","doing this methos");
-////                        Toast.makeText(getContext(),edVoucher.getText().toString()+ ID
-////
-////                        , Toast.LENGTH_SHORT).show();
-//                        progressDialog.setTitle("Update Order Invoice");
-//                        progressDialog.show();
-//                      Call<Orderhistory> call = MainActivity.apiInterface.updateOrderInvoice( ID,edVoucher.getText().toString(),
-//                              edSaleDate.getText().toString(),
-//                              edCuponCode.getText().toString(),
-//                              edPhoneNumber.getText().toString(),
-//                              edCustomerName.getText().toString(),
-//                              edShopName.getText().toString(),
-//                              edAddress.getText().toString(),
-//                              edDob.getText().toString(),
-//                              edTownShip.getText().toString(),
-//                              edRingDescription.getText().toString(),
-//                              edRingNumber.getText().toString(),
-//                              edRingPointEight.getText().toString(),
-//                              edRingKyat.getText().toString(),
-//                              edRingKyat.getText().toString(),
-//                              edRingYae.getText().toString(),
-//
-//                              edbanglesDescription.getText().toString(),
-//                              edbanglesNumber.getText().toString(),
-//                              edbanglesPointEight.getText().toString(),
-//                              edbanglesKyat.getText().toString(),
-//                              edbanglesKyat.getText().toString(),
-//                              edbanglesYae.getText().toString(),
-//
-//
-//                              edNecklaceDescription.getText().toString(),
-//                              edNecklaceNumber.getText().toString(),
-//                              edNecklacePointEight.getText().toString(),
-//                              edNecklaceKyat.getText().toString(),
-//                              edNecklaceKyat.getText().toString(),
-//                              edNecklaceYae.getText().toString(),
-//
-//
-//                              edEarringDescription.getText().toString(),
-//                              edEarringNumber.getText().toString(),
-//                              edEarringPointEight.getText().toString(),
-//                              edEarringKyat.getText().toString(),
-//                              edEarringKyat.getText().toString(),
-//                              edEarringYae.getText().toString(),
-//                              edTotalNumber.getText().toString(),
-//                              edTotalPointEight.getText().toString(),
-//                              edTotalKyat.getText().toString(),
-//                              edTotalPal.getText().toString(),
-//                              edTotalYae.getText().toString(),
-//                              edGram.getText().toString()
-//                              );
-//
-//
-////                        Log.e("Response","after doing this update ");
-//
-//                      call.enqueue(new Callback<Orderhistory>() {
-//                          @Override
-//                          public void onResponse(Call<Orderhistory> call, Response<Orderhistory> response) {
-//                              progressDialog.dismiss();
-//
-//                                  if(response.body().getResponse().equals("ok")){
-//                                      Toast.makeText(getContext(), "Update Successfully", Toast.LENGTH_SHORT).show();
-//                                  }
-//
-//
-//
-//
-//                          }
-//
-//                          @Override
-//                          public void onFailure(Call<Orderhistory> call, Throwable t) {
-//
-//                              Toast.makeText(getContext(), "Updat Fail", Toast.LENGTH_SHORT).show();
-//                          }
-//                      });
-//                    }
-//                });
-//
-//
+
+
+        Call<Sale> saleCall = MainActivity.apiInterface.getSaleProfile(prefConfig.readName());
+        saleCall.enqueue(new Callback<Sale>() {
+            @Override
+            public void onResponse(Call<Sale> call, Response<Sale> response) {
+                Status=response.body().getStatus();
+
+            }
+
+            @Override
+            public void onFailure(Call<Sale> call, Throwable t) {
+
+            }
+        });
+
+        BnUpdateInVoiceSave.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (Status.equals("No")) {
+                    Toast.makeText(getContext(), "You Need Owner Approve", Toast.LENGTH_SHORT).show();
+                } else if (Status.equals("Yes")) {
+
+
+                    progressDialog.setTitle("Update Sale Invoice");
+                    progressDialog.show();
+                    Call<Orderhistory> call = MainActivity.apiInterface.updateOrderInvoice(ID, MainActivity.prefConfig.readName(), edviewVoucher.getText().toString(),
+                            edSaleDate.getText().toString(),
+                            ednowPurchaseKyat.getText().toString(),
+                            ednowPurchasePal.getText().toString(),
+                            ednowPurchaseYae.getText().toString(),
+                            edTotalNumber.getText().toString(),
+                            edTotalPointEight.getText().toString(),
+                            edAyotkyat.getText().toString(),
+                            edAyotPal.getText().toString(),
+                            edAyotYae.getText().toString(),
+                            edTotalKyat.getText().toString(),
+                            edTotalPal.getText().toString(),
+                            edTotalYae.getText().toString(),
+                            edGram.getText().toString(),
+                            edCuponCode.getText().toString(),
+                            edCustomerId.getText().toString(),
+                            edPreviousRemainKyat.getText().toString(),
+                            edPreviousRemainPal.getText().toString(),
+                            edPreviousRemainYae.getText().toString(),
+                            edBuyDebitKyat.getText().toString(),
+                            edBuyDebitPal.getText().toString(),
+                            edBuyDebitYae.getText().toString(),
+                            ednowPaymentKyat.getText().toString(),
+                            ednowPaymentPal.getText().toString(),
+                            ednowPaymentYae.getText().toString(),
+                            ednowRemainKyat.getText().toString(),
+                            ednowRemainPal.getText().toString(),
+                            ednowRemainYae.getText().toString(),
+                            edNote.getText().toString(),
+                            edShopName.getText().toString(),
+                            edCustomerName.getText().toString(),
+                            edPhoneNumber.getText().toString(),
+                            edDob.getText().toString(),
+                            edNrc.getText().toString(),
+                            edAddress.getText().toString(),
+                            edTownShip.getText().toString(),
+                            edCustomerUserName.getText().toString()
+                    );
+
+
+                    Log.e("Response", "after doing this update ");
+
+                    call.enqueue(new Callback<Orderhistory>() {
+                        @Override
+                        public void onResponse(Call<Orderhistory> call, Response<Orderhistory> response) {
+                            progressDialog.dismiss();
+                            if (response.body().getResponse().equals("ok")) {
+                                Toast.makeText(getContext(), "Update successfully", Toast.LENGTH_SHORT).show();
+                            }
+
+                            // Toast.makeText(getContext(), "do response" + ID, Toast.LENGTH_SHORT).show();
+
+                        }
+
+                        @Override
+                        public void onFailure(Call<Orderhistory> call, Throwable t) {
+                            progressDialog.dismiss();
+                            Toast.makeText(getContext(), "Update Fail  " + t.getMessage(),  Toast.LENGTH_SHORT).show();
+
+                        }
+                    });
+                }
+            }
+        });
+
+
 
 
 

@@ -7,7 +7,7 @@ public class ApiClient {
 
    // private static final String BASE_URL = "http://mtdatabase.com/mtd/";
 
-    private static final String BASE_URL = "http://167.71.193.226/mtd/";
+    public static final String BASE_URL = "http://167.71.193.226/MTD/mtd/";
 
 
 

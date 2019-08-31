@@ -458,7 +458,7 @@ private Toolbar toolbar;
                     String DebitYae = String.valueOf(debitYae);
 
                     if (DebitKyat.contains("-") || DebitPal.contains("-") || DebitYae.contains("-")){
-                        Toast.makeText(getContext(), "Negative Operation work", Toast.LENGTH_SHORT).show();
+                       // Toast.makeText(getContext(), "Negative Operation work", Toast.LENGTH_SHORT).show();
                         int nowDebitKyat=Math.abs(debitKyat);
                         int nowDebitPal=Math.abs(debitPal);
                         double nowDebitYae=Math.abs(debitYae);
@@ -521,7 +521,21 @@ private Toolbar toolbar;
                                 buyDebitKyat.setText(String.valueOf(-TOTALKYAT));
                             }
 
-                        }else if (nowDebitKyat>totKyat && nowDebitPal==totPal && nowDebitYae>=totYae){
+                        }else if (nowDebitKyat>totKyat && nowDebitPal<totPal && nowDebitYae<totYae) {
+                            nowDebitPal = nowDebitPal - 1;
+                            nowDebitYae = nowDebitYae + 8;
+                            TOTALYAE = nowDebitYae - totYae;
+                            TOTALPAl = nowDebitPal - totPal;
+                            TOTALKYAT = nowDebitKyat - totKyat;
+                            DecimalFormat form1 = new DecimalFormat("0.00");
+                            buyDebitYae.setText(String.valueOf(form1.format(-TOTALYAE)));
+                            if (TOTALPAl==0){
+                                buyDebitPal.setText("0.0");
+                            }else if (TOTALPAl!=0) {
+                                buyDebitPal.setText(String.valueOf(-TOTALPAl));
+                            }
+                            buyDebitKyat.setText(String.valueOf(-TOTALKYAT));
+                        } else if (nowDebitKyat>totKyat && nowDebitPal==totPal && nowDebitYae>=totYae){
                             TOTALYAE=nowDebitYae-totYae;
                             TOTALPAl=nowDebitPal-totPal;
                             TOTALKYAT=nowDebitKyat-totKyat;
@@ -692,7 +706,7 @@ private Toolbar toolbar;
                             buyDebitYae.setText(String.valueOf(form1.format(TOTALYAE)));
 
                             if (TOTALPAl==0){
-                                buyDebitKyat.setText("0");
+                                buyDebitPal.setText("0");
                             }else if (TOTALPAl!=0){
                                 buyDebitPal.setText(String.valueOf(TOTALPAl));
                             }
@@ -726,24 +740,8 @@ private Toolbar toolbar;
 
                         }
 
-
-
-
-
-
-
-                        // Toast.makeText(getContext(), String.valueOf(nowDebitKyat) +String.valueOf(nowDebitPal)+String.valueOf(nowDebitYae), Toast.LENGTH_SHORT).show();
-//                            }
-
-//                            if (totKyat>debitKyat){
-//                                Toast.makeText(getContext(), "plus", Toast.LENGTH_SHORT).show();
-//                            }else if (totKyat<debitKyat){
-//                                Toast.makeText(getContext(), "minus", Toast.LENGTH_SHORT).show();
-//                            }
-
-                        //Toast.makeText(getContext(), "ok minus", Toast.LENGTH_SHORT).show();
                     }else if(!DebitKyat.contains("-") && !DebitPal.contains("-") && !DebitYae.contains("-")){
-                        Toast.makeText(getContext(), "positive operation is work ", Toast.LENGTH_SHORT).show();
+                       // Toast.makeText(getContext(), "positive operation is work ", Toast.LENGTH_SHORT).show();
                         TOTALKYAT = totKyat + debitKyat;
                         TOTALPAl = totPal + debitPal;
                         TOTALYAE = totYae + debitYae;

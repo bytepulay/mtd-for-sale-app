@@ -1147,17 +1147,17 @@
                         android:layout_height="wrap_content">
 
 
-<!--                        <Button-->
-<!--                            android:id="@+id/btnUpdateInVoiceSave"-->
-<!--                            android:layout_marginLeft="20dp"-->
-<!--                            android:layout_marginTop="10dp"-->
-<!--                            android:layout_marginRight="20dp"-->
-<!--                            android:layout_width="match_parent"-->
-<!--                            android:layout_height="60dp"-->
-<!--                            android:text="Save"-->
-<!--                            android:textSize="18sp"-->
-<!--                            android:textColor="#FFF"-->
-<!--                            android:background="@drawable/button_login_back"/>-->
+                        <Button
+                            android:id="@+id/btnUpdateInVoiceSave"
+                            android:layout_marginLeft="20dp"
+                            android:layout_marginTop="10dp"
+                            android:layout_marginRight="20dp"
+                            android:layout_width="match_parent"
+                            android:layout_height="60dp"
+                            android:text="Save"
+                            android:textSize="18sp"
+                            android:textColor="#FFF"
+                            android:background="@drawable/button_login_back"/>
 
 
                         <TextView
@@ -1746,6 +1746,7 @@
                                 android:background="@drawable/custom_edittext_form_background" />
 
                             <EditText
+                                android:enabled="false"
                                 style="@style/Foredit"
                                 android:id="@+id/custNrc"
                                 android:textAllCaps="false"

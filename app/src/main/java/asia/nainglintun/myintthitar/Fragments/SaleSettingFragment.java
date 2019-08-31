@@ -30,6 +30,7 @@ import asia.nainglintun.myintthitar.Activities.CustomerActivity;
 import asia.nainglintun.myintthitar.Activities.MainActivity;
 import asia.nainglintun.myintthitar.Activities.SalesActivity;
 import asia.nainglintun.myintthitar.R;
+import asia.nainglintun.myintthitar.models.ApiClient;
 import asia.nainglintun.myintthitar.models.ImageClass;
 import asia.nainglintun.myintthitar.models.Sale;
 import de.hdodenhof.circleimageview.CircleImageView;
@@ -97,7 +98,7 @@ public class SaleSettingFragment extends Fragment implements View.OnClickListene
                 String Profile=response.body().getProfile();
                 //Toast.makeText(getContext(), Profile, Toast.LENGTH_SHORT).show();
                 if(!Profile.equals("No")){
-                    Glide.with(getContext()).load("http://167.71.193.226/mtd/"+Profile).apply(RequestOptions.skipMemoryCacheOf(true).diskCacheStrategy(DiskCacheStrategy.NONE)).into(saleProfile);
+                    Glide.with(getContext()).load(ApiClient.BASE_URL +Profile).apply(RequestOptions.skipMemoryCacheOf(true).diskCacheStrategy(DiskCacheStrategy.NONE)).into(saleProfile);
 
                 }
                 if(Profile.equals("No")){
