@@ -5,9 +5,9 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class ApiClient {
 
-   // private static final String BASE_URL = "http://mtdatabase.com/mtd/";
+    public static final String BASE_URL = "http://app.myinthidarjewellery.com/mtd/";
 
-    public static final String BASE_URL = "http://167.71.193.226/MTD/mtd/";
+  //  public static final String BASE_URL = "http://data.myinthidarjewellery.com/storage/mtd/";
 
 
 

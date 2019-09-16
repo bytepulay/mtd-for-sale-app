@@ -145,16 +145,15 @@ public class CustomerRankFragment extends Fragment {
        // Glide.with(getContext()).load("http://mtdatabase.com/mtd/uploads/profile"+name+".jpg").apply(RequestOptions.skipMemoryCacheOf(true).diskCacheStrategy(DiskCacheStrategy.NONE)).into(Profile);
 
 
-        bitmap = BitmapFactory.decodeResource(getContext().getResources(),
-        R.drawable.my_history);
-        customerQrCode.setImageBitmap(bitmap);
+//        bitmap = BitmapFactory.decodeResource(getContext().getResources(),
+//        R.drawable.my_history);
+//        customerQrCode.setImageBitmap(bitmap);
 
 
+        Toast.makeText(getContext(), name, Toast.LENGTH_SHORT).show();
 
+        Glide.with(getContext()).load(ApiClient.BASE_URL+name+"jpg").into(customerQrCode);
 
-        Glide.with(getContext()).load("http://167.71.193.226/mtd/uploads/"+name+".jpg").into(customerQrCode);
-
-        //Glide.with(getContext()).load(R.drawable.qr_code).into(customerQrCode);
 
         return view;
     }

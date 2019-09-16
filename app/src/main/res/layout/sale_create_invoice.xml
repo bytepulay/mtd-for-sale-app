@@ -511,7 +511,7 @@
                 android:layout_marginRight="20dp"
                 android:layout_marginTop="10dp"
                 android:text="Calculate"
-                android:background="@drawable/button_login_back"/>
+                android:background="@drawable/custom_edittext_form_background_debit"/>
 
 
 
@@ -526,28 +526,28 @@
                 android:layout_height="wrap_content">
 
                 <EditText
-                    style="@style/Foredit"
+                    style="@style/Foreditdebit"
                     android:id="@+id/netPayGoldKyat"
                     android:layout_weight="5"
-                    android:background="@drawable/custom_edittext_form_background"
+                    android:background="@drawable/custom_edittext_form_background_debit"
                     android:hint="က်ပ္"
                     android:inputType="numberDecimal"
                     android:enabled="false"/>
 
                 <EditText
-                    style="@style/Foredit"
+                    style="@style/Foreditdebit"
                     android:id="@+id/netPayGoldPal"
                     android:layout_weight="5"
-                    android:background="@drawable/custom_edittext_form_background"
+                    android:background="@drawable/custom_edittext_form_background_debit"
                     android:hint="ပဲ"
                     android:inputType="numberDecimal"
                     android:enabled="false"/>
 
                 <EditText
-                    style="@style/Foredit"
+                    style="@style/Foreditdebit"
                     android:id="@+id/netPayGoldYae"
                     android:layout_weight="5"
-                    android:background="@drawable/custom_edittext_form_background"
+                    android:background="@drawable/custom_edittext_form_background_debit"
                     android:hint=" ေရြး"
                     android:inputType="numberDecimal"
                     android:enabled="false"

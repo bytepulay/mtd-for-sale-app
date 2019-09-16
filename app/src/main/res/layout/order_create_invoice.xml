@@ -418,7 +418,7 @@
                         android:layout_marginRight="20dp"
                         android:layout_marginTop="10dp"
                         android:text="Calculate"
-                        android:background="@drawable/button_login_back"/>
+                        android:background="@drawable/custom_edittext_form_background_debit"/>
 
                     <LinearLayout
                         android:layout_marginTop="10dp"
@@ -429,28 +429,28 @@
                         android:layout_height="wrap_content">
 
                         <EditText
-                            style="@style/Foredit"
+                            style="@style/Foreditdebit"
                             android:id="@+id/remainKyat"
                             android:layout_weight="5"
-                            android:background="@drawable/custom_edittext_form_background"
+                            android:background="@drawable/custom_edittext_form_background_debit"
                             android:hint="က်ပ္"
                             android:inputType="numberDecimal"
                             android:enabled="false"/>
 
                         <EditText
-                            style="@style/Foredit"
+                            style="@style/Foreditdebit"
                             android:id="@+id/remainPal"
                             android:layout_weight="5"
-                            android:background="@drawable/custom_edittext_form_background"
+                            android:background="@drawable/custom_edittext_form_background_debit"
                             android:hint="ပဲ"
                             android:enabled="false"
                             android:inputType="numberDecimal"/>
 
                         <EditText
-                            style="@style/Foredit"
+                            style="@style/Foreditdebit"
                             android:id="@+id/remainYae"
                             android:layout_weight="5"
-                            android:background="@drawable/custom_edittext_form_background"
+                            android:background="@drawable/custom_edittext_form_background_debit"
                             android:hint=" ေရြး"
                             android:enabled="false"
                             android:inputType="numberDecimal"

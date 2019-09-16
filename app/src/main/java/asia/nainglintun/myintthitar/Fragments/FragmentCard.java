@@ -82,14 +82,15 @@ public class FragmentCard extends Fragment {
                 R.drawable.default_profile);
         sProfile.setImageBitmap(bitmap);
 
-        name.setText(MainActivity.prefConfig.readName());
+
 
         Call<Sale> saleCall = MainActivity.apiInterface.getSaleProfile(prefConfig.readName());
         saleCall.enqueue(new Callback<Sale>() {
             @Override
             public void onResponse(Call<Sale> call, Response<Sale> response) {
                 String Profile=response.body().getProfile();
-               // Toast.makeText(getContext(), Profile, Toast.LENGTH_SHORT).show();
+                String name_value = response.body().getName();
+                name.setText(name_value);
                 if(!Profile.equals("No")){
                     Glide.with(getContext()).load(ApiClient.BASE_URL +Profile).apply(RequestOptions.skipMemoryCacheOf(true).diskCacheStrategy(DiskCacheStrategy.NONE)).into(sProfile);
 
@@ -99,7 +100,6 @@ public class FragmentCard extends Fragment {
                             R.drawable.default_profile);
                     sProfile.setImageBitmap(bitmap);
                 }
-                //Toast.makeText(getContext(), "This is a " +Profile, Toast.LENGTH_SHORT).show();
             }
 
             @Override

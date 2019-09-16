@@ -364,12 +364,13 @@ private EditText voucherNumber,Gram,CuponCode,totalKyat,totalPal,totalYae,totalQ
                         AyotPal = AyotPal - 1;
                         AyotYae = AyotYae + 8;
                         remainAyotYae = AyotYae - returnAyotYae;
-                        Toast.makeText(getContext(), String.valueOf(remainAyotYae), Toast.LENGTH_SHORT).show();
+                       // Toast.makeText(getContext(), String.valueOf(remainAyotYae), Toast.LENGTH_SHORT).show();
                     } else if (returnAyotYae < AyotYae)
                     {
                         remainAyotYae = AyotYae - returnAyotYae;
-                        Toast.makeText(getContext(), String.valueOf(remainAyotYae), Toast.LENGTH_SHORT).show();
+                        //Toast.makeText(getContext(), String.valueOf(remainAyotYae), Toast.LENGTH_SHORT).show();
                     }
+
 
 
 
@@ -451,7 +452,7 @@ private EditText voucherNumber,Gram,CuponCode,totalKyat,totalPal,totalYae,totalQ
                         String DebitYae = String.valueOf(debitYae);
 
                         if (DebitKyat.contains("-") || DebitPal.contains("-") || DebitYae.contains("-")){
-                            Toast.makeText(getContext(), "Negative Operation work", Toast.LENGTH_SHORT).show();
+                          //  Toast.makeText(getContext(), "Negative Operation work", Toast.LENGTH_SHORT).show();
                                int nowDebitKyat=Math.abs(debitKyat);
                                int nowDebitPal=Math.abs(debitPal);
                              double nowDebitYae=Math.abs(debitYae);
@@ -515,7 +516,8 @@ private EditText voucherNumber,Gram,CuponCode,totalKyat,totalPal,totalYae,totalQ
                                  }
 
                              }else if (nowDebitKyat>totKyat && nowDebitPal<totPal && nowDebitYae<totYae) {
-                                 nowDebitPal = nowDebitPal - 1;
+                                 nowDebitKyat=nowDebitKyat-1;
+                                 nowDebitPal = nowDebitPal+15;
                                  nowDebitYae = nowDebitYae + 8;
                                  TOTALYAE = nowDebitYae - totYae;
                                  TOTALPAl = nowDebitPal - totPal;
@@ -752,7 +754,7 @@ private EditText voucherNumber,Gram,CuponCode,totalKyat,totalPal,totalYae,totalQ
 
                             //Toast.makeText(getContext(), "ok minus", Toast.LENGTH_SHORT).show();
                         }else if(!DebitKyat.contains("-") && !DebitPal.contains("-") && !DebitYae.contains("-")){
-                            Toast.makeText(getContext(), "positive operation is work ", Toast.LENGTH_SHORT).show();
+                          //  Toast.makeText(getContext(), "positive operation is work ", Toast.LENGTH_SHORT).show();
                             TOTALKYAT = totKyat + debitKyat;
                             TOTALPAl = totPal + debitPal;
                             TOTALYAE = totYae + debitYae;
@@ -1372,7 +1374,8 @@ private EditText voucherNumber,Gram,CuponCode,totalKyat,totalPal,totalYae,totalQ
                         ednowPaymentPal.setText(String.valueOf(-RemainPal));
                         DecimalFormat form1 = new DecimalFormat("0.00");
                         ednowPaymentYae.setText(String.valueOf(form1.format(-RemainYae)));
-                        Toast.makeText(getContext(), ednowPaymentYae.getText().toString(), Toast.LENGTH_SHORT).show();
+                      //
+                        // Toast.makeText(getContext(), ednowPaymentYae.getText().toString(), Toast.LENGTH_SHORT).show();
 
                     }else if(PayKyat>getTotalAmountKyat && PayPal<getTotalAmountPal && PayYae<getTotalAmountYae)
                     {
@@ -1894,11 +1897,7 @@ private EditText voucherNumber,Gram,CuponCode,totalKyat,totalPal,totalYae,totalQ
 
 
 
-
-        if (CustomerID.isEmpty()) {
-            edCustomerID.setError("Scan Customer Information");
-            Toast.makeText(getContext(), "Scan Cusotmer Information", Toast.LENGTH_SHORT).show();
-        } else if (!CustomerID.isEmpty() && !voucher_Number.isEmpty() && !gram.isEmpty() &&  !kyat.isEmpty() && !pal.isEmpty() && !yae.isEmpty() && !return_gram.isEmpty() && !now_remain_gram.isEmpty() && !now_remain_kyat.isEmpty() && !now_remain_pal.isEmpty() && !now_remain_yae.isEmpty() && !new_total_kyat.isEmpty() && !new_total_pal.isEmpty() && !new_total_yae.isEmpty() && !previous_remain_kyat.isEmpty() && !previous_remain_pal.isEmpty() && !previous_remain_yae.isEmpty() && !buy_debit_kyat.isEmpty() && !buy_debit_pal.isEmpty() && !buy_debit_yae.isEmpty() && !net_pay_kayt.isEmpty() && !net_pay_pal.isEmpty() && !net_pay_yae.isEmpty() && !payment_kyat.isEmpty() && !payment_pal.isEmpty() && !payment_yae.isEmpty() && !now_remain_kyat.isEmpty() && !now_remain_pal.isEmpty() && !now_remain_yae.isEmpty() &&
+        if (!CustomerID.isEmpty() && !voucher_Number.isEmpty() && !gram.isEmpty() &&  !kyat.isEmpty() && !pal.isEmpty() && !yae.isEmpty() && !return_gram.isEmpty() && !now_remain_gram.isEmpty() && !now_remain_kyat.isEmpty() && !now_remain_pal.isEmpty() && !now_remain_yae.isEmpty() && !new_total_kyat.isEmpty() && !new_total_pal.isEmpty() && !new_total_yae.isEmpty() && !previous_remain_kyat.isEmpty() && !previous_remain_pal.isEmpty() && !previous_remain_yae.isEmpty() && !buy_debit_kyat.isEmpty() && !buy_debit_pal.isEmpty() && !buy_debit_yae.isEmpty() && !net_pay_kayt.isEmpty() && !net_pay_pal.isEmpty() && !net_pay_yae.isEmpty() && !payment_kyat.isEmpty() && !payment_pal.isEmpty() && !payment_yae.isEmpty() && !now_remain_kyat.isEmpty() && !now_remain_pal.isEmpty() && !now_remain_yae.isEmpty() &&
                 !qualtity.isEmpty() && !pointEight.isEmpty() && !now_remain_quantity.isEmpty() && !now_remain_kyat.isEmpty() && !now_remain_pal.isEmpty() && !now_remain_yae.isEmpty() && !now_total_ayot_kyat.isEmpty() && !now_total_ayot_pal.isEmpty() && !now_total_ayot_yae.isEmpty()) {
 
               progressDialog.show();
@@ -1925,6 +1924,8 @@ private EditText voucherNumber,Gram,CuponCode,totalKyat,totalPal,totalYae,totalQ
                     Toast.makeText(getContext(), "fail", Toast.LENGTH_SHORT).show();
                 }
             });
+        }else {
+            Toast.makeText(getContext(), "Please Fill All Information", Toast.LENGTH_SHORT).show();
         }
     }
 }

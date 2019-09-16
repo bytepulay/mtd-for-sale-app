@@ -63,7 +63,7 @@
                     android:textSize="18sp"
                     android:textColor="#6200ee"
                     android:padding="10dp"
-                    android:text="Sale Voucher Detail"/>
+                    android:text="Order Voucher Detail"/>
 
 
                     <!--<ImageButton-->

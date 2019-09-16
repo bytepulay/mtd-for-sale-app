@@ -522,7 +522,8 @@ private Toolbar toolbar;
                             }
 
                         }else if (nowDebitKyat>totKyat && nowDebitPal<totPal && nowDebitYae<totYae) {
-                            nowDebitPal = nowDebitPal - 1;
+                            nowDebitKyat=nowDebitKyat-1;
+                            nowDebitPal = nowDebitPal+15;
                             nowDebitYae = nowDebitYae + 8;
                             TOTALYAE = nowDebitYae - totYae;
                             TOTALPAl = nowDebitPal - totPal;
@@ -997,12 +998,8 @@ private Toolbar toolbar;
 
         note_description = edNote.getText().toString();
 
-        if (CustomerID.isEmpty()) {
-            edCustomerID.setError("Sacn Customer Information");
-            Toast.makeText(getContext(), "Scan Cusotmer Information", Toast.LENGTH_SHORT).show();
-        } else if (!CustomerID.isEmpty() && !voucher_Number.isEmpty() && !new_total_kayt.isEmpty() && !new_total_pal.isEmpty() && !new_total_yae.isEmpty() && !qualtity.isEmpty() && !pointEight.isEmpty() && !kyat.isEmpty() && !pal.isEmpty() && !yae.isEmpty() && !gram.isEmpty() && !now_remain_kyat.isEmpty() && !now_remain_pal.isEmpty() && !now_remain_yae.isEmpty() && !payment_kyat.isEmpty() && !payment_pal.isEmpty() && !payment_yae.isEmpty()) {
 
-
+     if (!CustomerID.isEmpty() && !voucher_Number.isEmpty() && !new_total_kayt.isEmpty() && !new_total_pal.isEmpty() && !new_total_yae.isEmpty() && !qualtity.isEmpty() && !pointEight.isEmpty() && !kyat.isEmpty() && !pal.isEmpty() && !yae.isEmpty() && !gram.isEmpty() && !now_remain_kyat.isEmpty() && !now_remain_pal.isEmpty() && !now_remain_yae.isEmpty() && !payment_kyat.isEmpty() && !payment_pal.isEmpty() && !payment_yae.isEmpty()) {
 
             progressDialog.show();
 
@@ -1026,6 +1023,8 @@ private Toolbar toolbar;
 
             }
         });
-    }
+    }else {
+         Toast.makeText(getContext(), "Please Fill All Information", Toast.LENGTH_SHORT).show();
+     }
         }
 }

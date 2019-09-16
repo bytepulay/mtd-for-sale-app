@@ -10,6 +10,9 @@ public class Sale {
     @SerializedName("status")
     private String status;
 
+    @SerializedName("name")
+    private String name;
+
 
     public String getStatus() {
         return status;
@@ -17,5 +20,9 @@ public class Sale {
 
     public String getProfile() {
         return profile;
+    }
+
+    public String getName() {
+        return name;
     }
 }
