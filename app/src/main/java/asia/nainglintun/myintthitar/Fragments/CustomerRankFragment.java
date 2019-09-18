@@ -150,9 +150,11 @@ public class CustomerRankFragment extends Fragment {
 //        customerQrCode.setImageBitmap(bitmap);
 
 
-        Toast.makeText(getContext(), name, Toast.LENGTH_SHORT).show();
 
-        Glide.with(getContext()).load(ApiClient.BASE_URL+name+"jpg").into(customerQrCode);
+
+       // Glide.with(getContext()).load(ApiClient.BASE_URL+"uploads/"+name+"jpg").into(customerQrCode);
+
+        Glide.with(getContext()).load("http://app.myinthidarjewellery.com/mtd/uploads/"+name+".jpg").into(customerQrCode);
 
 
         return view;

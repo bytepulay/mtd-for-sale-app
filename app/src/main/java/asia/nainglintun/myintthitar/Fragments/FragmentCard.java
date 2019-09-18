@@ -59,21 +59,11 @@ public class FragmentCard extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        // Inflate the layout for this fragment
         view = inflater.inflate(R.layout.fragment_card, container, false);
 
-//        ((SalesActivity)getActivity()).setTitle("Home");
+
         toolbar = view.findViewById(R.id.toolBar);
         toolbar.setTitle("Home");
-       // toolbar.setNavigationIcon(R.drawable.ic_keyboard_backspace_black_24dp);
-
-//        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                getActivity().finish();
-//                            }
-//        });
         todoList = new ArrayList<>();
 
         sProfile = view.findViewById(R.id.saleProfileCard);
@@ -92,10 +82,9 @@ public class FragmentCard extends Fragment {
                 String name_value = response.body().getName();
                 name.setText(name_value);
                 if(!Profile.equals("No")){
-                    Glide.with(getContext()).load(ApiClient.BASE_URL +Profile).apply(RequestOptions.skipMemoryCacheOf(true).diskCacheStrategy(DiskCacheStrategy.NONE)).into(sProfile);
-
+                    Glide.with(getContext()).load(ApiClient.BASE_URL+Profile).apply(RequestOptions.skipMemoryCacheOf(true).diskCacheStrategy(DiskCacheStrategy.NONE)).into(sProfile);
                 }
-                if(Profile.equals("No")){
+                else{
                     bitmap = BitmapFactory.decodeResource(getContext().getResources(),
                             R.drawable.default_profile);
                     sProfile.setImageBitmap(bitmap);
