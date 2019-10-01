@@ -179,62 +179,6 @@ private Toolbar toolbar;
         scanForVoucher = view.findViewById(R.id.scanForvoucher);
 
 
-//         linearLayoutRing = view.findViewById(R.id.ring);
-//         linearLayoutBangles = view.findViewById(R.id.bangles);
-//         linearLayoutNecklace = view.findViewById(R.id.necklace);
-//         linearLayoutEarring  =view.findViewById(R.id.earring);
-//         hideRing = view.findViewById(R.id.hideRing);
-//         hideBangles =view.findViewById(R.id.hideBangles);
-//         hideNecklace = view.findViewById(R.id.hideNecklace);
-//         hideEarring = view.findViewById(R.id.hideEarring);
-//
-//
-//        ringTitle = view.findViewById(R.id.ringText);
-//        ringNumber= view.findViewById(R.id.ringNumber);
-//        ringPointEight = view.findViewById(R.id.ringPointEight);
-//        ringKyat = view.findViewById(R.id.ringKyat);
-//        ringPal = view.findViewById(R.id.ringPal);
-//        ringYae = view.findViewById(R.id.ringYae);
-//
-//
-//        banglesTitle = view.findViewById(R.id.banglesText);
-//        banglesNumber= view.findViewById(R.id.banglesNumber);
-//        banglesPointEight = view.findViewById(R.id.banglesPointEight);
-//        banglesKyat = view.findViewById(R.id.banglesKyat);
-//        banglesPal = view.findViewById(R.id.banglesPal);
-//        banglesYae = view.findViewById(R.id.banglesYae);
-//
-//        necklaceTitle = view.findViewById(R.id.necklaceText);
-//        necklaceNumber= view.findViewById(R.id.necklaceNumber);
-//        necklacePointEight = view.findViewById(R.id.necklacePointEight);
-//        necklaceKyat = view.findViewById(R.id.necklaceKyat);
-//        necklacePal = view.findViewById(R.id.necklacePal);
-//        necklaceYae = view.findViewById(R.id.necklaceYae);
-//
-//        earringTitle = view.findViewById(R.id.earringText);
-//        earringNumber= view.findViewById(R.id.earringNumber);
-//        earringPointEight = view.findViewById(R.id.earringPointEight);
-//        earringKyat = view.findViewById(R.id.earringKyat);
-//        earringPal = view.findViewById(R.id.earringPal);
-//        earringYae = view.findViewById(R.id.earringYae);
-//
-//
-//
-//          hideRing.setOnClickListener(this);
-//          hideBangles.setOnClickListener(this);
-//          hideNecklace.setOnClickListener(this);
-//          hideEarring.setOnClickListener(this);
-//
-//
-//        spinner = view.findViewById(R.id.spinner);
-//        ArrayAdapter<String> adapter = new ArrayAdapter<String>(getContext(),
-//                android.R.layout.simple_spinner_item,paths);
-//
-//        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-//        spinner.setAdapter(adapter);
-//        spinner.setOnItemSelectedListener(this);
-
-
         final DatePickerDialog.OnDateSetListener date = new DatePickerDialog.OnDateSetListener() {
             @Override
             public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
@@ -258,7 +202,7 @@ private Toolbar toolbar;
 
 
 
-       // totalPel.setFilters(new InputFilter[]{new InputFilterMinMax(1,15)};
+
         newTotalYae.setFilters(new InputFilter[]{new CustomRangeInputFilter(0f, 7.9f)});
         newTotalPal.setFilters(new InputFilter[]{new InputFilterMinMax(0,15)});
 
@@ -269,21 +213,6 @@ private Toolbar toolbar;
 
         TotalAyotYae.setFilters(new InputFilter[]{new CustomRangeInputFilter(0f, 7.9f)});
         TotalAyotPel.setFilters(new InputFilter[]{new InputFilterMinMax(0,15)});
-
-
-
-
-//        ringYae.setFilters(new InputFilter[]{new InputFilterMinMax(0,7)});
-//        banglesYae.setFilters(new InputFilter[]{new InputFilterMinMax(0,7)});
-//        necklaceYae.setFilters(new InputFilter[]{new InputFilterMinMax(0,7)});
-//        earringYae.setFilters(new InputFilter[]{new InputFilterMinMax(0,7)});
-//
-//
-//        ringPal.setFilters(new InputFilter[]{new InputFilterMinMax(0,15)});
-//        banglesPal.setFilters(new InputFilter[]{new InputFilterMinMax(0,15)});
-//        necklacePal.setFilters(new InputFilter[]{new InputFilterMinMax(0,15)});
-//        earringPal.setFilters(new InputFilter[]{new InputFilterMinMax(0,15)});
-
 
 
 
@@ -311,8 +240,6 @@ private Toolbar toolbar;
 
             case R.id.btnInVoiceSave:
                 saveOrderInvoice();
-                //Toast.makeText(getContext(),"To do Invoice Save Operation in SaleInvoiceCreate.java",Toast.LENGTH_LONG).show();
-
                 break;
 
             case R.id.Add:
@@ -333,11 +260,6 @@ private Toolbar toolbar;
 
                     DecimalFormat form = new DecimalFormat("0.00");
 
-
-                    //double beforePal = (((editTextGram%number2)/number2)*16);
-
-                    //double afterPal = Math.round((((((editTextGram%number2)/number2)*16)/number2)*8));
-
                     double afterPal = (((((editTextGram % number2) / number2) * 16) / number2) * 8);
 
                     int Yae = (int) afterPal;
@@ -352,92 +274,6 @@ private Toolbar toolbar;
                 }
 
             case R.id.totalAmount:
-//                try {
-//
-//                    int totKyat = Integer.parseInt(newTotalKyat.getText().toString());
-//                    int totPal = Integer.parseInt(newTotalPal.getText().toString());
-//                    double totYae = Double.parseDouble(newTotalYae.getText().toString());
-//                    double plusPal;
-//                    int plusKyat;
-//                    double plusYaeOne = 0;
-//                    int realResultPal = 0;
-//                    int resultpal = 0;
-//
-//                    int debitKyat = Integer.parseInt(previousRemainKyat.getText().toString());
-//                    int debitPal = Integer.parseInt(previousRemainPal.getText().toString());
-//                    double debitYae = Double.parseDouble(previousRemainYae.getText().toString());
-//
-//                    int TOTALKYAT = totKyat + debitKyat;
-//                    int TOTALPAl = totPal + debitPal;
-//                    double TOTALYAE = totYae + debitYae;
-//
-//                    if (TOTALPAl < 16) {
-//                        if (TOTALYAE >= 8) {
-//                            plusYaeOne = TOTALYAE / 8;
-//                            int plusYaeOneInt = (int) plusYaeOne;
-//                            TOTALPAl = TOTALPAl + plusYaeOneInt;
-//                            plusKyat = TOTALPAl / 16;
-//                            resultpal = TOTALPAl % 16;
-//
-//
-//                            TOTALKYAT = TOTALKYAT + plusKyat;
-//                            buyDebitKyat.setText(String.valueOf(TOTALKYAT));
-//                            buyDebitPal.setText(String.valueOf(resultpal));
-//                        } else if (TOTALYAE < 8) {
-//                            buyDebitKyat.setText(String.valueOf(TOTALKYAT));
-//                            buyDebitPal.setText(String.valueOf(TOTALPAl));
-//                        }
-//                    } else if (TOTALPAl >= 16) {
-//                        if (TOTALYAE >= 8) {
-//                            plusYaeOne = TOTALYAE / 8;
-//                            int plusYaeOneInt = (int) plusYaeOne;
-//                            TOTALPAl = TOTALPAl + plusYaeOneInt;
-//                            plusKyat = TOTALPAl / 16;
-//                            resultpal = TOTALPAl % 16;
-//
-//
-//                            TOTALKYAT = TOTALKYAT + plusKyat;
-//                            buyDebitKyat.setText(String.valueOf(TOTALKYAT));
-//                            buyDebitPal.setText(String.valueOf(resultpal));
-//                        } else if (TOTALYAE < 8) {
-//                            plusKyat = TOTALPAl / 16;
-//                            resultpal = TOTALPAl % 16;
-//                            TOTALKYAT = TOTALKYAT + plusKyat;
-//                            buyDebitKyat.setText(String.valueOf(TOTALKYAT));
-//                            buyDebitPal.setText(String.valueOf(resultpal));
-//                        }
-//                    }
-//                    if (TOTALYAE < 8) {
-//                        DecimalFormat form1 = new DecimalFormat("0.00");
-//                        buyDebitYae.setText(String.valueOf(form1.format(TOTALYAE)));
-//                    } else if (TOTALYAE >= 8) {
-//                        double resultYae;
-//                        plusPal = TOTALYAE / 8;
-//                        resultYae = TOTALYAE % 8;
-//                        double totalPals = (double) resultpal;
-//
-//                        double resultPal1 = totalPals + plusPal;
-//                        int resultPalInt = (int) resultPal1;
-//
-////                    if(resultPalInt>=16){
-////                        realResultPal= resultPalInt%16;
-////                        buyDebitPal.setText(String.valueOf(realResultPal));
-////                    }else if(resultPalInt<16){
-////                    buyDebitPal.setText(String.valueOf(resultPalInt));
-////                }
-////
-//
-//
-//                        DecimalFormat form1 = new DecimalFormat("0.00");
-//                        buyDebitYae.setText(String.valueOf(form1.format(resultYae)));
-//
-//                    }
-//
-//
-//                    break;
-//                }catch (Exception e){
-//                    e.printStackTrace();
-//                }
                 try {
                     int totKyat = Integer.parseInt(newTotalKyat.getText().toString());
                     int totPal = Integer.parseInt(newTotalPal.getText().toString());
@@ -742,7 +578,6 @@ private Toolbar toolbar;
                         }
 
                     }else if(!DebitKyat.contains("-") && !DebitPal.contains("-") && !DebitYae.contains("-")){
-                       // Toast.makeText(getContext(), "positive operation is work ", Toast.LENGTH_SHORT).show();
                         TOTALKYAT = totKyat + debitKyat;
                         TOTALPAl = totPal + debitPal;
                         TOTALYAE = totYae + debitYae;
@@ -794,18 +629,6 @@ private Toolbar toolbar;
 
                             double resultPal1 = totalPals + plusPal;
                             int resultPalInt = (int) resultPal1;
-//
-//                    if(resultPalInt>=16){
-//                        plusForKyat=resultPalInt/16;
-//                        TOTALKYAT = TOTALKYAT+plusForKyat;
-//                        buyDebitKyat.setText(String.valueOf(TOTALKYAT));
-//                        realResultPal= resultPalInt%16;
-//                        buyDebitPal.setText(String.valueOf(realResultPal));
-//                    }else if(resultPalInt<16){
-//                        buyDebitPal.setText(String.valueOf(resultPalInt));
-//                    }
-
-
                             DecimalFormat form1 = new DecimalFormat("0.00");
                             buyDebitYae.setText(String.valueOf(form1.format(resultYae)));
 
