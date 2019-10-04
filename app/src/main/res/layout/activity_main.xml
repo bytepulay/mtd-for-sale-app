@@ -42,7 +42,7 @@
             android:textColor="#fff"
            />
 
-        <asia.nainglintun.myintthitar.Font.UniZawgyiTextView
+        <asia.nainglintun.myinthidar.Font.UniZawgyiTextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Or"
