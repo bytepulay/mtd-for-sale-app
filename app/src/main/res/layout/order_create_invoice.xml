@@ -36,6 +36,111 @@
                         android:src="@drawable/ic_qr_code_scan"
                         android:background="@drawable/button_login_back"/>
 
+                    <Button
+                        android:enabled="false"
+                        android:textColor="#FFFFFF"
+                        android:id="@+id/btnChooseSaleMember"
+                        android:layout_width="match_parent"
+                        android:layout_height="60dp"
+                        android:textAllCaps="false"
+                        android:layout_marginLeft="20dp"
+                        android:layout_marginRight="20dp"
+                        android:layout_marginTop="10dp"
+                        android:text="Choose Sale Member"
+                        android:background="@drawable/button_login_back"/>
+
+
+                    <LinearLayout
+                        android:background="@drawable/custom_edittext_form_background"
+                        android:layout_marginRight="20dp"
+                        android:layout_marginLeft="20dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginBottom="10dp"
+                        android:padding="10dp"
+                        android:radius="6dp"
+                        android:elevation="8dp"
+                        android:id="@+id/saleInfoRoot"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+
+                    <LinearLayout
+                            android:layout_marginLeft="20dp"
+                            android:layout_marginRight="20dp"
+                            android:layout_marginTop="10dp"
+                            android:weightSum="10"
+                            android:orientation="horizontal"
+                            android:id="@+id/saleInfo1"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
+                            <TextView
+                                android:layout_weight="5"
+                                android:id="@+id/saleOne"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"/>
+
+                            <TextView
+                                android:layout_weight="5"
+                                android:id="@+id/saleTwo"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"/>
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_marginLeft="20dp"
+                            android:layout_marginRight="20dp"
+                            android:layout_marginTop="10dp"
+                            android:weightSum="10"
+                            android:orientation="horizontal"
+                            android:id="@+id/saleInfo2"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
+
+                            <TextView
+                                android:layout_weight="5"
+                                android:id="@+id/saleThree"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"/>
+
+
+                            <TextView
+                                android:layout_weight="5"
+                                android:id="@+id/saleFour"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"/>
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_marginLeft="20dp"
+                            android:layout_marginRight="20dp"
+                            android:layout_marginTop="10dp"
+                            android:weightSum="10"
+                            android:orientation="horizontal"
+                            android:id="@+id/saleInfo3"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
+
+                            <TextView
+                                android:layout_weight="5"
+                                android:id="@+id/saleFive"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"/>
+                            <TextView
+                                android:layout_weight="5"
+                                android:id="@+id/saleSix"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"/>
+
+
+                        </LinearLayout>
+                    </LinearLayout>
+
+
+
 
                     <EditText
                         style="@style/Foredit"
@@ -100,7 +205,7 @@
                             android:id="@+id/kyat"
                             android:layout_weight="5"
                             android:background="@drawable/custom_edittext_form_background"
-                            android:hint="က်ပ္"
+                            android:hint="ကျပ်"
                             android:inputType="numberDecimal"
                            />
 
@@ -119,7 +224,7 @@
                             android:id="@+id/yawe"
                             android:layout_weight="5"
                             android:background="@drawable/custom_edittext_form_background"
-                            android:hint=" ေရြး"
+                            android:hint="ရွေး"
                             android:inputType="numberDecimal"
                             />
 
@@ -131,7 +236,7 @@
                         android:layout_marginTop="8dp"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="ယခုဝယ္သည့္ ေရႊခ်ိန္ (100%)"/>
+                        android:text="ယခုဝယ်သည့် ရွှေချိန် (100%)"/>
 
 
                     <LinearLayout
@@ -147,7 +252,7 @@
                             android:id="@+id/totalkyat"
                             android:layout_weight="5"
                             android:background="@drawable/custom_edittext_form_background"
-                            android:hint="က်ပ္"
+                            android:hint="ကျပ်"
                             android:inputType="numberDecimal" />
 
                         <EditText
@@ -163,7 +268,7 @@
                             android:id="@+id/totalyae"
                             android:layout_weight="5"
                             android:background="@drawable/custom_edittext_form_background"
-                            android:hint=" ေရြး"
+                            android:hint="ရွေး"
                             android:inputType="numberDecimal"
                             />
 
@@ -176,7 +281,7 @@
                         android:layout_marginTop="8dp"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="ယခင္လက္က်န္ အေျကြး"/>
+                        android:text="ယခင်လက်ကျန် အကြွေး"/>
 
 
                     <LinearLayout
@@ -267,7 +372,7 @@
                             android:id="@+id/debitKyat"
                             android:layout_weight="5"
                             android:background="@drawable/custom_edittext_form_background"
-                            android:hint="က်ပ္"
+                            android:hint="ကျပ်"
                             android:inputType="numberDecimal"
                             android:enabled="false"/>
 
@@ -285,7 +390,7 @@
                             android:id="@+id/debitYae"
                             android:layout_weight="5"
                             android:background="@drawable/custom_edittext_form_background"
-                            android:hint=" ေရြး"
+                            android:hint="ရွေး"
                             android:inputType="numberDecimal"
                             android:enabled="false"
                             />
@@ -299,7 +404,7 @@
                         android:layout_marginTop="8dp"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="စုစုေပါင္း ေရႊခ်ိန္ (100%)"/>
+                        android:text="စုစုပေါင်း ရွှေချိန် (100%)"/>
 
                     <Button
                         android:textColor="#FFFFFF"
@@ -326,7 +431,7 @@
                             android:id="@+id/buyDebitKyat"
                             android:layout_weight="5"
                             android:background="@drawable/custom_edittext_form_background"
-                            android:hint="က်ပ္"
+                            android:hint="ကျပ်"
                             android:inputType="numberDecimal"
                             android:enabled="false"/>
 
@@ -344,7 +449,7 @@
                             android:id="@+id/buyDebitYae"
                             android:layout_weight="5"
                             android:background="@drawable/custom_edittext_form_background"
-                            android:hint=" ေရြး"
+                            android:hint="ရွေး"
                             android:enabled="false"
                             android:inputType="numberDecimal"
                             />
@@ -358,7 +463,7 @@
                         android:layout_marginTop="8dp"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="ယခုေပးေခ်သည့္ ေရႊခ်ိန္ (100%)"/>
+                        android:text="ယခုပေးချေသည့် ရွှေချိန် (100%)"/>
 
                     <LinearLayout
                         android:layout_marginTop="10dp"
@@ -374,7 +479,7 @@
                             android:id="@+id/paymentKyat"
                             android:layout_weight="5"
                             android:background="@drawable/custom_edittext_form_background"
-                            android:hint="က်ပ္"
+                            android:hint="ကျပ်"
                             android:inputType="numberDecimal" />
 
                         <EditText
@@ -392,7 +497,7 @@
                             android:id="@+id/paymentYae"
                             android:layout_weight="5"
                             android:background="@drawable/custom_edittext_form_background"
-                            android:hint=" ေရြး"
+                            android:hint="ရွေး"
                             android:inputType="numberDecimal"
                             />
 
@@ -405,7 +510,7 @@
                         android:layout_marginTop="8dp"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="ယခုလက္က်န္ ေရႊခ်ိန္ (100%)"/>
+                        android:text="ယခုလက်ကျန် ရွှေချိန် (100%)"/>
 
 
                     <Button
@@ -433,7 +538,7 @@
                             android:id="@+id/remainKyat"
                             android:layout_weight="5"
                             android:background="@drawable/custom_edittext_form_background_debit"
-                            android:hint="က်ပ္"
+                            android:hint="ကျပ်"
                             android:inputType="numberDecimal"
                             android:enabled="false"/>
 
@@ -451,7 +556,7 @@
                             android:id="@+id/remainYae"
                             android:layout_weight="5"
                             android:background="@drawable/custom_edittext_form_background_debit"
-                            android:hint=" ေရြး"
+                            android:hint="ရွေး"
                             android:enabled="false"
                             android:inputType="numberDecimal"
                             />
@@ -498,7 +603,8 @@
                         android:layout_marginTop="10dp"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="စုစုေပါင္း အေလ်ာ့"/>
+                        android:text="စုစုပေါင်း အလျော့"/>
+
                     <LinearLayout
                         android:weightSum="15"
                         android:orientation="horizontal"
@@ -510,7 +616,7 @@
                             android:id="@+id/ayotKyat"
                             android:layout_weight="5"
                             android:background="@drawable/custom_edittext_form_background"
-                            android:hint="က်ပ္"
+                            android:hint="ကျပ်"
                             android:inputType="numberDecimal" />
 
                         <EditText
@@ -526,7 +632,7 @@
                             android:id="@+id/ayotYae"
                             android:layout_weight="5"
                             android:background="@drawable/custom_edittext_form_background"
-                            android:hint="ေရြး"
+                            android:hint="ရွေး"
                             android:inputType="numberDecimal"
                             />
 

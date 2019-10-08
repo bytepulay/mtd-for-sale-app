@@ -221,12 +221,7 @@ public class OrderListFragment extends Fragment implements SearchView.OnQueryTex
                 debitSaleName = salehistories.get(position).getDebitSaleName();
 
 
-                //Toast.makeText(getContext(), "gram is" + salehistories.get(position).getGram(), Toast.LENGTH_SHORT).show();
-
-
-              // customerNrc = salehistories.get(position).getCustomerNrc();
-
-                //Toast.makeText(getContext(),position + town + ID + ringDescription + banglesDescription + necklaceDescription + earringDescription + " is selected! and to do get data from database", Toast.LENGTH_LONG).show();
+                              //Toast.makeText(getContext(),position + town + ID + ringDescription + banglesDescription + necklaceDescription + earringDescription + " is selected! and to do get data from database", Toast.LENGTH_LONG).show();
                 Showpopup(voucher,sDate,cuponcode,totalAyotKyat,totalAyotPal,totalAyotYae,customerName,shopName,customerAddress,customerPhoneNumber,customerDob,town,ringDescription,ringNumber,ringPointEight,ringKyat,ringPal,ringYae,
                         banglesDescription,banglesNumber,banglesPointEight,banglesKyat,banglesPal,banglesYae,
                         necklaceDescription,necklaceNumber,necklacePointEight,necklaceKyat,necklacePal,necklaceYae,
@@ -465,6 +460,8 @@ public class OrderListFragment extends Fragment implements SearchView.OnQueryTex
         ednowPaymentKyat = dialog.findViewById(R.id.paymentKyat);
         ednowPaymentYae = dialog.findViewById(R.id.paymentYae);
         ednowPaymentPal = dialog.findViewById(R.id.paymentPal);
+        ednowPaymentKyat.setText(paymentkyat);
+        ednowPaymentPal.setText(paymentpal);
         ednowPaymentYae.setText(paymentyae);
 
         ednowRemainKyat = dialog.findViewById(R.id.remainKyat);
@@ -856,8 +853,6 @@ public class OrderListFragment extends Fragment implements SearchView.OnQueryTex
                                 Toast.makeText(getContext(), "Update successfully", Toast.LENGTH_SHORT).show();
                             }
 
-                            // Toast.makeText(getContext(), "do response" + ID, Toast.LENGTH_SHORT).show();
-
                         }
 
                         @Override
@@ -871,35 +866,6 @@ public class OrderListFragment extends Fragment implements SearchView.OnQueryTex
             }
         });
 
-
-
-
-
-
-
-//
-//                recyclerViewEdit = dialog.findViewById(R.id.recyclerViewEdit);
-//                recyclerViewEdit.setVisibility(View.VISIBLE);
-//                layoutManager = new LinearLayoutManager(getContext());
-//                recyclerViewEdit.setLayoutManager(layoutManager);
-//                recyclerViewEdit.setHasFixedSize(true);
-//                adapterEditDialog = new editbindvouchersaleRecyclerAdapter(nameList,dataList,getContext());
-//                recyclerViewEdit.setAdapter(adapterEditDialog);
-
-//
-//            }
-//        });
-
-
-
-//        dialogEdit.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//               dialog.dismiss();
-//               dialog.setContentView(R.layout.sale_create_invoice);
-//               dialog.show();
-//            }
-//        });
 
 
         dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));

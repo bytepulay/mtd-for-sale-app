@@ -173,7 +173,7 @@ public class Orderhistory {
     @SerializedName("customer_shop")
     private String customerShop;
 
-    @SerializedName("phone_number")
+    @SerializedName("customer_phone_number")
     private String customerPhoneNumber;
 
     @SerializedName("customer_address")

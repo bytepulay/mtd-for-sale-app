@@ -44,16 +44,17 @@ import static asia.nainglintun.myinthidar.Activities.MainActivity.prefConfig;
  */
 public class SaleSettingFragment extends Fragment implements View.OnClickListener {
 
-    private Button btnSaleChangePassword,bnLogout;
-    private EditText editTextSaleChangePassword,editTextSaleComfirmPassword;
-    private EditText userName,shopName,phoneNumber,Address,DOB,Nrc,Township,customerName;
+    private Button btnSaleChangePassword, bnLogout;
+    private EditText editTextSaleChangePassword, editTextSaleComfirmPassword;
+    private EditText userName, shopName, phoneNumber, Address, DOB, Nrc, Township, customerName;
     private CircleImageView saleProfile;
-    private final int IMG_REQUEST=1;
-   private Bitmap bitmap;
-   private Toolbar toolbar;
+    private final int IMG_REQUEST = 1;
+    private Bitmap bitmap;
+    private Toolbar toolbar;
 
 
     private ProgressDialog progressDialog;
+
     public SaleSettingFragment() {
         // Required empty public constructor
     }
@@ -62,10 +63,8 @@ public class SaleSettingFragment extends Fragment implements View.OnClickListene
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_sale_setting, container, false);
 
-       // ((SalesActivity)getActivity()).setTitle("Setting");
+        View view = inflater.inflate(R.layout.fragment_sale_setting, container, false);
         toolbar = view.findViewById(R.id.toolBar);
         toolbar.setTitle("Setting");
         toolbar.setNavigationIcon(R.drawable.ic_keyboard_backspace_black_24dp);
@@ -80,8 +79,6 @@ public class SaleSettingFragment extends Fragment implements View.OnClickListene
         progressDialog = new ProgressDialog(getContext());
         progressDialog.setMessage("please wait.....");
 
-
-
         btnSaleChangePassword = view.findViewById(R.id.btnSaleProfile);
         bnLogout = view.findViewById(R.id.btnLogout);
         saleProfile = view.findViewById(R.id.saleProfile);
@@ -89,29 +86,32 @@ public class SaleSettingFragment extends Fragment implements View.OnClickListene
                 R.drawable.default_profile);
         saleProfile.setImageBitmap(bitmap);
 
-        Call<Sale> saleCall = MainActivity.apiInterface.getSaleProfile(prefConfig.readName());
-        saleCall.enqueue(new Callback<Sale>() {
-            @Override
-            public void onResponse(Call<Sale> call, Response<Sale> response) {
-                String Profile=response.body().getProfile();
-                //Toast.makeText(getContext(), Profile, Toast.LENGTH_SHORT).show();
-                if(!Profile.equals("No")){
-                    Glide.with(getContext()).load(ApiClient.BASE_URL +Profile).apply(RequestOptions.skipMemoryCacheOf(true).diskCacheStrategy(DiskCacheStrategy.NONE)).into(saleProfile);
+        try {
+
+            Call<Sale> saleCall = MainActivity.apiInterface.getSaleProfile(prefConfig.readName());
+            saleCall.enqueue(new Callback<Sale>() {
+                @Override
+                public void onResponse(Call<Sale> call, Response<Sale> response) {
+                    String Profile = response.body().getProfile();
+                    if (!Profile.equals("No")) {
+                        Glide.with(getContext()).load(ApiClient.BASE_URL + Profile).apply(RequestOptions.skipMemoryCacheOf(true).diskCacheStrategy(DiskCacheStrategy.NONE)).into(saleProfile);
+
+                    }
+                    if (Profile.equals("No")) {
+                        bitmap = BitmapFactory.decodeResource(getContext().getResources(),
+                                R.drawable.default_profile);
+                        saleProfile.setImageBitmap(bitmap);
+                    }
+                }
+
+                @Override
+                public void onFailure(Call<Sale> call, Throwable t) {
 
                 }
-                if(Profile.equals("No")){
-                    bitmap = BitmapFactory.decodeResource(getContext().getResources(),
-                            R.drawable.default_profile);
-                    saleProfile.setImageBitmap(bitmap);
-                }
-                //Toast.makeText(getContext(), "This is a " +Profile, Toast.LENGTH_SHORT).show();
-            }
-
-            @Override
-            public void onFailure(Call<Sale> call, Throwable t) {
-
-            }
-        });
+            });
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         saleProfile.setOnClickListener(this);
         btnSaleChangePassword.setOnClickListener(this);
         bnLogout.setOnClickListener(this);
@@ -120,30 +120,27 @@ public class SaleSettingFragment extends Fragment implements View.OnClickListene
 
     @Override
     public void onClick(View v) {
-        switch (v.getId()){
+        switch (v.getId()) {
             case R.id.saleProfile:
                 selectSaleImage();
                 break;
             case R.id.btnSaleProfile:
-               uploadImage();
+                uploadImage();
                 break;
             case R.id.btnLogout:
-
-                MainActivity.prefConfig.DeleteName(MainActivity.prefConfig.readName());
+                MainActivity.prefConfig.DeleteName();
                 startActivity(new Intent(getContext(), MainActivity.class));
                 getActivity().finish();
-
-
                 break;
         }
     }
 
-    private void uploadImage(){
+    private void uploadImage() {
         progressDialog.show();
-        Log.e("work","update method is work");
+        Log.e("work", "update method is work");
         String path = imageToString();
         String user_name = MainActivity.prefConfig.readName();
-        Call<Sale> call = MainActivity.apiInterface.UpdateSaleProfile(user_name,path);
+        Call<Sale> call = MainActivity.apiInterface.UpdateSaleProfile(user_name, path);
         call.enqueue(new Callback<Sale>() {
             @Override
             public void onResponse(Call<Sale> call, Response<Sale> response) {
@@ -157,7 +154,7 @@ public class SaleSettingFragment extends Fragment implements View.OnClickListene
             @Override
             public void onFailure(Call<Sale> call, Throwable t) {
                 progressDialog.dismiss();
-               Toast.makeText(getContext(), "Change Fail", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(), "Change Fail", Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -167,7 +164,7 @@ public class SaleSettingFragment extends Fragment implements View.OnClickListene
         Intent intent = new Intent();
         intent.setType("image/*");
         intent.setAction(Intent.ACTION_GET_CONTENT);
-        startActivityForResult(intent,IMG_REQUEST);
+        startActivityForResult(intent, IMG_REQUEST);
     }
 
     @Override
@@ -175,13 +172,11 @@ public class SaleSettingFragment extends Fragment implements View.OnClickListene
         super.onActivityResult(requestCode, resultCode, data);
 
 
-        if(requestCode==IMG_REQUEST && resultCode==RESULT_OK && data!=null){
+        if (requestCode == IMG_REQUEST && resultCode == RESULT_OK && data != null) {
             Uri path = data.getData();
             try {
-                bitmap = MediaStore.Images.Media.getBitmap(getActivity().getContentResolver(),path);
+                bitmap = MediaStore.Images.Media.getBitmap(getActivity().getContentResolver(), path);
                 saleProfile.setImageBitmap(bitmap);
-                //imageView.setVisibility(View.VISIBLE);
-//                Attributes.Name.setVisibility(View.VISIBLE);
 
             } catch (IOException e) {
                 e.printStackTrace();
@@ -191,10 +186,10 @@ public class SaleSettingFragment extends Fragment implements View.OnClickListene
 
     }
 
-    private String imageToString(){
+    private String imageToString() {
         ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
-        bitmap.compress(Bitmap.CompressFormat.JPEG,100,byteArrayOutputStream);
+        bitmap.compress(Bitmap.CompressFormat.JPEG, 100, byteArrayOutputStream);
         byte[] imgByte = byteArrayOutputStream.toByteArray();
-        return Base64.encodeToString(imgByte,Base64.DEFAULT);
+        return Base64.encodeToString(imgByte, Base64.DEFAULT);
     }
 }

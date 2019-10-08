@@ -4,10 +4,13 @@ package asia.nainglintun.myinthidar.Fragments;
 import android.app.DatePickerDialog;
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
+import android.support.annotation.RequiresApi;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.Toolbar;
 import android.text.InputFilter;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,10 +22,15 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.abdeveloper.library.MultiSelectDialog;
+import com.abdeveloper.library.MultiSelectModel;
+
 import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 import java.util.Locale;
 
 import asia.nainglintun.myinthidar.Activities.CustomRangeInputFilter;
@@ -32,6 +40,7 @@ import asia.nainglintun.myinthidar.Activities.OrderScanForVoucherActivity;
 import asia.nainglintun.myinthidar.Activities.SalesActivity;
 import asia.nainglintun.myinthidar.R;
 import asia.nainglintun.myinthidar.models.OrderInoviceData;
+import asia.nainglintun.myinthidar.models.Sale;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -47,15 +56,14 @@ private LinearLayout linearLayoutCustomerNew;
 public static EditText edShopName,edCustomerName,edCustomerPhone,edDOB,edCustomerAddress,edCustomerID,edCustomerTown,edCustomerNrc;
 public static EditText edCustomerUserName,previousRemainKyat,previousRemainPal,previousRemainYae;
 private  EditText saleDate;
-    public static TextView updateVoucher,updateSaleDate,updateSaleName;
+public static TextView updateVoucher,updateSaleDate,updateSaleName;
 final Calendar myCalendar = Calendar.getInstance();
 private Button btnCreateInvoiceSave,Bnadd,BnCalculate,BntotalAmount,BntotalRemainAmount;;
 private ImageButton scanForVoucher;
-//private LinearLayout linearLayoutRing,linearLayoutBangles,linearLayoutNecklace,linearLayoutEarring;
 private Button hideRing,hideBangles,hideNecklace,hideEarring;
-//private Spinner spinner;
 private ProgressDialog progressDialog;
 private Toolbar toolbar;
+private TextView textViews1,textViews2,textViews3,textViews4,textViews5,textViews6;
 
 
     private EditText voucherNumber,Gram,CuponCode,totalKyat,totalPal,totalYae,totalQualtity,totalPointEight,
@@ -68,8 +76,25 @@ private Toolbar toolbar;
     int TOTALPAl = 0;
     double TOTALYAE = 0;
 
+    public  String sale0,sale1,sale2,sale3,sale4,sale5,sale;
+    public String s1,s2,s3,s4,s5,s6;
+    LinearLayout selectedSaleLayout;
+
+
+    List<Sale> saleList;
+    List<String> filterSaleList = new ArrayList<>();
+
+    ArrayList<MultiSelectModel> listOfCountries,listOfSale;
+
+    private String TAG = "Cancel";
+
+    Button show_dialog_btn;
+
+    MultiSelectDialog multiSelectDialog;
+
+
     public OrderInvoiceCreate() {
-        // Required empty public constructor
+
     }
 
 
@@ -95,6 +120,20 @@ private Toolbar toolbar;
 
         progressDialog.setTitle("Inserting Data");
         progressDialog.setMessage("Please wait..");
+
+
+        selectedSaleLayout = view.findViewById(R.id.saleInfoRoot);
+        textViews1 = view.findViewById(R.id.saleOne);
+        textViews2 = view.findViewById(R.id.saleTwo);
+        textViews3 = view.findViewById(R.id.saleThree);
+        textViews4 = view.findViewById(R.id.saleFour);
+        textViews5 = view.findViewById(R.id.saleFive);
+        textViews6 = view.findViewById(R.id.saleSix);
+
+
+        show_dialog_btn = view.findViewById(R.id.btnChooseSaleMember);
+        show_dialog_btn.setOnClickListener(this);
+
 
         totalKyat = view.findViewById(R.id.kyat);
         totalYae = view.findViewById(R.id.yawe);
@@ -173,6 +212,27 @@ private Toolbar toolbar;
 
         scanForVoucher = view.findViewById(R.id.scanForvoucher);
 
+        progressDialog.show();
+        Call<List<Sale>> call = MainActivity.apiInterface.sale_info();
+        call.enqueue(new Callback<List<Sale>>() {
+
+            @Override
+            public void onResponse(Call<List<Sale>> call, Response<List<Sale>> response) {
+                progressDialog.dismiss();
+                saleList = response.body();
+                insertSaleinfo(saleList);
+                show_dialog_btn.setEnabled(true);
+
+            }
+
+            @Override
+            public void onFailure(Call<List<Sale>> call, Throwable t) {
+
+            }
+        });
+
+
+
 
         final DatePickerDialog.OnDateSetListener date = new DatePickerDialog.OnDateSetListener() {
             @Override
@@ -226,6 +286,11 @@ private Toolbar toolbar;
     @Override
     public void onClick(View v) {
         switch (v.getId()){
+
+            case R.id.btnChooseSaleMember:
+                multiSelectDialog.show(getActivity().getSupportFragmentManager(), "multiSelectDialog");
+
+                break;
 
             case R.id.scanForvoucher:
 
@@ -695,9 +760,6 @@ private Toolbar toolbar;
     }
 
 
-
-
-
     public void saveOrderInvoice(){
        String voucher_Number,sale_Date,qualtity,pointEight,kyat,pal,yae,gram,cuponCode,CustomerID,totalAyotkyat,totalAyotPel,totalAyotYae,
                previous_remain_kyat,previous_remain_pal,previous_remain_yae,buy_debit_kyat,buy_debit_pal,buy_debit_yae,payment_kyat,payment_pal,payment_yae,now_remain_kyat,now_remain_pal,now_remain_yae,
@@ -754,13 +816,6 @@ private Toolbar toolbar;
        cuponCode = CuponCode.getText().toString();
 
 
-////        qualtity = totalQualtity.getText().toString();
-////        pointEight = totalPointEight.getText().toString();
-////        kyat = totalKyat.getText().toString();
-////        pal = totalPal.getText().toString();
-////        yae = totalYae.getText().toString();
-//        gram = Gram.getText().toString();
-
 
         totalAyotkyat = TotalAyotKyat.getText().toString();
         if (totalAyotkyat.isEmpty()){
@@ -816,12 +871,22 @@ private Toolbar toolbar;
 
         note_description = edNote.getText().toString();
 
+        s1 = filterSaleList.get(0);
+        s2 = filterSaleList.get(1);
+        s3 = filterSaleList.get(2);
+        s4 = filterSaleList.get(3);
+        s5 = filterSaleList.get(4);
+        s6 = filterSaleList.get(5);
 
-     if (!CustomerID.isEmpty() && !voucher_Number.isEmpty() && !new_total_kayt.isEmpty() && !new_total_pal.isEmpty() && !new_total_yae.isEmpty() && !qualtity.isEmpty() && !pointEight.isEmpty() && !kyat.isEmpty() && !pal.isEmpty() && !yae.isEmpty() && !gram.isEmpty() && !now_remain_kyat.isEmpty() && !now_remain_pal.isEmpty() && !now_remain_yae.isEmpty() && !payment_kyat.isEmpty() && !payment_pal.isEmpty() && !payment_yae.isEmpty()) {
+        Log.d("MYTEST",s1 + s2 + s3 + s4 + s5 + s6 );
+
+
+
+        if (!CustomerID.isEmpty() && !voucher_Number.isEmpty() && !new_total_kayt.isEmpty() && !new_total_pal.isEmpty() && !new_total_yae.isEmpty() && !qualtity.isEmpty() && !pointEight.isEmpty() && !kyat.isEmpty() && !pal.isEmpty() && !yae.isEmpty() && !gram.isEmpty() && !now_remain_kyat.isEmpty() && !now_remain_pal.isEmpty() && !now_remain_yae.isEmpty() && !payment_kyat.isEmpty() && !payment_pal.isEmpty() && !payment_yae.isEmpty()) {
 
             progressDialog.show();
 
-        Call<OrderInoviceData> call = MainActivity.apiInterface.insertOrderInvoice(MainActivity.prefConfig.readName(),voucher_Number,sale_Date,new_total_kayt,new_total_pal,new_total_yae,qualtity,pointEight,totalAyotkyat,totalAyotPel,totalAyotYae,kyat,pal,yae,gram,cuponCode,CustomerID,previous_remain_kyat,previous_remain_pal,previous_remain_yae,buy_debit_kyat,buy_debit_pal,buy_debit_yae,
+        Call<OrderInoviceData> call = MainActivity.apiInterface.insertOrderInvoice(MainActivity.prefConfig.readName(),s1,s2,s3,s4,s5,s6,voucher_Number,sale_Date,new_total_kayt,new_total_pal,new_total_yae,qualtity,pointEight,totalAyotkyat,totalAyotPel,totalAyotYae,kyat,pal,yae,gram,cuponCode,CustomerID,previous_remain_kyat,previous_remain_pal,previous_remain_yae,buy_debit_kyat,buy_debit_pal,buy_debit_yae,
                 payment_kyat,payment_pal,payment_yae,now_remain_kyat,now_remain_pal,now_remain_yae,note_description);
 
         call.enqueue(new Callback<OrderInoviceData>() {
@@ -830,6 +895,7 @@ private Toolbar toolbar;
                 progressDialog.dismiss();
                 if (response.body().getResponse().equals("ok")){
                     Toast.makeText(getContext(),"order Invoice Successfully" ,Toast.LENGTH_LONG).show();
+                    ///SalesActivity.fragmentManager.beginTransaction().add(R.id.frame_layout_sales,new FragmentCard()).commit();
                 } else if (response.body().getResponse().equals("error")){
                     Toast.makeText(getContext(),"order Invoice fail",Toast.LENGTH_LONG).show();
                 }
@@ -845,4 +911,191 @@ private Toolbar toolbar;
          Toast.makeText(getContext(), "Please Fill All Information", Toast.LENGTH_SHORT).show();
      }
         }
+
+
+    public void insertSaleinfo(List<Sale> list) {
+        listOfSale = new ArrayList<>();
+        for (int i = 0; i < saleList.size(); i++) {
+            listOfSale.add(new MultiSelectModel(saleList.get(i).getId(), saleList.get(i).getName()));
+
+        }
+        multiSelectDialog = new MultiSelectDialog()
+                .title(getResources().getString(R.string.multi_select_dialog_title)) //setting title for dialog
+                .titleSize(25)
+                .positiveText("Done")
+                .negativeText("Cancel")
+                .setMinSelectionLimit(1)
+                .setMaxSelectionLimit(6)
+                // .preSelectIDsList(alreadySelectedCountries) //List of ids that you need to be selected
+                .multiSelectList(listOfSale) // the multi select model list with ids and name
+                .onSubmit(new MultiSelectDialog.SubmitCallbackListener() {
+                    @RequiresApi(api = Build.VERSION_CODES.N)
+                    @Override
+                    public void onSelected(ArrayList<Integer> selectedIds, ArrayList<String> selectedNames, String dataString) {
+                        //will return list of selected IDS
+
+                        for (int i = 0; i < selectedIds.size(); i++) {
+                            Toast.makeText(getContext(), "Selected Ids : " + selectedIds.get(i) + "\n" +
+                                    "Selected Names : " + selectedNames.get(i) + "\n" +
+                                    "DataString : " + dataString, Toast.LENGTH_SHORT).show();
+                            filterSaleList.clear();
+                            if (selectedNames.size() == 6) {
+                                sale0 = selectedNames.get(0);
+                                sale1 = selectedNames.get(1);
+                                sale2 = selectedNames.get(2);
+                                sale3 = selectedNames.get(3);
+                                sale4 = selectedNames.get(4);
+                                sale5 = selectedNames.get(5);
+                                filterSaleList.clear();
+                                filterSaleList.add(sale0);
+                                filterSaleList.add(sale1);
+                                filterSaleList.add(sale2);
+                                filterSaleList.add(sale3);
+                                filterSaleList.add(sale4);
+                                filterSaleList.add(sale5);
+
+                                textViews1.setText("");
+                                textViews2.setText("");
+                                textViews3.setText("");
+                                textViews4.setText("");
+                                textViews5.setText("");
+                                textViews6.setText("");
+
+                                textViews1.setText(sale0);
+                                textViews2.setText(sale1);
+                                textViews3.setText(sale2);
+                                textViews4.setText(sale3);
+                                textViews5.setText(sale4);
+                                textViews6.setText(sale5);
+                                Toast.makeText(getContext(), sale0 + sale1 + sale2 + sale3 + sale4 + sale5, Toast.LENGTH_SHORT).show();
+                            } else if (selectedNames.size() == 5) {
+                                sale0 = selectedNames.get(0);
+                                sale1 = selectedNames.get(1);
+                                sale2 = selectedNames.get(2);
+                                sale3 = selectedNames.get(3);
+                                sale4 = selectedNames.get(4);
+                                filterSaleList.clear();
+                                filterSaleList.add(sale0);
+                                filterSaleList.add(sale1);
+                                filterSaleList.add(sale2);
+                                filterSaleList.add(sale3);
+                                filterSaleList.add(sale4);
+                                filterSaleList.add(null);
+
+                                textViews1.setText("");
+                                textViews2.setText("");
+                                textViews3.setText("");
+                                textViews4.setText("");
+                                textViews5.setText("");
+                                textViews6.setText("");
+
+                                textViews1.setText(sale0);
+                                textViews2.setText(sale1);
+                                textViews3.setText(sale2);
+                                textViews4.setText(sale3);
+                                textViews5.setText(sale4);
+                                Toast.makeText(getContext(), sale0 + sale1 + sale2 + sale3 + sale4, Toast.LENGTH_SHORT).show();
+                            } else if (selectedNames.size() == 4) {
+                                sale0 = selectedNames.get(0);
+                                sale1 = selectedNames.get(1);
+                                sale2 = selectedNames.get(2);
+                                sale3 = selectedNames.get(3);
+                                filterSaleList.clear();
+                                filterSaleList.add(sale0);
+                                filterSaleList.add(sale1);
+                                filterSaleList.add(sale2);
+                                filterSaleList.add(sale3);
+                                filterSaleList.add(null);
+                                filterSaleList.add(null);
+
+                                textViews1.setText("");
+                                textViews2.setText("");
+                                textViews3.setText("");
+                                textViews4.setText("");
+                                textViews5.setText("");
+                                textViews6.setText("");
+
+                                textViews1.setText(sale0);
+                                textViews2.setText(sale1);
+                                textViews3.setText(sale2);
+                                textViews4.setText(sale3);
+                                Toast.makeText(getContext(), sale0 + sale1 + sale2 + sale3, Toast.LENGTH_SHORT).show();
+                            } else if (selectedNames.size() == 3) {
+                                sale0 = selectedNames.get(0);
+                                sale1 = selectedNames.get(1);
+                                sale2 = selectedNames.get(2);
+                                filterSaleList.clear();
+                                filterSaleList.add(sale0);
+                                filterSaleList.add(sale1);
+                                filterSaleList.add(sale2);
+                                filterSaleList.add(null);
+                                filterSaleList.add(null);
+                                filterSaleList.add(null);
+
+                                textViews1.setText("");
+                                textViews2.setText("");
+                                textViews3.setText("");
+                                textViews4.setText("");
+                                textViews5.setText("");
+                                textViews6.setText("");
+
+                                textViews1.setText(sale0);
+                                textViews2.setText(sale1);
+                                textViews3.setText(sale2);
+                                Toast.makeText(getContext(), sale0 + sale1 + sale2, Toast.LENGTH_SHORT).show();
+                            } else if (selectedNames.size() == 2) {
+                                sale0 = selectedNames.get(0);
+                                sale1 = selectedNames.get(1);
+                                filterSaleList.clear();
+                                filterSaleList.add(sale0);
+                                filterSaleList.add(sale1);
+                                filterSaleList.add(null);
+                                filterSaleList.add(null);
+                                filterSaleList.add(null);
+                                filterSaleList.add(null);
+
+                                textViews1.setText("");
+                                textViews2.setText("");
+                                textViews3.setText("");
+                                textViews4.setText("");
+                                textViews5.setText("");
+                                textViews6.setText("");
+
+                                textViews1.setText(sale0);
+                                textViews2.setText(sale1);
+                                Toast.makeText(getContext(), sale0 + sale1, Toast.LENGTH_SHORT).show();
+                            } else if (selectedNames.size() == 1) {
+                                sale0 = selectedNames.get(0);
+                                filterSaleList.clear();
+                                filterSaleList.add(sale0);
+                                filterSaleList.add(null);
+                                filterSaleList.add(null);
+                                filterSaleList.add(null);
+                                filterSaleList.add(null);
+                                filterSaleList.add(null);
+
+                                textViews1.setText("");
+                                textViews2.setText("");
+                                textViews3.setText("");
+                                textViews4.setText("");
+                                textViews5.setText("");
+                                textViews6.setText("");
+
+                                textViews1.setText(sale0);
+                                Toast.makeText(getContext(), sale0, Toast.LENGTH_SHORT).show();
+                            }
+
+
+                        }
+
+
+                    }
+
+                    @Override
+                    public void onCancel() {
+
+
+                    }
+                });
+    }
 }

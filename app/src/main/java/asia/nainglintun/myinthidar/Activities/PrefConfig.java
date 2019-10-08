@@ -35,6 +35,7 @@ public class PrefConfig {
         editor.commit();
     }
 
+
     public void writeRowUser(String name){
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putString(context.getString(R.string.pref_row_user),name);
@@ -44,6 +45,7 @@ public class PrefConfig {
     public String readName(){
         return sharedPreferences.getString(context.getString(R.string.pref_user_name),"User");
     }
+
 
     public String readRowUser(){
         return sharedPreferences.getString(context.getString(R.string.pref_row_user),"User");
@@ -55,8 +57,16 @@ public class PrefConfig {
 
     public void DeleteName(String name){
         SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.putString(context.getString(R.string.pref_user_name),name);
-        editor.clear().apply();
+        //editor.putString(context.getString(R.string.pref_user_name),name);
+        editor.remove(context.getString(R.string.pref_user_name));
+        editor.commit();
+    }
+
+    public void DeleteName(){
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        //editor.putString(context.getString(R.string.pref_user_name),name);
+        editor.remove(context.getString(R.string.pref_user_name));
+        editor.commit();
     }
 
 

@@ -21,12 +21,13 @@
 
 
     <string name="pref_file">asia.nainglintun.myintthitar.preference_file</string>
-    <string name="pref_login_status">asia.nainglintun.myintthitar.preference_login_status</string>
+    <string name="pref_login_status">asia.nainglintun.myinthidar.preference_login_status</string>
 
-    <string name="pref_user_name">asia.nainglintun.myintthitar.preference_user_name</string>
+    <string name="pref_user_name">asia.nainglintun.myinthidar.preference_user_name</string>
 
 
-    <string name="pref_row_user">asia.nainglintun.myintthitar.preference_row_user</string>
+    <string name="pref_row_user">asia.nainglintun.myinthidar.preference_row_user</string>
+    <string name="multi_select_dialog_title">Select Sale Member</string>
 
 
 </resources>

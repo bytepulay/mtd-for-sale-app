@@ -50,10 +50,10 @@ public class LoginTestActivity extends AppCompatActivity implements ZXingScanner
     public void handleResult(Result rawResult) {
        // Comfirm.userName.setText(rawResult.getText());
 
-    Intent intent  = new Intent(LoginTestActivity.this,Comfirm.class);
-    intent.putExtra("uname",rawResult.getText());
-    startActivity(intent);
-    
+//    Intent intent  = new Intent(LoginTestActivity.this,Comfirm.class);
+//    intent.putExtra("uname",rawResult.getText());
+//    startActivity(intent);
+//
     finish();
 
         //onBackPressed();

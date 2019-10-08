@@ -226,8 +226,8 @@ public class Salehistory {
     @SerializedName("return_gold_yae")
     private String return_gold_yae;
 
-    @SerializedName("net_pay_kayt")
-    private String net_pay_kayt;
+    @SerializedName("net_pay_kyat")
+    private String net_pay_kyat;
 
     @SerializedName("net_pay_pal")
     private String net_pay_pal;
@@ -544,8 +544,8 @@ public class Salehistory {
         return return_gold_yae;
     }
 
-    public String getNet_pay_kayt() {
-        return net_pay_kayt;
+    public String getNet_pay_kyat() {
+        return net_pay_kyat;
     }
 
     public String getNet_pay_pal() {

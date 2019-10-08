@@ -8,6 +8,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -19,6 +20,7 @@ import asia.nainglintun.myinthidar.R;
 import asia.nainglintun.myinthidar.models.ApiClient;
 import asia.nainglintun.myinthidar.models.ApiInterface;
 import asia.nainglintun.myinthidar.models.Customer;
+import asia.nainglintun.myinthidar.models.Sale;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -30,22 +32,15 @@ public class MainActivity extends AppCompatActivity {
     private EditText editTextUserName, editTextPassword;
     private Button btnLogin, btnScan;
     private ProgressDialog progressDialog;
-
-
-
-    //public static TextView qrUsername ;
-
+    public static FragmentManager fragmentManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        // setContentView(R.layout.activity_main);
-
         if (!isConnected(getApplicationContext())) {
             buildDialog(MainActivity.this).show();
         } else {
             setContentView(R.layout.activity_main);
-
             progressDialog = new ProgressDialog(this);
             progressDialog.setMessage("Please wait....");
 
@@ -53,79 +48,42 @@ public class MainActivity extends AppCompatActivity {
         apiInterface = ApiClient.getApiClient().create(ApiInterface.class);
 
 
-        editTextUserName = findViewById(R.id.etUserName);
-       // editTextPassword = findViewById(R.id.etPassword);
+        editTextUserName = findViewById(R.id.edUserName);
+        editTextPassword = findViewById(R.id.edPassword);
         btnLogin = findViewById(R.id.btnLogin);
-        btnScan = findViewById(R.id.btnScan);
-        //qrUsername = findViewById(R.id.qrUsername);
 
         final Activity activity = this;
-
-
-//            if (!prefConfig.readName().isEmpty() &&  prefConfig.readRowUser().equals("customer") ){
-//                startActivity(new Intent(MainActivity.this,CustomerActivity.class));
-//                finish();
-//            }else
-//
-                if (!prefConfig.readName().isEmpty() &&  prefConfig.readRowUser().equals("sale") ){
-
+                if (!prefConfig.readName().isEmpty() && !prefConfig.readName().equals("User")){
                 startActivity(new Intent(MainActivity.this,SalesActivity.class));
                  finish();
             }
 
-
-        // btnScan.setOnClickListener(v -> startActivity(new Intent(MainActivity.this, LoginTestActivity.class)));
-        btnScan.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-               // progressDialog.show();
-                startActivity(new Intent(getApplicationContext(), LoginTestActivity.class));
-            }
-        });
-//                IntentIntegrator integrator = new IntentIntegrator(activity);
-//                integrator.setDesiredBarcodeFormats(IntentIntegrator.QR_CODE_TYPES);
-//                integrator.setPrompt("Scan");
-//                integrator.setCameraId(0);
-//                integrator.setBeepEnabled(true);
-//                integrator.setOrientationLocked(true);
-//                integrator.setBarcodeImageEnabled(false);
-//                integrator.initiateScan();
 
 
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 String username = editTextUserName.getText().toString().trim();
-
+                String pass = editTextPassword.getText().toString().trim();
                 progressDialog.show();
-                Call<Customer> call = MainActivity.apiInterface.performUserLogin(username);
-                call.enqueue(new Callback<Customer>() {
+                Call<Sale> call = MainActivity.apiInterface.performUserLoginSale(username,pass);
+                call.enqueue(new Callback<Sale>() {
                     @Override
-                    public void onResponse(Call<Customer> call, Response<Customer> response) {
+                    public void onResponse(Call<Sale> call, Response<Sale> response) {
                         progressDialog.dismiss();
-                        if (response.body().getResponse().equals("customer")){
-                            String name =response.body().getUserName();
-                            String rowUser = response.body().getResponse();
-                            prefConfig.writeRowUser(rowUser);
-                          prefConfig.writeName(name);
-                          prefConfig.DeleteName(name);
-
-                            startActivity(new Intent(MainActivity.this,CustomerActivity.class));
-                        }else if (response.body().getResponse().equals("sale")) {
-                            String name =response.body().getUserName();
-                            String rowUser = response.body().getResponse();
-                            prefConfig.writeRowUser(rowUser);
+                        if (response.body().getResponse().equals("ok")){
+                            String name =response.body().getGroup_name();
                             prefConfig.writeName(name);
-                            startActivity(new Intent(MainActivity.this, SalesActivity.class));
-                        }else if (response.body().getResponse().equals("new")){
+                            startActivity(new Intent(MainActivity.this,SalesActivity.class));
+                        }else if (response.body().getResponse().equals("fail")) {
                             Toast.makeText(MainActivity.this, "please register", Toast.LENGTH_SHORT).show();
                         }
                     }
 
                     @Override
-                    public void onFailure(Call<Customer> call, Throwable t) {
+                    public void onFailure(Call<Sale> call, Throwable t) {
                         progressDialog.dismiss();
-                        Toast.makeText(MainActivity.this, "Login Fail", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(MainActivity.this, "Connection Fail", Toast.LENGTH_SHORT).show();
                     }
                 });
             }
@@ -175,26 +133,4 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-//    @Override
-//    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-//        IntentResult result = IntentIntegrator.parseActivityResult(requestCode,resultCode,data);
-//
-//        if (result!=null){
-//            if(result.getContents()==null){
-//                Toast.makeText(this,"You cancelled the scanning",Toast.LENGTH_LONG).show();
-//            }else {
-//                Toast.makeText(this, result.getContents(), Toast.LENGTH_LONG).show();
-//                Intent intent = new Intent(MainActivity.this,LoginTestActivity.class);
-//                Bundle bundle = new Bundle();
-//                bundle.putString("name",result.getContents());
-//                intent.putExtras(bundle);
-//                startActivity(intent);
-//            }
-//
-//        }else {
-//            super.onActivityResult(requestCode, resultCode, data);
-//        }
-//
-//    }
-//
 }

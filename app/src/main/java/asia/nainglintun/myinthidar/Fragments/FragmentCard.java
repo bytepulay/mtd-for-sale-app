@@ -16,6 +16,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
@@ -35,6 +36,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
+import static asia.nainglintun.myinthidar.Activities.MainActivity.*;
 import static asia.nainglintun.myinthidar.Activities.MainActivity.prefConfig;
 
 /**
@@ -71,9 +73,9 @@ public class FragmentCard extends Fragment {
                 R.drawable.default_profile);
         sProfile.setImageBitmap(bitmap);
 
+        name.setText(MainActivity.prefConfig.readName());
 
-
-        Call<Sale> saleCall = MainActivity.apiInterface.getSaleProfile(prefConfig.readName());
+        Call<Sale> saleCall = apiInterface.getSaleProfile(prefConfig.readName());
         saleCall.enqueue(new Callback<Sale>() {
             @Override
             public void onResponse(Call<Sale> call, Response<Sale> response) {
@@ -147,7 +149,6 @@ public class FragmentCard extends Fragment {
                     SalesActivity.fragmentManager.beginTransaction().replace(R.id.frame_layout_sales,new OrderListFragment()).addToBackStack(null).commit();
 
                 }
-
                 else if(position==5) {
                     SalesActivity.fragmentManager.beginTransaction().replace(R.id.frame_layout_sales,new SaleSettingFragment()).addToBackStack(null).commit();
 
